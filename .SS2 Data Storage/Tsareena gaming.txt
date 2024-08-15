@@ -1,0 +1,31 @@
+(ability.txt)
+[LIGHTAURA]
+Name = Light Aura
+Description = Powers up each Pokémon's Light-type moves.
+
+(moves.txt)
+[PURGING]
+Name = Purging
+Type = NORMAL
+Category = Physical
+Power = 140
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+FunctionCode = ChangeUserOTsareenaForm
+Flags = CanProtect,CanMirrorMove
+Description = The user purges one if its halves to deal massive damage and transform. Its typing depends on its ability.
+
+(pokemonforms.txt, not supported by pbs extension currently)
+#-------------------------------
+[OTSAREENA,1]
+FormName = Angel
+Type1 = LIGHT
+BaseStats = 92,130,118,113,45,112
+Abilities = LIGHTAURA
+#-------------------------------
+[OTSAREENA,2]
+FormName = Fallen
+Type1 = DARK
+BaseStats = 92,130,118,113,45,112
+Abilities = DARKAURA
