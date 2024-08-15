@@ -2239,3 +2239,19 @@ Target = AllNearOthers
 FunctionCode = Basic
 Flags = CanProtect,CanMirrorMove
 Description = The user channels the power of the cosmos in a wild rage that attacks everything around it.
+
+#----------------------------
+# Signatures
+#----------------------------
+# Tsareena
+[PURGING]
+Name = Purging
+Type = NORMAL
+Category = Physical
+Power = 140
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+FunctionCode = ChangeUserOTsareenaForm
+Flags = CanProtect,CanMirrorMove
+Description = The user purges one if its halves to deal massive damage and transform. Its typing depends on its ability.

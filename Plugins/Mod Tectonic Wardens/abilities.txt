@@ -1,0 +1,3 @@
+[LIGHTAURA]
+Name = Light Aura
+Description = Powers up each Pokémon's Light-type moves.
