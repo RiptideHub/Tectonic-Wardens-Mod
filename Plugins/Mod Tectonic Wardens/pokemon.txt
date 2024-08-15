@@ -8344,7 +8344,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 27
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OPAPPELUMEN,Level,42
+Evolutions = OPAPELLUMEN,Level,42
 #-------------------------------
 [2781]
 Name = O.Mankey
@@ -18672,7 +18672,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OVEILVUERAN,Level,40
+Evolutions = OVEILVUERAN2,Level,40
 #-------------------------------
 [3086]
 Name = T.Stantler
