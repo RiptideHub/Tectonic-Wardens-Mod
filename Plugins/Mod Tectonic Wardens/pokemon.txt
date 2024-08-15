@@ -299,7 +299,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = ODODRIO,Item,MOONSTONE
+Evolutions = ODODRIO,Level,20
 #-------------------------------
 [2542]
 Name = O.Dodrio
@@ -333,6 +333,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 5
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = ODODRIO,Level,40
 #-------------------------------
 [2543]
 Name = O.Ekans
@@ -366,7 +367,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OARBOK,Level,30
+Evolutions = OARBOK,Level,20
 #-------------------------------
 [2544]
 Name = O.Arbok
@@ -400,6 +401,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 13
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OGNIKOBRA,Level,40
 #-------------------------------
 [2545]
 Name = O.Staryu
@@ -433,7 +435,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OSTARMIE,Item,GEMSTONE
+Evolutions = OSTARMIE,Level,20
 #-------------------------------
 [2546]
 Name = O.Starmie
@@ -467,6 +469,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OSTARUS,Level,40
 #-------------------------------
 [2547]
 Name = O.Onix
@@ -500,7 +503,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OSTEELIX,Level,36
+Evolutions = OSTEELIX,Level,33
 #-------------------------------
 [2548]
 Name = O.Steelix
@@ -534,6 +537,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 6
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OTITANIX,Level,50
 #-------------------------------
 [2549]
 Name = O.Slugma
@@ -801,7 +805,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 30
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OXATU,Level,25
+Evolutions = OXATU,Level,20
 #-------------------------------
 [2557]
 Name = O.Xatu
@@ -835,6 +839,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OQUATZU,Level,40
 #-------------------------------
 [2558]
 Name = O.Rufflet
@@ -1607,7 +1612,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OGOLURK,Level,43
+Evolutions = OGOLURK,Level,30
 #-------------------------------
 [2581]
 Name = O.Golurk
@@ -1642,6 +1647,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 5
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OTERAGOL,Level,50
 #-------------------------------
 [2582]
 Name = O.Morelull
@@ -1914,7 +1920,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 29
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OAVALUGG,Level,37
+Evolutions = OAVALUGG,Level,30
 #-------------------------------
 [2590]
 Name = O.Avalugg
@@ -1947,6 +1953,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OCARVULAR,Level,50
 #-------------------------------
 [2591]
 Name = O.Ledyba
@@ -2047,7 +2054,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = ORAPIDASH,Level,38
+Evolutions = ORAPIDASH,Level,25
 #-------------------------------
 [2594]
 Name = O.Rapidash
@@ -2081,6 +2088,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 10
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OUNIDASH,Level,45
 #-------------------------------
 [2595]
 Name = O.Amaura
@@ -2820,6 +2828,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 11
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OPTEROFLYTE,Level,40
 #-------------------------------
 [2617]
 Name = O.Roggenrola
@@ -3023,7 +3032,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OGLISCOR,Item,IRONSTONE
+Evolutions = OGLISCOR,Level,25
 #-------------------------------
 [2623]
 Name = O.Gliscor
@@ -3057,6 +3066,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OSCORGYLE,Level,45
 #-------------------------------
 [2624]
 Name = O.Lillipup
@@ -3626,7 +3636,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 29
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OELECTRODE,Level,30
+Evolutions = OELECTRODE,Level,25
 #-------------------------------
 [2641]
 Name = O.Electrode
@@ -3659,6 +3669,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OZIMPLODE,Level,45
 #-------------------------------
 [2642]
 Name = O.Sandygast
@@ -3829,6 +3840,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OWORNET,Level,42
 #-------------------------------
 [2647]
 Name = O.Machop
@@ -4097,7 +4109,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OSHARPEDO,Level,30
+Evolutions = OSHARPEDO,Level,26
 #-------------------------------
 [2655]
 Name = O.Sharpedo
@@ -4131,6 +4143,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 13
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OSCARODON,Level,42
 #-------------------------------
 [2656]
 Name = O.Timburr
@@ -4671,7 +4684,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 33
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OGLALIE,ItemMale,DUSKSTONE,OFROSLASS,ItemFemale,DUSKSTONE
+Evolutions = OGLALIE,Level,26,OFROSLASS,Item,DUSKSTONE
 #-------------------------------
 [2672]
 Name = O.Glalie
@@ -4705,6 +4718,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OGRIMICE,Level,50
 #-------------------------------
 [2673]
 Name = O.Froslass
@@ -4738,6 +4752,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OYUKIMONO,Level,50
 #-------------------------------
 [2674]
 Name = O.Magby
@@ -5174,6 +5189,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = ORUBARIOR,Level,32
 #-------------------------------
 [2687]
 Name = O.Cubchoo
@@ -5207,7 +5223,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 35
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OBEARTIC,Level,38
+Evolutions = OBEARTIC,Level,30
 #-------------------------------
 [2688]
 Name = O.Beartic
@@ -5241,6 +5257,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OGRIZZICLE,Level,50
 #-------------------------------
 [2689]
 Name = O.Treecko
@@ -5479,7 +5496,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 32
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OHIPPOWDON,Level,36
+Evolutions = OHIPPOWDON,Level,30
 #-------------------------------
 [2696]
 Name = O.Hippowdon
@@ -5513,6 +5530,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 33
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OHIPPODUNE,Level,50
 #-------------------------------
 [2697]
 Name = O.Bronzor
@@ -5783,7 +5801,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 8
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OALTARIA,Item,NOXIOUSSTONE
+Evolutions = OALTARIA,Level,28
 #-------------------------------
 [2705]
 Name = O.Altaria
@@ -5817,6 +5835,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OHYMNUS,Level,50
 #-------------------------------
 [2706]
 Name = O.Abra
@@ -6052,6 +6071,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 9
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OATLACROSS,Level,46
 #-------------------------------
 [2713]
 Name = O.Teddiursa
@@ -8324,6 +8344,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 27
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OPAPPELUMEN,Level,42
 #-------------------------------
 [2781]
 Name = O.Mankey
@@ -10853,6 +10874,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 15
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OABSOLUS,Level,45
 #-------------------------------
 [2856]
 Name = O.Honedge
@@ -11125,7 +11147,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OMEDICHAM,Level,37
+Evolutions = OMEDICHAM,Level,28
 #-------------------------------
 [2864]
 Name = O.Medicham
@@ -11160,6 +11182,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 11
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OPALMANTRA,Level,49
 #-------------------------------
 [2865]
 Name = O.Nincada
@@ -12150,7 +12173,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OTENTACRUEL,Level,30
+Evolutions = OTENTACRUEL,Level,25
 #-------------------------------
 [2894]
 Name = O.Tentacruel
@@ -12186,6 +12209,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 11
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OTENTAMALISH,Level,50
 #-------------------------------
 [2895]
 Name = O.Bounsweet
@@ -12631,7 +12655,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OCOFAGRIGUS,Item,HUMMINGSTONE
+Evolutions = OCOFAGRIGUS,Level,25
 #-------------------------------
 [2908]
 Name = O.Cofagrigus
@@ -12666,6 +12690,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OPHARAGRIGUS,Level,45
 #-------------------------------
 [2909]
 Name = O.Sinistea
@@ -14127,7 +14152,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 34
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OMANECTRIC,Level,26
+Evolutions = OMANECTRIC,Level,25
 #-------------------------------
 [2952]
 Name = O.Manectric
@@ -14162,6 +14187,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OMANERGETIC,Level,46
 #-------------------------------
 [2953]
 Name = O.Ferroseed
@@ -15676,7 +15702,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 35
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = ODONPHAN,Level,25
+Evolutions = ODONPHAN,Level,20
 #-------------------------------
 [2998]
 Name = O.Donphan
@@ -15711,6 +15737,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OMEGADON,Level,40
 #-------------------------------
 [2999]
 Name = O.Pikipek
@@ -16180,7 +16207,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = ONINETALES,Item,SHINYSTONE
+Evolutions = ONINETALES,Level,25
 #-------------------------------
 [3013]
 Name = O.Ninetales
@@ -16213,6 +16240,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 8
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OKITSUMITH,Level,45
 #-------------------------------
 [3014]
 Name = T.Bounsweet
@@ -17149,6 +17177,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 13
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OABSOLUS2,Level,45
 #-------------------------------
 [3042]
 Name = O.Snivy
@@ -17449,7 +17478,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 26
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OABOMASNOW,Level,38
+Evolutions = OABOMASNOW,Level,28
 #-------------------------------
 [3051]
 Name = O.Abomasnow
@@ -17484,6 +17513,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OCONIFEAR,Level,45
 #-------------------------------
 [3052]
 Name = T.Exeggcute
@@ -17586,6 +17616,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 30
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = ORUBARIOR2,Level,32
 #-------------------------------
 [3055]
 Name = O.Trubbish
@@ -17619,7 +17650,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 31
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OGARBODOR,Item,THUNDERSTONE
+Evolutions = OGARBODOR,Level,28
 #-------------------------------
 [3056]
 Name = O.Garbodor
@@ -17653,6 +17684,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = ODONSTER,Level,40
 #-------------------------------
 [3057]
 Name = T.Swablu
@@ -17686,7 +17718,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OALTARIA2,Level,35
+Evolutions = OALTARIA2,Level,28
 #-------------------------------
 [3058]
 Name = T.Altaria
@@ -17720,6 +17752,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OHYMNUS2,Level,50
 #-------------------------------
 [3059]
 Name = T.Slugma
@@ -18603,7 +18636,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 31
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OMASQUERAIN2,Level,22
+Evolutions = OMASQUERAIN2,Level,20
 #-------------------------------
 [3085]
 Name = T.Masquerain
@@ -18639,6 +18672,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OVEILVUERAN,Level,40
 #-------------------------------
 [3086]
 Name = T.Stantler
@@ -19176,7 +19210,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OBARBARACLE,Level,34
+Evolutions = OBARBARACLE,Level,26
 #-------------------------------
 [3102]
 Name = O.Barbaracle
@@ -19210,6 +19244,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 13
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OBARBIOSIS,Level,45
 #-------------------------------
 [3103]
 Name = O.Arrokuda
@@ -19950,7 +19985,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OMISMAGIUS,Item,DAWNSTONE
+Evolutions = OMISMAGIUS,Level,20
 #-------------------------------
 [3125]
 Name = O.Mismagius
@@ -19984,7 +20019,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 8
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OMISHOGAN,Item,DAWNSTONE
+Evolutions = OMISHOGAN,Level,40
 #-------------------------------
 [3126]
 Name = O.Poliwag
@@ -22270,7 +22305,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 31
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OHOUNDOOM,Level,24
+Evolutions = OHOUNDOOM,Level,27
 #-------------------------------
 [3194]
 Name = O.Houndoom
@@ -22305,6 +22340,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 13
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OHOUNDOMINUS,Level,50
 #-------------------------------
 [3195]
 Name = O.Piplup
@@ -22941,7 +22977,7 @@ BattlerEnemyX = -9
 BattlerEnemyY = 33
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OCENTISKORCH,Level,28
+Evolutions = OCENTISKORCH,Level,24
 #-------------------------------
 [3214]
 Name = O.Centiskorch
@@ -22975,6 +23011,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OMILLIBLAZE,Level,41
 #-------------------------------
 [3215]
 Name = O.Sobble
@@ -24609,7 +24646,7 @@ BattlerEnemyX = 3
 BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = OCHIMECHO,Level,25
+Evolutions = OCHIMECHO,Level,20
 #-------------------------------
 [3263]
 Name = O.Chimecho
@@ -24644,6 +24681,7 @@ BattlerEnemyX = 1
 BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 1
+Evolutions = OCHIMELODY,Level,40
 #-------------------------------
 [3264]
 Name = T.Magnemite
@@ -26108,6 +26146,7 @@ BattlerEnemyX = 2
 BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = OVOLTONGA,Level,45
 #-------------------------------
 [3307]
 Name = O.Salandit
@@ -27057,8 +27096,8 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [3335]
-Name = O.Glacegiri
-InternalName = OGLACEGIRI
+Name = O.Grimice
+InternalName = OGRIMICE
 Type1 = GHOST
 Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -27363,8 +27402,8 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [3344]
-Name = O.Scarapace
-InternalName = OSCARAPACE
+Name = O.Atlacross
+InternalName = OATLACROSS
 Type1 = BUG
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -29827,7 +29866,6 @@ BattlerEnemyX = 0
 BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = OARBOK,Level,30
 #-------------------------------
 [3416]
 Name = O.Skorupi
