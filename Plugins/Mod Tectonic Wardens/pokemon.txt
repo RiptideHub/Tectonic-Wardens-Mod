@@ -12193,8 +12193,8 @@ InternalName = OBOUNSWEET
 Type1 = LIGHT
 Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 38,47,30,38,25,32
-# Total = 210
+BaseStats = 58,67,45,58,45,42
+# Total = 315
 GenderRate = AlwaysFemale
 GrowthRate = Parabolic
 BaseEXP = 42
@@ -12227,8 +12227,8 @@ InternalName = OSTEENEE
 Type1 = LIGHT
 Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 40,67,48,48,35,62
-# Total = 300
+BaseStats = 70,87,58,83,55,62
+# Total = 415
 GenderRate = AlwaysFemale
 GrowthRate = Parabolic
 BaseEXP = 102
@@ -12261,8 +12261,8 @@ InternalName = OTSAREENA
 Type1 = LIGHT
 Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 92,120,78,103,45,72
-# Total = 510
+BaseStats = 92,120,78,103,50,77
+# Total = 520
 GenderRate = AlwaysFemale
 GrowthRate = Parabolic
 BaseEXP = 230
