@@ -1091,3 +1091,15 @@ FormName = White-Striped
 Kind = Mellow
 Pokedex = It differs from other Basculin in several respects, including demeanor. It is much gentler than other color variants.
 Evolutions = BASCULEGION,Level,42
+#-------------------------------
+[OTSAREENA,1]
+FormName = Angel
+Type1 = LIGHT
+BaseStats = 92,130,118,113,45,112
+Abilities = LIGHTAURA
+#-------------------------------
+[OTSAREENA,2]
+FormName = Fallen
+Type1 = DARK
+BaseStats = 92,130,118,113,45,112
+Abilities = DARKAURA

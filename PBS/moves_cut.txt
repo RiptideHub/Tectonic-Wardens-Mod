@@ -95,17 +95,6 @@ Flags = CanProtect,CanMirrorMove
 EffectChance = 10
 Description = The user squeezes the target, trapping and damaging it for three turns.
 #-------------------------------
-[COURTCHANGE]
-Name = Court Change
-Type = NORMAL
-Category = Status
-Accuracy = 100
-TotalPP = 10
-Target = BothSides
-FunctionCode = Invalid
-Flags = CanMirrorMove
-Description = With its mysterious power, the user swaps the effects on either side of the field.
-#-------------------------------
 [CRUSHGRIP]
 Name = Crush Grip
 Type = NORMAL
@@ -200,17 +189,6 @@ FunctionCode = Invalid
 Flags = CanProtect,CanMirrorMove
 Description = A full-power special attack that grows more powerful the more the user likes its Trainer.
 Animation = RETURN
-#-------------------------------
-[FLASH]
-Name = Flash
-Type = NORMAL
-Category = Status
-Accuracy = 100
-TotalPP = 15
-Target = NearOther
-FunctionCode = Invalid
-Flags = CanProtect,CanMagicCoat,CanMirrorMove
-Description = The user flashes a light that cuts the target's accuracy. It can also be used to illuminate caves.
 #-------------------------------
 [FORESIGHT]
 Name = Foresight
@@ -1007,19 +985,6 @@ Flags = CanProtect,CanMirrorMove
 Description = The user looses a ground-shaking quake affecting everyone around. Its power varies greatly.
 Animation = EARTHQUAKE
 #-------------------------------
-[MUDBOMB]
-Name = Mud Bomb
-Type = GROUND
-Category = Special
-Power = 65
-Accuracy = 100
-TotalPP = 10
-Target = NearOther
-FunctionCode = Invalid
-Flags = CanProtect,CanMirrorMove
-EffectChance = 30
-Description = The user launches a hard-packed mud ball to attack. It has a 30% chance to lower accuracy.
-#-------------------------------
 [MUDSLAP]
 Name = Mud-Slap
 Type = GROUND
@@ -1299,19 +1264,6 @@ Flags = CanProtect,CanMirrorMove
 Description = The user generates an intense magnetic connection between it and the target, striking it without fail.
 Animation = METALCLAW
 #-------------------------------
-[MIRRORSHOT]
-Name = Mirror Shot
-Type = STEEL
-Category = Special
-Power = 60
-Accuracy = 100
-TotalPP = 10
-Target = NearOther
-FunctionCode = Invalid
-Flags = CanProtect,CanMirrorMove
-EffectChance = 30
-Description = The user looses a flash of energy from its polished body. It has a 30% chance to lower accuracy.
-#-------------------------------
 [SMARTSTRIKE]
 Name = Smart Strike
 Type = STEEL
@@ -1530,19 +1482,6 @@ Flags = CanSnatch
 Description = The user withdraws its body into its hard shell, raising its Defense stat.
 #-------------------------------
 #		GRASS MOVES
-#-------------------------------
-[APPLEACID]
-Name = Apple Acid
-Type = GRASS
-Category = Special
-Power = 80
-Accuracy = 100
-TotalPP = 10
-Target = NearOther
-FunctionCode = Invalid
-Flags = CanProtect,CanMirrorMove
-EffectChance = 100
-Description = Attacks with an acidic liquid created from tart apples. Lowers the target's Sp. Def stat.
 #-------------------------------
 [GRASSWHISTLE]
 Name = Grass Whistle
