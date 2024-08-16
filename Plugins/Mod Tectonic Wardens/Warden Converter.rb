@@ -1,6 +1,8 @@
 def chooseWardenMon
   blacklist = [:ETERNATUS,:REGIROCK,:REGICE,:REGISTEEL,:MANAPHY,:PHIONE,:DARKRAI,:CRESSELIA,:TAPUKOKO,:TAPULELE,:TAPUFINI,:TAPUBULU,:HOOPA]
   mon = selectWardenPokemon
+  p mon
+=begin
   if mon != nil
     new_mon = pbTranslateWardenSpecies(mon,true)
     can_translate = (new_mon==nil) ? false : (IS_WARDEN_MON.include?(new_mon) ? true : false)
@@ -9,5 +11,25 @@ def chooseWardenMon
     else
       Kernel.pbMessage("Unfortunately I can't make an egg for you.")
     end
+  end
+=end
+end
+
+def selectWardenPokemon
+  pbFadeOutIn do
+    scene = PokemonParty_Scene.new
+    screen = PokemonPartyScreen.new(scene, $Trainer.party)
+    screen.pbStartScene(_INTL("Select a Pokémon."), false, annot)
+    loop do
+      chosen=screen.pbChoosePokemon
+      if chosen>=0
+        pokemon=$Trainer.party[chosen].species
+        screen.pbEndScene
+        return pokemon
+      else
+        break
+      end  
+    end
+    screen.pbEndScene
   end
 end
