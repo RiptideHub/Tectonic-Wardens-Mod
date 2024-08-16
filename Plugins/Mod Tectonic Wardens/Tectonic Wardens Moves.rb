@@ -1,3 +1,7 @@
+#===============================================================================
+# Changes typing and transforms into a specific form depending on the user's ability (Purging, Tsareena's signature) 
+#===============================================================================
+
 class PokeBattle_Move_ChangeUserOTsareenaForm < PokeBattle_Move
   def pbMoveFailed?(user, _targets, show_message)
       if !user.countsAs?(:OTSAREENA)
