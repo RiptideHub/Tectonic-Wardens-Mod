@@ -57,6 +57,12 @@ DOCK_LOCATIONS = {
         :event_id => 19,
         :unlock_switch => 151,
     },
+    :TEMPORAL_ISLAND => {
+        :map_name => "Temporal Island",
+        :map_id => 444,
+        :event_id => 002,
+        :unlock_switch => 152,
+    },
 }
 
 def unlockBoatingSpot(dockID,ignoreAlreadyActive=false)
