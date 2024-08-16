@@ -26,9 +26,8 @@ def selectWardenPokemon
   }
   if chosen>=0
     pokemon=$Trainer.party[chosen].species
-    screen.pbEndScene
     return pokemon
   else
-    break
+    return nil
   end
 end
