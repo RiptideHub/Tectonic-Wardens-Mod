@@ -16,20 +16,19 @@ def chooseWardenMon
 end
 
 def selectWardenPokemon
-  pbFadeOutIn do
+  chosen = 0
+  pbFadeOutIn {
     scene = PokemonParty_Scene.new
-    screen = PokemonPartyScreen.new(scene, $Trainer.party)
-    screen.pbStartScene(_INTL("Select a Pokémon."), false, annot)
-    loop do
-      chosen=screen.pbChoosePokemon
-      if chosen>=0
-        pokemon=$Trainer.party[chosen].species
-        screen.pbEndScene
-        return pokemon
-      else
-        break
-      end  
-    end
+    screen = PokemonPartyScreen.new(scene,$Trainer.party)
+    screen.pbStartScene(_INTL("Choose a Pokémon."),false)
+    chosen = screen.pbChoosePokemon
     screen.pbEndScene
+  }
+  if chosen>=0
+    pokemon=$Trainer.party[chosen].species
+    screen.pbEndScene
+    return pokemon
+  else
+    break
   end
 end
