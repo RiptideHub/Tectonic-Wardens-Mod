@@ -7528,8 +7528,8 @@ InternalName = OSLOWKING
 Type1 = NORMAL
 Type2 = BUG
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 95,65,70,50,110,100
-# Total = 490
+BaseStats = 100,75,80,30,100,140
+# Total = 525
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 172
