@@ -48,7 +48,7 @@ InternalName = ROCK
 Color = 184,160,56
 DarkColor = 80,48,32
 Weaknesses = FIGHTING,GROUND,STEEL,WATER,GRASS
-Resistances = NORMAL,FLYING,POISON,FIRE,ICE,LIGHT
+Resistances = NORMAL,FLYING,POISON,FIRE,ICE,LIGHT,COSMIC
 #-------------------------------
 [6]
 Name = Bug
@@ -72,7 +72,7 @@ Name = Steel
 InternalName = STEEL
 Color = 184,184,208
 DarkColor = 88,88,72
-Weaknesses = FIGHTING,GROUND,FIRE,PSYCHIC
+Weaknesses = FIGHTING,GROUND,FIRE,PSYCHIC,COSMIC
 Resistances = NORMAL,FLYING,ROCK,BUG,STEEL,GRASS,PSYCHIC,ICE,DRAGON,FAIRY
 Immunities = POISON
 #-------------------------------
@@ -87,7 +87,7 @@ InternalName = FIRE
 Color = 240,128,48
 DarkColor = 112,40,56
 IsSpecialType = true
-Weaknesses = GROUND,ROCK,WATER
+Weaknesses = GROUND,ROCK,WATER,COSMIC
 Resistances = BUG,STEEL,FIRE,GRASS,ICE
 #-------------------------------
 [11]
@@ -142,7 +142,7 @@ Color = 112,56,248
 DarkColor = 48,32,136
 IsSpecialType = true
 Weaknesses = ICE,DRAGON,FAIRY,LIGHT
-Resistances = FIRE,WATER,GRASS,ELECTRIC
+Resistances = FIRE,WATER,GRASS,ELECTRIC,COSMIC
 #-------------------------------
 [17]
 Name = Dark
@@ -170,8 +170,8 @@ Color = 162,114,146
 DarkColor = 110,59,93
 IsPseudoType = true
 Weaknesses = NORMAL,DRAGON,LIGHT
-Resistances = ELECTRIC,FIGHTING,POISON,ROCK,GHOST,DARK
-Immunities = FIRE,ICE
+Resistances = ELECTRIC,FIGHTING,POISON,GHOST,COSMIC
+Immunities = FIRE,GROUND
 #-------------------------------
 [20]
 Name = Light
