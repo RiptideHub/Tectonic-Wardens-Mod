@@ -22,6 +22,7 @@ SaveData.register_conversion(:global_switch_refactor_3_2_1) do
         globalSwitches[306] = globalSwitches[97] # Tri Island
         globalSwitches[307] = globalSwitches[99] # Battle Monument
         globalSwitches[308] = globalSwitches[151] # Spirit Atoll
+        globalSwitches[309] = globalSwitches[152] # Temporal Island
 
         # map added elements
         globalSwitches[326] = globalSwitches[52] # Volcanic Shore

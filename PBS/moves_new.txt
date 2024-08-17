@@ -6677,11 +6677,11 @@ Flags = CanProtect,CanMirrorMove
 Description = Strikes the target with lunar light, then summons moonglow for eight turns.
 Animation = DAZZLINGGLEAM
 #-------------------------------
-#		MUTANT MOVES
+#		COSMIC MOVES
 #-------------------------------
 [MUTATE]
 Name = Mutate
-Type = MUTANT
+Type = COSMIC
 Category = Status
 Accuracy = 0
 TotalPP = 5

@@ -1,0 +1,7 @@
+[LIGHTAURA]
+Name = Light Aura
+Description = Powers up each Pokémon's Light-type moves.
+#-------------------------------
+[NECROMANCY]
+Name = Necromancy
+Description = Uses Clash at the end of each turn if it has a substitute active.
