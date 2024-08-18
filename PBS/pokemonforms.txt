@@ -1107,7 +1107,6 @@ Abilities = DARKAURA
 [OGARDEVOIR,1]
 FormName = Eldritch
 BaseStats = 68,65,75,120,155,135
-# Total = 618
 Abilities = CORROSION
 #-------------------------------
 [OGALLADE,1]

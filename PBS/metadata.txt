@@ -3098,7 +3098,6 @@ ShowArea = false
 Bicycle = true
 #-------------------------------
 [444]
-# Temporal Island
 Outdoor = true
 ShowArea = true
 Bicycle = true
