@@ -1103,3 +1103,14 @@ FormName = Fallen
 Type1 = DARK
 BaseStats = 92,130,118,113,45,112
 Abilities = DARKAURA
+#-------------------------------
+[OGARDEVOIR,1]
+FormName = Eldritch
+BaseStats = 68,65,75,120,155,135
+# Total = 618
+Abilities = CORROSION
+#-------------------------------
+[OGALLADE,1]
+FormName = Eldritch
+BaseStats = 108,105,110,110,85,100
+Abilities = SWORDPLAY
