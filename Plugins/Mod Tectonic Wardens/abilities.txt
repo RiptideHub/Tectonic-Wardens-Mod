@@ -30,6 +30,10 @@ Description = Boosts 30% Ice and Water moves in hail.
 Name = Realism
 Description = Halves damage from Ghost and Fairy-type moves.
 #-------------------------------
+[POUNCE]
+Name = Pounce
+Description = On switch-in, user gains priority for first move.
+#-------------------------------
 [DARKMATTER]
 Name = Dark Matter
 Description = Normal moves become 1.2x power Cosmic moves.
