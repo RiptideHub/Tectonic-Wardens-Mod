@@ -5,3 +5,129 @@ Description = Powers up each Pokémon's Light-type moves.
 [NECROMANCY]
 Name = Necromancy
 Description = Uses Clash at the end of each turn if it has a substitute active.
+#-------------------------------
+[PUREHEART]
+Name = Pure Heart
+Description = Gradually regains 1/16 max HP each turn.
+#-------------------------------
+[BLACKLIGHT]
+Name = Black Light
+Description = Light moves become 1.2x power Dark moves.
+#-------------------------------
+[WHITEOUT]
+Name = Whiteout
+Description = Dark moves become 1.2x power Light moves
+#-------------------------------
+[LEECHINGFANGS]
+Name = Leeching Fangs
+Description = Restores 1/8 life with every biting move.
+#-------------------------------
+[ICYVEINS]
+Name = Icy Veins
+Description = Boosts 30% Ice and Water moves in hail.
+#-------------------------------
+[REALISM]
+Name = Realism
+Description = Halves damage from Ghost and Fairy-type moves.
+#-------------------------------
+[DARKMATTER]
+Name = Dark Matter
+Description = Normal moves become 1.2x power Cosmic moves.
+#-------------------------------
+[WINTERGIFT]
+Name = Winter Gift
+Description = Powers up party's Sp. Attack and Sp. Defense by 50% in hail.
+#-------------------------------
+[ARSONIST]
+Name = Arsonist
+Description = Powers up 50% Fire-type moves.
+#-------------------------------
+[VENGEFUL]
+Name = Vengeful
+Description = Raises Attack and Speed two steps if a hit makes its HP <50%.
+#-------------------------------
+[ASTRALMAJESTY]
+Name = Astral Majesty
+Description = Halves damage from Light and Dragon-type moves.
+#-------------------------------
+[NEBULACLOUD]
+Name = Nebula Cloud
+Description = Protects Cosmic-types from stat drops and status effects.
+#-------------------------------
+[LIGHTBULB]
+Name = Light Bulb
+Description = Halves incoming Dark moves, 2x Light moves.
+#-------------------------------
+[TERRORIFIC]
+Name = Terrorific
+Description = Halves incoming Bug moves, 2x Psychic moves.
+#-------------------------------
+[PACKEDSNOW]
+Name = Packed Snow
+Description = Halves effectiveness of S/E moves in hail.
+#-------------------------------
+[HIVEMIND]
+Name = Hivemind
+Description = Powers up 50% Bug-type moves.
+#-------------------------------
+[OPAQUENESS]
+Name = Opaqueness
+Description = Immune to Light-type moves.
+#-------------------------------
+[PRECISION]
+Name = Precision
+Description = The Pokémon's accuracy is boosted 30%.
+#-------------------------------
+[IRREDEEMABLE]
+Name = Irredeemable
+Description = Halves damage from Light and Fairy-type moves.
+#-------------------------------
+[BONECOLLECTOR]
+Name = Bone Collector
+Description = Powers up 50% Ground-type moves.
+#-------------------------------
+[SCORCHSCALE]
+Name = Scorch Scale
+Description = Burns any attacker that uses priority moves on it.
+#-------------------------------
+[ROCKYPAYLOAD]
+Name = Rocky Payload
+Description = Powers up 50% Rock-type moves.
+#-------------------------------
+#not functional
+[HIVEBODY]
+Name = Hive Body
+Description = Contact moves apply Infestation.
+#-------------------------------
+#not functional
+[ANGERSHELL]
+Name = Anger Shell
+Description = The Pokémon's stats change at or below half health.
+#-------------------------------
+[TOXICDEBRIS]
+Name = Toxic Debris
+Description = Scatters poison spikes upon contact.
+#-------------------------------
+[EARTHEATER]
+Name = Earth Eater
+Description = Restores HP if hit by a Ground-type move.
+#-------------------------------
+[REQUIEM]
+Name = Requiem
+Description = Powers up 50% Dark-type moves.
+#-------------------------------
+[AFFECTION]
+Name = Affection
+Description = Powers up 50% Fairy-type moves.
+#-------------------------------
+[COMETSTORM]
+Name = Comet Storm
+Description = Raises Speed and Special Attack two steps when hit by a Rock-type move.
+#-------------------------------
+[TROPICALHIDE]
+Name = Tropical Hide
+Description = Halves damage from Grass and Water-type moves.
+#-------------------------------
+[POSSESED]
+Name = Possesed
+Description = Powers up 50% Ghost-type moves.
