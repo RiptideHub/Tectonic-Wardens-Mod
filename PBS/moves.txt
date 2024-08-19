@@ -27,10 +27,11 @@ Name = Baton Pass
 Type = NORMAL
 Category = Status
 Accuracy = 0
-TotalPP = 30
+TotalPP = 5
 Target = User
+Priority = -6
 FunctionCode = SwitchOutUserPassOnEffects
-Description = The user switches places with a party Pokémon in waiting, passing along any stat step changes.
+Description = The user switches places with a party Pokémon in waiting, passing along any stat step changes. Always goes last.
 #-------------------------------
 [BELLYDRUM]
 Name = Belly Drum
@@ -2599,14 +2600,14 @@ Description = The user spins a sandstorm around the target, trapping and damagin
 Name = Scorching Sands
 Type = GROUND
 Category = Special
-Power = 80
+Power = 90
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = Burn
 Flags = CanProtect,CanMirrorMove
-EffectChance = 30
-Description = Throws scorching sand at the target to attack. It has a 30% chance to burn.
+EffectChance = 10
+Description = Throws scorching sand at the target to attack. It has a 10% chance to burn.
 #-------------------------------
 [SHOREUP]
 Name = Shore Up
