@@ -6,11 +6,11 @@ def chooseWardenMon
   mon = selectWardenPokemon
   if mon != nil
     new_mon = pbTranslateWardenSpecies(mon,true)
-    can_translate = (new_mon==nil) ? false : (TECH_WARD_PAIR.include?(new_mon) ? true : false)
+    can_translate = (new_mon==nil) ? false : (IS_WARDEN_MON.include?(new_mon) ? true : false)
     if can_translate && !blacklist.include?(mon)
       generateWardenMon(new_mon)
     else
-      pbMessage("Unfortunately I can't make an egg for you.")
+      pbMessage("Unfortunately I can't convert that Pokemon for you.")
     end
   end
 end
