@@ -9,7 +9,7 @@ def generate_translation_list
 		make_ward = (("O" + real_mon) == WARDEN_SPECIES[i]) ? true : false
         f.write("[:#{species.species.to_s},:O#{species.species.to_s}],") if make_ward
 		make_temp = (("O" + real_mon + "2") == WARDEN_SPECIES[i]) ? true : false
-        f.write("[:#{species.species.to_s},:O#{species.species.to_s}],") if make_temp
+      f.write("[:#{species.species.to_s},:O#{species.species.to_s}2],") if make_temp
       end
     end
 	f.write("]")
