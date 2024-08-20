@@ -58,5 +58,5 @@ end
 def generateWardenMon(ward_mon)
   new_mon = babySpecies(ward_mon)
   pbMessage("Understood, Take good care of them!")
-  pbAddToParty(new_mon,1)
+  pbAddPokemon(new_mon,1)
 end
