@@ -7,9 +7,12 @@ def generate_translation_list
       for i in 0...WARDEN_SPECIES.length
 		real_mon = species.species.to_s
 		make_ward = (("O" + real_mon) == WARDEN_SPECIES[i]) ? true : false
-        f.write(":#{species.species.to_s},:O#{species.species.to_s}") if make_ward
+        f.write("[:#{species.species.to_s},:O#{species.species.to_s}],") if make_ward
+		make_temp = (("O" + real_mon + "2") == WARDEN_SPECIES[i]) ? true : false
+        f.write("[:#{species.species.to_s},:O#{species.species.to_s}],") if make_temp
       end
     end
 	f.write("]")
   end
+  pbMessage("Generated Pair List.")
 end
