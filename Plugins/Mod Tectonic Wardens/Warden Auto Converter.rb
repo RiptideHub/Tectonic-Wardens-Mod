@@ -10,6 +10,6 @@ def generate_translation_list
         f.write(":#{species.species.to_s},:O#{species.species.to_s}") if make_ward
       end
     end
-	f.weite("]")
+	f.write("]")
   end
 end
