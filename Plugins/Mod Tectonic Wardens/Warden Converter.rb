@@ -22,36 +22,12 @@ def selectWardenPokemon
     screen = PokemonStorageScreen.new(scene, $PokemonStorage)
     chosen,storageBox,boxLocation = screen.pbStartScreen(4,proc { |poke| !poke.egg?})
   }
-=begin
-  pbFadeOutIn {
-    scene = PokemonParty_Scene.new
-    screen = PokemonPartyScreen.new(scene,$Trainer.party)
-    screen.pbStartScene(_INTL("Choose a Pokémon."),false)
-    chosen = screen.pbChoosePokemon
-    screen.pbEndScene
-  }
-=end
   if chosen != nil
     pokemon = chosen.species
     return pokemon
   else
     return nil
   end
-end
-
-
-
-def pbChooseBoxPokemon(variableNumber,storageLocVarNumber,ableProc=nil)
-	chosenPkmn = nil
-    storageBox = nil
-    boxLocation = nil
-	pbFadeOutIn {
-		scene = PokemonStorageScene.new
-        screen = PokemonStorageScreen.new(scene, $PokemonStorage)
-		chosenPkmn,storageBox,boxLocation = screen.pbStartScreen(4,ableProc)
-	}
-	pbSet(variableNumber,chosenPkmn)
-	pbSet(storageLocVarNumber,[storageBox,boxLocation])
 end
 
 def pbTranslateWardenSpecies(species,dir = false)
