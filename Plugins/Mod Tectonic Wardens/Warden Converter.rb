@@ -39,15 +39,16 @@ def pbTranslateWardenSpecies(species,dir = false)
       option.push(cannon_dexnum) if cannon_dexnum!=nil
     end
     option.uniq!
-    new_dexnum = (option.length>1) ? option.sample : cannon_dexnum
+	size = ((option.length>1) ? 2 : 1)
+	mon1 = $Trainer.pokedex.owned?(TECH_WARD_PAIR[option[0]][1])
+	mon2 = (size==2) ? $Trainer.pokedex.owned?(TECH_WARD_PAIR[option[1]][1]) : $Trainer.pokedex.owned?(TECH_WARD_PAIR[option[0]][1])
+	cond = [size,mon1,mon2]
+    new_dexnum = ((cond==[2,false,false]) ? option.sample : ((cond==[2, true,false]) ? option[1] : ((cond==[2,false, true]) ? option[0] : ((cond==[2, true, true]) ? option.sample : cannon_dexnum))))
     if new_dexnum != nil
      orion_dexnum = TECH_WARD_PAIR[new_dexnum][1]
      return orion_dexnum
     end
   else
-	#orion_dexnum = $cache.pkmn[species].dexnum
-    #new_dexnum = orion_dexnum-WARDEN_MIN
-    #cannon_dexnum = TECH_WARD_PAIR[new_dexnum][0]
     ward_mon = (IS_WARDEN_MON.include?(species.species)) ? species.species : nil
     return ward_mon
   end
