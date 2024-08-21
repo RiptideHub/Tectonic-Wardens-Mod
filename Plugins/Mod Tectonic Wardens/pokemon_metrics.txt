@@ -1,0 +1,4046 @@
+﻿# See the documentation on the wiki to learn how to edit this file. 
+#------------------------------- 
+[OHOOPA] 
+BackSprite = 0,27 
+FrontSprite = 0,31 
+ShadowX = 0 
+ShadowSize = 1 
+#------------------------------- 
+[OKOFFING] 
+BackSprite = 0,22 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OWEEZING] 
+BackSprite = 0,5 
+FrontSprite = 0,4 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSOLOSIS] 
+BackSprite = 0,34 
+FrontSprite = 0,37 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODUOSION] 
+BackSprite = 0,27 
+FrontSprite = 0,31 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OREUNICLUS] 
+BackSprite = 0,24 
+FrontSprite = 0,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGASTLY] 
+BackSprite = 0,23 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHAUNTER] 
+BackSprite = 0,25 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGENGAR] 
+BackSprite = 0,13 
+FrontSprite = 0,10 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODODUO] 
+BackSprite = 0,21 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODODRIO] 
+BackSprite = 0,11 
+FrontSprite = 0,5 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OEKANS] 
+BackSprite = 0,25 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OARBOK] 
+BackSprite = 0,15 
+FrontSprite = 0,13 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSTARYU] 
+BackSprite = 0,27 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSTARMIE] 
+BackSprite = 0,20 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OONIX] 
+BackSprite = 0,13 
+FrontSprite = 0,12 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSTEELIX] 
+BackSprite = 0,8 
+FrontSprite = 0,6 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSLUGMA] 
+BackSprite = 0,30 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMAGCARGO] 
+BackSprite = 0,24 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OWAILMER] 
+BackSprite = 0,25 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OWAILORD] 
+BackSprite = 0,10 
+FrontSprite = 0,9 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFLETCHLING] 
+BackSprite = 0,28 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFLETCHINDER] 
+BackSprite = 0,25 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTALONFLAME] 
+BackSprite = 0,1 
+FrontSprite = 0,12 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ONATU] 
+BackSprite = 0,33 
+FrontSprite = 0,30 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OXATU] 
+BackSprite = 0,25 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ORUFFLET] 
+BackSprite = 0,24 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBRAVIARY] 
+BackSprite = 0,0 
+FrontSprite = 0,11 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ONOSEPASS] 
+BackSprite = 0,23 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPROBOPASS] 
+BackSprite = 0,13 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OZUBAT] 
+BackSprite = 0,32 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGOLBAT] 
+BackSprite = 0,19 
+FrontSprite = 0,-5 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCROBAT] 
+BackSprite = 0,28 
+FrontSprite = 0,-1 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTANGELA] 
+BackSprite = 0,32 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTANGROWTH] 
+BackSprite = 0,17 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTYMPOLE] 
+BackSprite = 0,37 
+FrontSprite = 0,39 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPALPITOAD] 
+BackSprite = 0,26 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSEISMITOAD] 
+BackSprite = 0,16 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGULPIN] 
+BackSprite = 0,30 
+FrontSprite = 0,32 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSWALOT] 
+BackSprite = 0,18 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSPINARAK] 
+BackSprite = 0,34 
+FrontSprite = 0,30 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OARIADOS] 
+BackSprite = 0,26 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBALTOY] 
+BackSprite = 0,28 
+FrontSprite = 0,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCLAYDOL] 
+BackSprite = 0,25 
+FrontSprite = 0,13 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OZORUA] 
+BackSprite = 0,25 
+FrontSprite = 0,29 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OZOROARK] 
+BackSprite = 0,17 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODUCKLETT] 
+BackSprite = 0,28 
+FrontSprite = 0,31 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSWANNA] 
+BackSprite = 0,15 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGOLETT] 
+BackSprite = 0,17 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGOLURK] 
+BackSprite = 0,1 
+FrontSprite = 0,5 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMORELULL] 
+BackSprite = 0,24 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSHIINOTIC] 
+BackSprite = 0,12 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLARVESTA] 
+BackSprite = 0,27 
+FrontSprite = 0,30 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OVOLCARONA] 
+BackSprite = 0,15 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSTANTLER] 
+BackSprite = 0,16 
+FrontSprite = 0,8 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMAGIKARP] 
+BackSprite = 0,22 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGYARADOS] 
+BackSprite = 0,12 
+FrontSprite = 0,14 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBERGMITE] 
+BackSprite = 0,23 
+FrontSprite = 0,29 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OAVALUGG] 
+BackSprite = 0,22 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLEDYBA] 
+BackSprite = 0,24 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLEDIAN] 
+BackSprite = 0,23 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPONYTA] 
+BackSprite = 0,19 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ORAPIDASH] 
+BackSprite = 0,13 
+FrontSprite = 0,10 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OAMAURA] 
+BackSprite = 0,16 
+FrontSprite = 0,14 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OAURORUS] 
+BackSprite = 0,3 
+FrontSprite = 0,6 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGEODUDE] 
+BackSprite = 0,36 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGRAVELER] 
+BackSprite = 0,29 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGOLEM] 
+BackSprite = 0,21 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSKRELP] 
+BackSprite = 0,21 
+FrontSprite = 0,27 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODRAGALGE] 
+BackSprite = 0,1 
+FrontSprite = 0,6 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLITLEO] 
+BackSprite = 0,22 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPYROAR] 
+BackSprite = 0,3 
+FrontSprite = 0,14 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLUNATONE] 
+BackSprite = 0,25 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSOLROCK] 
+BackSprite = 0,16 
+FrontSprite = 0,11 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODROWZEE] 
+BackSprite = 0,22 
+FrontSprite = 0,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHYPNO] 
+BackSprite = 0,18 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSEEL] 
+BackSprite = 0,26 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODEWGONG] 
+BackSprite = 0,18 
+FrontSprite = 0,11 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSKIDDO] 
+BackSprite = 0,21 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGOGOAT] 
+BackSprite = 0,11 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OKABUTO] 
+BackSprite = 0,31 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OKABUTOPS] 
+BackSprite = 0,16 
+FrontSprite = 0,11 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSHROOMISH] 
+BackSprite = 0,32 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBRELOOM] 
+BackSprite = 0,16 
+FrontSprite = 0,13 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OAERODACTYL] 
+BackSprite = 0,14 
+FrontSprite = 0,11 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OROGGENROLA] 
+BackSprite = 0,31 
+FrontSprite = 0,34 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBOLDORE] 
+BackSprite = 0,26 
+FrontSprite = 0,30 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGIGALITH] 
+BackSprite = 0,10 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFINNEON] 
+BackSprite = 0,34 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLUMINEON] 
+BackSprite = 0,16 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGLIGAR] 
+BackSprite = 0,21 
+FrontSprite = 0,12 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGLISCOR] 
+BackSprite = 0,17 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLILLIPUP] 
+BackSprite = 0,26 
+FrontSprite = 0,29 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHERDIER] 
+BackSprite = 0,20 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSTOUTLAND] 
+BackSprite = 0,15 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODRIFLOON] 
+BackSprite = 0,20 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODRIFBLIM] 
+BackSprite = 0,18 
+FrontSprite = 0,8 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMINCCINO] 
+BackSprite = 0,24 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCINCCINO] 
+BackSprite = 0,20 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBONSLY] 
+BackSprite = 0,23 
+FrontSprite = 0,27 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSUDOWOODO] 
+BackSprite = 0,21 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODRUDDIGON] 
+BackSprite = 0,19 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OWOOBAT] 
+BackSprite = 0,30 
+FrontSprite = 0,5 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSWOOBAT] 
+BackSprite = 0,21 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OKRABBY] 
+BackSprite = 0,28 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OKINGLER] 
+BackSprite = 0,15 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHOOTHOOT] 
+BackSprite = 0,27 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ONOCTOWL] 
+BackSprite = 0,15 
+FrontSprite = 0,11 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OVOLTORB] 
+BackSprite = 0,33 
+FrontSprite = 0,29 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OELECTRODE] 
+BackSprite = 0,25 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSANDYGAST] 
+BackSprite = 0,22 
+FrontSprite = 0,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPALOSSAND] 
+BackSprite = 0,19 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OWEEDLE] 
+BackSprite = 0,31 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OKAKUNA] 
+BackSprite = 0,28 
+FrontSprite = 0,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBEEDRILL] 
+BackSprite = 0,20 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMACHOP] 
+BackSprite = 0,21 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMACHOKE] 
+BackSprite = 0,14 
+FrontSprite = 0,13 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMACHAMP] 
+BackSprite = 0,10 
+FrontSprite = 0,7 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBULBASAUR] 
+BackSprite = 0,33 
+FrontSprite = 0,27 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OIVYSAUR] 
+BackSprite = 0,24 
+FrontSprite = 0,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OVENUSAUR] 
+BackSprite = 0,16 
+FrontSprite = 0,11 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTAUROS] 
+BackSprite = 0,19 
+FrontSprite = 0,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCARVANHA] 
+BackSprite = 0,23 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSHARPEDO] 
+BackSprite = 0,13 
+FrontSprite = 0,13 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTIMBURR] 
+BackSprite = 0,29 
+FrontSprite = 0,31 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGURDURR] 
+BackSprite = 0,23 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCONKELDURR] 
+BackSprite = 0,21 
+FrontSprite = 0,30 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLITWICK] 
+BackSprite = 0,30 
+FrontSprite = 0,34 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLAMPENT] 
+BackSprite = 0,24 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCHANDELURE] 
+BackSprite = 0,16 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OVANILLITE] 
+BackSprite = 0,27 
+FrontSprite = 0,38 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OVANILLISH] 
+BackSprite = 0,27 
+FrontSprite = 0,42 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OVANILLUXE] 
+BackSprite = 0,21 
+FrontSprite = 0,35 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OELEKID] 
+BackSprite = 0,31 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OELECTABUZZ] 
+BackSprite = 0,18 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OELECTIVIRE] 
+BackSprite = 0,14 
+FrontSprite = 0,12 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPOPPLIO] 
+BackSprite = 0,20 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBRIONNE] 
+BackSprite = 0,19 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPRIMARINA] 
+BackSprite = 0,12 
+FrontSprite = 0,12 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSNORUNT] 
+BackSprite = 0,29 
+FrontSprite = 0,33 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGLALIE] 
+BackSprite = 0,21 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFROSLASS] 
+BackSprite = 0,23 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMAGBY] 
+BackSprite = 0,29 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMAGMAR] 
+BackSprite = 0,19 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMAGMORTAR] 
+BackSprite = 0,15 
+FrontSprite = 0,10 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OEXEGGCUTE] 
+BackSprite = 0,8 
+FrontSprite = 0,11 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OEXEGGUTOR] 
+BackSprite = 0,3 
+FrontSprite = 0,7 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OJOLTIK] 
+BackSprite = 0,33 
+FrontSprite = 0,36 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGALVANTULA] 
+BackSprite = 0,11 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGRIMER] 
+BackSprite = 0,21 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMUK] 
+BackSprite = 0,18 
+FrontSprite = 0,13 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCHIMCHAR] 
+BackSprite = 0,25 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMONFERNO] 
+BackSprite = 0,21 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OINFERNAPE] 
+BackSprite = 0,14 
+FrontSprite = 0,11 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSABLEYE] 
+BackSprite = 0,26 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCUBCHOO] 
+BackSprite = 0,32 
+FrontSprite = 0,35 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBEARTIC] 
+BackSprite = 0,11 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTREECKO] 
+BackSprite = 0,27 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGROVYLE] 
+BackSprite = 0,23 
+FrontSprite = 0,13 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSCEPTILE] 
+BackSprite = 0,19 
+FrontSprite = 0,10 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLARVITAR] 
+BackSprite = 0,28 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPUPITAR] 
+BackSprite = 0,27 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTYRANITAR] 
+BackSprite = 0,9 
+FrontSprite = 0,9 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHIPPOPOTAS] 
+BackSprite = 0,26 
+FrontSprite = 0,32 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHIPPOWDON] 
+BackSprite = 0,14 
+FrontSprite = 0,33 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBRONZOR] 
+BackSprite = 0,27 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBRONZONG] 
+BackSprite = 0,18 
+FrontSprite = 0,10 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSWIRLIX] 
+BackSprite = 0,22 
+FrontSprite = 0,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSLURPUFF] 
+BackSprite = 0,21 
+FrontSprite = 0,27 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMAREEP] 
+BackSprite = 0,25 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFLAAFFY] 
+BackSprite = 0,23 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OAMPHAROS] 
+BackSprite = 0,17 
+FrontSprite = 0,12 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSWABLU] 
+BackSprite = 0,16 
+FrontSprite = 0,8 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OALTARIA] 
+BackSprite = 0,10 
+FrontSprite = 0,14 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OABRA] 
+BackSprite = 0,27 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OKADABRA] 
+BackSprite = 0,18 
+FrontSprite = 0,14 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OALAKAZAM] 
+BackSprite = 0,16 
+FrontSprite = 0,9 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OVENIPEDE] 
+BackSprite = 0,29 
+FrontSprite = 0,36 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OWHIRLIPEDE] 
+BackSprite = 0,27 
+FrontSprite = 0,31 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSCOLIPEDE] 
+BackSprite = 0,10 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHERACROSS] 
+BackSprite = 0,20 
+FrontSprite = 0,9 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTEDDIURSA] 
+BackSprite = 0,30 
+FrontSprite = 0,33 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OURSARING] 
+BackSprite = 0,13 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPSYDUCK] 
+BackSprite = 0,27 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGOLDUCK] 
+BackSprite = 0,19 
+FrontSprite = 0,13 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODUSKULL] 
+BackSprite = 0,26 
+FrontSprite = 0,12 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODUSCLOPS] 
+BackSprite = 0,15 
+FrontSprite = 0,9 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODUSKNOIR] 
+BackSprite = 0,9 
+FrontSprite = 0,13 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSKITTY] 
+BackSprite = 0,21 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODELCATTY] 
+BackSprite = 0,18 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OVAPOREON] 
+BackSprite = 0,21 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OJOLTEON] 
+BackSprite = 0,22 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFLAREON] 
+BackSprite = 0,24 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OESPEON] 
+BackSprite = 0,24 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OUMBREON] 
+BackSprite = 0,24 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLEAFEON] 
+BackSprite = 0,29 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGLACEON] 
+BackSprite = 0,19 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSYLVEON] 
+BackSprite = 0,11 
+FrontSprite = 0,29 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODEERLING] 
+BackSprite = 0,28 
+FrontSprite = 0,29 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSAWSBUCK] 
+BackSprite = 0,10 
+FrontSprite = 0,14 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OARON] 
+BackSprite = 0,32 
+FrontSprite = 0,37 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLAIRON] 
+BackSprite = 0,24 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OAGGRON] 
+BackSprite = 0,11 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSHELLOS] 
+BackSprite = 0,29 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGASTRODON] 
+BackSprite = 0,16 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMEOWTH] 
+BackSprite = 0,25 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPERSIAN] 
+BackSprite = 0,15 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OWURMPLE] 
+BackSprite = 0,28 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSILCOON] 
+BackSprite = 0,27 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBEAUTIFLY] 
+BackSprite = 0,20 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCASCOON] 
+BackSprite = 0,29 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODUSTOX] 
+BackSprite = 0,19 
+FrontSprite = 0,-2 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OAIPOM] 
+BackSprite = 0,22 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OAMBIPOM] 
+BackSprite = 0,20 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ORATTATA] 
+BackSprite = 0,30 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ORATICATE] 
+BackSprite = 0,21 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSTARLY] 
+BackSprite = 0,28 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSTARAVIA] 
+BackSprite = 0,22 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSTARAPTOR] 
+BackSprite = 0,18 
+FrontSprite = 0,12 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OKRICKETOT] 
+BackSprite = 0,24 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OKRICKETUNE] 
+BackSprite = 0,19 
+FrontSprite = 0,14 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSLOWPOKE] 
+BackSprite = 0,26 
+FrontSprite = 0,29 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSLOWBRO] 
+BackSprite = 0,17 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSLOWKING] 
+BackSprite = 0,17 
+FrontSprite = 0,10 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OROOKIDEE] 
+BackSprite = 0,29 
+FrontSprite = 0,32 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCORVISQUIRE] 
+BackSprite = 0,16 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCORVIKNIGHT] 
+BackSprite = 0,15 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OODDISH] 
+BackSprite = 0,30 
+FrontSprite = 0,33 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGLOOM] 
+BackSprite = 0,25 
+FrontSprite = 0,29 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OVILEPLUME] 
+BackSprite = 0,23 
+FrontSprite = 0,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBELLOSSOM] 
+BackSprite = 0,29 
+FrontSprite = 0,34 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSUNKERN] 
+BackSprite = 0,30 
+FrontSprite = 0,35 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSUNFLORA] 
+BackSprite = 0,14 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSTUNKY] 
+BackSprite = 0,27 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSKUNTANK] 
+BackSprite = 0,16 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFEEBAS] 
+BackSprite = 0,26 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMILOTIC] 
+BackSprite = 0,10 
+FrontSprite = 0,7 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHORSEA] 
+BackSprite = 0,32 
+FrontSprite = 0,34 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSEADRA] 
+BackSprite = 0,26 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OKINGDRA] 
+BackSprite = 0,12 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OYAMPER] 
+BackSprite = 0,27 
+FrontSprite = 0,31 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBOLTUND] 
+BackSprite = 0,13 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OVENONAT] 
+BackSprite = 0,16 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OVENOMOTH] 
+BackSprite = 0,12 
+FrontSprite = 0,11 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCATERPIE] 
+BackSprite = 0,29 
+FrontSprite = 0,32 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMETAPOD] 
+BackSprite = 0,27 
+FrontSprite = 0,34 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBUTTERFREE] 
+BackSprite = 0,23 
+FrontSprite = 0,27 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMANKEY] 
+BackSprite = 0,24 
+FrontSprite = 0,27 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPRIMEAPE] 
+BackSprite = 0,21 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTYNAMO] 
+BackSprite = 0,24 
+FrontSprite = 0,40 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OEELEKTRIK] 
+BackSprite = 0,18 
+FrontSprite = 0,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OEELEKTROSS] 
+BackSprite = 0,14 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OEEVEE] 
+BackSprite = 0,24 
+FrontSprite = 0,32 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGALAXEON] 
+BackSprite = 0,10 
+FrontSprite = 0,13 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPRISMEON] 
+BackSprite = 0,14 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OOCTAVEON] 
+BackSprite = 0,14 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBASCULIN] 
+BackSprite = 0,30 
+FrontSprite = 0,35 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCHINCHOU] 
+BackSprite = 0,29 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLANTURN] 
+BackSprite = 0,27 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ONOIBAT] 
+BackSprite = 0,11 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ONOIVERN] 
+BackSprite = 0,7 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPARAS] 
+BackSprite = 0,32 
+FrontSprite = 0,35 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPARASECT] 
+BackSprite = 0,22 
+FrontSprite = 0,33 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OIMPIDIMP] 
+BackSprite = 0,20 
+FrontSprite = 0,27 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMORGREM] 
+BackSprite = 0,18 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGRIMMSNARL] 
+BackSprite = 0,10 
+FrontSprite = 0,13 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPIDOVE] 
+BackSprite = 0,29 
+FrontSprite = 0,32 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTRANQUILL] 
+BackSprite = 0,21 
+FrontSprite = 0,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OUNFEZANT] 
+BackSprite = 0,1 
+FrontSprite = 0,9 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSEEDOT] 
+BackSprite = 0,29 
+FrontSprite = 0,33 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ONUZLEAF] 
+BackSprite = 0,22 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSHIFTRY] 
+BackSprite = 0,15 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHOPPIP] 
+BackSprite = 0,26 
+FrontSprite = 0,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSKIPLOOM] 
+BackSprite = 0,22 
+FrontSprite = 0,30 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OJUMPLUFF] 
+BackSprite = 0,19 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODWEBBLE] 
+BackSprite = 0,33 
+FrontSprite = 0,36 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCRUSTLE] 
+BackSprite = 0,18 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSENTRET] 
+BackSprite = 0,17 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFURRET] 
+BackSprite = 0,19 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCHIKORITA] 
+BackSprite = 0,25 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBAYLEEF] 
+BackSprite = 0,20 
+FrontSprite = 0,27 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMEGANIUM] 
+BackSprite = 0,11 
+FrontSprite = 0,11 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCYNDAQUIL] 
+BackSprite = 0,31 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OQUILAVA] 
+BackSprite = 0,25 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTYPHLOSION] 
+BackSprite = 0,14 
+FrontSprite = 0,6 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ORALTS] 
+BackSprite = 0,27 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OKIRLIA] 
+BackSprite = 0,25 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGARDEVOIR] 
+BackSprite = 0,9 
+FrontSprite = 0,5 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGALLADE] 
+BackSprite = 0,8 
+FrontSprite = 0,6 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ONUMEL] 
+BackSprite = 0,21 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCAMERUPT] 
+BackSprite = 0,2 
+FrontSprite = 0,4 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLAPRAS] 
+BackSprite = 0,13 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTOTODILE] 
+BackSprite = 0,19 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCROCONAW] 
+BackSprite = 0,8 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFERALIGATR] 
+BackSprite = 0,9 
+FrontSprite = 0,9 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODIGLETT] 
+BackSprite = 0,32 
+FrontSprite = 0,30 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODUGTRIO] 
+BackSprite = 0,8 
+FrontSprite = 0,13 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCROAGUNK] 
+BackSprite = 0,26 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTOXICROAK] 
+BackSprite = 0,17 
+FrontSprite = 0,9 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSPRITZEE] 
+BackSprite = 0,23 
+FrontSprite = 0,27 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OAROMATISSE] 
+BackSprite = 0,13 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODURANT] 
+BackSprite = 0,32 
+FrontSprite = 0,36 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OYANMA] 
+BackSprite = 0,29 
+FrontSprite = 0,31 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OYANMEGA] 
+BackSprite = 0,22 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OAZURILL] 
+BackSprite = 0,21 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMARILL] 
+BackSprite = 0,32 
+FrontSprite = 0,35 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OAZUMARILL] 
+BackSprite = 0,19 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCOMFEY] 
+BackSprite = 0,19 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OROWLET] 
+BackSprite = 0,22 
+FrontSprite = 0,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODARTRIX] 
+BackSprite = 0,19 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODECIDUEYE] 
+BackSprite = 0,10 
+FrontSprite = 0,14 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSKORUPI] 
+BackSprite = 0,26 
+FrontSprite = 0,29 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODRAPION] 
+BackSprite = 0,16 
+FrontSprite = 0,13 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFURFROU] 
+BackSprite = 0,16 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMELOETTA] 
+BackSprite = 0,21 
+FrontSprite = 0,27 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPOOCHYENA] 
+BackSprite = 0,27 
+FrontSprite = 0,32 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMIGHTYENA] 
+BackSprite = 0,16 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLITTEN] 
+BackSprite = 0,20 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTORRACAT] 
+BackSprite = 0,18 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OINCINEROAR] 
+BackSprite = 0,12 
+FrontSprite = 0,14 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSPIRITOMB] 
+BackSprite = 0,7 
+FrontSprite = 0,11 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OABSOL] 
+BackSprite = 0,17 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHONEDGE] 
+BackSprite = 0,15 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODOUBLADE] 
+BackSprite = 0,13 
+FrontSprite = 0,8 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OAEGISLASH] 
+BackSprite = 0,4 
+FrontSprite = 0,8 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBELDUM] 
+BackSprite = 0,40 
+FrontSprite = 0,44 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMETANG] 
+BackSprite = 0,26 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMETAGROSS] 
+BackSprite = 0,19 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODUNSPARCE] 
+BackSprite = 0,34 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMEDITITE] 
+BackSprite = 0,26 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMEDICHAM] 
+BackSprite = 0,15 
+FrontSprite = 0,11 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ONINCADA] 
+BackSprite = 0,28 
+FrontSprite = 0,31 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ONINJASK] 
+BackSprite = 0,29 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSHEDINJA] 
+BackSprite = 0,26 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODEINO] 
+BackSprite = 0,26 
+FrontSprite = 0,31 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OZWEILOUS] 
+BackSprite = 0,21 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHYDREIGON] 
+BackSprite = 0,8 
+FrontSprite = 0,14 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCHERUBI] 
+BackSprite = 0,32 
+FrontSprite = 0,36 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCHERRIM] 
+BackSprite = 0,24 
+FrontSprite = 0,29 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGOSSIFLEUR] 
+BackSprite = 0,23 
+FrontSprite = 0,30 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OELDEGOSS] 
+BackSprite = 0,19 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OESPURR] 
+BackSprite = 0,23 
+FrontSprite = 0,30 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMEOWSTIC] 
+BackSprite = 0,30 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCORSOLA] 
+BackSprite = 0,28 
+FrontSprite = 0,29 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCURSOLA] 
+BackSprite = 0,5 
+FrontSprite = 0,9 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPIDGEY] 
+BackSprite = 0,30 
+FrontSprite = 0,32 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPIDGEOTTO] 
+BackSprite = 0,9 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPIDGEOT] 
+BackSprite = 0,16 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMANTYKE] 
+BackSprite = 0,24 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMANTINE] 
+BackSprite = 0,24 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLILEEP] 
+BackSprite = 0,21 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCRADILY] 
+BackSprite = 0,7 
+FrontSprite = 0,5 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMURKROW] 
+BackSprite = 0,26 
+FrontSprite = 0,32 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHONCHKROW] 
+BackSprite = 0,20 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCACNEA] 
+BackSprite = 0,29 
+FrontSprite = 0,27 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCACTURNE] 
+BackSprite = 0,13 
+FrontSprite = 0,9 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHAPPINY] 
+BackSprite = 0,27 
+FrontSprite = 0,31 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCHANSEY] 
+BackSprite = 0,25 
+FrontSprite = 0,30 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBLISSEY] 
+BackSprite = 0,23 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTENTACOOL] 
+BackSprite = 0,21 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTENTACRUEL] 
+BackSprite = 0,9 
+FrontSprite = 0,11 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBOUNSWEET] 
+BackSprite = 0,21 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSTEENEE] 
+BackSprite = 0,17 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTSAREENA] 
+BackSprite = 0,7 
+FrontSprite = 0,8 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGROWLITHE] 
+BackSprite = 0,25 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OARCANINE] 
+BackSprite = 0,9 
+FrontSprite = 0,5 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OELGYEM] 
+BackSprite = 0,25 
+FrontSprite = 0,29 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBEHEEYEM] 
+BackSprite = 0,18 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSILICOBRA] 
+BackSprite = 0,18 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSANDACONDA] 
+BackSprite = 0,16 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPICHU] 
+BackSprite = 0,29 
+FrontSprite = 0,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPIKACHU] 
+BackSprite = 0,27 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ORAICHU] 
+BackSprite = 0,15 
+FrontSprite = 0,7 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OYAMASK] 
+BackSprite = 0,17 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCOFAGRIGUS] 
+BackSprite = 0,9 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSINISTEA] 
+BackSprite = 0,15 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPOLTEAGEIST] 
+BackSprite = 0,14 
+FrontSprite = 0,14 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTHROH] 
+BackSprite = 0,23 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSAWK] 
+BackSprite = 0,20 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSANDILE] 
+BackSprite = 0,35 
+FrontSprite = 0,39 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OKROKOROK] 
+BackSprite = 0,15 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OKROOKODILE] 
+BackSprite = 0,9 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMUDKIP] 
+BackSprite = 0,11 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMARSHTOMP] 
+BackSprite = 0,19 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSWAMPERT] 
+BackSprite = 0,15 
+FrontSprite = 0,12 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGOLDEEN] 
+BackSprite = 0,26 
+FrontSprite = 0,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSEAKING] 
+BackSprite = 0,24 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTAILLOW] 
+BackSprite = 0,32 
+FrontSprite = 0,34 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSWELLOW] 
+BackSprite = -7,21 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPATRAT] 
+BackSprite = 0,29 
+FrontSprite = 0,30 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OWATCHOG] 
+BackSprite = 0,15 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGOTHITA] 
+BackSprite = 0,28 
+FrontSprite = 0,34 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGOTHORITA] 
+BackSprite = 0,21 
+FrontSprite = 0,27 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGOTHITELLE] 
+BackSprite = 0,11 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSPHEAL] 
+BackSprite = 0,32 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSEALEO] 
+BackSprite = 0,25 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OWALREIN] 
+BackSprite = 0,14 
+FrontSprite = 0,8 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSURSKIT] 
+BackSprite = 0,14 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMASQUERAIN] 
+BackSprite = 0,17 
+FrontSprite = 0,12 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OWINGULL] 
+BackSprite = 0,24 
+FrontSprite = 0,-4 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPELIPPER] 
+BackSprite = 0,11 
+FrontSprite = 0,0 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCHARMANDER] 
+BackSprite = 0,17 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCHARMELEON] 
+BackSprite = 0,12 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCHARIZARD] 
+BackSprite = 0,12 
+FrontSprite = 0,12 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMAGNEMITE] 
+BackSprite = 0,26 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMAGNETON] 
+BackSprite = 0,9 
+FrontSprite = 0,13 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMAGNEZONE] 
+BackSprite = 0,19 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSPEAROW] 
+BackSprite = 0,29 
+FrontSprite = 0,34 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFEAROW] 
+BackSprite = 0,9 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OIGGLYBUFF] 
+BackSprite = 0,35 
+FrontSprite = 0,29 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OJIGGLYPUFF] 
+BackSprite = 0,35 
+FrontSprite = 0,27 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OWIGGLYTUFF] 
+BackSprite = 0,23 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OVULLABY] 
+BackSprite = 0,23 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMANDIBUZZ] 
+BackSprite = 0,14 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSHINX] 
+BackSprite = 0,29 
+FrontSprite = 0,34 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLUXIO] 
+BackSprite = 0,22 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLUXRAY] 
+BackSprite = 0,15 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OELECTRIKE] 
+BackSprite = 0,30 
+FrontSprite = 0,34 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMANECTRIC] 
+BackSprite = 0,14 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFERROSEED] 
+BackSprite = 0,30 
+FrontSprite = 0,34 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFERROTHORN] 
+BackSprite = 0,29 
+FrontSprite = 0,32 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMAREANIE] 
+BackSprite = 0,24 
+FrontSprite = 0,29 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTOXAPEX] 
+BackSprite = 0,12 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSWINUB] 
+BackSprite = 0,28 
+FrontSprite = 0,32 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPILOSWINE] 
+BackSprite = 0,13 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMAMOSWINE] 
+BackSprite = 0,12 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTORKOAL] 
+BackSprite = 0,17 
+FrontSprite = 0,14 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTURTWIG] 
+BackSprite = 0,27 
+FrontSprite = 0,31 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGROTLE] 
+BackSprite = 0,19 
+FrontSprite = 0,27 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTORTERRA] 
+BackSprite = 0,8 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBUNEARY] 
+BackSprite = 0,14 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLOPUNNY] 
+BackSprite = 0,9 
+FrontSprite = 0,12 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODITTO] 
+BackSprite = 0,27 
+FrontSprite = 0,38 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBUIZEL] 
+BackSprite = 0,24 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFLOATZEL] 
+BackSprite = 0,14 
+FrontSprite = 0,7 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBUDEW] 
+BackSprite = 0,28 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OROSELIA] 
+BackSprite = 0,25 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OROSERADE] 
+BackSprite = 0,9 
+FrontSprite = 0,11 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OKLEFKI] 
+BackSprite = 0,6 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODEWPIDER] 
+BackSprite = 0,25 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OARAQUANID] 
+BackSprite = 0,22 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTYRUNT] 
+BackSprite = 0,18 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTYRANTRUM] 
+BackSprite = 0,12 
+FrontSprite = 0,11 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCUBONE] 
+BackSprite = 0,29 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMAROWAK] 
+BackSprite = 0,27 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCUTIEFLY] 
+BackSprite = 0,27 
+FrontSprite = 0,6 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ORIBOMBEE] 
+BackSprite = 0,22 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OOMANYTE] 
+BackSprite = 0,23 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OOMASTAR] 
+BackSprite = 0,19 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSKWOVET] 
+BackSprite = 0,25 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGREEDENT] 
+BackSprite = 0,15 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPHANPY] 
+BackSprite = 0,31 
+FrontSprite = 0,35 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODONPHAN] 
+BackSprite = 0,24 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPIKIPEK] 
+BackSprite = 0,27 
+FrontSprite = 0,31 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTRUMBEAK] 
+BackSprite = 0,23 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTOUCANNON] 
+BackSprite = 0,19 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPINECO] 
+BackSprite = 0,27 
+FrontSprite = 0,31 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFORRETRESS] 
+BackSprite = 0,15 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSTUFFUL] 
+BackSprite = 0,28 
+FrontSprite = 0,31 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBEWEAR] 
+BackSprite = 0,13 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCARBINK] 
+BackSprite = 0,19 
+FrontSprite = 0,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGIBLE] 
+BackSprite = 0,24 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGABITE] 
+BackSprite = 0,18 
+FrontSprite = 0,12 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGARCHOMP] 
+BackSprite = 0,12 
+FrontSprite = 0,6 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OVULPIX] 
+BackSprite = 0,25 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ONINETALES] 
+BackSprite = 0,13 
+FrontSprite = 0,8 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPURRLOIN] 
+BackSprite = 0,24 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLIEPARD] 
+BackSprite = 0,17 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTOXEL] 
+BackSprite = 0,23 
+FrontSprite = 0,27 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTOXTRICITY] 
+BackSprite = 0,6 
+FrontSprite = 0,10 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGOOMY] 
+BackSprite = 0,30 
+FrontSprite = 0,34 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSLIGGOO] 
+BackSprite = 0,18 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGOODRA] 
+BackSprite = 0,7 
+FrontSprite = 0,11 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMIMEJR] 
+BackSprite = 0,18 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMRMIME] 
+BackSprite = 0,22 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMRRIME] 
+BackSprite = 0,21 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLUVDISC] 
+BackSprite = 0,31 
+FrontSprite = 0,27 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSMEARGLE] 
+BackSprite = 0,23 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSHIELDON] 
+BackSprite = 0,20 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBASTIODON] 
+BackSprite = 0,18 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OAPPLIN] 
+BackSprite = 0,20 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFLAPPLE] 
+BackSprite = 0,11 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OAPPLETUN] 
+BackSprite = 0,21 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMIMIKYU] 
+BackSprite = 0,22 
+FrontSprite = 0,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OWOOLOO] 
+BackSprite = 0,19 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODUBWOOL] 
+BackSprite = 0,9 
+FrontSprite = 0,14 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSNIVY] 
+BackSprite = 0,32 
+FrontSprite = 0,37 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSERVINE] 
+BackSprite = 0,28 
+FrontSprite = 0,30 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSERPERIOR] 
+BackSprite = 0,12 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFENNEKIN] 
+BackSprite = 0,17 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBRAIXEN] 
+BackSprite = 0,5 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODELPHOX] 
+BackSprite = 0,5 
+FrontSprite = 0,10 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSNOVER] 
+BackSprite = 0,23 
+FrontSprite = 0,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OABOMASNOW] 
+BackSprite = 0,14 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTRUBBISH] 
+BackSprite = 0,27 
+FrontSprite = 0,31 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGARBODOR] 
+BackSprite = 0,11 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCHESPIN] 
+BackSprite = 0,20 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OQUILLADIN] 
+BackSprite = 0,13 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCHESNAUGHT] 
+BackSprite = 0,6 
+FrontSprite = 0,12 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFROAKIE] 
+BackSprite = 0,19 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFROGADIER] 
+BackSprite = 0,19 
+FrontSprite = 0,27 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGRENINJA] 
+BackSprite = 0,10 
+FrontSprite = 0,9 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OJANGMOO] 
+BackSprite = 0,22 
+FrontSprite = 0,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHAKAMOO] 
+BackSprite = 0,14 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OKOMMOO] 
+BackSprite = 0,8 
+FrontSprite = 0,12 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSCRAGGY] 
+BackSprite = 0,28 
+FrontSprite = 0,31 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSCRAFTY] 
+BackSprite = 0,21 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCLAMPERL] 
+BackSprite = 0,32 
+FrontSprite = 0,36 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHUNTAIL] 
+BackSprite = 0,20 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGOREBYSS] 
+BackSprite = 0,23 
+FrontSprite = 0,27 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OKLINK] 
+BackSprite = 0,23 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OKLANG] 
+BackSprite = 0,16 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OKLINKLANG] 
+BackSprite = 0,8 
+FrontSprite = 0,12 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODARUMAKA] 
+BackSprite = 0,31 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODARMANITAN] 
+BackSprite = 0,18 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBINACLE] 
+BackSprite = 0,21 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBARBARACLE] 
+BackSprite = 0,8 
+FrontSprite = 0,13 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OARROKUDA] 
+BackSprite = 0,21 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBARRASKEWDA] 
+BackSprite = 0,19 
+FrontSprite = 0,29 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFALINKS] 
+BackSprite = 0,15 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSMOOCHUM] 
+BackSprite = 0,20 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OJYNX] 
+BackSprite = 0,12 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OZIGZAGOON] 
+BackSprite = 0,19 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLINOONE] 
+BackSprite = 0,15 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OOBSTAGOON] 
+BackSprite = 0,10 
+FrontSprite = 0,13 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OINDEEDEE] 
+BackSprite = 0,21 
+FrontSprite = 0,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCRANIDOS] 
+BackSprite = 0,19 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ORAMPARDOS] 
+BackSprite = 0,8 
+FrontSprite = 0,12 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OREMORAID] 
+BackSprite = -7,20 
+FrontSprite = 1,34 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OOCTILLERY] 
+BackSprite = 4,23 
+FrontSprite = 0,30 
+ShadowX = 0 
+ShadowSize = 3 
+#------------------------------- 
+[OMISDREAVUS] 
+BackSprite = 0,22 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMISMAGIUS] 
+BackSprite = 0,11 
+FrontSprite = 0,8 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPOLIWAG] 
+BackSprite = 0,27 
+FrontSprite = 0,31 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPOLIWHIRL] 
+BackSprite = 0,24 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPOLIWRATH] 
+BackSprite = 0,20 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPOLITOED] 
+BackSprite = 0,21 
+FrontSprite = 0,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPHANTUMP] 
+BackSprite = 0,25 
+FrontSprite = 0,29 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTREVENANT] 
+BackSprite = 0,8 
+FrontSprite = 0,7 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTYROGUE] 
+BackSprite = 0,26 
+FrontSprite = 0,30 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHITMONLEE] 
+BackSprite = 0,15 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHITMONCHAN] 
+BackSprite = 0,21 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHITMONTOP] 
+BackSprite = 0,25 
+FrontSprite = 0,27 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPINCURCHIN] 
+BackSprite = 0,30 
+FrontSprite = 0,32 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSCYTHER] 
+BackSprite = 0,17 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSCIZOR] 
+BackSprite = 0,11 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPINSIR] 
+BackSprite = 0,22 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OROLYCOLY] 
+BackSprite = 0,25 
+FrontSprite = 0,29 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCARKOL] 
+BackSprite = 0,19 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCOALOSSAL] 
+BackSprite = 0,7 
+FrontSprite = 0,11 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ORIOLU] 
+BackSprite = 0,27 
+FrontSprite = 0,30 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLUCARIO] 
+BackSprite = 0,15 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTRAPINCH] 
+BackSprite = 0,25 
+FrontSprite = 0,35 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OVIBRAVA] 
+BackSprite = 0,27 
+FrontSprite = 0,29 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFLYGON] 
+BackSprite = 0,15 
+FrontSprite = 0,12 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODHELMISE] 
+BackSprite = 0,4 
+FrontSprite = 0,9 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODRATINI] 
+BackSprite = 0,21 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODRAGONAIR] 
+BackSprite = 0,16 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODRAGONITE] 
+BackSprite = 0,5 
+FrontSprite = 0,13 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCLEFFA] 
+BackSprite = 0,16 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCLEFAIRY] 
+BackSprite = 0,16 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCLEFABLE] 
+BackSprite = 0,19 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OARCHEN] 
+BackSprite = 0,30 
+FrontSprite = 0,32 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OARCHEOPS] 
+BackSprite = 0,1 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTIRTOUGA] 
+BackSprite = 0,28 
+FrontSprite = 0,34 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCARRACOSTA] 
+BackSprite = 0,16 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODREEPY] 
+BackSprite = 0,23 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODRAKLOAK] 
+BackSprite = 0,20 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODRAGAPULT] 
+BackSprite = 0,7 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OWIMPOD] 
+BackSprite = 0,21 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGOLISOPOD] 
+BackSprite = 0,4 
+FrontSprite = 0,9 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMUNNA] 
+BackSprite = 0,33 
+FrontSprite = 0,37 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMUSHARNA] 
+BackSprite = 0,19 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSHUPPET] 
+BackSprite = 0,29 
+FrontSprite = 0,33 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBANETTE] 
+BackSprite = 0,22 
+FrontSprite = 0,27 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSTONJOURNER] 
+BackSprite = 0,10 
+FrontSprite = 0,14 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBIDOOF] 
+BackSprite = 0,23 
+FrontSprite = 0,32 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBIBAREL] 
+BackSprite = 0,19 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODRILBUR] 
+BackSprite = 0,20 
+FrontSprite = 0,33 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OEXCADRILL] 
+BackSprite = 0,19 
+FrontSprite = 0,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSNOM] 
+BackSprite = 0,36 
+FrontSprite = 0,38 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFROSMOTH] 
+BackSprite = 0,15 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHOUNDOUR] 
+BackSprite = 0,26 
+FrontSprite = 0,31 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHOUNDOOM] 
+BackSprite = 0,8 
+FrontSprite = 0,13 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPIPLUP] 
+BackSprite = 0,31 
+FrontSprite = 0,37 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPRINPLUP] 
+BackSprite = 0,21 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OEMPOLEON] 
+BackSprite = 0,12 
+FrontSprite = 0,14 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMUDBRAY] 
+BackSprite = 0,20 
+FrontSprite = 0,24 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMUDSDALE] 
+BackSprite = 0,14 
+FrontSprite = 0,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCRAMORANT] 
+BackSprite = 0,12 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSEWADDLE] 
+BackSprite = 0,26 
+FrontSprite = 0,36 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSWADLOON] 
+BackSprite = 0,21 
+FrontSprite = 0,25 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLEAVANNY] 
+BackSprite = 0,8 
+FrontSprite = 0,12 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OWHISMUR] 
+BackSprite = 0,30 
+FrontSprite = 0,34 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLOUDRED] 
+BackSprite = 0,17 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OEXPLOUD] 
+BackSprite = 0,13 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSIZZLIPEDE] 
+BackSprite = 0,22 
+FrontSprite = -9,33 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCENTISKORCH] 
+BackSprite = 0,11 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSOBBLE] 
+BackSprite = 0,26 
+FrontSprite = 0,29 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODRIZZILE] 
+BackSprite = 0,22 
+FrontSprite = 0,27 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OINTELEON] 
+BackSprite = 0,9 
+FrontSprite = 0,12 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCORPHISH] 
+BackSprite = 0,26 
+FrontSprite = 0,30 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCRAWDAUNT] 
+BackSprite = 0,20 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCARNIVINE] 
+BackSprite = 0,19 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OANORITH] 
+BackSprite = 10,29 
+FrontSprite = 1,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OARMALDO] 
+BackSprite = 0,14 
+FrontSprite = 4,19 
+ShadowX = 0 
+ShadowSize = 3 
+#------------------------------- 
+[OBAGON] 
+BackSprite = 3,23 
+FrontSprite = -5,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSHELGON] 
+BackSprite = 0,23 
+FrontSprite = -1,28 
+ShadowX = 0 
+ShadowSize = 3 
+#------------------------------- 
+[OSALAMENCE] 
+BackSprite = -1,10 
+FrontSprite = -2,17 
+ShadowX = 0 
+ShadowSize = 3 
+#------------------------------- 
+[OMUNCHLAX] 
+BackSprite = -1,25 
+FrontSprite = 1,29 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSNORLAX] 
+BackSprite = -1,15 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 3 
+#------------------------------- 
+[OTEPIG] 
+BackSprite = -4,31 
+FrontSprite = 1,36 
+ShadowX = 0 
+ShadowSize = 1 
+#------------------------------- 
+[OPIGNITE] 
+BackSprite = -1,21 
+FrontSprite = 2,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OEMBOAR] 
+BackSprite = 1,13 
+FrontSprite = 2,16 
+ShadowX = 0 
+ShadowSize = 3 
+#------------------------------- 
+[OSNEASEL] 
+BackSprite = -3,26 
+FrontSprite = 0,14 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OWEAVILE] 
+BackSprite = -4,17 
+FrontSprite = 2,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OMILCERY] 
+BackSprite = -1,15 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 3 
+#------------------------------- 
+[OALCREMIE] 
+BackSprite = 1,11 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 3 
+#------------------------------- 
+[OFRILLISH] 
+BackSprite = -1,16 
+FrontSprite = 0,22 
+ShadowX = 0 
+ShadowSize = 3 
+#------------------------------- 
+[OJELLICENT] 
+BackSprite = 1,14 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 3 
+#------------------------------- 
+[OCLOBBOPUS] 
+BackSprite = -1,31 
+FrontSprite = 0,34 
+ShadowX = 0 
+ShadowSize = 3 
+#------------------------------- 
+[OGRAPPLOCT] 
+BackSprite = 1,14 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 3 
+#------------------------------- 
+[OCUFANT] 
+BackSprite = 0,23 
+FrontSprite = 0,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCOPPERAJAH] 
+BackSprite = 0,13 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBLITZLE] 
+BackSprite = -6,18 
+FrontSprite = -4,22 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OZEBSTRIKA] 
+BackSprite = 0,16 
+FrontSprite = 2,18 
+ShadowX = 0 
+ShadowSize = 3 
+#------------------------------- 
+[OSLAKOTH] 
+BackSprite = 5,30 
+FrontSprite = -2,29 
+ShadowX = 0 
+ShadowSize = 3 
+#------------------------------- 
+[OVIGOROTH] 
+BackSprite = 4,21 
+FrontSprite = -4,11 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSLAKING] 
+BackSprite = 2,20 
+FrontSprite = 0,13 
+ShadowX = 0 
+ShadowSize = 3 
+#------------------------------- 
+[OMILTANK] 
+BackSprite = -3,24 
+FrontSprite = 8,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHELIOPTILE] 
+BackSprite = -3,30 
+FrontSprite = -2,29 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHELIOLISK] 
+BackSprite = -3,14 
+FrontSprite = 8,12 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHATENNA] 
+BackSprite = -3,22 
+FrontSprite = 8,14 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHATTREM] 
+BackSprite = -3,11 
+FrontSprite = 8,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OHATTERENE] 
+BackSprite = -3,13 
+FrontSprite = 8,18 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCHINGLING] 
+BackSprite = 1,19 
+FrontSprite = 3,16 
+ShadowX = 0 
+ShadowSize = 1 
+#------------------------------- 
+[OCHIMECHO] 
+BackSprite = 9,10 
+FrontSprite = 1,19 
+ShadowX = 0 
+ShadowSize = 1 
+#------------------------------- 
+[ODEDENNE] 
+BackSprite = 0,27 
+FrontSprite = 0,31 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLOTAD] 
+BackSprite = 0,32 
+FrontSprite = 1,35 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLOMBRE] 
+BackSprite = 0,25 
+FrontSprite = 0,29 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OLUDICOLO] 
+BackSprite = 4,14 
+FrontSprite = -2,11 
+ShadowX = 0 
+ShadowSize = 3 
+#------------------------------- 
+[OWATTREL] 
+BackSprite = 0,13 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OKILOWATTREL] 
+BackSprite = 4,12 
+FrontSprite = -2,20 
+ShadowX = 0 
+ShadowSize = 3 
+#------------------------------- 
+[OWYRDEER] 
+BackSprite = 0,6 
+FrontSprite = 0,8 
+ShadowX = 3 
+ShadowSize = 3 
+#------------------------------- 
+[OANNIHILAPE] 
+BackSprite = 0,11 
+FrontSprite = 0,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFINIZEN] 
+BackSprite = 0,29 
+FrontSprite = -2,25 
+ShadowX = 0 
+ShadowSize = 1 
+#------------------------------- 
+[OPALAFIN] 
+BackSprite = 0,29 
+FrontSprite = -5,25 
+ShadowX = 0 
+ShadowSize = 1 
+#------------------------------- 
+[OPORYGON] 
+BackSprite = 0,0 
+FrontSprite = -1,14 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPORYGONZ] 
+BackSprite = 2,0 
+FrontSprite = 0,6 
+ShadowX = 0 
+ShadowSize = 1 
+#------------------------------- 
+[OURSALUNA] 
+BackSprite = 0,9 
+FrontSprite = 0,21 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPAWMI] 
+BackSprite = 0,13 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPAWMO] 
+BackSprite = 0,15 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OPAWMOT] 
+BackSprite = 0,13 
+FrontSprite = 0,17 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFUECOCO] 
+BackSprite = 0,12 
+FrontSprite = 0,19 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OCROCALOR] 
+BackSprite = 0,10 
+FrontSprite = 0,15 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSKELEDIRGE] 
+BackSprite = 0,3 
+FrontSprite = 0,13 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTINKATINK] 
+BackSprite = 0,20 
+FrontSprite = 0,37 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTINKATUFF] 
+BackSprite = 0,20 
+FrontSprite = 0,35 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OTINKATON] 
+BackSprite = 0,10 
+FrontSprite = 0,8 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSNEASLER] 
+BackSprite = -4,17 
+FrontSprite = 2,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSKARMORY] 
+BackSprite = -4,14 
+FrontSprite = 2,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OWOOPER] 
+BackSprite = -4,33 
+FrontSprite = 2,37 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OQUAGSIRE] 
+BackSprite = -4,18 
+FrontSprite = 2,26 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFLABEBE] 
+BackSprite = -4,15 
+FrontSprite = 2,30 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFLOETTE] 
+BackSprite = -4,17 
+FrontSprite = 2,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OFLORGES] 
+BackSprite = -4,17 
+FrontSprite = 2,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OEMOLGA] 
+BackSprite = -4,17 
+FrontSprite = 2,16 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSALANDIT] 
+BackSprite = -4,27 
+FrontSprite = 2,28 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OSALAZZLE] 
+BackSprite = -4,17 
+FrontSprite = 2,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODUDUNSPARCE] 
+BackSprite = -4,20 
+FrontSprite = 2,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGIMMIGHOUL] 
+BackSprite = 0,16 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OGHOLDENGO] 
+BackSprite = 0,6 
+FrontSprite = 0,10 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODELIBIRD] 
+BackSprite = 0,24 
+FrontSprite = 0,27 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[ODIPPLIN] 
+BackSprite = 0,20 
+FrontSprite = 0,20 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
+[OBASCULEGION] 
+BackSprite = 0,21 
+FrontSprite = 0,23 
+ShadowX = 0 
+ShadowSize = 2 
+#------------------------------- 
