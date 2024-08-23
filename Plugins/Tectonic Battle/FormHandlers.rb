@@ -223,7 +223,6 @@ MultipleForms.register(:ROTOM,{
         if GameData::Move.exists?(new_move_id)
           pkmn.moves[move_index].id = new_move_id
           new_move_name = pkmn.moves[move_index].name
-          pbMessage(_INTL("1,\\wt[16] 2, and\\wt[16]...\\wt[16] ...\\wt[16] ... Ta-da!\\se[Battle ball drop]\1"))
           pbMessage(_INTL("{1} forgot how to use {2}.\\nAnd...\1", pkmn.name, old_move_name))
           pbMessage(_INTL("\\se[]{1} learned {2}!\\se[Pkmn move learnt]", pkmn.name, new_move_name))
         else
@@ -354,19 +353,6 @@ MultipleForms.register(:AEGISLASH,{
     next 0
   }
 })
-
-MultipleForms.register(:PUMPKABOO,{
-  "getFormOnCreation" => proc { |pkmn|
-    r = rand(100)
-    if r<5;     next 3   # Super Size (5%)
-    elsif r<20; next 2   # Large (15%)
-    elsif r<65; next 1   # Average (45%)
-    end
-    next 0               # Small (35%)
-  }
-})
-
-MultipleForms.copy(:PUMPKABOO,:GOURGEIST)
 
 MultipleForms.register(:XERNEAS,{
   "getFormOnEnteringBattle" => proc { |pkmn,wild|
@@ -548,7 +534,6 @@ MultipleForms.register(:URSHIFU,{
       old_move_name = pkmn.moves[move_index].name
       pkmn.moves[move_index].id = new_move_id
       new_move_name = pkmn.moves[move_index].name
-      pbMessage(_INTL("1,\\wt[16] 2, and\\wt[16]...\\wt[16] ...\\wt[16] ... Ta-da!\\se[Battle ball drop]\1"))
       pbMessage(_INTL("{1} forgot how to use {2}.\\nAnd...\1", pkmn.name, old_move_name))
       pbMessage(_INTL("\\se[]{1} learned {2}!\\se[Pkmn move learnt]", pkmn.name, new_move_name))
     else

@@ -340,7 +340,7 @@ def pbLearnMove(pkmn,move,ignoreifknown=false,bymachine=false,addfirstmove=false
   end
   loop do
     pbMessage(_INTL("{1} wants to learn {2}, but it already knows {3} moves.\1",
-      pkmnname, movename, pkmn.numMoves.to_word), &block) if !bymachine
+                pkmnname, movename, pkmn.numMoves.to_word), &block) if !bymachine
     pbMessage(_INTL("Please choose a move that will be replaced with {1}.",movename),&block)
     forgetmove = pbForgetMove(pkmn,move)
     if forgetmove>=0
@@ -350,13 +350,11 @@ def pbLearnMove(pkmn,move,ignoreifknown=false,bymachine=false,addfirstmove=false
       if bymachine && Settings::TAUGHT_MACHINES_KEEP_OLD_PP
         pkmn.moves[forgetmove].pp = [oldmovepp,pkmn.moves[forgetmove].total_pp].min
       end
-      pbMessage(_INTL("1, 2, and...\\wt[16] ...\\wt[16] ... Ta-da!\\se[Battle ball drop]\1"),&block)
       pbMessage(_INTL("{1} forgot how to use {2}.\\nAnd...\1",pkmnname,oldmovename),&block)
       pbMessage(_INTL("\\se[]{1} learned {2}!\\se[Pkmn move learnt]",pkmnname,movename),&block)
       pkmn.add_first_move(move) if addfirstmove
       return true
   else
-      pbMessage(_INTL("{1} did not learn {2}.",pkmnname,movename),&block)
       return false
     end
   end
@@ -634,14 +632,20 @@ def pbEXPAdditionItem(pkmn, exp, item, scene = nil, oneAtATime = false)
     pkmn.exp += expAmount
     pkmn.exp = [pkmn.exp, maxxp].min
     display_exp = pkmn.exp - current_exp
+    stored_exp = expAmount - display_exp
     new_level = pkmn.level
     if new_level == level_cap
-        pbSceneDefaultDisplay(_INTL("{1} gained only {3} Exp. Points due to the level cap at level {2}.", pkmn.name, level_cap, display_exp),scene)
+        pbSceneDefaultDisplay(_INTL("{1} gained only {3} Exp. Points due to the level cap at level {2}.", pkmn.name, level_cap, separate_comma(display_exp)),scene)
+        if pbHasItem?(:EXPEZDISPENSER) && stored_exp > 0
+            pbSceneDefaultDisplay(_INTL("{1} Exp. Points were stored in the EXP-EZ Dispenser.", separate_comma(stored_exp)),scene)
+            $PokemonGlobal.expJAR = 0 if $PokemonGlobal.expJAR.nil?
+            $PokemonGlobal.expJAR += stored_exp
+        end
     else
         if pbHasItem?(:SWEETTOOTH)
-          pbSceneDefaultDisplay(_INTL("{1} gained a Sweet-Tooth boosted {2} Exp. Points!", pkmn.name, display_exp),scene)
+          pbSceneDefaultDisplay(_INTL("{1} gained a Sweet-Tooth boosted {2} Exp. Points!", pkmn.name, separate_comma(display_exp)),scene)
         else
-          pbSceneDefaultDisplay(_INTL("{1} gained {2} Exp. Points!", pkmn.name, display_exp),scene)
+          pbSceneDefaultDisplay(_INTL("{1} gained {2} Exp. Points!", pkmn.name, separate_comma(display_exp)),scene)
         end
     end
     scene&.pbRefresh

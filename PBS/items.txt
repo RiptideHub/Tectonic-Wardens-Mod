@@ -1380,14 +1380,6 @@ Price = 50000
 FieldUse = Direct
 Description = It revives all fainted Pokémon. In doing so, it also fully restores their HP.
 #-------------------------------
-[STATUSHEAL]
-Name = Status Heal
-NamePlural = Status Heals
-Pocket = 2
-Price = 400
-FieldUse = OnPokemon
-Description = A spray-type medicine. It heals all the status problems of a single Pokémon.
-#-------------------------------
 [LAVACOOKIE]
 Name = Lava Cookie
 NamePlural = Lava Cookies
@@ -2922,3 +2914,13 @@ FieldUse = Direct
 Consumable = true
 Flags = KeyItem
 Description = A sliver of the fragment of the universe. Highly unstable.
+#-------------------------------
+[OLDUSBDRIVE]
+Name = Old USB Drive
+NamePlural = Old USB Drive
+Pocket = 7
+Price = 0
+FieldUse = Direct
+Consumable = true
+Flags = KeyItem
+Description = A USB containing data from a Team Chasm's early days.
