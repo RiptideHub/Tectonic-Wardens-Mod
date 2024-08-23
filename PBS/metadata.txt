@@ -3097,23 +3097,8 @@ Outdoor = false
 ShowArea = false
 Bicycle = true
 #-------------------------------
-[444]
-Outdoor = true
-ShowArea = true
-Bicycle = true
-BicycleAlways = false
-Weather = Fog,30
-Temperature = Stable
-Humidity = Stable
-MapPosition = 0,26,8
-DarkMap = false
-SafariMap = false
-SnapEdges = true
-Dungeon = false
-BattleBack = 
-WildBattleBGM = Wild Battle 2 - Regular.ogg
-MapSize = 1,
-Environment = StillWater
-TeleportBlocked = false
-SavingBlocked = false
-NoTeamEditing = false
+[443]
+# Team Chasm Archive
+Outdoor = false
+ShowArea = false
+Bicycle = false

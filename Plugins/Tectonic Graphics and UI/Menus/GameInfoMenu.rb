@@ -6,40 +6,9 @@ class PokemonGameInfoMenu_Scene
 		@sprites["cmdwindow"] = Window_CommandPokemon.new([])
 		@sprites["cmdwindow"].visible = false
 		@sprites["cmdwindow"].viewport = @viewport
-		@sprites["infowindow"] = Window_UnformattedTextPokemon.newWithSize("",0,0,32,32,@viewport)
-		@sprites["infowindow"].visible = false
-		@sprites["helpwindow"] = Window_UnformattedTextPokemon.newWithSize("",0,0,32,32,@viewport)
-		@sprites["helpwindow"].visible = false
 		@infostate = false
 		@helpstate = false
 		pbSEPlay("GUI menu open")
-	  end
-	
-	  def pbShowInfo(text)
-		@sprites["infowindow"].resizeToFit(text,Graphics.height)
-		@sprites["infowindow"].text    = text
-		@sprites["infowindow"].visible = true
-		@infostate = true
-	  end
-	
-	  def pbShowHelp(text)
-		@sprites["helpwindow"].resizeToFit(text,Graphics.height)
-		@sprites["helpwindow"].text    = text
-		@sprites["helpwindow"].visible = true
-		pbBottomLeft(@sprites["helpwindow"])
-		@helpstate = true
-	  end
-	
-	  def pbShowMenu
-		@sprites["cmdwindow"].visible = true
-		@sprites["infowindow"].visible = @infostate
-		@sprites["helpwindow"].visible = @helpstate
-	  end
-	
-	  def pbHideMenu
-		@sprites["cmdwindow"].visible = false
-		@sprites["infowindow"].visible = false
-		@sprites["helpwindow"].visible = false
 	  end
 	
 	  def pbShowCommands(commands)
@@ -90,13 +59,9 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 		cmdTrainer  = -1
 		cmdLevelCap = -1
 		cmdMainQuestHelp = -1
-		cmdBattleGuide = -1
-        cmdMoveDex = -1
         cmdAchievements = -1
 		infoCommands = []
 		infoCommands[cmdMainQuestHelp = infoCommands.length] = _INTL("What Next?") if defined?($main_quest_tracker)
-		infoCommands[cmdBattleGuide = infoCommands.length] = _INTL("Battle Guide")
-        infoCommands[cmdMoveDex = infoCommands.length] = _INTL("MoveDex")
 		infoCommands[cmdTrainer = infoCommands.length] = _INTL("{1}'s Card",$Trainer.name)
 		infoCommands[cmdLevelCap = infoCommands.length] = _INTL("Level Cap") if LEVEL_CAPS_USED && getLevelCap > 0 && $Trainer.party_count > 0
 		infoCommands[cmdAchievements = infoCommands.length] = _INTL("Achievements")
@@ -121,16 +86,12 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 				pbDisposeMessageWindow(msgwindow)
 			elsif cmdMainQuestHelp > - 1 && infoCommand == cmdMainQuestHelp
 				pbMessage("\\l[7]<b>" + $main_quest_tracker.getCurrentStageName() + "</b>\n" + $main_quest_tracker.getCurrentStageHelp())
-			elsif cmdBattleGuide > -1 && infoCommand == cmdBattleGuide
-				showBattleGuide
             elsif cmdAchievements > -1 && infoCommand == cmdAchievements
                 pbFadeOutIn do
                     achievementsListScene = AchievementsListScene.new
                     screen = AchievementsListScreen.new(achievementsListScene)
                     screen.pbStartScreen
                 end
-            elsif cmdMoveDex > -1 && infoCommand == cmdMoveDex
-                openMoveDex
 			else
 				pbPlayCloseMenuSE
 				break
