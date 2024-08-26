@@ -1,0 +1,50 @@
+#-------------------------------
+[POKEMONTRAINER_Feminine,Blissbot,1]
+Pokemon = OAZUMARILL,15
+    Moves = MEMENTO
+    AbilityIndex = 0
+#-------------------------------
+[POKEMONTRAINER_Feminine,Blissbot,2]
+Pokemon = OAZUMARILL,20
+    Moves = MEMENTO
+    AbilityIndex = 0
+#-------------------------------
+[POKEMONTRAINER_Feminine,Blissbot,3]
+Pokemon = OAZUMARILL,20
+    Moves = MEMENTO
+    AbilityIndex = 0
+#-------------------------------
+[POKEMONTRAINER_Feminine,Blissbot,4]
+Pokemon = OAZUMARILL,25
+    Moves = MEMENTO
+    AbilityIndex = 0
+#-------------------------------
+[POKEMONTRAINER_Feminine,Blissbot,5]
+Pokemon = OAZUMARILL,30
+    Moves = MEMENTO
+    AbilityIndex = 0
+#-------------------------------
+[POKEMONTRAINER_Feminine,Blissbot,6]
+Pokemon = OAZUMARILL,40
+    Moves = MEMENTO
+    AbilityIndex = 0
+#-------------------------------
+[POKEMONTRAINER_Feminine,Blissbot,7]
+Pokemon = OAZUMARILL,45
+    Moves = MEMENTO
+    AbilityIndex = 0
+#-------------------------------
+[POKEMONTRAINER_Feminine,Blissbot,8]
+Pokemon = OAZUMARILL,55
+    Moves = MEMENTO
+    AbilityIndex = 0
+#-------------------------------
+[POKEMONTRAINER_Feminine,Blissbot,9]
+Pokemon = OAZUMARILL,60
+    Moves = MEMENTO
+    AbilityIndex = 0
+#-------------------------------
+[POKEMONTRAINER_Feminine,Blissbot,10]
+Pokemon = OAZUMARILL,70
+    Moves = MEMENTO
+    AbilityIndex = 0
