@@ -1113,3 +1113,111 @@ Abilities = CORROSION
 FormName = Eldritch
 BaseStats = 108,105,110,110,85,100
 Abilities = SWORDPLAY
+#-------------------------------
+[OCHERRIM,1]
+FormName = Hail
+#-------------------------------
+[OGENGAR,1]
+FormName = Mega Style
+#-------------------------------
+[OGYARADOS,1]
+FormName = Mega Style
+#-------------------------------
+[OGIGALITH,1]
+FormName = Mega Style
+#-------------------------------
+[OMACHAMP,1]
+FormName = Mega Style
+#-------------------------------
+[OVENUSAUR,1]
+FormName = Mega Style
+#-------------------------------
+[OCHANDELURE,1]
+FormName = Mega Style
+#-------------------------------
+[OINFERNAPE,1]
+FormName = Mega Style
+#-------------------------------
+[OTYRANITAR,1]
+FormName = Mega Style
+#-------------------------------
+[OAMPHAROS,1]
+FormName = Mega Style
+#-------------------------------
+[OAGGRON,1]
+FormName = Mega Style
+#-------------------------------
+[OCORVIKNIGHT,1]
+FormName = Mega Style
+#-------------------------------
+[OKINGDRA,1]
+FormName = Mega Style
+#-------------------------------
+[OMELOETTA,1]
+FormName = Mega Style
+#-------------------------------
+[OMETAGROSS,1]
+FormName = Mega Style
+#-------------------------------
+[OPIDGEOT,1]
+FormName = Mega Style
+#-------------------------------
+[ORAICHU,1]
+FormName = Mega Style
+#-------------------------------
+[OSWAMPERT,1]
+FormName = Mega Style
+#-------------------------------
+[OGOTHITELLE,1]
+FormName = Mega Style
+#-------------------------------
+[OCHARIZARD,1]
+FormName = Mega Style
+#-------------------------------
+[OWIGGLYTUFF,1]
+FormName = Mega Style
+#-------------------------------
+[OMAMOSWINE,1]
+FormName = Mega Style
+#-------------------------------
+[OTORTERRA,1]
+FormName = Mega Style
+#-------------------------------
+[OGOTHITELLE2,1]
+FormName = Mega Style
+#-------------------------------
+[OGARCHOMP,1]
+FormName = Mega Style
+#-------------------------------
+[OSWAMPERT2,1]
+FormName = Mega Style
+#-------------------------------
+[OCOALOSSAL,1]
+FormName = Mega Style
+#-------------------------------
+[OGIGALITH2,1]
+FormName = Mega Style
+#-------------------------------
+[ODRAGONITE,1]
+FormName = Mega Style
+#-------------------------------
+[ODRAGAPULT,1]
+FormName = Mega Style
+#-------------------------------
+[OEMPOLEON,1]
+FormName = Mega Style
+#-------------------------------
+[OJUMPLUFF2,1]
+FormName = Mega Style
+#-------------------------------
+[OEXPLOUD,1]
+FormName = Mega Style
+#-------------------------------
+[OSALAMENCE,1]
+FormName = Mega Style
+#-------------------------------
+[OHATTERENE,1]
+FormName = Mega Style
+#-------------------------------
+[OGRIMMSNARL2,1]
+FormName = Mega Style
