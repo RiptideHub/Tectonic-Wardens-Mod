@@ -399,3 +399,19 @@ BattleHandlers::UserAbilityEndOfMove.add(:LEECHINGFANGS,
     user.pbRecoverHPFromMultiDrain(targets, 0.13, ability: ability)
   } 
 )
+
+
+BattleHandlers::UserAbilityEndOfMove.add(:INDISPUTABLE,
+  proc { |ability, user, targets, move, battle, _switchedBattlers|
+      next if battle.futureSight
+      next unless move.damagingMove?
+      nveHits = 0
+      targets.each do |b|
+        next if b.damageState.unaffected
+        next unless Effectiveness.not_very_effective?(b.damageState.typeMod)
+        nveHits += 1
+      end
+      next unless nveHits > 0
+      user.tryRaiseStat(:SPECIAL_ATTACK, user, increment: nveHits * 2, ability: ability)
+  }
+)

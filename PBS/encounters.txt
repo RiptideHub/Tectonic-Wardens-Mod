@@ -1123,9 +1123,9 @@ Puddle,15
 #-------------------------------
 [569] # Temporal Island
 Land,20
-    25,OVOLTORB,10,15
     25,OHIPPOPOTAS,10,15
     25,OPAWMI,10,15
+    25,OVOLTORB,10,15
     25,OVULPIX,10,15
 LandSparse,20
     25,OBINACLE,10,15

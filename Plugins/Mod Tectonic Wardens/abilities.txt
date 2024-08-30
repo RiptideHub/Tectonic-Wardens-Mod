@@ -135,3 +135,7 @@ Description = Halves damage from Grass and Water-type moves.
 [POSSESED]
 Name = Possesed
 Description = Powers up 50% Ghost-type moves.
+#-------------------------------
+[INDISPUTABLE]
+Name = Indisputable
+Description = Raises Sp. Atk by two steps after dealing not-very-effective or barely-effective damage.
