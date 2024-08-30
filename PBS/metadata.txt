@@ -3102,3 +3102,22 @@ Bicycle = true
 Outdoor = false
 ShowArea = false
 Bicycle = false
+#-------------------------------
+[570]
+# Temporal Cave
+Outdoor = false
+ShowArea = true
+Bicycle = true
+BicycleAlways = false
+Temperature = Cold
+Humidity = Stable
+MapPosition = 0,25,8
+DarkMap = false
+SafariMap = false
+SnapEdges = true
+Dungeon = false
+MapSize = 0,
+Environment = Cave
+TeleportBlocked = false
+SavingBlocked = false
+NoTeamEditing = false
