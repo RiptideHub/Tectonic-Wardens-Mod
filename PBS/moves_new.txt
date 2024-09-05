@@ -1481,7 +1481,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HealUserByThirdOfDamageDone
 Flags = CanProtect,CanMirrorMove,Biting
-Description = The user chomps with venomous teeth. The user's HP is restored by a third of the damage dealt.
+Description = The user chomps with venomous teeth. The user's HP is restored by 33% of the damage dealt.
 #-------------------------------
 [TRASHTREASURE]
 Name = Trash Treasure
@@ -1997,7 +1997,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = NearOther
-FunctionCode = DizzyTargetStartSandstorm4
+FunctionCode = DizzyTargetStartSandstorm8
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = The user dizzies the target, then summons sandstorm for four turns.
 Animation = SANDSTORM
@@ -2238,7 +2238,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = HealUserByHalfOfDamageDone
 Flags = CanProtect,CanMirrorMove
-Description = The user consumes a bit of the target's blood. The user's HP is restored by half the damage dealt.
+Description = The user consumes a bit of the target's blood. The user's HP is restored by 50% the damage dealt.
 Animation = LEECHLIFE
 #-------------------------------
 [GUIDINGAROMA]
@@ -2323,7 +2323,7 @@ Accuracy = 100
 TotalPP = 12
 Target = NearOther
 FunctionCode = Dizzy
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Sound
 EffectChance = 100
 Description = The user calls out its underlings to annoy the target with buzzing sounds, dizzying it.
 Animation = BUGBUZZ
@@ -2454,7 +2454,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = HealUserByHalfOfDamageDone
 Flags = CanProtect,CanMirrorMove
-Description = The user leeches the target's life. The user's HP is restored by half the damage taken by the target.
+Description = The user leeches the target's life. The user's HP is restored by 50% the damage dealt.
 Animation = LEECHLIFE
 #-------------------------------
 [SWARMBURST]
@@ -2545,7 +2545,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = CurseTargetUserPaysQuarterOfTotalHP
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
-Description = The user loses 1/4th of their max HP to curse the target, damaging their HP by 1/4th each turn.
+Description = The user loses 25% of their max HP to curse the target, damaging their HP by 25% each turn.
 Animation = CURSE
 #-------------------------------
 [DEADEND]
@@ -3281,7 +3281,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = TwoTurnAttackChargeStartSunshine5
 Flags = CanProtect,CanMirrorMove
-Description = Summons sun for five turns on the first turn, then overwhelms the foe with fiery light on the second.
+Description = Summons Sunshine for five turns on the first turn, then overwhelms the foe with fiery light on the second.
 Animation = FIREBLAST
 #-------------------------------
 [BLAZINGSPEED]
@@ -3472,7 +3472,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = NearOther
-FunctionCode = BurnTargetStartSunshine4
+FunctionCode = BurnTargetStartSunshine8
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = The user burns the target, then welcomes in sunshine for four turns.
 Animation = SUNSHINE
@@ -3850,7 +3850,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = NearOther
-FunctionCode = NumbTargetStartRainstorm4
+FunctionCode = NumbTargetStartRainstorm8
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = The user numbs the target, then welcomes in rainstorm for four turns.
 Animation = RAINSTORM
@@ -3878,7 +3878,7 @@ TotalPP = 12
 Target = NearOther
 FunctionCode = StartHealUserEachTurn
 Flags = CanProtect,CanMirrorMove
-Description = The user opens a spring to blast the target, also forming an Aqua Ring around themselves.
+Description = The user opens a spring to blast the target, also forming an Aqua Ring around themselves, healing 10% HP per turn.
 Animation = WATERGUN
 #-------------------------------
 [PRESSUREBURST]
@@ -3955,7 +3955,7 @@ TotalPP = 10
 Target = User
 FunctionCode = HealUserHalfOfTotalHPStartHealUserEachTurn
 Flags = CanSnatch
-Description = The user rests in a riverbed, restoring its HP by half of max, and forming an Aqua Ring around itself.
+Description = The user rests in a riverbed, restoring its HP by half of max, and forming an Aqua Ring around themselves, healing 10% HP per turn.
 Animation = REST
 #-------------------------------
 [RUPTURESPRING]
@@ -4061,7 +4061,7 @@ Target = NearOther
 FunctionCode = StartHealUserEachTurn
 Flags = CanProtect,CanMirrorMove,Dance
 EffectChance = 100
-Description = The user attacks the target using graceful fluid movements, also forming an Aqua Ring around themselves.
+Description = The user attacks the target using graceful fluid movements, also forming an Aqua Ring around themselves, healing 10% HP per turn.
 #-------------------------------
 [WHALESONG]
 Name = Whale Song
@@ -4072,7 +4072,7 @@ TotalPP = 5
 Target = UserAndAllies
 FunctionCode = CureUserPartyStatusStartHealUserEachTurn
 Flags = CanSnatch,Sound
-Description = The user's song heals the status problems of all the party Pokémon, and forms an Aqua Ring around itself.
+Description = The user's song heals the status problems of all the party Pokémon, and forms an Aqua Ring around itself, healing 10% HP per turn.
 Animation = HEALBELL
 #-------------------------------
 [WIPEOUT]
@@ -4469,7 +4469,7 @@ TotalPP = 12
 Target = NearOther
 FunctionCode = HealUserByThreeQuartersOfDamageDone
 Flags = CanProtect,CanMirrorMove
-Description = A nutrient-draining attack. The user's HP is restored by 75% of the damage taken by the target.
+Description = A nutrient-draining attack. The user's HP is restored by 75% of the damage dealt.
 Animation = GIGADRAIN
 #-------------------------------
 [THORNRATTLE]
@@ -4496,7 +4496,7 @@ TotalPP = 12
 Target = NearOther
 FunctionCode = HealUserByTwoThirdsOfDamageDoneIfTargetHurtUserThisTurn
 Flags = CanProtect,CanMirrorMove,Biting
-Description = Lures an enemy into its jaws, draining 2/3 of damage dealt if they hit the user this turn.
+Description = Lures an enemy into its jaws. If they hit the user this turn, the user's HP is restored by 66% the damage dealt.
 #-------------------------------
 [VINEBIND]
 Name = Vinebind
@@ -4830,7 +4830,7 @@ Category = Physical
 Power = 200
 Accuracy = 100
 TotalPP = 10
-Target = AllNearFoes
+Target = NearOther
 FunctionCode = RecoilFullDamageDealt
 Flags = CanProtect,CanMirrorMove
 Description = The user takes an entire grid of power into its belly to slam the target. The user takes 100% recoil.
@@ -4940,7 +4940,7 @@ TotalPP = 3
 Target = NearOther
 FunctionCode = SleepTargetUserLosesHalfMaxHP
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
-Description = By sacrificing half its HP, the user jinxes the target with a kiss, making it fall asleep.
+Description = By sacrificing half its total HP, the user jinxes the target with a kiss, making it fall asleep.
 Animation = LOVELYKISS
 #-------------------------------
 [DISCOVEREDPOWER]
@@ -4965,7 +4965,7 @@ TotalPP = 12
 Target = NearOther
 FunctionCode = HealUserByHalfOfDamageDoneDoubleDamageIfTargetAsleepCanOverheal
 Flags = CanProtect,CanMirrorMove
-Description = Doubles in power if the foe is asleep. User heals for half of damage dealt. This can overheal.
+Description = Doubles in power if the foe is asleep. The user's HP is restored by 50% the damage dealt. This can overheal.
 #-------------------------------
 [ECLIPSE]
 Name = Eclipse
@@ -5509,7 +5509,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = NearOther
-FunctionCode = FrostbiteTargetStartHail4
+FunctionCode = FrostbiteTargetStartHail8
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = The user frostbites the target, then welcomes in hail for four turns.
 Animation = HAIL
@@ -5636,7 +5636,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HealUserByHalfOfDamageDone
 Flags = CanProtect,CanMirrorMove
-Description = Drains the heat from the target, restoring HP by half the damage taken by the target.
+Description = Drains the heat from the target. The user's HP is restored by 50% the damage dealt.
 #-------------------------------
 [WINTEROPS]
 Name = Winter Ops
@@ -6174,8 +6174,9 @@ Type = DARK
 Category = Status
 Accuracy = 0
 TotalPP = 5
-Target = NearFoe
+Target = User
 FunctionCode = RaiseUserAndAlliesAtk2StartMoonglow8
+Flags = CanSnatch
 Description = Summons moonglow for eight turns and raises the Attack stat of itself and its allies by two steps.
 Animation = HOWL
 #-------------------------------
@@ -6189,7 +6190,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = FixedDamageHalfTargetHealUserByHalfOfDamageDone
 Flags = CanProtect,CanMirrorMove
-Description = The user chomps hard, cutting the target's HP by half, and healing for half of that.
+Description = The user chomps hard, cutting the target's HP by 50%, and the user's HP is restored by 50% of that.
 Animation = SUPERFANG
 #-------------------------------
 [NIGHTCHILL]

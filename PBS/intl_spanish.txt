@@ -375,7 +375,7 @@ You want it gone?
 ¿Lo quieres fuera?
 What are they good for?
 ¿Para qué son buenos?
-Apologies for the interuption to your adventure, young master.
+Apologies for the interruption to your adventure, young master.
 Mis disculpas por la interrupción a tu aventura, joven maestro.
 However, given that you've sent a number of Pokemon to Storage, I thought it best that I inform you of my project.
 Sin embargo, dado que has enviado un número de Pokémon a tu Almacenamiento, pensé que lo mejor sería informarte de mi proyecto.
@@ -616,6 +616,12 @@ The <imp>What Next?</imp> feature tells you what to do to progress the main stor
 La función <imp>¿Qué Sigue?</imp> te dice lo que debes hacer para progresar en la historia principal, si lo olvidaste o te pierdes.
 The <imp>Battle Guide</imp> explains the battle mechanics as well as battling strategy.
 La <imp>Guía de Combate</imp> explica las mecánicas de combate así como estrategias en este.
+Pokemon Tectonic has features to help you make sense of its open world, and its many mechanical changes.
+Pokémon Tectonic tienen funciones para ayudarte a darle sentido a su mundo abierto, y a sus muchos cambios mecánicos.
+It can be found in the <imp>Game State</imp> menu.
+Pueden ser encontradas en el menú <imp>Estado Juego</imp>.
+It can be found in the <imp>Documents</imp> menu.
+Puede ser encontrado en el menú <imp>Documentos</imp>.
 [Map2]
 You got to wonder where all this circuitry came from... It feels natural, but it obviously isn't.
 Me pregunto de dónde vinieron todos estos circuitos… se sienten naturales, pero obviamente no lo son.
@@ -1017,7 +1023,7 @@ Just like that, my team's put to the sidelines.
 Y así nada más, mi equipo fue llevado al banquillo.
 A knack for tactics, that's what you got. Helena'll be impressed, I know it.
 Se te dan muy bien las tácticas. Helena estará impresionada, lo sé.
-Healing centers uhh... to the west. So go off and do that now.
+Healing center's uhh... to the west. So go off and do that now.
 El centro Pokémon está eeeh... al oeste. Así que ve y haz lo que debas.
 She just switches around a lot? That's the "tactics" everyone around here's been hyping up?
 ¿Ella sólo cambia de Pokémon un montón? ¿Esas son las "tácticas" que todo el mundo aquí está promocionando?
@@ -1091,6 +1097,8 @@ Even worse, I had to go down into the Cold Storage basement level to do the deed
 Aún peor, tuve que bajar al sótano de la Refrigeración para hacer el trabajo.
 LuxTech Condos
 Apartamentos LuxTech 
+Healing centers uhh... to the west. So go off and do that now.
+Los Centros Pokémon aah... al oeste. Así que ve y haz eso ahora.
 [Map7]
 The Growlithe seems to be cowering from everything.
 Este Growlithe parece acobardarse por todo.
@@ -1178,7 +1186,7 @@ He crafted something mighty gross outta my failed harvest.
 Hizo algo bien asqueroso con mi cosecha fallida.
 So, you gots one of them mushroom 'mons?
 Entonces, ¿Tienes uno de esos 'mons hongos?
-It's called <i>my</i>cology because <i>i</i> need it!
+It's called <i>my</i>cology because <i>I</i> need it!
 ¡Se llama <i>mi</i>cología porque <i>yo</i> la necesito!
 Just what the Nurse Joy ordered!
 ¡Justo lo que la Enfermera Joy ordenó!
@@ -1369,7 +1377,7 @@ Rafael may have a layer of earth protecting him from the surface, but it doesn't
 Rafael podrá tener una capa de tierra protegiéndolo de la superficie, pero no lo protege de mi proyección astral.
 I've been watching his battles with some fervor. I wish to grasp the essence of his strategy.
 He estado observando sus combates con algo de fevor. Deseo captar la esencia de su estrategia.
-It is, at it's core, about dancing.
+It is, at its core, about dancing.
 Es, en su núcleo, sobre el baile.
 His Oricorio and Alolan Marowak both gain power from dancing done by their allies.
 Su Oricorio y Marowak de Alola ambos ganan poder con el baile hecho por sus aliados.
@@ -1606,7 +1614,7 @@ For the absolute steal of $200,000, I'll let you get your hands on one. And gues
 Por el absoluto robo de $200.000, te dejaré en tus manos uno. Y adivina qué – es variocolor.
 Show that to your... mom? Dad? No, definitely mom. Probably a sibling in there as well, huh?
 Muestrale esto a tu… ¿Madre? ¿Padre? No, definitivamente madre. Probablemente un hermano de por medio, ¿eh?
-I'm sure you'll get at least a week's worth of self- worth flaunting that to them. All that quality time for just $200,000.
+I'm sure you'll get at least a week's worth of self-worth flaunting that to them. All that quality time for just $200,000.
 Estoy seguro que conseguirás al menos una semana para presumir de esto. Todo ese tiempo de calidad por sólo $200.000.
 Hah! That's what they all say. You'll be back, sooner or later.
 ¡Ja! Eso es lo que todos dicen. Volverás, más pronto que tarde.
@@ -1893,7 +1901,7 @@ Dizzy Pokemon have their abilities surpressed and take extra damage!
 ¡Los Pokémon mareados tienen sus habilidades suprimidas y reciben daño extra!
 Leeched Pokemon have their health stolen by their opponent! In a double battle, the healing is split between both opponents.
 ¡Los Pokémon Infectados tienen su salud robada por su oponente! En un combate doble, la curación se divide entre ambos oponentes.
-It seems like the Riolu is trying to reach for a book, but it's too short to grab it on it's own.
+It seems like the Riolu is trying to reach for a book, but it's too short to grab it on its own.
 Parece que el Riolu intenta alcanzar un libro, pero es demasiado bajo para agarrarlo por su cuenta.
 Do you want to help the Pokemon?
 ¿Quieres ayudar al Pokémon?
@@ -2098,7 +2106,7 @@ Secondarily, Dragon-type Pokemon will resist both Water and Electric.
 Segundo, Pokémon tipo Dragón resisten tanto Agua como Eléctrico.
 Finally, mirroring her with Electric-type Pokemon of your own can work well too.
 Finalmente, copiandole usando tus propios Pokémon tipo eléctrico puede funcionar.
-They're strong against Water-type, and resist Electric.
+They're strong against Water-types, and resist Electric.
 Son fuertes contra los tipo Agua, y resisten Eléctrico.
 Hope that helps!
 ¡Espero que eso ayude!
@@ -3469,9 +3477,9 @@ I wouldn't put it past them to be behind it, they got their hands in everything.
 No descartaría que ellos estuvieron detrás de ello, tienen sus manos en todo.
 I've been trying to learn every sport lately.
 Últimamente estuve intentando aprender todos los deportes.
-Judo, baseball, tennis, even lacross. I've managed to hold my own against players in each of them.
+Judo, baseball, tennis, even lacrosse. I've managed to hold my own against players in each of them.
 Judo, baseball, tennis, incluso lacross. Logré ir frente a frente contra jugadores de cada uno.
-It's a long but reward process. My next project is figure skating.
+It's a long but rewarding process. My next project is figure skating.
 Es un largo proceso pero compensa. Mi siguiente proyecto es aprender a patinar.
 That lady over there is killing it, so I'm trying to copy her movements.
 Esa señorita lo está rompiendo, así que intento copiar sus movimientos.
@@ -3589,6 +3597,20 @@ Here, let me heal your team up.
 Ok, déjame curar a tu equipo.
 Let’s go find what we came here for together.
 Busquemos juntos lo que vinimos a encontrar aquí.
+Even when I pull out all the stops, when I try my best to defang you, you bite down anyway.
+Incluso cuando opuse toda mi resistencia, cuando realmente intento descolmillarte, muerdes de todos modos.
+You’re not human… You know, for a moment, it really flashed in my mind that maybe I could do something with all of this.
+No eres humano... Sabes, por un momento, realmente se me vino a la cabeza que podría hacer algo con todo esto.
+That I could attain my own facsimile of overwhelming power...
+Que podría alcanzar mi propio facsímil de fuerza abrumante...
+But you’re just too strong.
+Pero simplemente eres demasiado fuerte.
+I’m all bark and no bite…
+Muerdo pero no ladro...
+I don’t know what came over me, \PN. I really lost myself for a moment.
+No sé qué me pasó, \PN. Me perdí a mí misma por un momento.
+Yes
+Sí
 [Map38]
 
 Okay, now just to dig the moat!
@@ -6797,7 +6819,7 @@ Participate in battles against our scientists, and you may earn a hi-tech prize.
 Participa en combates contra nuestros científicos, y puede que ganes un premio de alta tecnología.
 Do be careful though, if you're not yet at the right skill level. Four badges is the threshold our data suggests is optimal.
 Pero ten cuidado, si no estás todavía en el nivel de combate. Cuatro medallas es el umbral que nuestros datos consideran óptimos.
-My dad brings me to work everyday after school since I like to watch the Pokemon battles.
+My dad brings me to work every day after school since I like to watch the Pokemon battles.
 Mi papá me trae al trabajo todos los días después del trabajo ya que me gusta ver combates Pokémon.
 You get to see all sorts of Pokemon here. Sometimes the Trainers let me pet them!
 Llegas a ver todo tipo de Pokémon aquí. ¡A veces los Entrenadores me dejan acariciarlos!
@@ -6815,7 +6837,7 @@ Your effect seems to be an aura of fear, based on what I'm feeling right now.
 Tu efecto parece ser un aura de miedo, basado en lo que estoy sintiendo ahora.
 Great test, but I need more data.
 Genial prueba, pero necesito más información.
-It looks releived to no longer be floating!
+It looks relieved to no longer be floating!
 ¡Parece aliviado que ya no esté flotando!
 One of the scientists here gave me a batch of weird rocks, and told me to give some to my Mudsdale.
 Uno de los científicos me dió un puñado de rocas extrañas, y me dijo que le dieron algunas a mi Mudsdale.
@@ -9063,6 +9085,14 @@ South: Exit to LuxTech Rec Center
 Sur: Salida a Centro Recreativo LuxTech
 Train people’s Pokémon for money. We had a scuffle back in Novo… which ya won.
 Entreno a los Pokémon de la gente por dinero. Tuvimos un enfrentamiento en Novo... el cual ganaste.
+You're a LuxTech employee, aren't you?!
+¡¿Eres un empleado de LuxTech, me equivoco?!
+I'm gonna steal your TMs!
+¡Voy a robar tus MTs!
+Silver Ninjask isn't going to be happy...
+Silver Ninjask no va a estar feliz...
+Now this job's gone completely sideways. Thanks a lot.
+Ahora este trabajo se fue por los suelos. Te lo agradezco.
 [Map123]
 
 I brought some family heirlooms with me from Galar.
@@ -9742,20 +9772,20 @@ No--That's a living Pokemon! Its body is partially covered in stone!
 No–¡Eso es un Pokémon vivo! ¡Su cuerpo está parcialmente cubierto por piedra!
 The Lillipup is unable to move, and in obvious distress.
 El Lillipup es incapaz de moverse, y está obviamente estresado.
-You could use a Status Heal or a Full Restore to heal its partial petrification.
-Podrías usar una Cura Total o un Restaurar Todo para curar su petrificación parcial.
+You could use a Moomoo Milk or a Full Restore to heal its partial petrification.
+Podrías usar una Leche Mu-mu o un Restaurar Todo para curar su petrificación parcial.
 What would you like to do?
 ¿Qué quieres hacer?
 You leave the Pokemon here for now.
 Dejas al Pokémon aquí por ahora.
-You apply the Status Heal to the Lillipup. In an instant, it breaks free, shaking off bits of stone.
-Aplicas la Cura Total al Lillipup. En un instante, se libera, sacudiéndose pezados de piedra.
+You apply the Moomoo Milk to the Lillipup. In an instant, it breaks free, shaking off bits of stone.
+Aplicas la Leche Mu-mu al Lillipup. En un instante, se libera, sacudiéndose pezados de piedra.
 You notice a Pokeball wedged into the nearby boulder.
 Notas una Pokéball entre un peñasco cercano.
 Lillipup brings over the Pokeball and enters it in front of you.
 Lillipup trae la Poké Ball y entra en ella en frente tuyo.
-You don't have a Status Heal to use.
-No tienes una Cura Total para usar.
+You don't have a Moomoo Milk to use.
+No tienes una Leche Mu-mu para usar.
 You apply the Full Restore to the Lillipup. In an instant, it breaks free, shaking off bits of stone.
 Aplicas el Restaurar Todo al Lillipup. En un instante, se libera, sacudiendose pezados de piedra.
 You don't have a Full Restore to use.
@@ -9766,8 +9796,8 @@ North: Velenz
 Norte: Velenz
 Leave it
 Dejarlo
-Use a Status Heal
-Usar una Cura Total
+Use a Moomoo Milk
+Usar una Leche Mu-mu
 Use a Fresh
 Usar un Restaurar Todo
 I'm a consultant for the government, sent to review this station for improper activity.
@@ -10234,7 +10264,7 @@ Yo, champ in the making!
 ¡Hey, aspirante!
 We have two Gym Leaders here on the West side of Prizca.
 Tenemos dos Líderes de Gimnasio aquí en el lado Occidental de Prizca.
-Bence and Zoe are Rock-type and Flying-type users.
+Bence and Zoé are Rock-type and Flying-type users.
 Bence y Zoé son usuarios de tipo Roca y tipo Volador.
 There isn't a magic typing here that I could recommend you. These types are pretty good combo.
 No hay un tipo mágico aquí que te recomendaría, estos tipos son una muy buena combinación.
@@ -11136,7 +11166,7 @@ Closed while Bence....participate in the Makya Championship Tournament.
 Cerrado mientras Bence… participa en el Torneo del Campeonato de Makya.
 Heavy graffiti covers a part that you think may have said "and Zoé"
 Un graffiti cubre una parte que piensas que podría haber dicho “Y Zoé”
-Poor Bence and Zoe, the two can't seem to agree on anything.
+Poor Bence and Zoé, the two can't seem to agree on anything.
 Pobres Bence y Zoé, los dos parecen no poder ponerse en acuerdo en nada.
 If they worked together, the Gym might be much harder!
 Si trabajaran juntos, ¡El Gimnasio podría ser mucho más difícil!
@@ -11380,7 +11410,7 @@ Just head north from this sign, and then exit through the eastern gatehouse.
 Sólo ve al norte de este cartel, y luego atraviesa la portería al este.
 A sign reads "Entry only to trainers with 8 or more gyms badges."
 Un cartel dice "Sólo se permite la entrada a entrenadores con 8 o más medallas".
-Bence or Zoe.... Zoe or Bence....
+Bence or Zoé.... Zoé or Bence....
 Bence or Zoé.... Zoé or Bence....
 Oh, forgive me, I just don't know which of the two gym leaders here I should fight.
 Oh, disculpa, sólo no sé a cuál de los dos líderes de gimnasio debería enfrentar.
@@ -11456,9 +11486,9 @@ Así que conseguiste la Medalla Solidaridad. ¡Bien hecho!
 ...No puedo creerlo.
 Local legend has it that these stone pillars are quite old.
 Las leyendas locales dicen que los pilares de piedra son bastante viejos.
-Bence claims that they were here before plans to construct Prizca west, let alone specifically this gym.
+Bence claims that they were here before plans to construct Prizca West, let alone specifically this gym.
 Bence dice que estaban aquí antes de los planes de construir Prizca Occidental, por no hablar de específicamente este gimnasio.
-Makya does have it fair share of strange rock formations, I'll give you that.
+Makya does have its fair share of strange rock formations, I'll give you that.
 Makya tiene su buena cantidad de extrañas formaciones rocosas, te daré la razón en eso.
 But Chasm members could talk about Pikachu being an Electric-type and I'd still pull out my MasterDex to double check.
 Pero los miembros Chasm podrían decir que Pikachu es un tipo Eléctrico y aún así sacaría mi MasterDex para asegurarme.
@@ -11480,7 +11510,7 @@ I'm on break. Nothing much to do until the rock shipment's done being unloaded.
 Estoy en mi descanso. No tengo mucho que hacer hasta que terminen de descargar el cargamento de rocas.
 What's that? You wanna know where the rocks come from?
 ¿Cómo? ¿Quieres saber de dónde vienen las rocas?
-There's a big quarry to the north north, near one of the mountains up there.
+There's a big quarry to the north, near one of the mountains up there.
 Hay una gran cantera muy al norte, cerca de una de las montañas allí.
 It's not part of Makya anymore, but there's a lot of historic ties, so business relations are good.
 Ya no es parte de Makya, pero hay muchos lazos históricos, así que las relaciones de negocio son buenas.
@@ -11562,7 +11592,7 @@ La gente no les presta mucha atención, y están cruzando por donde quieren.
 [Map158]
 Thanks to my Swoobat's ability, it's completely code compliant for construction!
 ¡Gracias a la habilidad de mi Swoobat, cumple al pie de la letra el código para la construcción!
-Thanks to it's ability, Swoobat can wear two pieces of saftey gear! It can work on construction sites!
+Thanks to its ability, Swoobat can wear two pieces of saftey gear! It can work on construction sites!
 ¡Gracias a su habilidad, Swoobat puede usar dos piezas de equipo de seguridad! ¡Puede trabajar en la obra!
 I'll take your Pokémon for a few seconds.
 Tomaré tus Pokémon por un par de segundos.
@@ -12857,7 +12887,7 @@ You see the name "Yezera" carved onto the table.
 Ves el nombre "Yezera" tallado en la mesa.
 You see the name "Tamarind" carved onto the table.
 Ves el nombre "Tamarind" tallado en la mesa.
-A vase filled with flowers lays delicately on the floor.
+A vase filled with flowers sits delicately on the floor.
 Una maceta llena de flores se encuentra en el suelo.
 You could totally smash this thing, if you wanted to.
 Podrías destruir esta cosa, si lo quisieras.
@@ -14654,8 +14684,8 @@ You may have bested me in battle, but you'll still struggle against Noel.
 Podrás haberme ganado en combate, pero no será tan fácil contra Noel.
 Leave me be, you nincompoop.
 Déjame estar, bobo.
-Hey, sorry champ, but Noel's policy here is that everybody's gotta move through the gym clockwise.
-Hey, lo siento campeón, pero la política de Noel es que todos deben moverse por el gimnasio en el sentido de las agujas del reloj.
+Hey, sorry champ, but Noel's policy here is that everybody's gotta move through the gym counter-clockwise.
+Hey, lo siento campeón, pero la política de Noel es que todos deben moverse por el gimnasio en el sentido contrario de las agujas del reloj.
 I'm assuming its got some artsy-fartsy reason.
 Asumo que es por algún motivo artístico o algo.
 So, come on over this way, yeah?
@@ -18946,6 +18976,42 @@ An ancient grandfather clock.
 Es un reloj antiguo.
 It's in pristine condition, probably due to careful maintenance.
 Está en una condición impecable, probablemente debido a un mantenimiento cuidadoso.
+Oh, goodness...
+Oh, vaya...
+You've got a truly amazing apricorn in your posession.
+Tienes una bonguri verdaderamente impresionante en tus manos.
+It's been my life's dream to work with such a fine specimen.
+Un sueño que tuve toda mi vida ha sido trabajar con tal espécimen.
+Where did you find it?
+¿Dónde la encontraste?
+Nevermind that. I'll respect your privacy.
+Olvídalo. Respetaré tu privacidad.
+But still, I implore you, let me craft a Poke Ball from that beautiful fruit.
+Pero aún así, te lo imploro, déjame fabricar una Poké Ball con esa maravillosa fruta.
+Mmmm... exercise some self-restraint, now.
+Mmmm... ejercita tu autocontrol, ahora.
+Well, if you feel differently later on, I'll be right here.
+Bueno, si luego cambias de opinión, estaré justo aquí.
+I've been praying for you to change your mind about that Gilded Apricorn.
+He estado rezando a que cambies de opinión respecto a esa Bonguri Dorada.
+*sigh*
+*sigh*
+Wish I didn't get my hopes up.
+Ojalá no me hubiera hecho ilusiones.
+I'm giddy with excitement!
+¡No sabes cómo me emociona!
+To work I go...
+A trabajar voy yo...
+Crafting Poke Balls from Apricorns is an old art, but not an exact science.
+Crear Poké Balls a base de Bonguris es un viejo arte, pero no una ciencia exacta.
+But I can already tell that this ball has wonderous properties.
+Pero ya puedo decirte que esta ball tiene propiedades maravillosas.
+Please, go out and use it on something special.
+Por favor, ve y úsala en algo especial.
+That Radiant Ball is my crowning achievement.
+Esa Refulge Ball es un logro supremo.
+Haven't felt this good in 3 decades.
+No me había sentido así en 3 décadas.
 [Map268]
 
 My husband is always so busy with work. He leaves trash everywhere and is rarely home.
@@ -19851,7 +19917,7 @@ Dar café.
 
 Me and sister are much better battlers than our parents.
 Yo y mi hermana somos mucho mejores que nuestros padres.
-Our Pokemon couldn't beat your's?!
+Our Pokemon couldn't beat yours?!
 ¡¿Nuestros Pokémon no derrotar a los tuyos?!
 That was fun, we should battle again soon.
 Eso fue divertido, deberíamos combatir luego pronto.
@@ -23151,7 +23217,11 @@ Trainers always come through here. The lady with the Combees sometimes asks as w
 Siempre pasan entrenadores por aquí. Y la señora con los Combees a veces también lo pide, así que practican seguido.
 They're always so cool when they're battlin'. I wanna be like them when I'm older.
 Siempre es genial cuando combaten. Quiero ser como ellas cuando sea mayor.
-
+[Map333]
+A beautifully carved statue of the legendary king Calyrex.
+Una estatua maravillosamante escuplida del legendario rey Calyrex.
+Oh? There's something hanging from the statue!
+¿Oh? ¡Hay algo colgado de la estatua!
 [Map334]
 I'm an out-of-towner visiting family.
 Soy alguien de afuera visitando a mi familia.
@@ -25422,7 +25492,7 @@ They're items you can use to upgrade your Aid Kit!
 ¡Son objetos que puedes usar para mejorar tu Botiquín!
 They can be hard to come by, given the popularity of the Aid Kit.
 Puede ser díficil encontrarlos, dada la popularidad del Botiquín.
-I've heard tale of people staching them in obscure places, though. Something about "prepping"?
+I've heard tale of people stashing them in obscure places, though. Something about "prepping"?
 He escuchado historias de gente que los pone en lugares obscuros. ¿Algo de "preparación"?
 Everybody, herself included, calls her a witch.
 Todos, ella misma incluida, la llama una bruja.
@@ -25588,7 +25658,7 @@ What a mess.
 Vaya desastre.
 Svait Lodge is one of the most popular tourist spots in Makya.
 El Alojamiento Svait es uno de los destinos turísticos más populares de Makya.
-In the winter, skiiers will even double up on rooms to make sure they get the chance to visit the nearby hills.
+In the winter, skiers will even double up on rooms to make sure they get the chance to visit the nearby hills.
 En el invierno, los esquiadores incluso comparten sus habitacinoes para asegurarse de tener la oportunidad de visitar las colinas cercanas.
 Apparently, the snow is very high quality!
 ¡Aparentemente, la nieve es de muy alta calidad!
@@ -25694,7 +25764,7 @@ A group of rangers set up a rest stop to help out trainers such as yourself.
 Un grupo de rangers pusieron una parada para ayudar a entrenadores como tú.
 The Velenz Menagerie was built by a very eccentric woman over 100 years ago.
 La Muestra de Velenz fue construida por una mujer muy excéntrica hace 100 años.
-Since then, it's been passed down to her great- great-granddaughter.
+Since then, it's been passed down to her great-great-granddaughter.
 Con el pasar de los años, este fue heredado a su tataranieta.
 She shares her ancestor's love for the world, and is every bit as unusual.
 Ella tiene el mismo amor por el mundo que tenía su ancestra, al igual que sus peculiaridades.
@@ -26531,7 +26601,7 @@ LuxTech still thinks I'm a myth, but I'm real alright.
 LuxTech todavía piensa que soy un mito, pero soy bien real.
 Real enough to sell you these TMs, none of which have been brought to market.
 Lo suficiente para venderte estas MTs, las cuales ninguna está en el mercado.
-I'm just here for business kid.
+I'm just here for business, kid.
 Sólo estoy aquí por negocios niño.
 Doing a run for a few friends.
 Haciendo los mandados para un par de amigos.
@@ -26712,6 +26782,10 @@ As for my own findings: I found references to an aboveground ruins site which mi
 Respecto a lo que encontré: encontré referencias a unas ruinas sobre las tierras que podrían llevarnos a lo que estamos buscandos.
 I’ll be waiting for you in <imp>Svait, on the upper level</imp>.
 Estaré esperando por tí en <imp>Svait, en el nivel superior</imp>.
+Guess I forgot to keep the door locked… but I can’t really turn away the esteemed Champion \PN, now can I?
+Supongo que olvidé mantener la puerta cerrada... pero realmente no puedo echar al estimado Campeón \PN, ¿me equivoco?
+I don’t know why you’re here but, if I had to make a guess… you’re searching for something; like I am.
+No sé por qué estás aquí pero, si tengo que adivinar... estás buscando algo; como yo.
 [Map428]
 Wow! It's a Volcanion, trapped inside a large boulder!
 ¡Wow! ¡Es un Volcanion, atrapado dentro de un pedrusco!
@@ -26779,9 +26853,32 @@ But maybe… The sources of those phenomena are the same?
 Pero quizás... ¿La fuente de estos fenómenos es la misma?
 Yes
 Sí
+But were they so dominated by Yezera that they thought Volcanion wouldn’t make a difference?
+¿Pero fueron tan dominados por Yezera que pensaron que Volcanion no haría la diferencia?
+It makes me realize how terrifying going against a single person with overwhelming power can be.
+Me hace pensar lo terrorífico que puede ser enfrentarse a una sola persona poder abrumador.
+...as you showed me, \PN.
+...como me mostraste, \PN.
+Ah. Seems like we have unwanted guests at this once private concert.
+Ah. Parece que tenemos invitados indeseados en este concierto una vez privado.
+Awesome. At least they look in the mood to dance.
+Asombroso. Al menos parecen estar de humor para bailar
+I guess we can crack some heads open, show them a genuine mosh pit experience.
+Supngo que podemos abrir algunas cabezas, mostrarles la genuina experiencia de la olla. 
+What do you think, \PN?
+¿Qué piensas, \PN?
+Well, I guess this is where we go our separate ways, \PN.
+Bueno, supongo que aquí es donde nuestros caminos se separan, \PN.
+There are other loose ends left behind by Team Chasm, the Seekers, and who knows what else that I want to see through.
+Hay otros cabos sueltos dejados atrás por el Team Chasm, los Buscadores, y quién sabe qué mas que quiero averiguar.
+Toodles.
+Adiós.
 [Map429]
 Multiple copies of the same sign, all advertising an insurance package deal that will be available in the future.
 Múltiples copias del mismo cartel, todos publicitando un paquete de seguros que será disponible en el futuro.
+[Map430]
+A golden fruit glistens in a space atop the tree.
+Una fruta dorada brilla en una espacio sobre el árbol.
 [Map433]
 Cabin Room 2
 Cabina Número 2
@@ -26884,7 +26981,7 @@ Tomaré el Corsola.
 I'll take the Shuckle.
 Tomaré el Shuckle.
 [Map442]
-There seems to be rocks in here. Does he feed this to his Pokemon?
+There seem to be rocks in here. Does he feed this to his Pokemon?
 Parece haber rocas aquí. ¿Acaso él alimenta a sus Pokémon con esto?
 Bence almost has a week of prepared meals in the fridge.
 Bence casi tiene una semana de comidas preparadas en el frigorífico.
@@ -26995,6 +27092,22 @@ Think I’m going to give my two weeks’ notice to Helena. Try my hand at being
 Creo que voy a dar mi aviso a Helena. Intentaré ser un Profesional.
 Can you give me that?
 ¿Podrías darme eso?
+My body’s shaking. I… How did you…?
+Mi cuerpo está temblando. Cómo... ¿Cómo pudiste...?
+I guess it really shows that you aren’t just Mavis’ kid anymore.
+Supongo que esto realmente muestra que ya no eres el niño de 
+You’re a champion. Through and through.
+Eres un campeón. De la caveza a los pies.
+I’m just glad Team Chasm’s gone.
+Simplemente me alegra que el Team Chasm ya no exista.
+Imagine if we somehow managed to win back then?
+¿Imagina si de algún modo hubiéramos podido ganar en ese entonce?
+You’d come around years later and tear what we built down. That’s horrifying.
+Habrías llegado años después y hubieras destrozado lo que habríamos construido. Eso es terorífico.
+By that time, there wasn’t a pressing need for that whole song and dance.
+Para ese entonces, no había mucha mucha necesidad de toda esa historia.
+Not with something like Yezera keeping us on our toes.
+No con alguien como Yezera manteniéndonos a raya.
 [1]
 29
 Nidoran-F
@@ -30047,7 +30160,7 @@ Massive Mouse
 Ratón Masivo
 927
 Heat Sink
-Disipador de Calor
+Disipa-calor
 928
 Paragon
 Ejemplar
@@ -30066,6 +30179,9 @@ Fósil Apex
 933
 Shears
 Cizallas
+934
+Frozen Face 
+Cara Helada
 2000
 Mouse
 Ratón
@@ -30254,8 +30370,11 @@ Long Neck
 Gran Cuello
 2063
 Land Snake
-Serpiente Tierra
+Serptierra
 2064
+Land Snake
+Serptierra
+2065
 Big Blade
 Gran Espada
 2500
@@ -30357,654 +30476,669 @@ Anti-Virus
 2532
 Harvest
 Cosecha
-2533
+5002
 Mouse
 Ratón
-2534
+5003
 Mouse
 Ratón
-2535
+5004
 Mouse
 Ratón
-2536
+5005
 Mouse
 Ratón
-2537
+5006
 Mouse
 Mouse
-2538
-Mouse
-Ratón
-2539
+5007
 Mouse
 Ratón
-2540
+5008
 Mouse
 Ratón
-2541
+5009
 Mouse
 Ratón
-2542
+5010
 Mouse
 Ratón
-2543
+5011
 Mouse
 Ratón
-2544
+5012
 Mouse
 Ratón
-2545
+5013
 Mouse
 Ratón
-2546
+5014
 Mouse
 Ratón
-2547
+5015
+Mouse
+Ratón
+5016
 Symbol
 Símbolo
-2548
+5017
 Symbol
 Símbolo
-2549
+5018
 Symbol
 Símbolo
-2550
+5019
 Symbol
 Símbolo
-2551
+5020
 Symbol
 Símbolo
-2552
+5021
 Symbol
 Símbolo
-2553
+5022
 Symbol
 Símbolo
-2554
+5023
 Symbol
 Símbolo
-2555
+5024
 Symbol
 Símbolo
-2556
+5025
 Symbol
 Símbolo
-2557
+5026
 Symbol
 Símbolo
-2558
+5027
 Symbol
 Símbolo
-2559
+5028
 Symbol
 Símbolo
-2560
+5029
 Symbol
 Símbolo
-2561
+5030
 Symbol
 Símbolo
-2562
+5031
 Symbol
 Símbolo
-2563
+5032
 Symbol
 Símbolo
-2564
+5033
 Symbol
 Símbolo
-2565
+5034
 Symbol
 Símbolo
-2566
+5035
 Symbol
 Símbolo
-2567
+5036
 Symbol
 Símbolo
-2568
+5037
 Symbol
 Símbolo
-2569
+5038
 Symbol
 Símbolo
-2570
+5039
 Symbol
 Símbolo
-2571
+5040
 Symbol
 Símbolo
-2572
+5041
 Symbol
 Símbolo
-2573
+5042
 Symbol
 Símbolo
-2574
+5043
 Weather
 Clima
-2575
+5044
 Weather
 Clima
-2576
+5045
 Weather
 Clima
-2577
+5046
+Weather
+Clima
+5047
 DNA
 ADN
-2578
+5048
 DNA
 ADN
-2579
+5049
 DNA
 ADN
-2580
+5050
 Bagworm
 Larva
-2581
+5051
 Bagworm
 Larva
-2582
+5052
 Bagworm
 Larva
-2583
+5053
 Bagworm
 Larva
-2584
+5054
 Blossom
 Floración
-2585
+5055
 Sea Slug
 Babosa Marina
-2586
+5056
 Sea Slug
 Babosa Marina
-2587
+5057
 Plasma
 Plasma
-2588
+5058
 Plasma
 Plasma
-2589
+5059
 Plasma
 Plasma
-2590
+5060
 Plasma
 Plasma
-2591
+5061
 Plasma
 Plasma
-2592
+5062
 Renegade
 Renegado
-2593
+5063
 Gratitude
 Gratitud
-2594
+5064
 Alpha
 Alfa
-2595
+5065
 Alpha
 Alfa
-2596
+5066
 Alpha
 Alfa
-2597
+5067
 Alpha
 Alpha
-2598
-Alpha
-Alfa
-2599
+5068
 Alpha
 Alfa
-2600
+5069
 Alpha
 Alfa
-2601
+5070
 Alpha
 Alfa
-2602
+5071
 Alpha
 Alfa
-2603
+5072
 Alpha
 Alfa
-2604
+5073
 Alpha
 Alfa
-2605
+5074
 Alpha
 Alfa
-2606
+5075
 Alpha
 Alfa
-2607
+5076
 Alpha
 Alfa
-2608
+5077
 Alpha
 Alfa
-2609
+5078
 Alpha
 Alfa
-2610
+5079
 Alpha
 Alfa
-2611
+5080
 Alpha
 Alfa
-2612
+5081
+Alpha
+Alfa
+5082
 Hostile
 Violento
-2613
+5083
 Season
 Estacional
-2614
+5084
 Season
 Estacional
-2615
+5085
 Season
 Estacional
-2616
+5086
 Season
 Estacional
-2617
+5087
 Season
 Estacional
-2618
+5088
 Season
 Estacional
-2619
+5089
 Cyclone
 Torbellino
-2620
+5090
 Bolt Strike
 Centella
-2621
+5091
 Abundance
 Fertilidad
-2622
+5092
 Boundary
 Frontera
-2623
+5093
 Boundary
 Frontera
-2624
+5094
 Boundary
 Frontera
-2625
+5095
 Boundary
 Frontera
-2626
+5096
 Colt
 Potro
-2627
+5097
 Melody
 Melodía
-2628
+5098
 Paleozoic
 Paleozoico
-2629
+5099
 Paleozoic
 Paleozoico
-2630
+5100
 Paleozoic
 Paleozoico
-2631
+5101
 Paleozoic
 Paleozoic
-2632
+5102
 Scale
 Escamaposa
-2633
+5103
 Scale
 Escamaposa
-2634
+5104
 Scale
 Escamaposa
-2635
+5105
 Scale
 Escamaposa
-2636
+5106
 Scale
 Escamaposa
-2637
+5107
 Scale
 Escamaposa
-2638
+5108
 Scale
 Escamaposa
-2639
+5109
 Scale
 Escamaposa
-2640
+5110
 Scale
 Escamaposa
-2641
+5111
 Scale
 Escamaposa
-2642
+5112
 Scale
 Escamaposa
-2643
+5113
 Scale
 Escamaposa
-2644
+5114
 Scale
 Escamaposa
-2645
+5115
 Scale
 Escamaposa
-2646
+5116
 Scale
 Escamaposa
-2647
+5117
 Scale
 Escamaposa
-2648
+5118
 Scale
 Escamaposa
-2649
+5119
 Scale
 Escamaposa
-2650
+5120
 Scale
 Escamaposa
-2651
+5121
 Single Bloom
 Monoflor
-2652
+5122
 Single Bloom
 Monoflor
-2653
+5123
 Single Bloom
 Monoflor
-2654
+5124
 Single Bloom
 Monoflor
-2655
+5125
 Single Bloom
 Monoflor
-2656
+5126
 Single Bloom
 Monoflor
-2657
+5127
 Single Bloom
 Monoflor
-2658
+5128
 Single Bloom
 Monoflor
-2659
+5129
 Garden
 Jardín
-2660
+5130
 Garden
 Jardín
-2661
+5131
 Garden
 Jardín
-2662
+5132
 Garden
 Jardín
-2663
+5133
 Poodle
 Caniche
-2664
+5134
 Poodle
 Caniche
-2665
+5135
 Poodle
 Caniche
-2666
+5136
 Poodle
 Caniche
-2667
+5137
 Poodle
 Caniche
-2668
+5138
 Poodle
 Caniche
-2669
+5139
 Poodle
 Caniche
-2670
+5140
 Poodle
 Caniche
-2671
+5141
 Poodle
 Caniche
-2672
+5142
 Constraint
 Auto Control
-2673
+5143
 Royal Sword
 Espada Real
-2674
+5144
 Pumpkin
 Calabaza
-2675
+5145
 Pumpkin
 Calabaza
-2676
+5146
 Pumpkin
 Calabaza
-2677
+5147
 Pumpkin
 Calabaza
-2678
+5148
 Pumpkin
 Calabaza
-2679
+5149
 Pumpkin
 Calabaza
-2680
+5150
 Life
 Vida
-2681
+5151
 Order
 Orden
-2682
+5152
 Order
 Orden
-2683
+5153
 Order
 Orden
-2684
+5154
 Mischief
 Genio Burlón
-2685
+5155
 Dancing
 Danza
-2686
+5156
 Dancing
 Danza
-2687
+5157
 Dancing
 Danza
-2688
+5158
 Wolf
 Lobo
-2689
+5159
 Wolf
 Lobo
-2690
+5160
 Small Fry
 Pececillo
-2691
+5161
 Synthetic
 Multigénico
-2692
+5162
 Synthetic
 Multigénico
-2693
+5163
 Synthetic
 Multigénico
-2694
+5164
 Synthetic
 Multigénico
-2695
+5165
 Synthetic
 Multigénico
-2696
+5166
 Synthetic
 Multigénico
-2697
+5167
 Synthetic
 Multigénico
-2698
+5168
 Synthetic
 Multigénico
-2699
+5169
 Synthetic
 Multigénico
-2700
+5170
 Synthetic
 Multigénico
-2701
+5171
 Synthetic
 Multigénico
-2702
+5172
 Synthetic
 Multigénico
-2703
+5173
 Synthetic
 Multigénico
-2704
+5174
 Synthetic
 Multigénico
-2705
+5175
 Synthetic
 Multigénico
-2706
+5176
 Synthetic
 Multigénico
-2707
+5177
 Synthetic
 Multigénico
-2708
+5178
 Synthetic
 Multigénico
-2709
+5179
 Meteor
 Meteorp
-2710
+5180
 Meteor
 Meteoro
-2711
+5181
 Meteor
 Meteoro
-2712
+5182
 Meteor
 Meteoro
-2713
+5183
 Meteor
 Meteoro
-2714
+5184
 Meteor
 Meteoro
-2715
+5185
 Meteor
 Meteoro
-2716
+5186
 Disguise
 Disfraz
-2717
+5187
 Prism
 Prisma
-2718
+5188
 Prism
 Prisma
-2719
+5189
 Prism
 Prism
-2720
+5190
 Prism
 Prism
-2721
+5191
 Artificial
 Artificial
-2722
+5192
 Gulp
 Tragón
-2723
+5193
 Gulp
 Tragón
-2724
+5194
 Penguin
 Pingüino
-2725
+5195
 Black Tea
 Té Negro
-2726
+5196
 Black Tea
 Té Negro
-2727
+5197
 Emotion
 Emoción
-2728
+5198
 Two-Sided
 Embustero
-2729
+5199
 Warrior
 Guerrero
-2730
+5200
 Warrior
 Guerrero
-2731
+5201
 Wushu
 Kung-Fu
-2732
+5202
 High King
 Emperador
-2733
+5203
 High King
 Emperador
-2734
+5204
 Sea Basin
 Cuenta Mar
-2735
+5205
 Continent
 Continente
-2736
+5206
 Sky High
 Cielo
-2737
+5207
 Blazing
 Daruma
-2738
+5208
 Blazing
 Daruma
-2739
+5209
 Light
 Luz
-2740
+5210
 Mach
 Mach
-2741
+5211
 Atrocious
 Atrocidad
-2742
+5212
 Embrace
 Envolvente
-2743
+5213
 Blade
 Cuchilla
-2744
+5214
 Genetic
 Genético
-2745
+5215
 Genetic
 Genético
-2746
+5216
 Love-Hate
 Amorodio
-2747
+5217
 Harvest
 Cosecha
-2748
+5218
 Mellow
 Meloso
+5067
+Alpha
+Alfa
+5101
+Paleozoic
+Paleozoico
+5189
+Prism
+Prisma
+5190
+Prism
+Prisma
 [3]
 1
 Bulbasaur can be seen napping in bright sunlight. There is a seed on its back. By soaking up the sun's rays, the seed grows progressively larger.
@@ -33808,6 +33942,9 @@ En tiempos antiguos, este Pokémon era un gran depredador. Tiene la fuerza para 
 933
 Only exceptionally aggressive or well-trained Pokémon will willingly engage one in combat. Its ripping pincers threaten to turn foes to shrapnel.
 Sólo Pokémon demasiado agresivos o bien entrenados lo desafiarán a un combate. Sus pinzas pueden convertir a sus rivales en pedazitos.
+934
+It only closes its mouth to bite its foes, forcing its trainers to learn to interpret its emotions via its changes in eye shape, ear direction, and body temperature.
+Sólo cierra su boca para morder a sus oponentes, forzando a su entrenador a aprender sus emociones mediante cambios en sus ojos, orejas y temperatura.
 2000
 It shows no interest in anything that isn't fresh. If you take it shopping with you, it will help you pick out ingredients.
 No le interesa nada que no esté fresco. Si lo llevas de compras, te ayudará a elegir los ingredientes.
@@ -33998,6 +34135,9 @@ Ahora que las ondas cerebrales de su cabeza y cola están sincronizadas, el pode
 This Pokémon uses its hard tail to make its nest by boring holes into bedrock deep underground. The nest can reach lengths of over six miles.
 Este Pokémon usa su dura cola para hacer su nido en lo más profundo del subsuelo. Su nido puede llegar a medir más de 10 kilómetros.
 2064
+The gentle Dududunsparce will put Pokémon what wander into its nest onto its back and carry them to the entrance.
+El amable Dududunsparce pondrá a Pokémon que caigan a su nido en su espalda y los llevará a la entrada. 
+2065
 Only a Bisharp that stands above all others in its vast army can evolve into Kingambit.
 Sólo un Bisharp que se destaque antes los otros en su vasto ejército puede evolucionar a Kingambit.
 2500
@@ -34099,664 +34239,664 @@ Rely on LuxTech's literal firewall! Featuring a unique* typing and cutting-edge 
 2532
 It uses both white and black magic. It harvests the flowers that grow on witches who regularly walk between life and death.
 Usa tanto magia blanca como negra. Cosecha las flores que crecen en brujas que regularmente caminan entre la vida y la muerte.
-2533
+5002
 Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
 Almacena electricidad en las bolsas de sus mejillas. Cuando libera energía reprimida en un estallido, la energía eléctrica es igual a la de un rayo.
-2534
+5003
 Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
 Almacena electricidad en las bolsas de sus mejillas. Cuando libera energía reprimida en un estallido, la energía eléctrica es igual a la de un rayo.
-2535
+5004
 Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
 Almacena electricidad en las bolsas de sus mejillas. Cuando libera energía reprimida en un estallido, la energía eléctrica es igual a la de un rayo.
-2536
+5005
 Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
 Almacena electricidad en las bolsas de sus mejillas. Cuando libera energía reprimida en un estallido, la energía eléctrica es igual a la de un rayo.
-2537
+5006
 Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
 Almacena electricidad en las bolsas de sus mejillas. Cuando libera energía reprimida en un estallido, la energía eléctrica es igual a la de un rayo.
-2538
+5007
 Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.
 Almacena electricidad en las bolsas de sus mejillas. Cuando libera energía reprimida en un estallido, la energía eléctrica es igual a la de un rayo.
-2539
+5008
 This Pikachu wears its partner's cap, which is brimming with memories of traveling through many different regions.
 Este Pikachu lleva la gorra de su compañero, que lo llena de los recuerdos de sus viajes por diferentes regiones.
-2540
+5009
 This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Hoenn region.
 Este Pikachu lleva la gorra de su compañero, que lo llena de los recuerdos de sus viajes por la región de Hoenn.
-2541
+5010
 This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Sinnoh region.
 Este Pikachu lleva la gorra de su compañero, que lo llena de los recuerdos de sus viajes por la región de Sinnoh.
-2542
+5011
 This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Unova region.
 Este Pikachu lleva la gorra de su compañero, que lo llena de los recuerdos de sus viajes por la región de Teselia.
-2543
+5012
 This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Kalos region.
 Este Pikachu lleva la gorra de su compañero, que lo llena de los recuerdos de sus viajes por la región de Kalos.
-2544
+5013
 This Pikachu wears its partner's cap, which is brimming with memories of traveling through the Alola region.
 Este Pikachu lleva la gorra de su compañero, que lo llena de los recuerdos de sus viajes por la región de Alola.
-2545
+5014
 This Pikachu wears its partner's cap, which is brimming with memories of when they first met.
 Este Pikachu lleva la gorra de su compañero, que lo llena de los recuerdos de cuando se conocieron.
-2546
+5015
 This Pikachu is wearing its Trainer's cap. The cap is a precious symbol that travels across different regions with Pikachu.
 Este Pikachu lleva la gorra de su compañero. La gorra es un símbolo preciado que atraviesa diferentes regiones con Pikachu.
-2547
+5016
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown..
-2548
+5017
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2549
+5018
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2550
+5019
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2551
+5020
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2552
+5021
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2553
+5022
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2554
+5023
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2555
+5024
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2556
+5025
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2557
+5026
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2558
+5027
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2559
+5028
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2560
+5029
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2561
+5030
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2562
+5031
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2563
+5032
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2564
+5033
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2565
+5034
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2566
+5035
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2567
+5036
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2568
+5037
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2569
+5038
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2570
+5039
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2571
+5040
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2572
+5041
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2573
+5042
 Shaped like ancient writing, it is a huge mystery whether language or Unown came first.
 Tiene la forma de caracteres de texto antiguos. Aunque la investigación está en curso, es un misterio qué fue primero, los escritos o los Unown.
-2574
+5043
 This is the form Castform takes on the brightest of days. Its skin is unexpectedly hot to the touch, so approach with care.
 Esta es la forma que Castform toma en los días más brillantes. Su piel es sorprendentemente caliente al tacto, así que ten cuidado.
-2575
+5044
 This is the form Castform takes when soaked with rain. When its body is compressed, water will seep out as if from a sponge.
 Esta es la forma que Castform toma al ser empapado con lluvia. Cuando su cuerpo es comprimido, agua se escurrirá como una esponja.
-2576
+5045
 This is the form Castform takes when covered in snow. Its body becomes an ice-like material, with a temperature near -5 degrees Celsius.
 Esta es la forma que Castform toma al ser cubierto en nieve. Su cuerpo se vuelve similar al hielo, con una temperatura cercana a los -5 grados Celsius.
-2577
+5046
+This is the form Castform takes when sand sweeps up. Its body is made of particles that are constantly spinning.
+Esta es la forma que Castform toma cuando la arena vuela. Su cuerpo está hecho de partículas que giran constantemente.
+5047
 DNA from a space virus mutated and became a Pokémon. It appears where auroras are seen.
 Un Pokémon que mutó de un virus extraterrestre expuesto a un rayo láser. Su cuerpo está configurado para una agilidad y velocidad superiores.
-2578
+5048
 DNA from a space virus mutated and became a Pokémon. It appears where auroras are seen.
 Un Pokémon que mutó de un virus extraterrestre expuesto a un rayo láser. Su cuerpo está configurado para una agilidad y velocidad superiores.
-2579
+5049
 DNA from a space virus mutated and became a Pokémon. It appears where auroras are seen.
 Un Pokémon que mutó de un virus extraterrestre expuesto a un rayo láser. Su cuerpo está configurado para una agilidad y velocidad superiores.
-2580
+5050
 If its cloak is broken in battle, it quickly remakes the cloak with materials nearby.
 Si su tronco es roto en combate, rápidamente la vuelve a hacer con los materiales que tenga a mano.
-2581
+5051
 If its cloak is broken in battle, it quickly remakes the cloak with materials nearby.
 Si su tronco es roto en combate, rápidamente la vuelve a hacer con los materiales que tenga a mano.
-2582
+5052
 When Burmy evolved, its cloak became a part of this Pokémon's body. The cloak is never shed.
 Cuando Burmy evolucionó, su capa se convirtió en parte del cuerpo de este Pokémon. La capa nunca se muda.
-2583
+5053
 When Burmy evolved, its cloak became a part of this Pokémon's body. The cloak is never shed.
 Cuando Burmy evolucionó, su capa se convirtió en parte del cuerpo de este Pokémon. La capa nunca se muda.
-2584
+5054
 If it senses strong sunlight, it opens its folded petals to absorb the sun's rays with its whole body.
 Si siente luz solar, abrirá sus pétalos para absorber los rayos del sol con todo su cuerpo.
-2585
+5055
 The colors of this pokemon change depending on its environment. When it senses danger, this pokemon excretes a sticky purple liquid.
 Los colores de este Pokémon cambian dependiendo de su entorno. Cuando siente peligro, este Pokémon excreta un líquido morado pegajoso.
-2586
+5056
 It apparently had a huge shell for protection in ancient times. It lives in shallow tidal pools.
 Aparentemente tenía un enorme caparazón en tiempos antiguos. Viven en charcos de agua.
-2587
+5057
 This Rotom has possessed a convection microwave oven that uses a special motor. It also has a flair for manipulating flames.
 Este Rotom ha poseído un horno de microondas que usa un motor especial. Tiene cierta habilidad para manipular las llamas.
-2588
+5058
 This form of Rotom enjoys coming up with water-based pranks. Be careful with it if you don't want your room flooded.
 Esta forma de Rotom disfruta hacer bromas basadas en agua. Ten cuidado si no quieres inundar tu habitación.
-2589
+5059
 Rotom assumes this form when it takes over a refrigerator powered by a special motor. It battles by spewing cold air.
 Rotom asume esta forma cuando toma un refrigerador que tenga un motor especial. Combate expulsando aire gélido.
-2590
+5060
 In this form, Rotom applies its new power over wind to its love of pranks. It will happily blow away any important documents it can find.
 En esta forma, Rotom aplica su nuevo poder sobre el viento junto con su amor por las bromas. Felizmente mandará a volar cualquier documento importante que encuentre. 
-2591
+5061
 This is Rotom after it's seized control of a lawn mower that has a special motor. As it mows down grass, it scatters the clippings everywhere.
 Este es Rotom luego de haber tomado control de un cortacésped que tenga un motor especial. Mientras corta el cespéd, esparce este por todas partes.
-2592
+5062
 This Pokémon is said to live in a world on the reverse side of ours, where common knowledge is distorted and strange.
 Este Pokémon se dice que vive en un mundo contrario al nuestro, donde el conocimiento común es distorsionado y extraño.
-2593
+5063
 The blooming of Gracidea flowers confers the power of flight upon it. Feelings of gratitude are the message it delivers.
 El florecimiento de la flor de Gracídea le confiere el poder del vuelo. Sentimientos de gratitud son los mensajes que emite.
-2594
+5064
 It is told in mythology that this Pokémon was born before the universe even existed.
 Se dice en la mitología que este Pokémon nació antes de que el universo existiera.
-2595
+5065
 It is told in mythology that this Pokémon was born before the universe even existed.
 Se dice en la mitología que este Pokémon nació antes de que el universo existiera.
-2596
+5066
 It is told in mythology that this Pokémon was born before the universe even existed.
 Se dice en la mitología que este Pokémon nació antes de que el universo existiera.
-2597
+5067
 It is told in mythology that this Pokémon was born before the universe even existed.
 Se dice en la mitología que este Pokémon nació antes de que el universo existiera.
-2598
+5068
 It is told in mythology that this Pokémon was born before the universe even existed.
 Se dice en la mitología que este Pokémon nació antes de que el universo existiera.
-2599
+5069
 It is told in mythology that this Pokémon was born before the universe even existed.
 Se dice en la mitología que este Pokémon nació antes de que el universo existiera.
-2600
+5070
 It is told in mythology that this Pokémon was born before the universe even existed.
 Se dice en la mitología que este Pokémon nació antes de que el universo existiera.
-2601
+5071
 It is told in mythology that this Pokémon was born before the universe even existed.
 Se dice en la mitología que este Pokémon nació antes de que el universo existiera.
-2602
+5072
 It is told in mythology that this Pokémon was born before the universe even existed.
 Se dice en la mitología que este Pokémon nació antes de que el universo existiera.
-2603
+5073
 It is told in mythology that this Pokémon was born before the universe even existed.
 Se dice en la mitología que este Pokémon nació antes de que el universo existiera.
-2604
+5074
 It is told in mythology that this Pokémon was born before the universe even existed.
 Se dice en la mitología que este Pokémon nació antes de que el universo existiera.
-2605
+5075
 It is told in mythology that this Pokémon was born before the universe even existed.
 Se dice en la mitología que este Pokémon nació antes de que el universo existiera.
-2606
+5076
 It is told in mythology that this Pokémon was born before the universe even existed.
 Se dice en la mitología que este Pokémon nació antes de que el universo existiera.
-2607
+5077
 It is told in mythology that this Pokémon was born before the universe even existed.
 Se dice en la mitología que este Pokémon nació antes de que el universo existiera.
-2608
+5078
 It is told in mythology that this Pokémon was born before the universe even existed.
 Se dice en la mitología que este Pokémon nació antes de que el universo existiera.
-2609
+5079
 It is told in mythology that this Pokémon was born before the universe even existed.
 Se dice en la mitología que este Pokémon nació antes de que el universo existiera.
-2610
+5080
 It is told in mythology that this Pokémon was born before the universe even existed.
 Se dice en la mitología que este Pokémon nació antes de que el universo existiera.
-2611
+5081
 It is told in mythology that this Pokémon was born before the universe even existed.
 Se dice en la mitología que este Pokémon nació antes de que el universo existiera.
-2612
+5082
 Even Basculin, which devours everything it can with its huge jaws, is nothing more than food to organisms stronger than itself.
 Incluso Basculin, que devora todo lo que puede con su gran mandíbula, no es más que comida para los organismos más fuertes que él mismo.
-2613
+5083
 The turning of the seasons changes the color and scent of this Pokémon's fur. People use it to mark the seasons.
 El cambio de estaciones cambia el color y el olor del pelaje de este Pokémon. La gente lo usa para marcar las estaciones.
-2614
+5084
 The turning of the seasons changes the color and scent of this Pokémon's fur. People use it to mark the seasons.
 El cambio de estaciones cambia el color y el olor del pelaje de este Pokémon. La gente lo usa para marcar las estaciones.
-2615
+5085
 The turning of the seasons changes the color and scent of this Pokémon's fur. People use it to mark the seasons.
 El cambio de estaciones cambia el color y el olor del pelaje de este Pokémon. La gente lo usa para marcar las estaciones.
-2616
+5086
 They migrate according to the seasons, so some people call Sawsbuck the harbingers of spring.
 Las plantas que crecen en sus cuernos cambian según la estación. Los líderes de la manada poseen magníficos cuernos.
-2617
+5087
 They migrate according to the seasons, so some people call Sawsbuck the harbingers of spring.
 Las plantas que crecen en sus cuernos cambian según la estación. Los líderes de la manada poseen magníficos cuernos.
-2618
+5088
 They migrate according to the seasons, so some people call Sawsbuck the harbingers of spring.
 Las plantas que crecen en sus cuernos cambian según la estación. Los líderes de la manada poseen magníficos cuernos.
-2619
+5089
 Tornadus expels massive energy from its tail, causing severe storms. Its power is great enough to blow houses away.
 Tornadus expulsa una energía masiva de su cola, provocando tormentas severas. Su poder es lo suficientemente grande como para volar casas.
-2620
+5090
 The spikes on its tail discharge immense bolts of lightning. It flies around the Unova region firing off lightning bolts.
 Las púas de su cola descargan inmensos relámpagos. Vuela alrededor de la Región de Teselia disparando relámpagos.
-2621
+5091
 Lands visited by Landorus grant such bountiful crops that it has been hailed as "The Guardian of the Fields."
 La energía que brota de su cola aumenta la nutrición en el suelo, haciendo que los cultivos crezcan a un gran tamaño.
-2622
+5092
 It has foreseen that a world of truth will arrive for people and Pokémon. It strives to protect that future.
 Ha visto que un mundo de verdad llegará para la gente y Pokémon. Lucha para proteger ese futuro.
-2623
+5093
 It's said that this Pokémon battles in order to protect the ideal world that will exist in the future for people and Pokémon.
 Se dice que este Pokémon combate para proteger el mundo ideal que existirá en el futuro para la gente y el Pokémon.
-2624
+5094
 It generates a powerful, freezing energy inside itself, but its body became frozen when the energy leaked out.
 Genera una poderosa energía helada dentro de sí mismo, pero su cuerpo se congeló cuando la energía se filtró.
-2625
+5095
 It generates a powerful, freezing energy inside itself, but its body became frozen when the energy leaked out.
 Genera una poderosa energía helada dentro de sí mismo, pero su cuerpo se congeló cuando la energía se filtró.
-2626
+5096
 The power that lay hidden in its body now covers its horn, turning it into a sword that can slice through anything.
 El poder que duerme en su cuerpo ahora cubre su cuerno, transformándolo en una espada que puede atravesar lo que sea.
-2627
+5097
 Its melodies are sung with a special vocalization method that can control the feelings of those who hear it.
 Las melodías que canta Meloetta tienen el poder de poner contentos o tristes a los Pokémon que las escuchen.
-2628
+5098
 This Pokémon existed 300 million years ago. Team Plasma altered it and attached a cannon to its back.
 Este antiguo Pokémon Bicho fue alterado por el Equipo Plasma. Actualizaron el cañón en su espalda.
-2629
+5099
 This Pokémon existed 300 million years ago. Team Plasma altered it and attached a cannon to its back.
 Este antiguo Pokémon Bicho fue alterado por el Equipo Plasma. Actualizaron el cañón en su espalda.
-2630
+5100
 This Pokémon existed 300 million years ago. Team Plasma altered it and attached a cannon to its back.
 Este antiguo Pokémon Bicho fue alterado por el Equipo Plasma. Actualizaron el cañón en su espalda.
-2631
+5101
 This Pokémon existed 300 million years ago. Team Plasma altered it and attached a cannon to its back.
 Este antiguo Pokémon Bicho fue alterado por el Equipo Plasma. Actualizaron el cañón en su espalda.
-2632
+5102
 The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
 Vivillon con muchos patrones diferentes se encuentran en todo el mundo. Estos patrones se ven afectados por el clima de su hábitat.
-2633
+5103
 The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
 Vivillon con muchos patrones diferentes se encuentran en todo el mundo. Estos patrones se ven afectados por el clima de su hábitat.
-2634
+5104
 The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
 Vivillon con muchos patrones diferentes se encuentran en todo el mundo. Estos patrones se ven afectados por el clima de su hábitat.
-2635
+5105
 The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
 Vivillon con muchos patrones diferentes se encuentran en todo el mundo. Estos patrones se ven afectados por el clima de su hábitat.
-2636
+5106
 The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
 Vivillon con muchos patrones diferentes se encuentran en todo el mundo. Estos patrones se ven afectados por el clima de su hábitat.
-2637
+5107
 The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
 Vivillon con muchos patrones diferentes se encuentran en todo el mundo. Estos patrones se ven afectados por el clima de su hábitat.
-2638
+5108
 The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
 Vivillon con muchos patrones diferentes se encuentran en todo el mundo. Estos patrones se ven afectados por el clima de su hábitat.
-2639
+5109
 The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
 Vivillon con muchos patrones diferentes se encuentran en todo el mundo. Estos patrones se ven afectados por el clima de su hábitat.
-2640
+5110
 The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
 Vivillon con muchos patrones diferentes se encuentran en todo el mundo. Estos patrones se ven afectados por el clima de su hábitat.
-2641
+5111
 The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
 Vivillon con muchos patrones diferentes se encuentran en todo el mundo. Estos patrones se ven afectados por el clima de su hábitat.
-2642
+5112
 The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
 Vivillon con muchos patrones diferentes se encuentran en todo el mundo. Estos patrones se ven afectados por el clima de su hábitat.
-2643
+5113
 The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
 Vivillon con muchos patrones diferentes se encuentran en todo el mundo. Estos patrones se ven afectados por el clima de su hábitat.
-2644
+5114
 The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
 Vivillon con muchos patrones diferentes se encuentran en todo el mundo. Estos patrones se ven afectados por el clima de su hábitat.
-2645
+5115
 The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
 Vivillon con muchos patrones diferentes se encuentran en todo el mundo. Estos patrones se ven afectados por el clima de su hábitat.
-2646
+5116
 The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
 Vivillon con muchos patrones diferentes se encuentran en todo el mundo. Estos patrones se ven afectados por el clima de su hábitat.
-2647
+5117
 The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
 Vivillon con muchos patrones diferentes se encuentran en todo el mundo. Estos patrones se ven afectados por el clima de su hábitat.
-2648
+5118
 The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
 Vivillon con muchos patrones diferentes se encuentran en todo el mundo. Estos patrones se ven afectados por el clima de su hábitat.
-2649
+5119
 The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
 Vivillon con muchos patrones diferentes se encuentran en todo el mundo. Estos patrones se ven afectados por el clima de su hábitat.
-2650
+5120
 The patterns on this Pokémon's wings depend on the climate and topography of its habitat. It scatters colorful scales.
 Vivillon con muchos patrones diferentes se encuentran en todo el mundo. Estos patrones se ven afectados por el clima de su hábitat.
-2651
+5121
 When it finds a flower it likes, it dwells on that flower its whole life long. It floats in the wind's embrace with an untroubled heart.
 Cuando encuentra una flor que le gusta, se detiene en esa flor durante toda su vida. Flota en el abrazo del viento con un corazón tranquilo.
-2652
+5122
 When it finds a flower it likes, it dwells on that flower its whole life long. It floats in the wind's embrace with an untroubled heart.
 Cuando encuentra una flor que le gusta, se detiene en esa flor durante toda su vida. Flota en el abrazo del viento con un corazón tranquilo.
-2653
+5123
 When it finds a flower it likes, it dwells on that flower its whole life long. It floats in the wind's embrace with an untroubled heart.
 Cuando encuentra una flor que le gusta, se detiene en esa flor durante toda su vida. Flota en el abrazo del viento con un corazón tranquilo.
-2654
+5124
 When it finds a flower it likes, it dwells on that flower its whole life long. It floats in the wind's embrace with an untroubled heart.
 Cuando encuentra una flor que le gusta, se detiene en esa flor durante toda su vida. Flota en el abrazo del viento con un corazón tranquilo.
-2655
+5125
 When the flowers of a well-tended flower bed bloom, it appears and celebrates with an elegant dance.
 Revolotea alrededor de los campos de flores y cuida las flores que comienzan a marchitarse. Saca el poder de las flores para la batalla.
-2656
+5126
 When the flowers of a well-tended flower bed bloom, it appears and celebrates with an elegant dance.
 Revolotea alrededor de los campos de flores y cuida las flores que comienzan a marchitarse. Saca el poder de las flores para la batalla.
-2657
+5127
 When the flowers of a well-tended flower bed bloom, it appears and celebrates with an elegant dance.
 Revolotea alrededor de los campos de flores y cuida las flores que comienzan a marchitarse. Saca el poder de las flores para la batalla.
-2658
+5128
 When the flowers of a well-tended flower bed bloom, it appears and celebrates with an elegant dance.
 Revolotea alrededor de los campos de flores y cuida las flores que comienzan a marchitarse. Saca el poder de las flores para la batalla.
-2659
+5129
 In times long past, governors of castles would invite Florges to create flower gardens to embellish the castle domains.
 Reclama exquisitos jardines de flores como su territorio, y obtiene poder al disfrutar de la energía emitida por las plantas con flores.
-2660
+5130
 In times long past, governors of castles would invite Florges to create flower gardens to embellish the castle domains.
 Reclama exquisitos jardines de flores como su territorio, y obtiene poder al disfrutar de la energía emitida por las plantas con flores.
-2661
+5131
 In times long past, governors of castles would invite Florges to create flower gardens to embellish the castle domains.
 Reclama exquisitos jardines de flores como su territorio, y obtiene poder al disfrutar de la energía emitida por las plantas con flores.
-2662
+5132
 In times long past, governors of castles would invite Florges to create flower gardens to embellish the castle domains.
 Reclama exquisitos jardines de flores como su territorio, y obtiene poder al disfrutar de la energía emitida por las plantas con flores.
-2663
+5133
 Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
 Históricamente, en la Región de Kalos, estos Pokémon eran los guardianes designados del rey.
-2664
+5134
 Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
 Históricamente, en la Región de Kalos, estos Pokémon eran los guardianes designados del rey.
-2665
+5135
 Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
 Históricamente, en la Región de Kalos, estos Pokémon eran los guardianes designados del rey.
-2666
+5136
 Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
 Históricamente, en la Región de Kalos, estos Pokémon eran los guardianes designados del rey.
-2667
+5137
 Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
 Históricamente, en la Región de Kalos, estos Pokémon eran los guardianes designados del rey.
-2668
+5138
 Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
 Históricamente, en la Región de Kalos, estos Pokémon eran los guardianes designados del rey.
-2669
+5139
 Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
 Históricamente, en la Región de Kalos, estos Pokémon eran los guardianes designados del rey.
-2670
+5140
 Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
 Históricamente, en la Región de Kalos, estos Pokémon eran los guardianes designados del rey.
-2671
+5141
 Historically, in the Kalos region, these Pokémon were the designated guardians of the king.
 Históricamente, en la Región de Kalos, estos Pokémon eran los guardianes designados del rey.
-2672
+5142
 The eyeball patterns on the interior of its ears emit psychic energy. It keeps the patterns tightly covered because that power is too immense.
 Cuando está en peligro, levanta las orejas y libera suficiente poder psíquico para convertir en polvo un camión de 10 toneladas.
-2673
+5143
 Apparently, it can detect the innate qualities of leadership. According to legend, whoever it recognizes is destined to become king.
 Aparentemente, puede detectar las cualidades innatas del liderazgo. Quienquiera que reconozca está destinado a convertirse en rey.
-2674
+5144
 Spirits that wander this world are placed into Pumpkaboo's body. They're then moved on to the afterlife.
 Los espíritus que deambulan en este mundo se colocan en el cuerpo de Pumpkaboo. Luego van a la otra vida.
-2675
+5145
 When taking spirits to the afterlife, large Pumpkaboo prefer the spirits of adults to those of children.
 Al llevar espíritus al más allá, los Pumpkaboo grandes prefieren los espíritus de los adultos en comparación a los de los niños.
-2676
+5146
 Massive Pumpkaboo are said to be the product of areas where a great number of lost souls lingered.
 Los Pumpkaboo extragrande se dicen ser el producto de áreas donde un gran número de almas perdidas permanecen.
-2677
+5147
 Eerie cries emanate from its body in the dead of night. The sounds are said to be the wails of spirits who are suffering in the afterlife.
 Gritos macabros emanan de su cuerpo por la noche. Los sonidos se dicen ser el quejido de los espíritus que sufren en la otra vida.
-2678
+5148
 Large Gourgeist put on the guise of adults, taking the hands of children to lead them to the afterlife.
 Los Gourgeist toman el aspecto de los adultos, tomando las manos de los niños para llevarlos a la otra vida.
-2679
+5149
 Supersized Gourgeist aren't picky. They will forcefully drag anyone off to the afterlife.
 Los Gourgeist extragrande no son caprichosos. Forzosamente arrastrán a cualquiera a la otra vida.
-2680
+5150
 When the horns on its head shine in seven colors, it is said to be sharing everlasting life.
 Las leyendas dicen que puede compartir la vida eterna. Durmió durante mil años en forma de árbol antes de revivir.
-2681
+5151
 This is Zygarde when about 10% of its pieces have been assembled. It leaps at its opponent's chest and sinks its sharp fangs into them.
 Este es Zygarde cuando el 10% de sus células son ensambladas. Salta al torso de su oponente y clava sus colmillos afilados en él.
-2682
+5152
 This is Zygarde's perfected form. From the orifice on its chest, it radiates high-powered energy that eliminates everything.
 Esta es la forma perfecta de Zygarde. Desde el orificio de su pecho, irradia una poderosa energía que elimina todo.
-2683
+5153
 Some say it can change to an even more powerful form when battling those who threaten the ecosystem.
 Se supone que está monitoreando a quienes destruyen el ecosistema desde lo profundo de la cueva donde vive.
-2684
+5154
 It gathers things it likes and passes them through its loop to teleport them to a secret place.
 Este alborotador envía cualquier cosa y todo a lugares lejanos usando su bucle, que puede deformar el espacio.
-2685
+5155
 It creates an electric charge by rubbing its feathers together. It dances over to its enemies and delivers shocking electrical punches.
 Crea una carga eléctrica frotando sus alas. Baila hacia sus enemigos y les propina golpes eléctricos.
-2686
+5156
 This Oricorio relaxes by swaying gently. This increases its psychic energy, which it then fires at its enemies.
 Este Oricorio se relaja meciendose tranquilamente. Esto aumenta su energía psíquica, que luego dispara a sus enemigos.
-2687
+5157
 It summons the dead with its dreamy dancing. From their malice, it draws power with which to curse its enemies.
 Invoca a los muertos con su danza. Desde su malicia, usa el poder para maldecir a sus enemigos.
-2688
+5158
 It goads its enemies into attacking, withstands the hits, and in return, delivers a headbutt, crushing their bones with its rocky mane.
 Provoca a sus enemigos para que lo ataquen, resiste los golpes, y a cambio, les propina un cabezazo, aplastando sus huesos con su melena rocosa.
-2689
+5159
 Bathed in the setting sun of evening, Lycanroc has undergone a special kind of evolution. An intense fighting spirit underlies its calmness.
 Bañado en el sol del ocaso, Lycanroc pasó por un tipo de evolución especial. Un intenso espíritu de lucha sustenta su calma.
-2690
+5160
 Weak Wishiwashi school together to concentrate their power. Their united force makes them the demon of the sea, feared near and far.
 Los Wishiwashi débiles se unen juntos para concentrar su poder. Su fuerza unida los hace el demonio del mar, temidos en todo el mar.
-2691
+5161
 This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
 Su confianza en su compañero es lo que lo despierta. Este Pokémon es capaz de cambiar de tipo, una flexibilidad que se muestra bien en batalla.
-2692
+5162
 This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
 Su confianza en su compañero es lo que lo despierta. Este Pokémon es capaz de cambiar de tipo, una flexibilidad que se muestra bien en batalla.
-2693
+5163
 This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
 Su confianza en su compañero es lo que lo despierta. Este Pokémon es capaz de cambiar de tipo, una flexibilidad que se muestra bien en batalla.
-2694
+5164
 This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
 Su confianza en su compañero es lo que lo despierta. Este Pokémon es capaz de cambiar de tipo, una flexibilidad que se muestra bien en batalla.
-2695
+5165
 This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
 Su confianza en su compañero es lo que lo despierta. Este Pokémon es capaz de cambiar de tipo, una flexibilidad que se muestra bien en batalla.
-2696
+5166
 This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
 Su confianza en su compañero es lo que lo despierta. Este Pokémon es capaz de cambiar de tipo, una flexibilidad que se muestra bien en batalla.
-2697
+5167
 This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
 Su confianza en su compañero es lo que lo despierta. Este Pokémon es capaz de cambiar de tipo, una flexibilidad que se muestra bien en batalla.
-2698
+5168
 This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
 Su confianza en su compañero es lo que lo despierta. Este Pokémon es capaz de cambiar de tipo, una flexibilidad que se muestra bien en batalla.
-2699
+5169
 This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
 Su confianza en su compañero es lo que lo despierta. Este Pokémon es capaz de cambiar de tipo, una flexibilidad que se muestra bien en batalla.
-2700
+5170
 This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
 Su confianza en su compañero es lo que lo despierta. Este Pokémon es capaz de cambiar de tipo, una flexibilidad que se muestra bien en batalla.
-2701
+5171
 This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
 Su confianza en su compañero es lo que lo despierta. Este Pokémon es capaz de cambiar de tipo, una flexibilidad que se muestra bien en batalla.
-2702
+5172
 This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
 Su confianza en su compañero es lo que lo despierta. Este Pokémon es capaz de cambiar de tipo, una flexibilidad que se muestra bien en batalla.
-2703
+5173
 This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
 Su confianza en su compañero es lo que lo despierta. Este Pokémon es capaz de cambiar de tipo, una flexibilidad que se muestra bien en batalla.
-2704
+5174
 This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
 Su confianza en su compañero es lo que lo despierta. Este Pokémon es capaz de cambiar de tipo, una flexibilidad que se muestra bien en batalla.
-2705
+5175
 This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
 Su confianza en su compañero es lo que lo despierta. Este Pokémon es capaz de cambiar de tipo, una flexibilidad que se muestra bien en batalla.
-2706
+5176
 This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
 Su confianza en su compañero es lo que lo despierta. Este Pokémon es capaz de cambiar de tipo, una flexibilidad que se muestra bien en batalla.
-2707
+5177
 This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
 Su confianza en su compañero es lo que lo despierta. Este Pokémon es capaz de cambiar de tipo, una flexibilidad que se muestra bien en batalla.
-2708
+5178
 This is its form once it has awakened and evolved. Freed from its heavy mask, its speed is greatly increased.
 Su confianza en su compañero es lo que lo despierta. Este Pokémon es capaz de cambiar de tipo, una flexibilidad que se muestra bien en batalla.
-2709
+5179
 If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
 Si su núcleo permanece expuesto, morirá pronto. Es posible que sobreviva si se coloca en una Poké Ball lo suficientemente rápido.
-2710
+5180
 If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
 Si su núcleo permanece expuesto, morirá pronto. Es posible que sobreviva si se coloca en una Poké Ball lo suficientemente rápido.
-2711
+5181
 If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
 Si su núcleo permanece expuesto, morirá pronto. Es posible que sobreviva si se coloca en una Poké Ball lo suficientemente rápido.
-2712
+5182
 If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
 Si su núcleo permanece expuesto, morirá pronto. Es posible que sobreviva si se coloca en una Poké Ball lo suficientemente rápido.
-2713
+5183
 If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
 Si su núcleo permanece expuesto, morirá pronto. Es posible que sobreviva si se coloca en una Poké Ball lo suficientemente rápido.
-2714
+5184
 If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
 Si su núcleo permanece expuesto, morirá pronto. Es posible que sobreviva si se coloca en una Poké Ball lo suficientemente rápido.
-2715
+5185
 If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
 Si su núcleo permanece expuesto, morirá pronto. Es posible que sobreviva si se coloca en una Poké Ball lo suficientemente rápido.
-2716
+5186
 Sad that its true identity may be exposed, Mimikyu will mercilessly seek revenge on any opponent that breaks its neck.
 Triste de que su verdadera identidad podría ser expuesta, Mimikyu atacará sin piedad buscando venganza en cualquier oponente que rompa su cuello.
-2717
+5187
 This is Necrozma's form while it's absorbing the power of Solgaleo, making it extremely ferocious and impossible to control.
 Esta es la forma que toma Necrozma mientras absorbe el poder de Solgaleo, haciéndolo extremadamente feroz e imposible de controlar.
-2718
+5188
 Lunala no longer has a will of its own. Now under the control of Necrozma, it continuously expels all of its energy.
 Lunala ya no tiene su propia voluntad. Ahora bajo el control de Necrozma, continuamente expulsa toda su energía.
-2719
+5189
 The light pouring out from all over its body affects living things and nature, impacting them in various ways.
 La luz que emana de todo su cuerpo afecta a las cosas vivas y a la naturaleza, impactándola en varios modos.
-2720
+5190
 It looks somehow pained as it rages around in search of light, which serves as its energy. It's apparently from another world.
 La luz es la fuente de su energía. Si no es luz devoradora, las impurezas se acumulan en ella, y Necrozma se oscurece y deja de moverse.
-2721
+5191
 This gorgeous Magearna looks as it did at the time of its invention. Its luxurious decoration pleased the king's daughter.
 Este precioso Magearna luce como lo hizo a la hora de su creación. Su decoración lujosa contentó a la hija del rey.
-2722
+5192
 The slightest shock is sometimes enough to get this Pokémon to spit out the Arrokuda lodged in its throat.
 La más mínima provocación es a veces suficiente para que este Pokémon escupa el Arrokuda atascado en su garganta.
-2723
+5193
 The half-swallowed Pikachu is so startled that it isn't struggling yet, but it's still looking for a chance to strike back.
 El Pikachu a medio tragar está tan sorprendido que aún no combate, pero que aún busca por una oportunidad de contraatacar.
-2724
+5194
 The hair on its head connects to the surface of its brain. When this Pokémon has something on its mind, its hair chills the air around it.
 El pelo en su cabeza conecta a la superficie de su cerebro. Cuando este Pokémon tiene algo en su mente, su pelo hiela el aire a su alrededor.
-2725
+5195
 It absorbs the life-force of those who drink it. It waits patiently, but opportunities are fleeting—it tastes so bad that it gets spat out immediately.
 Absorbe la fuerza vital de aquellos que beban de él. Espera con paciencia, pero las oportunidades son escasas—sabe tan mal que es escupido inmediatamente.
-2726
+5196
 Trainers Polteageist trusts will be allowed to experience its distinctive flavor and aroma firsthand by sampling just a tiny bit of its tea.
 Los Polteageist de entrenadores confían para que experiencen su aroma y sabor distintivo para darles de probar un poco de su té.
-2727
+5197
 They diligently serve people and Pokémon so they can gather feelings of gratitude. The females are particularly good at babysitting.
 They diligently serve people and Pokémon so they can gather feelings of gratitude. The females are particularly good at babysitting.
-2728
+5198
 Hunger hormones affect its temperament. Until its hunger is appeased, it gets up to all manner of evil deeds.
 Las hormonas de hambre afectan su temperamento. Hasta que sea saciado, se pone en todo tipo de malos actos.
-2729
+5199
 Able to cut down anything with a single strike, it became known as the Fairy King's Sword, and it inspired awe in friend and foe alike.
 Capaz de cortar cualquier cosa con un solo tajo, se conoce como la Espada Regia, inspirando asombro en tanto aliados como enemigos.
-2730
+5200
 Now that it's equipped with its shield, it can shrug off impressive blows, including the attacks of Dynamax Pokémon.
 Ahora equipado con su escudo, puede resistir golpes impresivos, incluyendo los de los Pokémon Dinamax.
-2731
+5201
 This form of Urshifu is a strong believer in defeating foes by raining many blows down on them. Its strikes are nonstop, flowing like a river.
 Esta forma de Urshifu es un firme creyente en derrotar enemigos mediante grandes ráfagas de golpes sin descanso, que fluyen como un río.
-2732
+5202
 It's said that this Pokémon once moved a large forest—and all the Pokémon living there—to a new location overnight.
 Se dice que este Pokémon una vez evacuó a todo un bosque, y todos los Pokémon que viven allí, a una nueva ubicación en una sola noche.
-2733
+5203
 Legend says that by using its power to see all events from past to future, this Pokémon saved the creatures of a forest from a meteorite strike.
 Las leyendas dicen que usando su poder para ver todos los eventos pasados y futuros, este Pokémon salvó las criaturas de un bosque del impacto de un meteorito.
-2734
+5204
 Kyogre is said to be the personification of the sea itself. Legends tell of its many clashes against Groudon, as each sought to gain the power of nature.
 Kyogre ha aparecido en la mitología como el creador del mar. Después de largos años de pelea con Groudon, fue a dormir al fondo del mar.
-2735
+5205
 Groudon is said to be the personification of the land itself. Legends tell of its many clashes against Kyogre, as each sought to gain the power of nature.
 Apareció en la mitología como el creador de la tierra. Duerme en el magma subterráneo y cree que los volcanes entran en erupción al despertar.
-2736
+5206
 Rayquaza is said to have lived for hundreds of millions of years. Legends remain of how it put to rest the clash between Kyogre and Groudon.
 Un Pokémon que vuela sin cesar en la capa de ozono. Se dice que descendería al suelo si Kyogre y Groudon pelearan.
-2737
+5207
 When wounded, it stops moving. It goes as still as stone to meditate, sharpening its mind and spirit.
 Al ser lastimado, deja de moverse. Se pone como una roca para meditar, aguzando su mente y espíritu.
-2738
+5208
 Darmanitan takes this form when enraged. It won't stop spewing flames until its rage has settled, even if its body starts to melt.
 Darmanitan toma su forma al estar furioso. No dejará de expulsar llamas hasta que su ira se termine, incluso si su cuerpo empieza a derretirse.
-2739
+5209
 The tail's tip shines brightly and can be seen from far away. It acts as a beacon for lost people.
 Emite tanta luz que se puede ver desde el espacio. En los viejos tiempos, la gente usaba su luz para enviar señales de un lado a otro con otros.
-2740
+5210
 Garchomp makes its home in volcanic mountains. It flies through the sky as fast as a jet airplane, hunting down as much prey as it can.
 Cuando pliega su cuerpo y extiende sus alas, parece un avión a reacción. Vuela a la velocidad del sonido.
-2741
+5211
 Brutally vicious and enormously destructive. Known for totally destroying cities in ancient times.
 Es un Pokémon extremadamente vicioso y violento. Cuando los humanos comiencen a pelear, aparecere y quema todo hasta los cimientos.
-2742
+5212
 It has the power to predict the future. Its power peaks when it is protecting its Trainer.
 Aparentemente no siente el tirón de la gravedad porque se sustenta con poder psíquico. Dará su vida para proteger a su Entrenador.
-2743
+5213
 A master of courtesy and swordsmanship, it fights using extending swords on its elbows.
 Un maestro de la cortesía y el manejo de la espada, lucha usando espadas extendidas en sus codos.
-2744
+5214
 Psychic power has augmented its muscles. It has a grip strength of one ton and can sprint a hundred meters in two seconds flat!
 El poder psíquico ha aumentado sus músculos. ¡Tiene una fuerza de una tonelada y puede impulsarse hasta doscientos metros en dos segundos!
-2745
+5215
 Despite its diminished size, its mental power has grown phenomenally. With a mere thought, it can smash a skyscraper to smithereens.
 A pesar de su pequeño tamaño, su poder mental ha crecido de forma fenomenal. Con un mero pensamiento, puede aplastar un rascacielos.
-2746
+5216
 According to legend, this Pokémon's love gave rise to the budding of fresh life across Hisui.
 De acuerdo a la leyenda, el amor de este Pokémon dió vida fresca a través de todo Hisui.
-2747
+5217
 It uses both white and black magic. It harvests the flowers that grow on witches who regularly walk between life and death.
 Usa tanto magia blanca como negra. Cosecha las flores que crecen en brujas que regularmente caminan entre la vida y la muerte.
-2748
+5218
 It differs from other Basculin in several respects, including demeanor. It is much gentler than other color variants.
-Se diferencia de otros Basculin en varios aspectos, incluido el comportamiento. Es mucho más suave que otras variantes de color.
+Se diferencia de otros Basculin en varios aspectos, incluido el comportamiento. Es mucho más gentil que sus otra variantes.
+5197
+They diligently serve people and Pokémon so they can gather feelings of gratitude. The females are particularly good at babysitting.
+Sirven diligentemente a la gente y Pokémon así pueden reunir sentimientos de gratitud. Las hembras son particularmente buenas con niños.
 [4]
-201
-A
-A
-351
-Normal
-Normal
-386
-Normal
-Normal 
+676
+Natural
+Salvaje
 412
 Plant Cloak
 Tronco Planta
@@ -34765,31 +34905,25 @@ Plant Cloak
 Tronco Planta
 421
 Overcast
-Forma Encapotada
+Encapotada
 422
 West Sea
 Mar Oeste
 423
 West Sea
 Mar Oeste
-479
-Rotom
-Rotom
 487
 Altered
-Modificada
+Alterada
 492
 Land
 Tierra
-493
-Arceus
-Arceus
 550
 Red-Striped
 Raya Roja
 555
 Standard Mode
-Modo Estándar
+Modo Normal
 585
 Spring
 Primavera
@@ -34805,18 +34939,12 @@ Avatar
 645
 Incarnate
 Avatar
-646
-Kyurem
-Kyurem
 647
 Ordinary
-Habitual
+Ordinario
 648
 Aria
 Lírica
-649
-Genesect
-Genesect
 666
 Meadow Pattern
 Motivo Floral
@@ -34829,9 +34957,6 @@ Flor Roja
 671
 Red Flower
 Flor Roja
-676
-Natural
-Natural
 678
 Male
 Macho
@@ -34840,16 +34965,13 @@ Shield
 Escudo
 710
 Average Size
-Tamaño Normal
+Tamaño Pequeño
 711
 Average Size
-Tamaño Normal
+Tamaño Pequeño
 716
 Neutral Mode
-Forma Relajada
-718
-50%
-50% 
+Modo Neutral
 720
 Hoopa Confined
 Hoopa Contenido
@@ -34858,7 +34980,7 @@ Baile Style
 Estilo Apasionado
 745
 Midday
-Diurna
+Diurno
 746
 Solo
 Individual
@@ -34867,13 +34989,13 @@ Type: Normal
 Tipo: Normal
 774
 Meteor
-Meteorito
+Meteoro
 778
 Disguised
-Encubierta
+Encubierto
 875
 Ice Face
-Cara de Hielo
+Cara Hielo
 876
 Male
 Macho
@@ -34891,647 +35013,566 @@ Single Strike
 Estilo Brusco
 2034
 Standard Mode
-Modo Estándar
+Modo Normal
 2060
 Incarnate
 Avatar
-2533
+5002
 Cosplay
 Coqueta
-2534
+5003
 Cosplay - Belle
-Coqueta Aristócrata
-2535
+Coqueta - Aristócrata
+5004
 Cosplay - Libre
-Coqueta Enmascarada
-2536
+Coqueta - Enmascarada
+5005
 Cosplay - Ph.D.
-Coqueta Erudita
-2537
+Coqueta - Erudita
+5006
 Cosplay - Pop Star
-Coqueta Superstar
-2538
+Coqueta - Superstar
+5007
 Cosplay - Rock Star
-Coqueta Roquera
-2539
+Coqueta - Roquera
+5008
 Original Cap
 Gorra Original
-2540
+5009
 Hoenn Cap
-Gorra Hoenn 
-2541
+Gorra Hoenn
+5010
 Sinnoh Cap
-Gorra  Sinnoh 
-2542
+Gorra Sinnoh
+5011
 Unova Cap
 Gorra Teselia
-2543
+5012
 Kalos Cap
 Gorra Kalos
-2544
+5013
 Alola Cap
 Gorra Alola
-2545
+5014
 Partner Cap
 Gorra Compañero
-2546
+5015
 World Cap
 Gorra Trotamundos
-2547
-B
-B
-2548
-C
-C
-2549
-D
-D
-2550
-E
-E
-2551
-F
-F
-2552
-G
-G
-2553
-H
-H
-2554
-I
-I
-2555
-J
-J
-2556
-K
-K
-2557
-L
-L
-2558
-M
-M
-2559
-N
-N
-2560
-O
-O
-2561
-P
-P
-2562
-Q
-Q
-2563
-R
-R
-2564
-S
-S
-2565
-T
-T
-2566
-U
-U
-2567
-V
-V
-2568
-W
-W
-2569
-X
-X
-2570
-Y
-Y
-2571
-Z
-Z
-2572
-?
-?
-2573
-!
-!
-2574
+5043
 Sun
 Sol
-2575
-Rainstorm
-Tormenta de Lluvia
-2576
+5044
+Rain
+Lluvia
+5045
 Hail
 Granizo
-2577
-Sandstorm
-Tormenta de Arena
-2578
+5046
+Sand
+Arena
+5047
 Attack
 Ataque
-2579
+5048
 Defense
 Defensa
-2580
+5049
 Speed
 Velocidad
-2581
+5050
 Sand
 Arena
-2582
+5051
 Trash
 Basura
-2583
+5052
 Sand
 Arena
-2584
+5053
 Trash
 Basura
-2585
+5054
 Sun
 Sol
-2586
+5055
 East Sea
 Mar Este
-2587
+5056
 East Sea
 Mar Este
-2588
+5057
 Heat
 Calor
-2589
+5058
 Wash
 Lavado
-2590
+5059
 Frost
 Frío
-2591
+5060
 Fan
 Ventilador
-2592
+5061
 Mow
 Corte
-2593
+5062
 Origin
 Origen
-2594
+5063
 Sky
 Cielo
-2595
+5064
 Fighting Type
-Tipo
-2596
+Tipo Lucha
+5065
 Flying Type
 Tipo Volador
-2597
+5066
 Poison Type
 Tipo Veneno
-2598
+5067
 Ground Type
 Tipo Tierra
-2599
+5068
 Rock Type
 Tipo Roca
-2600
+5069
 Bug Type
 Tipo Bicho
-2601
+5070
 Ghost Type
 Tipo Fantasma
-2602
+5071
 Steel Type
 Tipo Acero
-2603
+5072
 Unknown Type
 Tipo Desconocido
-2604
+5073
 Fire Type
 Tipo Fuego
-2605
+5074
 Water Type
 Tipo Agua
-2606
+5075
 Grass Type
 Tipo Planta
-2607
+5076
 Electric Type
 Tipo Eléctrico
-2608
+5077
 Psychic Type
 Tipo Psíquico
-2609
+5078
 Ice Type
 Tipo Hielo
-2610
+5079
 Dragon Type
 Tipo Dragón
-2611
+5080
 Dark Type
 Tipo Siniestro
-2612
+5081
 Fairy Type
 Tipo Hada
-2613
+5082
 Blue-Striped
 Raya Azul
-2614
+5083
 Summer
 Verano
-2615
+5084
 Autumn
 Otoño
-2616
+5085
 Winter
 Invierno
-2617
+5086
 Summer
 Verano
-2618
+5087
 Autumn
 Otoño
-2619
+5088
 Winter
-Invierno 
-2620
+Invierno
+5089
 Therian
 Tótem
-2621
+5090
 Therian
 Tótem
-2622
+5091
 Therian
 Tótem
-2623
+5092
 White
 Blanco
-2624
+5093
 Black
 Negro
-2627
+5096
 Resolute
 Brío
-2628
+5097
 Pirouette
-Danza
-2629
+Pirueta 
+5098
 Shock Drive
 FulgoROM
-2630
+5099
 Burn Drive
 PiroROM
-2631
+5100
 Chill Drive
-CríoROM
-2632
+CrioROM
+5101
 Douse Drive
 HidroROM
-2633
+5102
 Continental Pattern
 Motivo Continental
-2634
+5103
 Elegant Pattern
 Motivo Oriental
-2635
+5104
 Garden Pattern
 Motivo Vergel
-2636
+5105
 High Plains Pattern
 Motivo Estepa
-2637
+5106
 Icy Snow Pattern
 Motivo Polar
-2638
+5107
 Jungle Pattern
 Motivo Jungla
-2639
+5108
 Marine Pattern
 Motivo Marino
-2640
+5109
 Archipelago Pattern
 Motivo Isleño
-2641
+5110
 Modern Pattern
 Motivo Moderno
-2642
+5111
 Monsoon Pattern
 Motivo Monzón
-2643
+5112
 Ocean Pattern
 Motivo Océano
-2644
+5113
 Polar Pattern
 Motivo Taiga
-2645
+5114
 River Pattern
 Motivo Oasis
-2646
+5115
 Sandstorm Pattern
 Motivo Desierto
-2647
+5116
 Savanna Pattern
 Motivo Pantano
-2648
+5117
 Sun Pattern
 Motivo Solar
-2649
+5118
 Tundra Pattern
 Motivo Tundra
-2650
+5119
 Fancy Pattern
 Motivo Fantasía
-2651
+5120
 Poké Ball Pattern
 Motivo Poké Ball
-2652
+5121
 Yellow Flower
 Flor Amarilla
-2653
+5122
 Orange Flower
 Flor Naranja
-2654
+5123
 Blue Flower
 Flor Azul
-2655
+5124
 White Flower
 Flor Blanca
-2656
+5125
+Yellow Flower
+Flor Amarilla 
+5126
+Orange Flower
+Flor Naranja 
+5127
+Blue Flower
+Flor Azul
+5128
+White Flower
+Flor Blanca
+5129
 Yellow Flower
 Flor Amarilla
-2657
+5130
 Orange Flower
 Flor Naranja
-2658
+5131
 Blue Flower
 Flor Azul
-2659
+5132
 White Flower
 Flor Blanca
-2660
-Yellow Flower
-Flor Amarilla
-2661
-Orange Flower
-Flor Naranja
-2662
-Blue Flower
-Flor Azul
-2663
-White Flower
-Flor Blanca
-2664
+5133
 Heart Trim
 Corte Corazón
-2665
+5134
 Star Trim
 Corte Estrella
-2666
+5135
 Diamond Trim
 Corte Rombo
-2667
+5136
 Debutante Trim
 Corte Señorita
-2668
+5137
 Matron Trim
 Corte Dama
-2669
+5138
 Dandy Trim
 Corte Caballero
-2670
+5139
 La Reine Trim
 Corte Aristocrático
-2671
+5140
 Kabuki Trim
 Corte Kabuki
-2672
+5141
 Pharaoh Trim
 Corte Faraónico
-2673
+5142
 Meowstic♀
 Meowstic♀
-2674
+5143
 Blade
 Filo
-2675
+5144
 Average Size
 Tamaño Normal
-2676
+5145
 Large Size
 Tamaño Grande
-2677
+5146
 Super Size
 Tamaño Extragrande
-2678
+5147
 Average Size
 Tamaño Normal
-2679
+5148
 Large Size
 Tamaño Grande
-2680
+5149
 Super Size
 Tamaño Extragrande
-2681
+5150
 Active Mode
-Forma Activa
-2682
+Modo Activo
+5151
 10%
 10%
-2683
+5152
 Complete
-Completa
-2685
+Completo
+5154
 Unbound
 Desatado
-2686
+5155
 Pom-Pom Style
 Estilo Animado
-2687
+5156
 Pa'u Style
 Estilo Plácido
-2688
+5157
 Sensu Style
-Estilo Apasionado
-2689
+Estilo Refinado
+5158
 Midnight
 Nocturno
-2690
+5159
 Dusk
 Crepuscular
-2691
+5160
 School
 Banco
-2692
+5161
 Type: Fighting
 Tipo: Lucha
-2693
+5162
 Type: Flying
 Tipo: Volador
-2694
+5163
 Type: Poison
 Tipo: Veneno
-2695
+5164
 Type: Ground
 Tipo: Tierra
-2696
+5165
 Type: Rock
 Tipo: Roca
-2697
+5166
 Type: Bug
 Tipo: Bicho
-2698
+5167
 Type: Ghost
 Tipo: Fantasma
-2699
+5168
 Type: Steel
 Tipo: Acero
-2700
+5169
 Type: Unknown
-Tipo: Desconocido
-2701
+Tipo: Desconocidop
+5170
 Type: Fire
 Tipo: Fuego
-2702
+5171
 Type: Water
 Tipo: Agua
-2703
+5172
 Type: Grass
 Tipo: Planta
-2704
+5173
 Type: Electric
 Tipo: Eléctrico
-2705
+5174
 Type: Psychic
 Tipo: Psíquico
-2706
+5175
 Type: Ice
 Tipo: Hielo
-2707
+5176
 Type: Dragon
 Tipo: Dragón
-2708
+5177
 Type: Dark
 Tipo: Siniestro
-2709
+5178
 Type: Fairy
 Tipo: Hada
-2710
+5179
 Red
 Rojo
-2711
+5180
 Orange
 Naranja
-2712
+5181
 Yellow
 Amarillo
-2713
+5182
 Green
 Verde
-2714
+5183
 Blue
 Azul
-2715
+5184
 Indigo
 Añil
-2716
+5185
 Violet
 Violeta
-2717
+5186
 Busted
 Descubierta
-2718
+5187
 Dusk Mane
 Melena Crepuscular
-2719
+5188
 Dawn Wings
 Alas del Alba
-2720
+5189
 Ultra
 Ultra
-2722
+5191
 Original Color
 Color Vetusto
-2723
+5192
 Gulping
 Tragatodo
-2724
+5193
 Gorging
 Engulletodo
-2725
+5194
 Melted
 Deshielo
-2726
+5195
 Antique
 Genuina
-2727
+5196
 Antique
 Genuina
-2728
+5197
 ♀
 ♀
-2729
+5198
 Hangry
 Voraz
-2730
+5199
 Crowned
 Espada Suprema
-2731
+5200
 Crowned
 Escudo Supremo
-2732
+5201
 Rapid Strike
 Estilo Fluido
-2733
+5202
 Ice
-Glacial
-2734
+Jinete Glacial
+5203
 Shadow
-Espectral
-2735
+Jinete Espectral
+5204
 Primal
 Primigenio
-2736
+5205
 Primal
 Primigenio
-2737
+5206
 Delta
 Delta
-2738
+5207
 Zen
 Daruma
-2739
+5208
 Zen
 Daruma
-2740
+5209
 Ascended
 Ascendido
-2741
+5210
 Reaper
 Guadaña
-2742
+5211
 Rampage
 Desenfrenada
-2743
+5212
 Finale
 Clímax
-2744
+5213
 Finale
 Clímax
-2745
+5214
 Overmatter
 Extramasa
-2746
+5215
 Overmind
 Extramente
-2747
+5216
 Therian
 Tótem
-2748
+5217
 Harvest
 Cosecha
-2749
+5218
 White-Striped
 Raya Blanca
 [5]
@@ -36688,7 +36729,7 @@ Ferropuño Doble
 Gear Grind
 Rueda Doble
 Metal Claw
-Garra de Metal
+Garra Metal
 Bullet Punch
 Puño Bala
 Gyro Ball
@@ -36820,7 +36861,7 @@ Retumbar
 Tremor
 Temblor
 Cold Embrace
-Fría Acogida
+Agarre Helado
 Stink Cloud
 Nube Apestosa
 Blind Side
@@ -36938,7 +36979,7 @@ Psicoperforación
 Light Show
 Show de Luces
 Signal Overload
-Sobrecarga de Señal
+Sobrecarga Señal
 Petrify
 Petrificar
 Crystal Gleam
@@ -37078,7 +37119,7 @@ Pulso Difuso
 Particle Pulse
 Rayo de Partículas
 Stellarate
-Lluvia de Estrellas
+Lluvia Estelar
 Pilfer
 Birlar
 Tease
@@ -37648,7 +37689,7 @@ Multi Aguijón
 Rising Tide
 Agua Creciente
 Exsanguinate
-Chupasangre
+Exanguinar
 Gleeful Grasp
 Apretón Alegre
 Play Bite
@@ -37949,7 +37990,7 @@ Gloat
 Regodearse
 Bully
 Amedrentar
-Fire for Effect
+Fire For Effect
 Artillería
 Snap
 Mordisqueo
@@ -38025,6 +38066,44 @@ Selective Memory
 Memoria Selectiva
 Elemental Fang
 Colmillo Elemental
+Bleakwind Storm
+Vendaval Gélido
+Sandsear Storm
+Simún de Arena
+Rainstorm
+Tormenta de Lluvia
+Wildbolt Storm
+Electormenta
+Springtide Storm
+Ciclón Primavera
+Cloudbreak
+Reinicio Climático
+Dissipation
+Disipación
+Rock Out
+A Roquear
+Natural Protection
+Protección Natural
+Weigh Anchor
+Levar Ancla
+Invite Rainstorm
+Invitar a la Tormenta
+Brain Freeze
+Cerebro Congelado
+Iceberg Bash
+Choque de Iceberg
+Wyrmwounding
+Garfio Wyrm
+Abyssal Mist
+Niebla Abisal
+Primeval Deep Breathing
+Inhalación Profunda Primitiva
+Primeval Gravity
+Gravedad Primitiva
+Primeval Polarized Room
+Zona Polarizada Primitiva
+Primeval Odd Room
+Zona Anómala Primitiva
 [6]
 Using its tough and impressive horn, the user rams into the target with no letup.
 Usando su impresionante cuerno, el usuario embiste al rival.
@@ -38807,15 +38886,15 @@ La energía que haya sido guardada con Reserva es liberada de golpe con un fuert
 The user chomps hard on the target with its sharp front fangs. It cuts the target's HP to half.
 El usuario mastica con fuerza al rival usando sus dientes frontales. Le quita la mitad de los PS al objetivo.
 The user unleashes its ultimate move. Can't miss and skips protections. Only one use per battle.
-The user unleashes its ultimate move. Can't miss and skips protections. Only one use per battle.
+El usuario desata su movimiento definitivo. No falla y esquiva protecciones. Sólo un uso por combate.
 The user powerfully wrings the foe. The more HP the foe has, the greater this attack's power.
 El usuario estruja con fuerza al objetivo. Cuantos más PS tenga el objetivo, más fuerte es el movimiento.
 The user helps the target and makes it use its move right after the user.
 El usuario ayuda al objetivo, haciendo que pueda usar un movimiento justo después del usuario.
 The user hurriedly and randomly uses a move among those known by other Pokémon in the party.
 El usuario se apura y usa aleatoriamente un movimiento entre los que conozcan otros Pokémon en su equipo.
-The user switches places with a party Pokémon in waiting, passing along any stat step changes.
-El usuario cambia de lugar con un Pokémon de su equipo, pasando cualquier cambio de stats en el proceso.
+The user switches places with a party Pokémon in waiting, passing along any stat step changes. Always goes last.
+El usuario cambia de lugar con uno de los Pokémon en tu equipo, pasando cualquier cambio de stat. Siempre va último.
 The user maximizes its Attack stat in exchange for HP equal to half its max HP.
 El usuario maximiza su Ataque a cambio de perder la mitad de sus PS totales.
 The user passes its held item to the target when the target isn't holding an item.
@@ -40339,7 +40418,7 @@ Un ataque distinguido que movita a aliados cercanos que continúen, dejando que 
 The user attacks with bitter emotion. This lowers the target's attacking stats by 2 steps if in hail.
 El usuario ataca con resentimiento. Esto disminuye las stats ofensivas del objetivo dos grados bajo granizo.
 The target is subjected to a violent and frightening prank. It has a 10% chance to numb.
-El objetivo es sucjeto a una broma violenta y aterradora. Tiene un 10% de probabilidad de aturdir al objetivo.
+El objetivo es sujeto a una broma violenta y aterradora. Tiene un 10% de probabilidad de aturdir al objetivo.
 The user sings with reckless abandon, annoying the target. There's a 30% chance they become dizzy.
 El usuario canta con abandono temerario, molestando al objetivo. Tiene un 30% de probabilidad de aturdir al objetivo.
 The user creates a bubble to shield their ally. The next time they're hit, 50% of the move damage is instead dealt back as recoil.
@@ -40464,6 +40543,212 @@ The user peruses it's kingly stores of knowledge, selecting three random non-Psy
 El usuario analiza su conocimiento real, eligiendo tres movimientos no-psíquicos aleatoriamente. Tú eliges cuál usar.
 The user chooses between Fire Fang, Thunder Fang, or Ice Fang to use this turn.
 El usuario elige entre usar Colmillo Ígneo, Colmillo Rayo, o Colmillo Hielo este turno.
+The user blows up to inflict damage on all Pokémon in battle. The user faints upon using this move.
+El usuario explota para infligir daño a todos los Pokémon en combate. El usuario se debilita al usar este movimiento.
+The user's edges become sharper, raising its Attack stat by three steps.
+Las puntas del usuario se afilan, aumentando su Ataque tres grados.
+The user charges up power and raises its Defense and Sp. Def by two steps. The move can be stacked twice.
+El usuario carga poder y aumenta su Defensa y Defensa Especial dos grados. Puedes acumularlo dos veces.
+The user eats its held Berry, then raises both its defensive stats by three steps.
+El usuario come la Baya que tenga equipada, luego aumenta sus stats defensivas tres grados.
+The user spends 25% HP to create a doll to protect it from move damage, additional effects, and status moves.
+El usuario usa 25% de sus PS para crear un muñeco que lo protege de ataques, efectos secundarios y movimientos de estado.
+The user unleashes its ultimate move. Can't miss and skips protections. Only one use per battle.
+El usuario desata su movimiento definitivo. No falla y atraviesa protecciones. Sólo un uso por combate.
+The user yawns, making the target drowsy. They'll fall asleep at end of the next turn.
+El usuario bosteza, adormeciendo al objetivo. Caerán dormidos al final del siguiente turno.
+The user looses a flurry of open-palmed arm thrusts that hit two to five times in a row. Has a 10% chance to numb.
+El usuario desata una ráfaga de palmadas que golpean de dos a cinco veces seguidas. Tiene un 10% de probabilidad de aturdir.
+The user attacks with a swift chop. It also breaks any screens protecting the target's side.
+El usuario ataca con un rápido manotazo. También rompe cualquier pantalla en el lado del objetivo.
+The user nimbly strikes the foe. Doubles in damage if the user has no item when the move starts.
+El usuario ataca ágilmente al objetivo. Duplica su daño si el usuario no tiene objeto cuando inicia el movimiento.
+The user attacks foes with savagely cold winds. It has a 30% chance to frostbite.
+El usuario ataca con vientos extremadamente fríos. Tiene un 30% de probabilidad de helar.
+The user bounces up high, becoming invulnerable, then drops on the foe on the second turn. It has a 30% chance to numb.
+El usuario salta a lo alto, volviéndose invulnerable, luego cae al objetivo en el segundo turno. Tiene un 30% de probabilidad de aturdir.
+The user whips up a wind to blow away the target's protective screens. Also removes hazards on both sides.
+El usuario levanta un viento que remueve las pantallas del objetivo. También quita trampas en ambos lados.
+The user soars, becoming invulnerable, then strikes on the second turn.
+El usuario vuela, volviéndose invulnerable, y luego ataca en el segundo turno.
+The user whips up a gust of wind to attack the target.
+El usuario levanta una ráfaga de viento para atacar al objetivo.
+The user lets out a damaging belch at the target. Deals double damage if the user has eaten a berry this battle.
+El usuario suelta un eructo dañino al objetivo. Duplica su potencia si el usuario ha comido una baya en el mismo combate.
+The user coils up and concentrates. This raises its Attack, Defense, and accuracy by two steps each.
+El usuario se enrosca y concentra. Esto aumenta su Ataque, Defensa y precisión tres grados cada una.
+The user shoots filthy garbage at the target to attack.
+El usuario lanza residuos sucios al objetivo para atacar.
+The user shoots poisonous threads to poison the target and lowers the target's Speed stat by four steps.
+El usuario dispara hilos venenos al objetivo que lo envenena y disminuye su Velocidad cuatro grados.
+The user burrows, becoming invulnerable, then attacks on the second turn.
+El usuario va bajo tierra, volviéndose invulnerable, luego ataca en el segundo turno.
+The user wraps foes in fierce winds and searingly hot sand. It has a 30% chance to burn.
+El usuario atrapa a rivales en feroces vientos y arena abrasadora. Tiene un 30% de probabilidad de quemar.
+Gathers space power and boosts its Sp. Atk by two steps on one turn, then attacks on the next turn.
+Junta poder espacial y aumenta su Ataque Especial dos grados en el primer turno, luego ataca en el segundo.
+The user stabs the foe with sharpened stones from below.
+El usuario atraviesa al objetivo con piedras afiladas desde abajo.
+For five turns, this move prevents the target from using the move it last used.
+Durante cinco turnos, este movimiento impide al objetivo usar su último movimiento.
+The user vanishes somewhere, becoming invulnerable, then strikes on the next turn. Skips and destroys protections.
+El usuario se desvance, volviéndose invulnerable, luego ataca en el siguiente turno. Salta y atraviesa protecciones.
+The user disappears, becoming invulnerable, then strikes the foe on the second turn. It hits even if the foe protects itself.
+El usuario se desvance, volviéndose invulnerable, luego ataca al objetivo en el segundo turno. Golpea incluso si el objetivo se protege.
+The target is slammed with a steel-hard tail.
+El usuario ataca con una cola dura como el hierro.
+Protects the user from damage this turn. It also lowers the Attack of physical attackers by two steps.
+Protege el usuario del daño por un turno. También disminuye el Ataque de atacantes físicos dos grados.
+The target is razed by a fiery explosion. The user must rest on the next turn, however.
+El usuario arrasa con una explosión ígnea. El usuario debe descansar en el siguiente turno.
+The user attacks by engulfing the foe in a beautiful, yet intense, blue flame. It has a 30% chance to burn.
+El usuario ataca sepultando al objetivo en una intensa llamarada azul. Tiene un 30% de probabilidad de quemar.
+The user attacks in an explosive fury. Weakens in damage as the user loses HP. Weakest at half HP.
+El usuario ataca en una furia explosiva. Se debilita mientras el usuario pierda PS. Es más débil a la mitad de PS.
+Attacks by igniting a small stone and launching it as a fiery ball.
+El usuario ataca encendiendo una pequeña roca y lanzándola como una pelota en llamas.
+The user sets a shell trap. If it is hit by a physical move, the trap explodes and hurts all near foes.
+El usuario pone una trampa coraza. Si es golpeado por un movimiento físico, la trampa explota y lastima todos los rivales cercanos.
+Diving on the first turn, becoming invulnerable, the user rises and hits from below water on the next turn.
+Se sumerge en el primer turno, volviéndose invulnerable, luego ataca desde abajo del agua en el siguiente turno.
+The user spouts water to damage the foe. Weakens in damage as the user loses HP. Weakest at half HP.
+El usuario dispara agua para atacar al rival. Se debilita mientras el usuario pierda PS. Es más débil a la mitad de PS.
+The user slams the target with an enormous tree. The user can't move on the next turn.
+El usuario aplasta al objetivo con un árbol gigante. El usuario debe descansar en el siguiente turno.
+Attacks by gliding on the ground. This move always goes first in Sunshine.
+Ataca impulsándose por la tierra. Siempre va primero en Luz Solar.
+The user charges at its foe, surrounding itself with lightning. It has a 30% chance to numb.
+El usuario carga hacia el objetivo, envolviéndose en electricidad. Tiene un 30% de probabilidad de aturdir.
+The user savagely attacks foes with lightning and wind. It has a 30% chance to numb.
+El usuario ataca salvajemente a los rivales con electricidad y viento. Tiene un 30% de probabilidad de aturdir.
+The user faints. In return, the Pokémon taking its place will have its status and HP fully restored.
+El usuario se debilita. A cambio, el Pokémon que toma su lugar tendrá su estado y PS completamente restaurados.
+The user vigorously performs a mystic, powerful dance, raising its Attack by two steps and Speed by one.
+El usuario realiza una poderosa danza mística, aumentando su Ataque dos grados y Velocidad uno.
+Attacks all enemy Pokémon with pure vitality. Weakens in damage as the user loses HP. Weakest at half HP.
+Ataca a los Pokémon rivales con vitalidad pura. Se debilita mientras el usuario pierda PS. Es más débil a la mitad de PS.
+The user gets all the party Pokémon to attack the foe with punches and kicks.
+El usuario hace que todo el equipo ataque al objetivo con puños y patadas.
+The user prevents the target from using its held item.
+El usuario impide al objetivo usar su objeto equipable.
+The user feigns crying to worry the target, lowering its Sp. Def stat by four steps.
+El usuario finge llorar para preocupar al objetivo, disminuyendo su Defensa Especial cuatro grados.
+The user sharpens its claws to raise its Attack and accuracy by three steps each.
+El usuario afila sus garras para aumentar su Ataque y precisión tres grados.
+Protects the user from damage this turn. It also lowers the Defense of physical attackers by four steps.
+Protege al usuario del daño por un turno. También disminuye la Defensa de atacantes físicos cuatro grados.
+The user attacks foes with love and hate. It has a 30% chance to lower both attacking stats.
+El usuario ataca con amor y odio. Tiene un 30% de probabilidad de disminuir ambas stats ofensivas del objetivo. 
+A tremendous strike that clears any active weather.
+Un golpe tremendo que quita cualquier clima activo.
+An unusual shockwave that breaks down all active Rooms.
+Una onda inusual que rompe cualquier Zona activa.
+The user focuses its aim to raise its Sp. Atk and accuracy by three steps each.
+El usuario concentra su mira para aumentar su Ataque Especial y precisión tres grados.
+The user attacks by spreading its body wide. Its power doubles if Curl Up was used previously.
+El usario ataca aplastando con todo su cuerpo. Duplica su potencia si Rizo Guardia fue usado anteriormente.
+The user attacks freed from earthly attachments. Doubles in damage if the user has no item when the move starts.
+El usuario ataca liberándose de sus apegos terrenales. Duplica su potencia si el usuario no tiene objeto cuando empieza el movimiento.
+The user endures attacks with 1 HP. If so, raises its Attack by two steps. Fails if used in succession.
+El usuario aguanta ataques con 1 PS. En tal caso, aumenta su Ataque dos grados. Falla si se usa consecutivamente.
+The user raises all of their stats by two steps. Fails unless a foe fainted last turn.
+El usuario aumenta todas sus stats dos grados. Falla a no ser que un oponente haya sido debilitado en el último turno.
+The user soars up high, becoming invulnerable, then strikes on the second turn by dive bombing the target.
+El usuario vuelta a lo alto, volviéndose invulnerable, luego ataca en el segundo turno cayendo hacia el objetivo.
+Grips the target with its entire mouth. The user can't attack next turn unless the target faints or switches out.
+Sujeta al objetivo con toda su boca. El usuario no puede atacar a no ser que el objetivo sea debilitado o cambie.
+Summons a storm of poisonous gas to hit all nearby pokemon with a 30% chance to poison.
+Invoca una tormenta de gas venenoso para atacar a todos los Pokémon cercanos con un 30% de probabilidad de envenenar.
+The user attacks by hurling a blob of mud. It has a 20% chance to reduce the target's Speed.
+El usuario ataca lanzando una masa de lodo. Tiene nu 20% de probabilidad de disminuir la Velocidad del objetivo. 
+The user burrows deep, becoming invulnerable, then attacks with devastating power on the second turn.
+El usuario excava a lo profundo, volviéndose invulnerable, luego ataca con un poder devastador en el segundo turno.
+The user scratches the target with rough rocks. If in sandstorm, the target's Defense is lowered by three steps.
+El usuario araña al objetivo con fuertes rocas. En tormenta de arena, la Defensa del objetivo es disminuida tres grados.
+The user sweeps away hazards while charging. User also takes 33% recoil.
+El usuario barre trampas mientras carga. Recibe un 33% de daño de retroceso.
+The user dances wildly while churning rocks towards the target. This raises the user's Attack by 2 steps.
+El usuario danza locamente mientras lanza rocas al objetivo. Esto aumenta el Ataque del usuario dos grados.
+The user makes a plea for survival, halving the damage their side takes from non-attack sources for 4 turns.
+El usuario hace un pedido por supervivencia, reduciendo a la mitad el daño de no-ataques en tu lado durante 4 turnos.
+The user attacks with bitter emotion. This lowers the target's attacking stats by two steps if in hail.
+El usuario ataca con resentimiento. Esto disminuye las stats ofensivas del objetivo dos grados en granizo.
+Disables the target's last used move for four turns, then reduces a relevant stat on them by four steps.
+Anula el último movimiento usado por el objetivo cuatro turnos, luego reduce una stat relevante en él cuatro grados.
+Disables the target's last used move for five turns, and cuts 5 PP from it.
+Anula el último movimiento usado por el objetivo cinco turnos, y le quita 5 PP.
+A reckless charge that forces the user to switch out if it misses. Always goes first.
+Una carga sin cuidado que fuerza al usuario a cambiar si falla. Siempre va primero.
+The target is hit by a wave of magnetic energy. It has a 20% chance to lower their Speed.
+El objetivo es golpeado por una onda de energía magnética. Tiene un 20% de probabilidad de disminuir su Velocidad.
+The user attacks the target with a sword. If it faints, tons of money is earned after the battle.
+El usuario ataca con una espada. Si el objetivo se debilita, montones de dinero son ganados luego del combate.
+Protects the user from damage this turn. It also lowers the Sp. Atk of special attackers by two steps.
+Protege al usuario del daño por un turno. También disminuye el Ataque Especial de atacantes especiales dos grados.
+The user chains its heavy anchor to the target. A flying Pokémon will fall to the ground when hit.
+El usuario encadena al objetivo con un ancla pesada. Pokémon que vuelen caerán al suelo al ser golpeados.
+Welds heavy steel onto the target, giving it the Steel type and reducing its Speed by four steps.
+Solda metal pesado al objetivo, dándole el tipo Acero y reduciendo su Velocidad cuatro grados.
+Summons Sunshine for five turns on the first turn, then overwhelms the foe with fiery light on the second.
+Invoca la Luz Solar cinco turnos en el primer turno, luego abruma al objetivo con una luz abrasadora en el segundo.
+The user launches up high, becoming invulnerable, then explodes down on the second turn, taking 25% recoil.
+El usuario despega al cielo, volviéndose invulnerable, luego aterriza en el segundo turno, recibiendo 25% de daño de retroceso.
+A distinguished attack that motivates nearby allies to follow, letting them act immediately after.
+Un ataque distinguido que motiva a aliados cercanos a continuar, dejándoles actuar inmediatamente luego.
+The user dives deep on the first turn, becoming invulnerable, then rises and strikes with explosive strength on the second turn.
+El usuario nada a lo profundo en el primer turno, volviéndose invulnerable, luego ataca con fuerza explosiva en el segundo turno.
+The user attacks with a wave of murky water, which hits all near foes and lowers their Speed by two steps.
+El usuario ataca con una ola de agua mugriento, que golpea a todos los objetivos cercanos y disminuye su Velocidad dos grados.
+The user applies anesthetic substances, numbing the target.
+El usuario aplica sustancias anestésicas, aturdiéndo al objetivo.
+The user hides its blade. If it is hit by a special move, it unsheathes it quickly, slashing all near foes.
+El usuario esconde su filo. Si es golpeado por un movimiento especial, ataca rápidamente, cortando a todos los objetivos cercanos.
+The user surges with electricity. If it deals less than 50% of the target's max health, the user takes the difference as recoil.
+El usuario ataca con electricidad. Si lidia menos del 50% de la salud máxima del objetivo, el usuario toma la diferencia como retroceso.
+The user charges, then attacks on the second turn. Charges instantly in rainstorm.
+El usuario carga, luego ataca en el segundo turno. Carga instantáneamente en tormenta de lluvia.
+The user slows the target's mind with a psychically infused blow. This has a 30% chance to frostbite.
+El usuario ralentiza a la mente del objetivo con golpe psíquico. Tiene un 30% de probabilidad de helar al objetivo.
+By sacrificing half its total HP, the user jinxes the target with a kiss, making it fall asleep.
+Al sacrificar la mitad de sus PS totales, el usuario maldice al objetivo con un beso, haciéndolo dormir.
+The user psychically modifies its own genes, transforming into either Overmatter form or Overmind form.
+El usuario modifica psíquicamente sus propios genes, transformándose en ya sea su forma Sobremasa o Sobremente.
+Protects the user from damage this turn. It also lowers the Sp. Def of special attackers by four steps.
+Protege al usuario de daño un turno. También disminuye la Defensa Especial de atacantes especiales cuatro grados.
+The user picks up an iceberg and slams it into the target. Lowers the user's Attack by four steps.
+El usuario toma un iceberge y aplasta al objetivo con él. Disminuye el Ataque del usuario cuatro grados.
+Attacks all near others with dragon energy. Power increases by 50% in eclipse.
+Ataca a todos los objetivos con energía dracónicas. Aumenta su potencia 50% en eclipse.
+The user roots itself, then strikes at the target with serpentine strength. This has a 30% chance to leech.
+El usuario echa raíces, luego ataca al objetivo con fuerza serpentina. Tiene un 30% de probabilidad de infectar.
+Darkness rolls over the field, damaging all other Pokémon and setting Grey Mist for 5 turns.
+Oscuridad arrasa sobre el objetivo, dañando a todos los otros Pokémon y colocando Niebla Gris durante 5 turnos.
+Defly sets a layer of damaging Spikes around the foe, then switches out.
+Pone una capa de Púas alrededor del rival, luego cambia.
+The user attacks with dark illusions. This also lowers the target's Defense stat by two steps.
+El usuario ataca con ilusiones oscuras. Esto disminuye la Defensa del objetivo dos grados.
+The user demands tribute from the target. Much money is earned after the battle.
+El usuario exige un tributo del objetivo. Mucho dinero es ganado luego del combate.
+Explodes, dealing an extra 50 base power to all foes for each layer of spikes underneath them. The user faints.
+Explota, lidiando un 50 de daño base extra a todos los rivales por cada capa de púas debajo de ellos. El usuario es debilitado.
+The user transforms into a cloud of vermin, evading all attacks on the first turn. On the second turn it ambushes the target.
+El usuario se transforma en una nube de peste, evadiendo todos los ataques en el primer turno. En el segundo embosca al objetivo.
+Power increases by 20 each time it's used in succession. User heals for half of damage dealt.
+Es potenciado por 20 por cada vez que sea usada consecutivamente. El usuario es curado por la mitad de daño que lidie.
+The user doubles its critical strike chance and raises its Sp. Atk and Sp. Def by two steps each.
+El usuario duplica su índice de golpe crítico y aumenta su Ataque Especial y Defensa Especial dos grados.
+The user raises their Speed by 4 steps, quadruples their critical hit chance, and becomes Fighting-type.
+El usuario aumenta su Velocidad 4 grados, cuadruplicando su índice de golpe crítico, y se vuelve tipo Lucha.
+The user intensifies gravity for five turns, damages all enemies for 1/4th of their max HP, and becomes Ground-type.
+El usuario intensifica la gravedad durante cinco turnos, dañando a todo enemigo por 1/4 de sus PS totales, y se vuelve tipo Tierra.
+The user attacks with a prehistoric power which raises all its stats.
+El usuario ataca con un poder prehistórico que aumenta todas sus stats.
+The user creates a Polarized Room for 5 turns, raises both of its Defensive stats, and becomes Steel-type.
+El usuario crea una Zona Polarizada durante 5 turnos, aumenta ambas de sus stats Defensivas, y se vuelve tipo Acero.
+The user creates an Odd Room for 5 turns, raises its Speed, and becomes Psychic-type.
+El usuario crea una Zona Anómala durante 5 turnos, aumentado su Velocidad, y se vuelve tipo Psíquico.
+The user torments all near foes, preventing them from repeating moves. The user becomes Dark-type.
+El usuario tormenta a todos los objetivos cercanos, impidiendo que repita movimientos. El usuario se vuelve tipo Siniestro.
 [7]
 Repel
 Repelente
@@ -42947,7 +43232,7 @@ If held by a Pokémon, it raises its Accuracy by 4 steps in a pinch.
 Al ser sostenida por un Pokémon, aumentará su Precisión por 4 grados en un apuro.
 If held by a Pokémon, it gets to move first just once in a pinch.
 Al ser sostenida por un Pokémon, podrá moverse primero en un apuro.
-If held by a Pokémon and a physical attack hits it, the attacker takes 1/4th HP  damage.
+If held by a Pokémon and a physical attack hits it, the attacker takes 25% HP damage.
 Si es sostenida por un Pokémon y le golpea un ataque físico, el atacante recibe 1/4 de sus PS de daño.
 If held by a Pokémon and a special attack hits it, the attacker takes 1/4th HP damage.
 Si es sostenida por un Pokémon y le golpea un ataque especial, el atacante recibe 1/4 de sus PS de daño.
@@ -43765,7 +44050,7 @@ Arco Voltáico
 Honorable
 Honorable
 Gargantuan
-Colosal
+Gigantesco
 Ruinous
 Ruinoso
 Fortified
@@ -44614,6 +44899,14 @@ Heavy Duty Hooves
 Cascos Gruesos
 Last Gasp
 Aliento Final
+Afrotection
+Afrotección
+Time Skip
+Salto Temporal
+Unconventional
+Inusual
+Groovy
+Rítmico
 [11]
 When the Pokémon eats a Berry, it will regurgitate that Berry at the end of the next turn and eat it one more time.
 Cuando el Pokémon come una Baya, regurgita esa Baya al final del siguiente turno y la come una vez más.
@@ -44657,7 +44950,7 @@ All status problems heal when it switches out.
 Cura cualquier problema de estado al cambiar.
 Doubles the likelihood of the user's random added effects activating.
 Duplica la probabilidad de que los efectos secundarios aleatorios del usuario se activen.
-Doubles the Pokémon's Speed in rain.
+Doubles the Pokémon's Speed in rainstorm.
 Duplica la Velocidad del Pokémon bajo lluvia.
 Doubles the Pokémon's Speed in sunshine.
 Duplica la Velocidad del Pokémon bajo el sol.
@@ -44709,8 +45002,8 @@ Doubles the Pokémon's Speed if its held item is consumed or lost.
 Duplica la Velocidad del Pokémon si su objeto equipable es consumido o perdido.
 Stat changes in the Pokemon are doubled.
 Si un cambio de estadísticas afecta al Pokémon, este es duplicado.
-Restores 1/8 HP in rain, 1/4 when hit by Water-type moves. Loses 1/8 in sunshine, takes 25% more from Fire-type moves.
-Restaura 1/8 PS bajo lluvia, 1/4 al recibir un movimiento Agua. Pierde 1/8 bajo sol, recibe 25% más daño por Fuego. 
+Heals 1/8 HP in rainstorm, 1/4 when hit by Water-type moves. Loses 1/8 in sunshine, takes 25% more from Fire-type moves.
+Cura 1/8 PS bajo lluvia, 1/4 al recibir un movimiento Agua. Pierde 1/8 bajo sol, recibe 25% más daño por Fuego. 
 Boosts one Attacking stat by two steps according to the foe's defenses.
 Aumenta una stat ofensiva por dos grados de acuerdo a la defensa mjs baja del rival.
 Boosts the power of punching moves by 30%.
@@ -44719,7 +45012,7 @@ Powers up moves of the same type by 33%.
 Potencia movimientos del mismo tipo un 33%.
 Maximizes the frequency of multi-strike moves.
 Maximiza las veces que movimientos que golpean múltiples veces pueden hacerlo.
-Heals status problems each turn if it is raining.
+Heals status problems each turn if in rainstorm.
 Se cura cualquier problema de estado cada turno si está lloviendo.
 In sunshine, Sp. Atk is boosted by 50%, but the Pokémon is hurt for 1/10th HP each turn.
 Bajo sol, el Ataque Especial es potenciado un 50%, pero pierde 1/10 de sus PS máximos cada turno.
@@ -44883,8 +45176,8 @@ Can poison the target even if it's a Steel or Poison type.
 Puede envenenar al objetivo incluso si es un tipo Veneno o Acero.
 It's always drowsing, and attacks without waking.
 Siempre está somnoliento, y ataca sin despertarse.
-Makes foes unable to use priority attacks.
-No permite que los rivales usen ataques de prioridad.
+Makes foes unable to use priority moves.
+No permite que los rivales usen movimientos de prioridad.
 Damages an attacker that lands the finishing hit.
 Daña al Pokémon que lo debilite con la misma potencia.
 Repeats another Pokémon's dance move immediately.
@@ -45011,7 +45304,7 @@ Takes 25% less damage while using a status move.
 Recibe 25% menos de daño mientras usa un movimiento de estado.
 Doubles the money gained from battles in which it participates.
 Duplica el dinero ganado en los combates que participe.
-Grants immunity to Bug-type moves and raises both attacking stats when hit by one.
+Grants immunity to Bug-type moves, and raises both attacking stats when hit by one.
 Inmune a movimientos tipo Bicho y aumenta ambas stats ofensivas cuando es alcanzado por uno. 
 Boosts Sp. Def by two steps when hit by an attack.
 Aumenta su Defensa Especial por dos grados al ser alcanzado por un ataque. 
@@ -45039,7 +45332,7 @@ Takes half damage from Dragon- and Fairy-type attacks.
 Movimientos tipo Dragón y Hada lo dañan por la mitad.
 Special attacks against the Pokémon have a 30% chance to dizzy the attacker.
 Cuando el Pokémon es atacado por un movimiento especial, tiene un 30% de probabilidad de marear al atacante.
-Boosts Sp. Atk and Speed by 25% in rain.
+Boosts Sp. Atk and Speed by 25% in rainstorm.
 Potencia su Ataque Especial y Velocidad un 25% bajo lluvia.
 The user raises the related defensive stat by two steps after each hit taken.
 Al ser atacado, el usuario aumenta la stat defensiva correspondiente por dos grados.
@@ -45059,7 +45352,7 @@ Boosts the power of punching moves by 30%, and makes them special when that woul
 Potencia movimientos de puños un 30% y los hace especiales en caso de ser más efectivo. 
 Doubled Speed if any enemy has a status condition.
 Duplica su Velocidad si cualquier rival tiene un problema de estado.
-Boosts Sp. Atk by 30% in rain.
+Boosts Sp. Atk by 30% in rainstorm.
 Aumenta su Ataque Especial un 30% bajo lluvia.
 Has a 30% chance to dizzy targets when using special moves.
 Tiene un 30% de probabilidad de marear a enemigos al usar movimientos especiales.
@@ -45109,7 +45402,7 @@ Summons sunshine for four turns when hit by an attack.
 Invoca la luz solar durante cuatro turnos al ser atacado.
 Summons rainstorm for four turns when hit by an attack.
 Invoca tormenta de lluvia durante cuatro turnos al ser atacado.
-Inflicts 1/6th max HP damage to the foe when damaged during rain.
+Inflicts 1/6th max HP damage to the foe when damaged during rainstorm.
 Daña al rival por 1/6 de sus PS totales al ser atacado durante la lluvia.
 Lowers priority of status moves used by any Pokémon.
 Baja la prioridad de todo movimiento de estado usado por cualquier Pokémon.
@@ -45263,7 +45556,7 @@ Move damage that's decreased by sunshine is decreased twice as much.
 Duplica la reducción del daño causado por el sol.
 Move damage that's decreased by rainstorm is decreased twice as much.
 Duplica la reducción del daño causada por la tormenta de lluvia.
-Powers up Fairy-type moves by 50% in rain.
+Powers up Fairy-type moves by 50% in rainstorm.
 Potencia movimientos tipo Hada un 50% bajo lluvia.
 Restores HP based on damage from hail.
 Restaura sus PS basado en el daño del granizo.
@@ -45289,7 +45582,7 @@ The Pokémon benefits twice as much from style points.
 Los puntos de estilo afectan x2 a este Pokémon.
 Gets 50% more healing from all sources.
 Se cura un 50% más mediante cualquier método curativo.
-Restores 1/8 HP in sunshine, 1/4 when hit by Fire-type moves. Loses 1/8 in rain, takes 25% more from Water-type moves.
+Restores 1/8 HP in sunshine, 1/4 when hit by Fire-type moves. Loses 1/8 in rainstorm, takes 25% more from Water-type moves.
 Restaura 1/8 de sus PS bajo sol, 1/4 al recibir un movimiento Fuego. Pierde 1/8 bajo lluvia, recibe 25% más daño por Fuego.
 The user's Speed is doubled while using recoil moves.
 La Velocidad del usuario es duplicada mientras usa movimientos de retroceso.
@@ -45475,7 +45768,7 @@ Uses Assist upon entry, copying a random team-mates move.
 Usa Ayuda al entrar al campo, que usa un movimiento aleatorio de su equipo.
 Prevents other Pokémon from lowering its stat steps. Immune to weather downsides.
 Inmune a disminucions de stats realizadas por otros Pokémon. Es inmune a las desventajas del clima.
-In rain, each of its hits is followed by an extra hit at 25% power.
+In rainstorm, each of its hits is followed by an extra hit at 25% power.
 Bajo lluvia, usa dos veces el mismo movimiento, el segundo con sólo el 25% de su poder. 
 Doubles Defense in moonglow.
 Duplica su Defensa bajo brillo lunar.
@@ -45637,10 +45930,10 @@ Makes the foe nervous and unable to eat Berries or Leftovers.
 Pone al oponente nervioso, haciendo que no pueda comer ni sus Bayas o Restos.
 Makes foes stressed and unable to use their items.
 Pone al oponente estresado, haciendo que no pueda usar su objeto.
-When this Pokémon becomes statused, its Attack is raised by four steps.
-Al recibir un problema de estado, su Ataque es aumentado cuatro grados.
-When this Pokémon becomes statused, its Sp. Atk is raised by four steps.
-Al recibir un problema de estado, su Ataque Especial es aumentado cuatro grados.
+When this Pokémon becomes statused, its Attack is raised by three steps.
+Al recibir un problema de estado, su Ataque es aumentado tres grados.
+When this Pokémon becomes statused, its Sp. Atk is raised by three steps.
+Al recibir un problema de estado, su Ataque Especial es aumentado tres grados.
 Fly and Dive Bomb deal 50% more damage.
 Vuelo y Caída en Picado son potenciados un 50%.
 Critical hits lower all of the victim's stats.
@@ -45941,6 +46234,18 @@ Boosts the power of kicking moves by 30%. Immune to hazards.
 Potencia movimientos de patada un 30%. Inmune a trampas en el campo.
 Cannot take damage or be switched out. Hears Perish Song upon entering, ensuring its demise.
 No puede recibir daño o ser cambiado. Escucha el Canto Mortal al entrar al campo, asegurando su fin.
+Reverses "Aura" Abilities to weaken affected moves.
+Invierte habilidades de "Aura" para debilitar movimientos afectados.
+Reduces damage from super-effective attacks.
+Reduce daño de ataques súper efectivos.
+Protects the Pokémon from recoil damage. The Pokémon doesn't trigger items, abilities, or effects of targets it hits.
+Protege al Pokémon del daño de retroceso. El Pokémon no activa objetos, habilidades o efectos del objetivo que golpee.
+Raises Attack whenever any Pokémon uses a dance move.
+Aumenta el Ataque cada vez que un Pokémon use un movimiento de baile.
+Moves that use stats other than the default deal 50% more damage.
+Potencia un 50% movimientos que usen una estadística que no sea la predeterminada. 
+Takes 50% less damage from not-very-effective or barely-effective attacks.
+Recibe un 50% menos de daño de movimientos no-muy o apenas efectivos.
 [12]
 0
 Normal
@@ -54060,7 +54365,7 @@ La mente de {1} parece estar en otra parte.
 {1} observa a la distancia.
 {1} seems to be carefully examining {2}'s face.
 {1} parece examinar con cuidado la cara de {2}.
-{1} seems to be trying to communicate with its' eyes.
+{1} seems to be trying to communicate with its' eye(s).
 {1} parece intentar comunicarse con sus ojos..
 ...{1} seems to have sneezed!
 ¡...{1} parece haber estornudado!
@@ -54470,7 +54775,7 @@ when traded holding an {1}
 cuando es intercambiado sosteniendo {1}
 when leveled up while a {1} is also in the party
 cuando es subido de nivel mientras un {1} está también en el equipo.
-also if you have an empty pokeball and party slot
+also if you have an empty Poké Ball and party slot
 también si tienes una poké ball y un espacio de equipo vacío
 when a {1} is used on it at level {1}
 cuando un {1} es usado al nivel {1}
@@ -57901,7 +58206,7 @@ Perfect Helena, the third gym leader, at level cap 25 or below with the Tarot Am
 Perfecciona a Helena, la tercer líder de gimnasio, con un límite de nivel de 25 o menos con el Amuleto Tarot activado.
 Perfect Rafael, the fourth gym leader, at level cap 30 or below with the Tarot Amulet activated.
 Perfecciona a Rafael, el cuarto líder de gimnasio, con un límite de nivel de 30 o menos con el Amuleto Tarot activado.
-Perfect Bence and Zoe, the fifth gym leaders, at level cap 40 or below with the Tarot Amulet activated.
+Perfect Bence and Zoé, the fifth gym leaders, at level cap 40 or below with the Tarot Amulet activated.
 Perfecciona a Bence y Zoé, los quintos líderes de gimnasio, con un límite de nivel de 40 o menos con el Amuleto Tarot activado. 
 Perfect Noel, the sixth gym leader, at level cap 45 or below with the Tarot Amulet activated.
 Perfecciona a Noel, el sexto líder de gimnasio, con un límite de nivel de 45 o menos con el Amuleto Tarot activado.

@@ -54,7 +54,7 @@ Page = 2
 #-------------------------------
 [PERFECT_CURSED_GYM_5]
 Name = Enemy of my Enemies
-Description = Perfect Bence and Zoe, the fifth gym leaders, at level cap 40 or below with the Tarot Amulet activated.
+Description = Perfect Bence and Zoé, the fifth gym leaders, at level cap 40 or below with the Tarot Amulet activated.
 Page = 2
 #-------------------------------
 [PERFECT_CURSED_GYM_6]
@@ -85,6 +85,12 @@ Page = 3
 [DEFEAT_ALL_CHAMBER_AVATARS]
 Name = Clay Army
 Description = Defeat all 8 Team Chasm-created avatars within the locked chambers.
+Page = 3
+Hidden = true
+#-------------------------------
+[DEFEAT_AVATAR_CALYREX]
+Name = Regicide
+Description = Destroy the avatars of Spectrier, Glastrier, and Calyrex in the Crown Chamber.
 Page = 3
 Hidden = true
 #-------------------------------

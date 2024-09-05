@@ -149,7 +149,7 @@ Pocket = 1
 Price = 5000
 FieldUse = OnPokemon
 Flags = EvolutionStone,Clothing
-Description = A wreath made from woven- Galarica Twigs. It makes certain species of Pokémon evolve.
+Description = A wreath made from woven Galarica Twigs. It makes certain species of Pokémon evolve.
 #-------------------------------
 [SWEETAPPLE]
 Name = Sweet Apple
@@ -579,7 +579,7 @@ Name = Lumber Axe
 NamePlural = Lumber Axes
 Pocket = 5
 Price = 8000
-Description = Held item which boosts move damage by 25%, but lower's the user's Speed by 1 step on entry.
+Description = Held item which boosts move damage by 25%, but lowers the user's Speed by 1 step on entry.
 #-------------------------------
 [HEATROCK]
 Name = Heat Rock
@@ -1486,6 +1486,15 @@ BattleUse = OnFoe
 Flags = PokeBall,SnagBall
 Description = The best Ball with the ultimate level of performance. It will catch any wild Pokémon without fail.
 #-------------------------------
+[RADIANTBALL]
+Name = Radiant Ball
+NamePlural = Radiant Balls
+Pocket = 3
+Price = 0
+BattleUse = OnFoe
+Flags = PokeBall,SnagBall
+Description = A ball with a mythical quality. It will catch any wild Pokémon without fail, and turn that Pokémon shiny.
+#-------------------------------
 [ULTRABALL]
 Name = Ultra Ball
 NamePlural = Ultra Balls
@@ -1993,7 +2002,7 @@ NamePlural = Jaboca Berries
 Pocket = 5
 Price = 0
 Flags = Berry
-Description = If held by a Pokémon and a physical attack hits it, the attacker takes 1/4th HP  damage.
+Description = If held by a Pokémon and a physical attack hits it, the attacker takes 25% HP damage.
 #-------------------------------
 [ROWAPBERRY]
 Name = Rowap Berry
@@ -2924,3 +2933,20 @@ FieldUse = Direct
 Consumable = true
 Flags = KeyItem
 Description = A USB containing data from a Team Chasm's early days.
+#-------------------------------
+[GILDEDAPRICORN]
+Name = Gilded Apricorn
+NamePlural = Gilded Apricorns
+Pocket = 7
+Price = 0
+Flags = KeyItem
+Description = A gleaming golden fruit. Someone skilled may be able to craft it into a unique Poké Ball.
+#-------------------------------
+[RAGGEDJOURNAL]
+Name = Ragged Journal
+NamePlural = Ragged Journal
+Pocket = 8
+Price = 0
+FieldUse = Direct
+Flags = KeyItem
+Description = A journal that has lost its binding. If you find its scattered pages, you can put them back in place.

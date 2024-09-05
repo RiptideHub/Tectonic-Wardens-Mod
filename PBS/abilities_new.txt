@@ -4,6 +4,11 @@
 Name = Above It All
 Description = After being attacked, uses Parting Shot to switch out.
 #-------------------------------
+[ACIDRAIN]
+Name = Acid Rain
+Description = At the end of each turn, if in rainstorm, each Pokémon not immune to Rainstorm has their defensive stats lowered by 1 step.
+Flags = RainstormSynergy
+#-------------------------------
 [ADAPTIVESKIN]
 Name = Adaptive Skin
 Description = The user raises the related defensive stat by two steps after each hit taken.
@@ -318,11 +323,11 @@ Description = When hit with a special move, hits back instantly with Breach.
 #-------------------------------
 [CURSEDTAIL]
 Name = Cursed Tail
-Description = When a foe hits the Pokémon, they are warned. If they hit the Pokémon again, they become Cursed.
+Description = When a foe hits the Pokémon, they are warned. If they do it again, they become Cursed, taking 25% HP damage per turn.
 #-------------------------------
 [DARING]
 Name = Daring
-Description = When this Pokémon becomes statused, its Attack is raised by four steps.
+Description = When this Pokémon becomes statused, its Attack is raised by three steps.
 #-------------------------------
 [DARKENEDSKIES]
 Name = Darkened Skies
@@ -612,6 +617,10 @@ Description = Immune to Fire-type moves, and raises both attacking stats if hit 
 [FIRSTSTRIKE]
 Name = First Strike
 Description = Powers up priority moves by 30%.
+#-------------------------------
+[FITTOSURVIVE]
+Name = Fit to Survive
+Description = Upon entry, summons Natural Protection for 4 turns.
 #-------------------------------
 [FLAMEWINGS]
 Name = Flame Wings
@@ -916,7 +925,7 @@ Description = Its same-type attack bonus is based on its party members rather th
 #-------------------------------
 [IMPULSIVE]
 Name = Impulsive
-Description = When this Pokémon becomes statused, its Sp. Atk is raised by four steps.
+Description = When this Pokémon becomes statused, its Sp. Atk is raised by three steps.
 #-------------------------------
 [INDESTRUCTIBLE]
 Name = Indestructible
@@ -1016,7 +1025,7 @@ Description = Protected from critical hits. Can't be burned or frostbitten.
 #-------------------------------
 [LIFELINE]
 Name = Lifeline
-Description = At the end of each turn, heals self by 1/20th and a party member by the amount the Pokémon was healed.
+Description = At the end of each turn, heals self by 1/20 and a party member by the amount the Pokémon was healed.
 #-------------------------------
 [LIGHTTRICK]
 Name = Light Trick
@@ -1091,7 +1100,7 @@ Description = Prevents foes whose Sp. Atk is less than its from fleeing.
 #-------------------------------
 [MALICE]
 Name = Malice
-Description = If an attack lowers its HP to half or less, curses the attacker.
+Description = If an attack lowers its HP to half or less, they become Cursed, taking 25% HP damage per turn.
 #-------------------------------
 [MALICIOUSGLOW]
 Name = Malicious Glow
@@ -1703,7 +1712,7 @@ Description = Sets a Light Screen for 4 turns upon entering the battle.
 #-------------------------------
 [STARSALIGN]
 Name = Stars Align
-Description = During eclipse, can't miss and always activates its moves random added effects.
+Description = During eclipse, its move can't miss and always activates their random effects.
 Flags = EclipseSynergy
 #-------------------------------
 [STEAMPOWER]
@@ -1798,6 +1807,11 @@ Name = Summit Spirit
 Description = Boosts Sp. Atk by 30% in hail.
 Flags = HailSynergy
 #-------------------------------
+[SUNBURNING]
+Name = Sun Burning
+Description = At the end of each turn, if in sunshine, each Pokémon not immune to Sunshine has their defensive stats lowered by 1 step.
+Flags = SunSynergy
+#-------------------------------
 [SUNCHASER]
 Name = Sun Chaser
 Description = Boosts Attack by 30% in sunshine.
@@ -1844,7 +1858,7 @@ Description = Deals 25% more move damage for each ally in battle.
 #-------------------------------
 [TENDERIZE]
 Name = Tenderize
-Description = At the end of each round, lowers other numbed Pokémons' Defense and Sp. Def by two steps.
+Description = At the end of each round, lowers other numbed Pokémon's Defense and Sp. Def by two steps.
 #-------------------------------
 [TERRITORIAL]
 Name = Territorial

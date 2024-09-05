@@ -147,7 +147,7 @@ Flags = SunSynergy
 #-------------------------------
 [DRYSKIN]
 Name = Dry Skin
-Description = Restores 1/8 HP in rainstorm, 1/4 when hit by Water-type moves. Loses 1/8 in sunshine, takes 25% more from Fire-type moves.
+Description = Heals 1/8 HP in rainstorm, 1/4 when hit by Water-type moves. Loses 1/8 in sunshine, takes 25% more from Fire-type moves.
 Flags = RainstormSynergy
 #-------------------------------
 [EMERGENCYEXIT]
@@ -472,7 +472,7 @@ Description = Physical moves against it inflict 1/8th max HP damage to the foe.
 #-------------------------------
 [ROYALMAJESTY]
 Name = Royal Majesty
-Description = Makes foes unable to use priority attacks.
+Description = Makes foes unable to use priority moves.
 #-------------------------------
 [SANDPOWER]
 Name = Sand Power
