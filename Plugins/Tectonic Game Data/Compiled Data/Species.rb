@@ -405,6 +405,15 @@ module GameData
             return learnableMoves
         end
 
+        def non_level_moves
+            learnableMoves = learnable_moves
+            @moves.each do |learnset_entry|
+                m = learnset_entry[1]
+                learnableMoves.delete(m)
+            end
+            return learnableMoves
+        end
+
         def get_form_specific_move
             formMoves = form_specific_moves
             return nil if formMoves.empty?
@@ -427,7 +436,7 @@ module GameData
                     SURGINGSTRIKES
                 ]
             elsif @species == :NECROZMA
-                [
+                return [
                     nil,
                     :SUNSTEELSTRIKE, # Dusk Mane (with Solgaleo) (form 1)
                     :MOONGEISTBEAM, # Dawn Wings (with Lunala) (form 2)
