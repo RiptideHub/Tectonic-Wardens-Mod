@@ -10,8 +10,9 @@ class PokeBattle_Battle
         return true if idxParty < 0
         party = pbParty(idxBattler)
         return false if idxParty >= party.length
-        return false unless party[idxParty]
-        if party[idxParty].egg?
+        partyMember = party[idxParty]
+        return false unless partyMember
+        if partyMember.egg?
             partyScene.pbDisplay(_INTL("An Egg can't battle!")) if partyScene
             return false
         end
@@ -23,20 +24,21 @@ class PokeBattle_Battle
             end
             return false
         end
-        if party[idxParty].fainted?
+        unless party[idxParty].able?
             if partyScene
-                if party[idxParty].afraid?
-                    partyScene.pbDisplay(_INTL("{1} is too afraid to battle!", party[idxParty].name))
+                if partyMember.afraid?
+                    partyScene.pbDisplay(_INTL("{1} is too afraid to battle!", partyMember.name))
+                elsif partyMember.hasAbility?(:PACIFIST)
+                    pbMessage(_INTL("{1} refuses to join the battle. It's a pacifist!", partyMember.name))
                 else
-                    partyScene.pbDisplay(_INTL("{1} has no energy left to battle!", party[idxParty].name))
+                    partyScene.pbDisplay(_INTL("{1} has no energy left to battle!", partyMember.name))
                 end
             end
             return false
         end
         if pbFindBattler(idxParty, idxBattler)
             if partyScene
-                partyScene.pbDisplay(_INTL("{1} is already in battle!",
-                   party[idxParty].name))
+                partyScene.pbDisplay(_INTL("{1} is already in battle!", partyMember.name))
             end
             return false
         end
@@ -286,7 +288,7 @@ class PokeBattle_Battle
     def pbMessagesOnReplace(idxBattler, idxParty)
         party = pbParty(idxBattler)
         newPkmnName = party[idxParty].name
-        if party[idxParty].ability == :ILLUSION
+        if %i[ILLUSION INCOGNITO].include?(party[idxParty].ability_id)
             new_index = pbLastInTeam(idxBattler)
             newPkmnName = party[new_index].name if new_index >= 0 && new_index != idxParty
         end
@@ -375,10 +377,10 @@ class PokeBattle_Battle
         end
     end
 
-    def getTypedHazardHPRatio(hazardType, type1, type2 = nil, type3 = nil)
+    def getTypedHazardHPRatio(hazardType, type1, type2 = nil, type3 = nil, ratio: 0.125)
         typeMod = Effectiveness.calculate(hazardType, type1, type2, type3)
         effectivenessMult = typeEffectivenessMult(typeMod)
-        return effectivenessMult / 8.0
+        return effectivenessMult * ratio
     end
 
     # Called when a Pokémon switches in (entry effects, entry hazards).
@@ -394,7 +396,7 @@ class PokeBattle_Battle
         @field.applyEffect(:AmuletCoin) if !battler.opposes? && battler.hasItem?(%i[AMULETCOIN LUCKINCENSE])
 
         # Record money-doubling effect of Fortune ability
-        @field.applyEffect(:Fortune) if !battler.opposes? && battler.hasActiveAbility?(:FORTUNE)
+        @field.applyEffect(:HardWorker) if !battler.opposes? && battler.hasActiveAbility?(:HARDWORKER)
 
         # Record money-doubling effect of Bliss ability
         @field.applyEffect(:Bliss) if !battler.opposes? && battler.hasActiveAbility?(:BLISS)
@@ -464,6 +466,9 @@ class PokeBattle_Battle
                             pbDisplay(_INTL("{1} jumps onto the pointed stones!", battler.pbThis))
                             battler.tryRaiseStat(:SPEED, battler, ability: :ROCKCLIMBER)
                         end
+                    # Rugged
+                    elsif battler.shouldAbilityApply?(:RUGGED,aiCheck)
+                            pbDisplay(_INTL("{1} resists the pointed stones!", battler.pbThis))  
                     else # Takes damage
                         if aiCheck
                             stealthRocksDamage = battler.applyFractionalDamage(getTypedHazardHPRatio, aiCheck: true)
@@ -530,6 +535,26 @@ class PokeBattle_Battle
                     else
                         pbDisplay(_INTL("{1} was caught in a sticky web!", battler.pbThis))
                         battler.pbItemStatRestoreCheck if battler.tryLowerStat(:SPEED, nil, increment: 2)
+                    end
+                end
+
+                # Live Wire
+                if battler.pbOwnSide.effectActive?(:LiveWire) && battler.takesIndirectDamage?(false,aiCheck)
+                    bTypes = battler.pbTypes(true)
+                    liveWireRation = 1.0/12.0
+                    liveWireRation *= 2 if rainy?
+                    getTypedHazardHPRatio = getTypedHazardHPRatio(:ELECTRIC, bTypes[0], bTypes[1], bTypes[2], ratio: liveWireRation)
+                    if getTypedHazardHPRatio > 0
+                        if aiCheck
+                            liveWireDamage = battler.applyFractionalDamage(getTypedHazardHPRatio, aiCheck: true)
+                            hazardDamagePredicted += liveWireDamage
+                            echoln("\t[HAZARD SCORING] #{battler.pbThis} will take #{liveWireDamage} damage from Live Wire")
+                        else
+                            pbDisplay(_INTL("{1} was zapped by the exposed wiring!", battler.pbThis))
+                            if battler.applyFractionalDamage(getTypedHazardHPRatio, true, false, true)
+                                return pbOnActiveOne(battler) # For replacement battler
+                            end
+                        end
                     end
                 end
             end

@@ -67,7 +67,7 @@ class PokeBattle_Battle
     def pbFightMenu(idxBattler)
         battler = @battlers[idxBattler]
         unless canChooseAnyMove?(idxBattler)
-            if pbDisplayConfirmSerious(_INTL("#{battler.pbThis} cannot use any of its moves, and will Struggle if it fights. Go ahead?"))
+            if pbDisplayConfirmSerious(_INTL("{1} cannot use any of its moves, and will Struggle if it fights. Go ahead?", battler.pbThis))
                 return pbAutoChooseMove(idxBattler)
             else
                 return false
@@ -75,7 +75,7 @@ class PokeBattle_Battle
         end
         if battler.effectActive?(:Encore)
             encoreMove = battler.getMoves[battler.pbEncoredMoveIndex]
-            if pbDisplayConfirm(_INTL("#{battler.pbThis} must use #{encoreMove.name} if it fights. Go ahead?"))
+            if pbDisplayConfirm(_INTL("{1} must use {2} if it fights. Go ahead?", battler.pbThis, encoreMove.name))
                 return pbAutoChooseMove(idxBattler)
             else
                 return false
@@ -476,11 +476,6 @@ class PokeBattle_Battle
             commandsEnd = false # Whether to cancel choosing all other actions this round
             loop do
                 cmd = pbCommandMenu(idxBattler, actioned.length == 1)
-                # If being Sky Dropped, can't do anything except use a move
-                if cmd > 0 && @battlers[idxBattler].effectActive?(:SkyDrop)
-                    pbDisplay(_INTL("Sky Drop won't let {1} go!", @battlers[idxBattler].pbThis(true)))
-                    next
-                end
                 case cmd
                 when 0    # Fight
                     break if pbFightMenu(idxBattler)
@@ -513,7 +508,7 @@ class PokeBattle_Battle
                         break
                     end
                 when 6 # Documentation menu
-                    showDocumentationMenu
+                    showDocumentationMenu(self)
                 when -2   # Debug
                     pbDebugMenu
                     next

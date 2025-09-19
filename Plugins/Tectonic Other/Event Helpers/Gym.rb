@@ -44,22 +44,25 @@ def earnBadge(badgeNum)
 	Events.onBadgeEarned.trigger(self,badgeNum-1,$game_variables[BADGE_COUNT_VARIABLE],badgesEarnedArray)
 	
 	giveBattleReport
-
-	postBattleTeamSnapshot(_INTL("Badge #{badgeNum} Team"),true)
 	
 	refreshMapEvents
+end
+
+def postGymSnapshot(badgeNum)
+	postBattleTeamSnapshot(_INTL("Badge {1} Team", badgeNum),true)
 end
 
 def postBattleTeamSnapshot(label=nil,curseMatters=false)
 	snapshotFlags = []
 	snapshotFlags.push("perfect") if battlePerfected?
 	snapshotFlags.push("cursed") if curseMatters && tarotAmuletActive?
+	snapshotFlags.push("showstatuses")
 	teamSnapshot(label,snapshotFlags)
 end
 
 def teamSnapshot(label=nil,flags=[])
 	makeBackupSave
-	return if $PokemonSystem.party_snapshots == 1
+	return if $Options.party_snapshots == 1
 	pbMessage(_INTL("\\wmTaking team snapshot."))
 	PokemonPartyShowcase_Scene.new($Trainer,snapshot: true,snapShotName: label,flags: flags)
 end
@@ -78,6 +81,9 @@ end
 def giveBattleReport()
 	pbMessage(_INTL("\\i[PERFORMANCEANALYZER]The Performance Analyzer whirs, then begins printing."))
 	pbReceiveItem(:BATTLEREPORT)
+	if pbConfirmMessageSerious(_INTL("Use the Battle Report immediately?"))
+		pbUseItem($PokemonBag,:BATTLEREPORT)
+	end
 end
 
 def doubleBattleBenceZoe()

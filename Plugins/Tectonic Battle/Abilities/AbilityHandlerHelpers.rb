@@ -43,8 +43,7 @@ def pbBattleWeatherAbility(ability, weather, battler, battle, ignorePrimal = fal
         end
         return getWeatherSettingEffectScore(weather, battler, battle, duration, false)
     else
-        battle.pbShowAbilitySplash(battler, ability) # NOTE: The ability splash is hidden again in def pbStartWeather.
-        battle.pbStartWeather(battler, weather, baseDuration, true, ignoreFainted)
+        battle.pbStartWeather(battler, weather, baseDuration, true, ignoreFainted, ability)
     end
 end
 
@@ -125,7 +124,9 @@ def entryTrappingAbility(ability, battler, battle, trappingMove, trappingDuratio
     return score
 end
 
-def entryLowestHealingAbility(ability, battler, battle, healingFraction = 0.5, aiCheck: false, &block)
+ENTRY_LOWEST_HEALING_ABILITY_FRACTION = 1.0/3.0
+
+def entryLowestHealingAbility(ability, battler, battle, aiCheck: false, &block)
     lowestId = battler.index
     lowestPercent = battler.hp / battler.totalhp.to_f
     battler.eachAlly do |b|
@@ -138,13 +139,13 @@ def entryLowestHealingAbility(ability, battler, battle, healingFraction = 0.5, a
     lowestIdBattler = battle.battlers[lowestId]
     if aiCheck    
         return 0 unless lowestIdBattler.canHeal?
-        healingScore = lowestIdBattler.applyFractionalHealing(healingFraction, aiCheck: true)
+        healingScore = lowestIdBattler.applyFractionalHealing(ENTRY_LOWEST_HEALING_ABILITY_FRACTION, aiCheck: true)
         return healingScore
     end
     served = (lowestId == battler.index ? "itself" : lowestIdBattler.pbThis)
     healMessage = block.call(served)
     battle.pbShowAbilitySplash(battler, ability)
-    lowestIdBattler.applyFractionalHealing(healingFraction, customMessage: healMessage)
+    lowestIdBattler.applyFractionalHealing(ENTRY_LOWEST_HEALING_ABILITY_FRACTION, customMessage: healMessage)
     battle.pbHideAbilitySplash(battler)
 end
 
@@ -164,4 +165,13 @@ def moveUseTypeChangeAbility(ability, user, move, battle, thirdType = false)
     end
     battle.pbHideAbilitySplash(user)
     return true
+end
+
+DEFENSE_STACKING_ABILITY_STEP_CAP = 4
+def defenseStatStackingAbility(ability, user)
+  return if user.steps[:DEFENSE] >= DEFENSE_STACKING_ABILITY_STEP_CAP && user.steps[:SPECIAL_DEFENSE] >= DEFENSE_STACKING_ABILITY_STEP_CAP
+  caps = {}
+  caps[:DEFENSE] = DEFENSE_STACKING_ABILITY_STEP_CAP
+  caps[:SPECIAL_DEFENSE] = DEFENSE_STACKING_ABILITY_STEP_CAP
+  user.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, ability: ability, statStepCaps: caps)
 end

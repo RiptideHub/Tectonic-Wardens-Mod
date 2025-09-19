@@ -4,6 +4,10 @@ class PokemonPokedexInfo_Scene
     SIGNATURE_COLOR = Color.new(211, 175, 44)
     SIGNATURE_COLOR_LIGHTER = Color.new(228, 207, 128)
 
+    LEVEL_MOVES_PAGE_ID = 6
+    OTHER_MOVES_PAGE_ID = 7
+    FORMS_PAGE_ID = 10
+
     def pageTitles
         return [_INTL("INFO"), _INTL("ABILITIES"), _INTL("STATS"), _INTL("DEF. MATCHUPS"),
                 _INTL("ATK. MATCHUPS"), _INTL("LEVEL UP MOVES"), _INTL("OTHER MOVES"),
@@ -99,7 +103,16 @@ class PokemonPokedexInfo_Scene
         @scroll = -1
         @horizontalScroll = 0
         $PokemonGlobal.dex_tutor_list_sort_mode = 0 if $PokemonGlobal.dex_tutor_list_sort_mode.nil?
+
+        @tutorMovesSorting = nil
+        calculate_other_moves_sorting_proc
+
         @showShinyForms = $PokemonGlobal.dex_forms_shows_shinies || false
+
+        @speciesCalcedFor = nil
+        @formCalcedFor = nil
+        recalculate_other_moves_lists if @page == OTHER_MOVES_PAGE_ID
+
         @title = "Undefined"
         pbSetSystemFont(@sprites["overlay"].bitmap)
         pbUpdateDummyPokemon
@@ -190,11 +203,11 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         @sprites["areamap"].visible       = false if @sprites["areamap"] # (@page==7) if @sprites["areamap"]
         @sprites["areahighlight"].visible = false if @sprites["areahighlight"] # (@page==7) if @sprites["areahighlight"]
         @sprites["areaoverlay"].visible   = false if @sprites["areaoverlay"] # (@page==7) if @sprites["areaoverlay"]
-        @sprites["formfront"].visible     = (@page == 10) if @sprites["formfront"]
-        @sprites["formback"].visible      = (@page == 10) if @sprites["formback"]
-        @sprites["formicon"].visible      = (@page == 10) if @sprites["formicon"]
-        @sprites["moveInfoDisplay"].visible = @page == 6 || @page == 7  if @sprites["moveInfoDisplay"]
-        @sprites["extraInfoOverlay"].visible = @page == 6 || @page == 7 if @sprites["extraInfoOverlay"]
+        @sprites["formfront"].visible     = (@page == FORMS_PAGE_ID) if @sprites["formfront"]
+        @sprites["formback"].visible      = (@page == FORMS_PAGE_ID) if @sprites["formback"]
+        @sprites["formicon"].visible      = (@page == FORMS_PAGE_ID) if @sprites["formicon"]
+        @sprites["moveInfoDisplay"].visible = @page == LEVEL_MOVES_PAGE_ID || @page == OTHER_MOVES_PAGE_ID  if @sprites["moveInfoDisplay"]
+        @sprites["extraInfoOverlay"].visible = @page == LEVEL_MOVES_PAGE_ID || @page == OTHER_MOVES_PAGE_ID if @sprites["extraInfoOverlay"]
         @sprites["extraInfoOverlay"].bitmap.clear if @sprites["extraInfoOverlay"]
         @sprites["selectionarrow"].visible = false
         # Draw page title
@@ -294,6 +307,9 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         formname = ""
         base   = MessageConfig.pbDefaultTextMainColor
         shadow = MessageConfig.pbDefaultTextShadowColor
+
+        mutabilityLabelsX = Graphics.width/2 - 60
+
         for i in @available
             next unless i[2] == @form
             fSpecies = GameData::Species.get_species_form(@species, i[2])
@@ -301,7 +317,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             # ability 1
             abilityTextX = 30
             abilityIDLabelX = 380
-            ability1Y = 76
+            ability1Y = 52
             drawTextEx(overlay, abilityIDLabelX, ability1Y, 450, 1, _INTL("Ability 1"), base, shadow)
             if abilities[0]
                 ability1 = GameData::Ability.get(abilities[0])
@@ -315,12 +331,21 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 end
                 drawFormattedTextEx(overlay, abilityTextX, ability1Y, 450, abilityNameText, abilityNameColor,
               abilityNameShadow)
-                drawTextEx(overlay, abilityTextX, ability1Y + 32, 450, 3, ability1.description, base, shadow)
+
+                ability1Description = addBattleKeywordHighlighting(ability1.description)
+                drawFormattedTextEx(overlay, abilityTextX, ability1Y + 34, 450, ability1Description, base, shadow)
+                
+                # add mutability labels
+                if ability1.is_immutable_ability?
+                    drawFormattedTextEx(overlay, mutabilityLabelsX, ability1Y + 134, 450, "Immutable", base, shadow)
+                elsif ability1.is_uncopyable_ability?
+                    drawFormattedTextEx(overlay, mutabilityLabelsX, ability1Y + 134, 450, "Uncopyable", base, shadow)
+                end
             else
                 drawTextEx(overlay, abilityTextX, 128, 450, 1, _INTL("None"), base, shadow)
             end
             # ability 2
-            ability2Y = 236
+            ability2Y = 219
             drawTextEx(overlay, abilityIDLabelX, ability2Y, 450, 1, _INTL("Ability 2"), base, shadow)
             if abilities[1]
                 ability2 = GameData::Ability.get(abilities[1])
@@ -334,7 +359,16 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 end
                 drawFormattedTextEx(overlay, abilityTextX, ability2Y, 450, abilityNameText, abilityNameColor,
               abilityNameShadow)
-                drawTextEx(overlay, abilityTextX, ability2Y + 32, 450, 3, ability2.description, base, shadow)
+
+                ability2Description = addBattleKeywordHighlighting(ability2.description)
+                drawFormattedTextEx(overlay, abilityTextX, ability2Y + 34, 450, ability2Description, base, shadow)
+                
+                # add mutability labels
+                if ability2.is_immutable_ability?
+                    drawFormattedTextEx(overlay, mutabilityLabelsX, ability2Y + 134, 450, "Immutable", base, shadow)
+                elsif ability2.is_uncopyable_ability?
+                    drawFormattedTextEx(overlay, mutabilityLabelsX, ability2Y + 134, 450, "Uncopyable", base, shadow)
+                end
             else
                 drawTextEx(overlay, abilityTextX, ability2Y, 450, 1, _INTL("None"), base, shadow)
             end
@@ -639,7 +673,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         move_data = GameData::Move.get(move)
         moveName = move_data.name
 
-        isSTAB = move_data.category < 2 && [fSpecies.type1, fSpecies.type2].include?(move_data.type)
+        isSTAB = move_data.category != 2 && [fSpecies.type1, fSpecies.type2].include?(move_data.type)
 
         # Chop letters off of excessively long names to make them fit into the maximum width
         overlay = @sprites["overlay"].bitmap
@@ -707,7 +741,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         for i in @available
             next unless i[2] == @form
             fSpecies = GameData::Species.get_species_form(@species, i[2])
-            learnset = fSpecies.moves
+            learnset = fSpecies.level_moves
             displayIndex = 0
             @scrollableLists = [learnset]
             learnset.each_with_index do |learnsetEntry, listIndex|
@@ -745,63 +779,18 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         base   = MessageConfig.pbDefaultTextMainColor
         shadow = MessageConfig.pbDefaultTextShadowColor
 
+        if @speciesCalcedFor != @species || @formCalcedFor != @form
+            recalculate_other_moves_lists
+            @speciesCalcedFor = @species
+            @formCalcedFor = @form
+        end
+
         selected_move = nil
         for i in @available
             next unless i[2] == @form
-            species_data = GameData::Species.get_species_form(@species, i[2])
-            firstSpecies = species_data
-            while GameData::Species.get(firstSpecies.get_previous_species) != firstSpecies
-                firstSpecies = GameData::Species.get(firstSpecies.get_previous_species)
-            end
-
-            # Create the seperate moves list
-            compatibleMoves = species_data.learnable_moves
-            compatiblePhysMoves = compatibleMoves.select do |move|
-                movaData = GameData::Move.get(move)
-                next movaData.category == 0 || movaData.category == 3
-            end
-            compatibleSpecMoves = compatibleMoves.select do |move|
-                movaData = GameData::Move.get(move)
-                next movaData.category == 1 || movaData.category == 3
-            end
-            compatibleStatusMoves = compatibleMoves.select do |move|
-                movaData = GameData::Move.get(move)
-                next movaData.category == 2
-            end
-
-            # sort the moves lists
-            tutorMovesSorting = Proc.new { |moveA, moveB|
-                moveAData = GameData::Move.get(moveA)
-                moveBData = GameData::Move.get(moveB)
-                case $PokemonGlobal.dex_tutor_list_sort_mode
-                when 0
-                    next moveAData.name <=> moveBData.name
-                when 1
-                    if moveAData.base_damage == moveBData.base_damage
-                        next moveAData.name <=> moveBData.name
-                    else
-                        next moveBData.base_damage <=> moveAData.base_damage # reversed
-                    end
-                when 2
-                    if moveAData.type == moveBData.type
-                        next moveAData.name <=> moveBData.name
-                    else
-                        next GameData::Type.get(moveAData.type).id_number <=> GameData::Type.get(moveBData.type).id_number
-                    end
-                end
-            }
-            compatiblePhysMoves.sort!{ |moveA, moveB|
-                tutorMovesSorting.call(moveA, moveB)
-            }
-            compatibleSpecMoves.sort!{ |moveA, moveB|
-                tutorMovesSorting.call(moveA, moveB)
-            }
-            compatibleStatusMoves.sort!{ |moveA, moveB|
-                tutorMovesSorting.call(moveA, moveB)
-            }
-
+            
             # render the moves lists
-            @scrollableLists = [compatiblePhysMoves, compatibleSpecMoves, compatibleStatusMoves]
+            @scrollableLists = [@compatiblePhysMoves, @compatibleSpecMoves, @compatibleStatusMoves]
             categoryName = [_INTL("Physical"),_INTL("Special"),_INTL("Status")][@horizontalScroll]
             drawFormattedTextEx(overlay, MOVE_LIST_X_LEFT, 54, 192, "<ac><b>#{categoryName}</b></ac>", base, shadow)
             displayIndex = 0
@@ -858,7 +847,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
 
             # Show pre-volutions
             unless prevolutions.empty?
-                prevoTitle = _INTL("<u>Pre-Evolutions of {1}</u>", @title)
+                prevoTitle = _INTL("<u>Pre-Evolutions</u>")
                 drawFormattedTextEx(overlay, xLeft, coordinateY, 450, prevoTitle, base, shadow)
                 coordinateY += 34
 
@@ -872,10 +861,10 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                     methodDescription = describeEvolutionMethod(method, parameter)
                     # Draw preevolution description
                     color = index == @evolutionIndex ? Color.new(255, 100, 80) : base
-                    evolutionLineText = _INTL("Evolves from {1} {2}",evolutionName,methodDescription)
-                    drawTextEx(overlay, xLeft, coordinateY, 450, 2, evolutionLineText, color, shadow)
+                    evolutionLineText = _INTL("<b>{1}</b> {2}",evolutionName,methodDescription)
+                    drawFormattedTextEx(overlay, xLeft, coordinateY, 450, evolutionLineText, color, shadow)
                     coordinateY += 30
-                    coordinateY += 30 if method != :Level
+                    coordinateY += 30 if overlay.text_size(evolutionLineText).width > 450
                     index += 1
                 end
 
@@ -883,41 +872,33 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             end
 
             # Show evolutions
-            if @species == :EEVEE || !allEvolutions.empty?
-                evoTitle = _INTL("<u>Evolutions of {1}</u>", @title)
+            unless allEvolutions.empty?
+                evoTitle = _INTL("<u>Evolutions</u>")
                 drawFormattedTextEx(overlay, xLeft, coordinateY, 450, evoTitle, base, shadow)
                 coordinateY += 34
 
-                if @species == :EEVEE
-                    drawTextEx(overlay, xLeft, coordinateY, 450, 7, _INTL("Evolves into Vaporeon with a Water Stone, " +
-                        _INTL("Jolteon with a Thunder Stone, Flareon with a Fire Stone, Espeon with a Dawn Stone, ") +
-                            _INTL("Umbreon with a Dusk Stone, Leafeon with a Leaf Stone, Glaceon with an Ice Stone, ") +
-                                _INTL("Sylveon with a Moon Stone, and Giganteon at level 40.")
-                                                                        ), base, shadow)
-                elsif !allEvolutions.empty?
-                    allEvolutions.each do |fromSpecies, evolutions|
-                        evolutions.each do |evolution|
-                            species = evolution[0]
-                            method = evolution[1]
-                            parameter = evolution[2]
-                            next if method.nil? || species.nil?
-                            speciesData = GameData::Species.get_species_form(species, i[2])
-                            next if speciesData.nil?
-                            @evolutionsArray.push(evolution)
-                            evolutionName = speciesData.name
-                            methodDescription = describeEvolutionMethod(method, parameter)
-                            # Draw evolution description
-                            color = index == @evolutionIndex ? Color.new(255, 100, 80) : base
-                            fromSpeciesName = GameData::Species.get(fromSpecies).name
-                            evolutionTextLine = _INTL("Evolves into {1} {2}",evolutionName,methodDescription)
-                            if fromSpecies != fSpecies.species
-                                evolutionTextLine = evolutionTextLine + " " +  _INTL("(through {1})",fromSpeciesName)
-                            end
-                            drawTextEx(overlay, xLeft, coordinateY, 450, 3, evolutionTextLine, color, shadow)
-                            coordinateY += 30
-                            coordinateY += 30 if method != :Level || fromSpecies != fSpecies.species
-                            index += 1
+                allEvolutions.each do |fromSpecies, evolutions|
+                    evolutions.each do |evolution|
+                        species = evolution[0]
+                        method = evolution[1]
+                        parameter = evolution[2]
+                        next if method.nil? || species.nil?
+                        speciesData = GameData::Species.get_species_form(species, i[2])
+                        next if speciesData.nil?
+                        @evolutionsArray.push(evolution)
+                        evolutionName = speciesData.name
+                        methodDescription = describeEvolutionMethod(method, parameter)
+                        # Draw evolution description
+                        color = index == @evolutionIndex ? Color.new(255, 100, 80) : base
+                        fromSpeciesName = GameData::Species.get(fromSpecies).name
+                        evolutionTextLine = _INTL("<b>{1}</b> {2}",evolutionName,methodDescription)
+                        if fromSpecies != fSpecies.species
+                            evolutionTextLine = evolutionTextLine + " " +  _INTL("(through {1})",fromSpeciesName)
                         end
+                        drawFormattedTextEx(overlay, xLeft, coordinateY, 450, evolutionTextLine, color, shadow)
+                        coordinateY += 30
+                        coordinateY += 30 if overlay.text_size(evolutionTextLine).width > 450
+                        index += 1
                     end
                 end
             end
@@ -930,48 +911,15 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         end
     end
 
-    def getNameForEncounterType(encounterType)
-        case encounterType
-        when :Land
-            return _INTL("Grass")
-        when :LandSparse
-            return _INTL("Sparse Grass")
-        when :LandTall
-            return _INTL("Tall Grass")
-        when :Special
-            return _INTL("Other")
-        when :FloweryGrass
-            return _INTL("Yellow Flowers")
-        when :FloweryGrass2
-            return _INTL("Blue Flowers")
-        when :SewerWater
-            return _INTL("Sewage")
-        when :SewerFloor
-            return _INTL("Dirty Floor")
-        when :DarkCave
-            return _INTL("Dark Ground")
-        when :Mud
-            return _INTL("Mud")
-        when :Puddle
-            return _INTL("Puddle")
-        when :LandTinted
-            return _INTL("Secret Grass")
-        when :Cloud
-            return _INTL("Dark Clouds")
-        when :ActiveWater
-            return _INTL("Deep Water")
-        when :FishingContest
-            return _INTL("Surfing")
-        end
-        return _INTL("Unknown")
-    end
-
     def getEncounterableAreas(species)
         areas = []
         GameData::Encounter.each_of_version($PokemonGlobal.encounter_version) do |enc_data|
-            if HIDDEN_MAPS.key?(enc_data.map)
-                switchID = HIDDEN_MAPS[enc_data.map]
-                next unless $game_switches[switchID]
+            map_is_hidden = false
+            if hidden_map_encounter_switch_hash.key?(enc_data.map)
+                switchID = hidden_map_encounter_switch_hash[enc_data.map]
+                if !$game_switches[switchID] then
+                    map_is_hidden = true
+                end
             end
 
             enc_data.types.each do |type, slots|
@@ -988,7 +936,15 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                         pbGetMessage(MessageTypes::MapNames, enc_data.map)
                     rescue StandardError
                         nil
-                    end || "???"
+                    end || "???" # This line doesn't seem to work as intended but I don't want to mess with it unnecessarily
+                    # Handle errors with missing maps
+                    if mapName == nil || mapName == "" then
+                        mapName = _INTL("Unknown Map")
+                    end
+                    # Obscure map name if secret map is undiscovered
+                    if map_is_hidden then
+                        mapName = "???"
+                    end
                     encounterTypeName = getNameForEncounterType(type)
 
                     encounterChance = "%g" % (100 * (slot[0] / totalEncounterWeight.to_f)).round(1)
@@ -1168,11 +1124,11 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
 
     def pbScroll
         @scroll = 0
-        @sprites["leftarrow"].visible = @page == 7
-        @sprites["rightarrow"].visible = @page == 7
+        @sprites["leftarrow"].visible = @page == OTHER_MOVES_PAGE_ID
+        @sprites["rightarrow"].visible = @page == OTHER_MOVES_PAGE_ID
         drawPage(@page)
 
-        linesShown = @page == 6 ? 7 : 6
+        linesShown = @page == LEVEL_MOVES_PAGE_ID ? 7 : 6
 
         loop do
             Graphics.update
@@ -1200,7 +1156,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                     doRefresh = true
                 end
             elsif Input.repeat?(Input::LEFT)
-                if @page == 7
+                if @page == OTHER_MOVES_PAGE_ID
                     if @horizontalScroll > 0
                         pbPlayCursorSE
                         @horizontalScroll -= 1
@@ -1214,7 +1170,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                     end
                 end
             elsif Input.repeat?(Input::RIGHT)
-                if @page == 7
+                if @page == OTHER_MOVES_PAGE_ID
                     if @horizontalScroll < @scrollableLists.length - 1
                         pbPlayCursorSE
                         @horizontalScroll += 1
@@ -1252,14 +1208,8 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 drawPage(@page)
                 break
             elsif Input.trigger?(Input::SPECIAL)
-                if @page == 7 # Move tutor list
-                    pbPlayDecisionSE
-                    if $PokemonGlobal.dex_tutor_list_sort_mode >= 2
-                        $PokemonGlobal.dex_tutor_list_sort_mode = 0
-                    else
-                        $PokemonGlobal.dex_tutor_list_sort_mode += 1
-                    end
-                    alertToDexTutorListSortMode
+                if @page == OTHER_MOVES_PAGE_ID
+                    toggle_other_moves_list_sort_mode
                     @scroll = 0
                     doRefresh = true
                 end
@@ -1268,6 +1218,82 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         end
         @sprites["leftarrow"].visible = false
         @sprites["rightarrow"].visible = false
+    end
+
+    def toggle_other_moves_list_sort_mode
+        pbPlayDecisionSE
+        if $PokemonGlobal.dex_tutor_list_sort_mode >= 2
+            $PokemonGlobal.dex_tutor_list_sort_mode = 0
+        else
+            $PokemonGlobal.dex_tutor_list_sort_mode += 1
+        end
+
+        calculate_other_moves_sorting_proc
+
+        recalculate_other_moves_lists
+
+        alertToDexTutorListSortMode
+    end
+
+    def calculate_other_moves_sorting_proc
+        case $PokemonGlobal.dex_tutor_list_sort_mode
+        when 0
+            @tutorMovesSorting = Proc.new { |moveA, moveB|
+                moveAData = GameData::Move.get(moveA)
+                moveBData = GameData::Move.get(moveB)
+                next moveAData.name <=> moveBData.name
+            }
+        when 1
+            @tutorMovesSorting = Proc.new { |moveA, moveB|
+                moveAData = GameData::Move.get(moveA)
+                moveBData = GameData::Move.get(moveB)
+                if moveAData.base_damage == moveBData.base_damage
+                    next moveAData.name <=> moveBData.name
+                else
+                    next moveBData.base_damage <=> moveAData.base_damage # reversed
+                end
+            }
+        when 2
+            @tutorMovesSorting = Proc.new { |moveA, moveB|
+                moveAData = GameData::Move.get(moveA)
+                moveBData = GameData::Move.get(moveB)
+                if moveAData.type == moveBData.type
+                    next moveAData.name <=> moveBData.name
+                else
+                    next GameData::Type.get(moveAData.type).id_number <=> GameData::Type.get(moveBData.type).id_number
+                end
+            }
+        end
+    end
+
+    def recalculate_other_moves_lists
+        species_data = GameData::Species.get_species_form(@species, @form)
+
+        # Create the seperate moves list
+        compatibleMoves = species_data.learnable_moves
+        @compatiblePhysMoves = compatibleMoves.select do |move|
+            movaData = GameData::Move.get(move)
+            next movaData.category == 0 || movaData.category == 3
+        end
+        @compatibleSpecMoves = compatibleMoves.select do |move|
+            movaData = GameData::Move.get(move)
+            next movaData.category == 1 || movaData.category == 3
+        end
+        @compatibleStatusMoves = compatibleMoves.select do |move|
+            movaData = GameData::Move.get(move)
+            next movaData.category == 2
+        end
+
+        # sort the moves lists
+        @compatiblePhysMoves.sort!{ |moveA, moveB|
+            @tutorMovesSorting.call(moveA, moveB)
+        }
+        @compatibleSpecMoves.sort!{ |moveA, moveB|
+            @tutorMovesSorting.call(moveA, moveB)
+        }
+        @compatibleStatusMoves.sort!{ |moveA, moveB|
+            @tutorMovesSorting.call(moveA, moveB)
+        }
     end
 
     def alertToDexTutorListSortMode
@@ -1329,11 +1355,11 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
 
             # Use count
             useCount = @speciesUseData[entry[:species]]
-            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("Use count: #{useCount[0]}, #{useCount[1]}"), base, shadow)
+            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("Use count: {1}, {2}", useCount[0], useCount[1]), base, shadow)
             coordinateY += 32
 
             # Earliest level accessible
-            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("Earliest level: #{fSpecies.earliest_available}"), base, shadow)
+            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("Earliest level: {1}", fSpecies.earliest_available), base, shadow)
             coordinateY += 32
 
             # Speed tier
@@ -1351,16 +1377,16 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
 
             fasterThanPercentOfMetaGame = numberFaster.to_f / total.to_f
             fasterThanPercentOfMetaGame = (fasterThanPercentOfMetaGame * 10_000).floor / 100.0
-            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("Faster than #{fasterThanPercentOfMetaGame}% of final evos"), base,
+            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("Faster than {1}% of final evos", fasterThanPercentOfMetaGame), base,
               shadow)
             coordinateY += 32
 
             # Pokeball catch chance
-            totalHP = calcHPGlobal(fSpecies.base_stats[:HP], 40, 8)
+            totalHP = calcStatGlobal(fSpecies.base_stats[:HP], 40, 8, hp: true)
             currentHP = (totalHP * 0.15).floor
             chanceToCatch = theoreticalCaptureChance(:NONE, currentHP, totalHP, fSpecies.catch_rate)
             chanceToCatch = (chanceToCatch * 10_000).floor / 100.0
-            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("#{chanceToCatch}% chance to catch at level 40, %15 health"), base,
+            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("{1}% chance to catch at level 40, %15 health", chanceToCatch), base,
               shadow)
             coordinateY += 32
 
@@ -1369,7 +1395,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             typesOfCoverage = get_bnb_coverage(fSpecies)
 
             drawTextEx(overlay, xLeft, coordinateY, 450, 1,
-                _INTL("BnB coverage #{typesOfCoverage.length}: #{typesOfCoverage[0..[2, typesOfCoverage.length].min]}"), base, shadow)
+                _INTL("BnB coverage {1}: {2}", typesOfCoverage.length, typesOfCoverage[0..[2, typesOfCoverage.length].min]), base, shadow)
             coordinateY += 32
             if typesOfCoverage.length > 2
                 for index in 1..10
@@ -1402,11 +1428,11 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
 
             coversPercentOfMetaGame = numberCovered.to_f / total.to_f
             coversPercentOfMetaGame = (coversPercentOfMetaGame * 10_000).floor / 100.0
-            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("Covers #{coversPercentOfMetaGame}% of final evos"), base,
+            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("Covers {1}% of final evos", coversPercentOfMetaGame), base,
               shadow)
             coordinateY += 32
 
-            drawTextEx(overlay, xLeft, coordinateY, 450, 6, _INTL("Notes: #{fSpecies.notes}"), base, shadow)
+            drawTextEx(overlay, xLeft, coordinateY, 450, 6, _INTL("Notes: {1}", fSpecies.notes), base, shadow)
             coordinateY += 32
         end
     end
@@ -1444,7 +1470,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 if @page == 1
                     pbPlayCloseMenuSE
                     break
-                elsif @page == 6 || @page == 7 # Move lists
+                elsif @page == LEVEL_MOVES_PAGE_ID || @page == OTHER_MOVES_PAGE_ID
                     pbPlayDecisionSE
                     pbScroll
                     dorefresh = true
@@ -1458,7 +1484,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                     else
                         pbPlayBuzzerSE
                     end
-                elsif @page == 10 # Forms
+                elsif @page == FORMS_PAGE_ID # Forms
                     if @available.length > 1
                         pbPlayDecisionSE
                         pbChooseForm
@@ -1556,16 +1582,10 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             elsif Input.pressex?(:NUMBER_0)
                 dorefresh = true if moveToPage(10)
             elsif Input.trigger?(Input::SPECIAL)
-                if @page == 7 # Move tutor list
-                    pbPlayDecisionSE
-                    if $PokemonGlobal.dex_tutor_list_sort_mode >= 2
-                        $PokemonGlobal.dex_tutor_list_sort_mode = 0
-                    else
-                        $PokemonGlobal.dex_tutor_list_sort_mode += 1
-                    end
-                    alertToDexTutorListSortMode
+                if @page == OTHER_MOVES_PAGE_ID
+                    toggle_other_moves_list_sort_mode
                     dorefresh = true
-                elsif @page == 10
+                elsif @page == FORMS_PAGE_ID
                     pbPlayDecisionSE
                     @showShinyForms = !@showShinyForms
                     $PokemonGlobal.dex_forms_shows_shinies = @showShinyForms

@@ -5,6 +5,7 @@ class MoveDex_Scene
 	MOVE_LIST_SUMMARY_MOVE_NAMES_Y_INIT = 56
     MOVE_LIST_X_LEFT = 32
     SIGNATURE_COLOR = Color.new(211, 175, 44)
+    LEARNABLE_PARTY_COLOR = Color.new(175, 211, 44)
 
     def generateMoveList
         moveList = []
@@ -105,10 +106,9 @@ class MoveDex_Scene
 
         textpos = [
             [_INTL("MoveDex"), Graphics.width / 8, -2, 2, zBase, zShadow],
+            ["(#{@moveList.length.to_s})", 160, -2, 2, base, shadow],
         ]
         if @searchResults
-            textpos.push([_INTL("Search results"), 112, 302, 2, base, shadow])
-            textpos.push([@moveList.length.to_s, 112, 334, 2, base, shadow])
             textpos.push([_INTL("ACTION/Z to search further."), Graphics.width - 5, -2, 1, zBase, zShadow])
         else
             textpos.push([_INTL("ACTION/Z to search."), Graphics.width - 5, -2, 1, zBase, zShadow])
@@ -187,6 +187,15 @@ class MoveDex_Scene
             shadow = MessageConfig.pbDefaultTextShadowColor
         end
         return moveName, shadow
+    end
+
+    def partyCanLearnMove(move_data)
+        $Trainer.party.each do |partyMember|
+            if partyMember.learnable_moves(false).include?(move_data)
+                return true
+            end
+        end
+        return false
     end
 
     def navigateMoveDex
@@ -278,6 +287,10 @@ class MoveDex_Scene
             elsif Input.trigger?(Input::ACTION)
                 pbPlayDecisionSE
                 pbDexSearch
+            elsif Input.pressex?(0x46) && $DEBUG # F, for Filter
+                acceptSearchResults do
+                    debugFilterToNonSignature
+                end
             else
                 for key_index in 1..6 do
                     if Input.pressex?("NUMBER_#{key_index}".to_sym)

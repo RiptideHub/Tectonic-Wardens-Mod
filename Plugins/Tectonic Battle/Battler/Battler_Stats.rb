@@ -30,6 +30,10 @@ class PokeBattle_Battler
         return owner.tribalBonus.getTribeBonusStats(self)[stat]
     end
 
+    def allStatBonus
+        return 0
+    end
+
     def puzzleRoom?
         return @battle.field.effectActive?(:PuzzleRoom)
     end
@@ -100,12 +104,13 @@ class PokeBattle_Battler
 
     # Don't use for HP
     def recalcStat(stat, base)
-        return calcStatGlobal(base, @level, @pokemon.ev[stat], hasActiveAbility?(:STYLISH))
+        return calcStatGlobal(base, @level, @pokemon.ev[stat], stylish: hasActiveAbility?(:STYLISH), accumulation: hasActiveAbility?(:ACCUMULATION))
     end
 
     def base_attack
         return @effects[:BaseAttack] if effectActive?(:BaseAttack)
         attack_bonus = tribalBonusForStat(:ATTACK)
+        attack_bonus += allStatBonus
         if hasActiveItem?(%i[POWERLOCK POWERKEY])
             return recalcStat(:ATTACK, OFFENSIVE_LOCK_STAT) + attack_bonus
         else
@@ -116,6 +121,7 @@ class PokeBattle_Battler
     def base_defense
         return @effects[:BaseDefense] if effectActive?(:BaseDefense)
         defense_bonus = tribalBonusForStat(:DEFENSE)
+        defense_bonus += allStatBonus
         if hasActiveItem?(:GUARDLOCK)
             return recalcStat(:DEFENSE, DEFENSIVE_LOCK_STAT) + defense_bonus
         elsif hasActiveItem?(:POWERKEY)
@@ -128,6 +134,7 @@ class PokeBattle_Battler
     def base_special_attack
         return @effects[:BaseSpecialAttack] if effectActive?(:BaseSpecialAttack)
         spatk_bonus = tribalBonusForStat(:SPECIAL_ATTACK)
+        spatk_bonus += allStatBonus
         if hasActiveItem?(%i[ENERGYLOCK ENERGYKEY])
             return recalcStat(:SPECIAL_ATTACK, OFFENSIVE_LOCK_STAT) + spatk_bonus
         else
@@ -138,6 +145,7 @@ class PokeBattle_Battler
     def base_special_defense
         return @effects[:BaseSpecialDefense] if effectActive?(:BaseSpecialDefense)
         spdef_bonus = tribalBonusForStat(:SPECIAL_DEFENSE)
+        spdef_bonus += allStatBonus
         if hasActiveItem?(:WILLLOCK)
             return recalcStat(:SPECIAL_DEFENSE, DEFENSIVE_LOCK_STAT) + spdef_bonus
         elsif hasActiveItem?(:ENERGYKEY)
@@ -150,6 +158,7 @@ class PokeBattle_Battler
     def base_speed
         return @effects[:BaseSpeed] if effectActive?(:BaseSpeed)
         speed_bonus = tribalBonusForStat(:SPEED)
+        speed_bonus += allStatBonus
         return @speed + speed_bonus
     end
 
@@ -229,7 +238,7 @@ class PokeBattle_Battler
             defenseMult = BattleHandlers.triggerDefenseCalcUserItem(item, self, battle, defenseMult)
         end
         
-        defenseMult *= 1.2 if hasTribeBonus?(:SCRAPPER)
+        defenseMult *= 1.3 if hasTribeBonus?(:SCRAPPER)
 
         # Hail
         if @battle.icy? && pbHasType?(:ICE)
@@ -262,7 +271,7 @@ class PokeBattle_Battler
             spDefMult = BattleHandlers.triggerSpecialDefenseCalcUserItem(item, self, battle, spDefMult)
         end
         
-        spDefMult *= 1.2 if hasTribeBonus?(:RADIANT)
+        spDefMult *= 1.3 if hasTribeBonus?(:RADIANT)
 
         # Sandstorm
         if @battle.sandy? && pbHasType?(:ROCK)
@@ -293,21 +302,33 @@ class PokeBattle_Battler
         
         # Other effects
         unless afterSwitching
-            speedMult *= 2 if pbOwnSide.effectActive?(:Tailwind)
-            speedMult /= 2 if pbOwnSide.effectActive?(:Swamp)
-            speedMult *= 2 if effectActive?(:OnDragonRide)
+            speedMult *= 2.0 if pbOwnSide.effectActive?(:Tailwind)
+            speedMult /= 2.0 if pbOwnSide.effectActive?(:Swamp)
+            speedMult *= 2.0 if effectActive?(:OnDragonRide)
         end
         
         # Numb
         numbRelevant = numbed?
         numbRelevant = false if afterSwitching && hasActiveAbilityAI?(:NATURALCURE)
         if numbRelevant
-            speedMult /= 2
-            speedMult /= 2 if pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
-            speedMult /= 2 if shouldAbilityApply?(:CLEANFREAK, aiCheck)
+            speedMult /= 2.0
+            speedMult /= 2.0 if pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+            speedMult /= 2.0 if shouldAbilityApply?(:CLEANFREAK, aiCheck)
+        end
+
+        # Waterlog
+        waterlogRelevant = waterlogged?
+        waterlogRelevant = false if afterSwitching && hasActiveAbilityAI?(:NATURALCURE)
+        if waterlogRelevant
+            speedMult /= 2.0
+            speedMult /= 2.0 if pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+            speedMult /= 2.0 if shouldAbilityApply?(:CLEANFREAK, aiCheck)
         end
 
         speedMult *= applySpeedTriggers(move,true) if aiCheck
+
+        # Stampede tribe
+        speedMult *= 1.15 if hasTribeBonus?(:STAMPEDE)
 
         # Calculation
         return [(speed * speedMult).round, 1].max

@@ -15,7 +15,7 @@ def stowFollowerIfActive()
 end
 
 def unstowFollowerIfAllowed()
-	if $PokemonSystem.followers == 0
+	if $Options.followers == 0
 		pbToggleFollowingPokemon("on",!$PokemonGlobal.bicycle)
 		pbWait(Graphics.frame_rate)
 	end
@@ -87,6 +87,7 @@ def healPartyWithDelay(skipAidKit = false)
 	pbMEPlay('Pkmn healing')
 	pbWait(68)
 	refillAidKit unless skipAidKit
+    refreshFollow(false)
 end
 
 def pumpedUp?

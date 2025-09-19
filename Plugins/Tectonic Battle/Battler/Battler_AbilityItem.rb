@@ -78,8 +78,8 @@ class PokeBattle_Battler
         trainerGroup&.each do |trainer|
             trainerName = trainer.name
             if trainer.tribalBonus.hasTribeBonus?(:SCOURGE)
-                healingMessage = _INTL("#{trainerName}'s team takes joy in #{pbThis(true)}'s pain!")
-                healingMessage = "The opposing #{healingMessage}" if opposingIndex == 1
+                healingMessage = _INTL("{1}'s team takes joy in {2}'s pain!", trainerName, pbThis(true))
+                healingMessage = _INTL("The opposing {1}", healingMessage) if opposingIndex == 1
                 @battle.pbShowTribeSplash(opposingSide, :SCOURGE, trainerName: trainerName)
                 @battle.pbDisplay(healingMessage)
                 trainer.party.each_with_index do |partyMember, index|
@@ -189,7 +189,15 @@ class PokeBattle_Battler
                 @battle.pbSetSeen(self)
             end
         end
-        disableEffect(:GastroAcid) if immutableAbility?
+        if illusion? && oldAbilities.include?(:INCOGNITO) && !hasAbility?(:INCOGNITO)
+            disableEffect(:Illusion)
+            unless effectActive?(:Transform)
+                @battle.scene.pbChangePokemon(self, @pokemon)
+                @battle.pbDisplay(_INTL("{1}'s {2} wore off!", pbThis, getAbilityName(:INCOGNITO)))
+                @battle.pbSetSeen(self)
+            end
+        end
+        disableEffect(:AbilitySupressed) if immutableAbility?
         disableEffect(:SlowStart) unless hasAbility?(:SLOWSTART)
         
         # Revert form if Flower Gift/Forecast was lost
@@ -235,10 +243,11 @@ class PokeBattle_Battler
         itemToRecycle = recyclableItem
         return unless canAddItem?(itemToRecycle)
         showMyAbilitySplash(ability) if ability
+        @battle.pbAnimation(:RECYCLE, self, nil)
         giveItem(itemToRecycle)
         setRecycleItem(nil)
         recyclingMsg ||= _INTL("{1} recycled one {2}!", pbThis, getItemName(itemToRecycle))
-        battle.pbDisplay(recyclingMsg)
+        @battle.pbDisplay(recyclingMsg)
         hideMyAbilitySplash if ability
         pbHeldItemTriggerCheck
     end
@@ -343,12 +352,13 @@ class PokeBattle_Battler
         end
     end
 
-    def pbItemHPHealCheck(item_to_use = nil, fling = false)
+    def pbItemHPHealCheck(item_to_use = nil, fling = false, items_to_skip: [])
         return if afraid?
 
         # Check for berry filching
         unless item_to_use
             eachActiveItem do |item|
+                next if items_to_skip.include?(item)
                 next unless GameData::Item.get(item).is_berry?
                 filcher = nil
 
@@ -360,7 +370,7 @@ class PokeBattle_Battler
                 }
     
                 # If the berry is being filched
-                if filcher && BattleHandlers.triggerHPHealItem(item, filcher, @battle, false, self, :EXTORTER)
+                if filcher && BattleHandlers.triggerHPHealItem(item, filcher, @battle, false, self, :EXTORTER, items_to_skip)
                     filcher.pbHeldItemTriggered(item, false)
                     consumeItem(item)
                 end
@@ -372,8 +382,9 @@ class PokeBattle_Battler
         itemsToCheck = forced ? [item_to_use] : activeItems.clone
 
         itemsToCheck.each do |item|
+            next if items_to_skip.include?(item)
             # Check for user
-            next unless BattleHandlers.triggerHPHealItem(item, self, @battle, forced, nil, nil)
+            next unless BattleHandlers.triggerHPHealItem(item, self, @battle, forced, nil, nil, items_to_skip)
             pbHeldItemTriggered(item, !forced, fling)
         end
 

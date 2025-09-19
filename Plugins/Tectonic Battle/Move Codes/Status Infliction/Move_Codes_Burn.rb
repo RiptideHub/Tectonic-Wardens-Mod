@@ -42,7 +42,7 @@ class PokeBattle_Move_RaiseAllySpd4OrBurnFoe < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         if @buffing
             if target.substituted? && !ignoresSubstitute?(user)
-                @battle.pbDisplay(_INTL("#{target.pbThis} is protected behind its substitute!")) if show_message
+                @battle.pbDisplay(_INTL("{1} is protected behind its substitute!", target.pbThis)) if show_message
                 return true
             end
         else
@@ -118,5 +118,41 @@ class PokeBattle_Move_EmpoweredIgnite < PokeBattle_Move
             b.applyBurn(user) if b.canBurn?(user, true, self)
         end
         transformType(user, :FIRE)
+    end
+end
+
+#===============================================================================
+# Multi-hit move that can burn.
+#===============================================================================
+class PokeBattle_Move_HitTwoToFiveTimesBurn < PokeBattle_BurnMove
+    include RandomHitable
+end
+
+#===============================================================================
+# Burns the target and add the Fire-type to it.
+#===============================================================================
+class PokeBattle_Move_BurnAddFireType < PokeBattle_Move
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        if !target.canBurn?(_user, false, self) && !target.canChangeTypeTo?(:FIRE)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since {1} can't be burned or gain Fire-type!", target.pbThis(true)))
+            end
+        end 
+        return false
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        if target.canBurn?(_user, false, self)
+            target.applyBurn(_user)
+        end
+        if target.canChangeTypeTo?(:FIRE)
+            target.applyEffect(:Type3, :FIRE)
+        end
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        score = getBurnEffectScore(user, target)
+        score += 60
+        return score
     end
 end

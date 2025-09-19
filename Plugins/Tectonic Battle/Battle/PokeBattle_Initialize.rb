@@ -167,6 +167,9 @@ class PokeBattle_Battle
         else
             @struggle = PokeBattle_Struggle.new(self, nil)
         end
+
+        BattleHandlers.loadDataDependentHandlers
+        
         # System for learning the player's abilities
         @knownAbilities = {}
         @party1.each do |pokemon|
@@ -198,6 +201,10 @@ class PokeBattle_Battle
         @party2.each do |pokemon|
             initializeKnownItems(pokemon)
         end
+
+        # Set all moves to their max PP
+        # and apply tribal bonuses to max PP
+        setMaxPPs(true)
     end
 
     def initializeKnownMoves(pokemon)
@@ -227,5 +234,31 @@ class PokeBattle_Battle
         return false unless pokemon.likelyHasSTAB?(move.type) # Don't know off-type moves
         return false if move.category == 2 # Don't know status moves
         return true
+    end
+
+    def setMaxPPs(includeMults)
+        @player&.each do |trainer|
+            setMaxPPsForTrainer(trainer,includeMults)
+        end
+
+        @opponent&.each do |trainer|
+            setMaxPPsForTrainer(trainer,includeMults)
+        end
+    end
+
+    def setMaxPPsForTrainer(trainer,includeMults)
+        trainer.party.each do |pokemon|
+            pokemon.moves.each do |move|
+                pp_mult = 1
+                if includeMults
+                    if trainer.tribalBonus.hasTribeBonus?(:TACTICIAN) && move.priority > 0
+                        pp_mult *= 2.0
+                    end
+                end
+
+                move.pp_mult = pp_mult
+                move.restore_pp
+            end
+        end
     end
 end

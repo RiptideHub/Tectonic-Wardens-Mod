@@ -121,7 +121,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:FEATHERCOAT,
 
 BattleHandlers::DamageCalcTargetAbility.add(:REALIST,
   proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
-    if %i[DRAGON FAIRY].include?(type)
+    if %i[DRAGON FAIRY GHOST].include?(type)
       mults[:base_damage_multiplier] /= 2
       target.aiLearnsAbility(ability) unless aiCheck
     end
@@ -173,7 +173,25 @@ BattleHandlers::DamageCalcTargetAbility.add(:SENTRY,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.add(:VIGILANT,
+  proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
+    if target.effectActive?(:ChoseStatus)
+      mults[:final_damage_multiplier] *= 0.6
+      target.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
 BattleHandlers::DamageCalcTargetAbility.add(:TRAPPER,
+  proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
+    if user.battle.pbIsTrapped?(user.index)
+      mults[:final_damage_multiplier] *= 0.7
+      target.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:BOTTOMFEEDER,
   proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
     if user.battle.pbIsTrapped?(user.index)
       mults[:final_damage_multiplier] *= 0.75
@@ -196,7 +214,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:FORTIFIED,
 BattleHandlers::DamageCalcTargetAbility.add(:SANDSHROUD,
   proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
     if user.battle.sandy?
-      mults[:final_damage_multiplier] *= 0.75
+      mults[:final_damage_multiplier] *= 0.7
       target.aiLearnsAbility(ability) unless aiCheck
     end
   }
@@ -214,7 +232,16 @@ BattleHandlers::DamageCalcTargetAbility.add(:DESERTSPIRIT,
 BattleHandlers::DamageCalcTargetAbility.add(:SNOWSHROUD,
   proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
     if user.battle.icy?
-      mults[:final_damage_multiplier] *= 0.75
+      mults[:final_damage_multiplier] *= 0.7
+      target.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:FERROFLUID,
+  proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
+    if user.battle.rainy?
+      mults[:final_damage_multiplier] *= 0.7
       target.aiLearnsAbility(ability) unless aiCheck
     end
   }
@@ -232,7 +259,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:MISTBLANKET,
 BattleHandlers::DamageCalcTargetAbility.add(:APPREHENSIVE,
   proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
     if user.battle.partialEclipse?
-      mults[:final_damage_multiplier] *= 0.7
+      mults[:final_damage_multiplier] *= 0.65
       target.aiLearnsAbility(ability) unless aiCheck
     end
   }
@@ -248,6 +275,15 @@ BattleHandlers::DamageCalcTargetAbility.add(:BULLY,
 )
 
 BattleHandlers::DamageCalcTargetAbility.add(:LIMINAL,
+  proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
+    if target.effectActive?(:SwitchedIn)
+      mults[:final_damage_multiplier] *= 0.5
+      target.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:MISTFORM,
   proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
     if target.effectActive?(:SwitchedIn)
       mults[:final_damage_multiplier] *= 0.5
@@ -291,7 +327,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:RUSTWRACK,
 BattleHandlers::DamageCalcTargetAbility.add(:APRICORNARMOR,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if user.pbHasAnyStatus?
-      mults[:final_damage_multiplier] /= 2
+      mults[:final_damage_multiplier] *= 0.6
       target.aiLearnsAbility(ability) unless aiCheck
     end
   }
@@ -326,5 +362,14 @@ BattleHandlers::DamageCalcTargetAbility.add(:BURDENED,
   proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
       mults[:final_damage_multiplier] *= 0.5
       target.aiLearnsAbility(ability) unless aiCheck
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:PALACEGUARD,
+  proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
+      if target.battle.roomActive?
+        mults[:final_damage_multiplier] *= 0.66
+        target.aiLearnsAbility(ability) unless aiCheck
+      end
   }
 )

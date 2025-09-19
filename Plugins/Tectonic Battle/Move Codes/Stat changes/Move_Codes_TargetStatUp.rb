@@ -30,14 +30,14 @@ class PokeBattle_Move_RaiseTargetSpAtkSpDef2 < PokeBattle_TargetMultiStatUpMove
 end
 
 #===============================================================================
-# Increases target's Defense and Special Defense by 3 steps. (Aromatic Mist)
+# Increases target's Defense and Special Defense by 2 steps. (Aromatic Mist)
 #===============================================================================
-class PokeBattle_Move_RaiseTargetDefSpDef3 < PokeBattle_TargetMultiStatUpMove
+class PokeBattle_Move_RaiseTargetDefSpDef2 < PokeBattle_TargetMultiStatUpMove
     def ignoresSubstitute?(_user); return true; end
 
     def initialize(battle, move)
         super
-        @statUp = [:DEFENSE, 3, :SPECIAL_DEFENSE, 3]
+        @statUp = [:DEFENSE, 2, :SPECIAL_DEFENSE, 2]
     end
 end
 
@@ -49,13 +49,13 @@ class PokeBattle_Move_DragonRide < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         if target.effectActive?(:OnDragonRide)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already on a dragon ride!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} is already on a dragon ride!", target.pbThis(true)))
             end
             return true
         end
         if user.effectActive?(:GivingDragonRideTo)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis} is already giving a dragon ride!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} is already giving a dragon ride!", user.pbThis))
             end
             return true
         end

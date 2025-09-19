@@ -42,13 +42,13 @@ BattleHandlers::SpeedCalcAbility.add(:SWIFTSWIM,
 
 BattleHandlers::SpeedCalcAbility.add(:CLOUDBURST,
   proc { |ability, battler, mult|
-      next mult * 1.25 if battler.battle.rainy?
+      next mult * 1.3 if battler.battle.rainy?
   }
 )
 
 BattleHandlers::SpeedCalcAbility.add(:DEBRISFIELD,
   proc { |ability, battler, mult|
-      next mult * 1.25 if battler.battle.sandy?
+      next mult * 1.3 if battler.battle.sandy?
   }
 )
 
@@ -140,13 +140,13 @@ BattleHandlers::SpeedCalcAbility.add(:TAIGATREKKER,
 
 BattleHandlers::SpeedCalcAbility.add(:FROSTFANGED,
   proc { |ability, battler, mult|
-      next mult * 1.25 if battler.battle.icy?
+      next mult * 1.3 if battler.battle.icy?
   }
 )
 
 BattleHandlers::SpeedCalcAbility.add(:LIGHTNINGRIDE,
   proc { |ability, battler, mult|
-      next mult * 2.0 if battler.effectActive?(:Charge)
+      next mult * 2.0 if battler.effectActive?(:EnergyCharge)
   }
 )
 
@@ -165,5 +165,29 @@ BattleHandlers::SpeedCalcAbility.add(:SLUGGISH,
 BattleHandlers::SpeedCalcAbility.add(:LIVEFAST,
   proc { |ability, battler, mult|
       next mult * 1.5
+  }
+)
+
+BattleHandlers::SpeedCalcAbility.add(:WATERFALLCONDITIONING,
+  proc { |ability, battler, mult|
+      next mult * 1.5 if battler.battle.rainy?
+  }
+)
+
+BattleHandlers::SpeedCalcAbility.add(:SILVERLINING,
+  proc { |ability, battler, mult|
+      next mult * 1.5 if battler.battle.rainy?
+  }
+)
+
+BattleHandlers::SpeedCalcAbility.add(:DYNAMICENTRANCE,
+  proc { |ability, battler, mult|
+      next mult * 2.0 if battler.firstTurn?
+  }
+)
+
+BattleHandlers::SpeedCalcAbility.add(:FOREMAN,
+  proc { |ability, battler, mult|
+      next mult * 2 if battler.battle.roomActive?
   }
 )

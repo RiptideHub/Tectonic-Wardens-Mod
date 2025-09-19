@@ -55,7 +55,7 @@ BallHandlers::ModifyCatchRate.add(:DUSKBALL, proc { |_ball, catchRate, battle, _
 })
 
 BallHandlers::ModifyCatchRate.add(:QUICKBALL, proc { |_ball, catchRate, battle, _battler, _ultraBeast|
-    catchRate *= 5 if battle.turnCount == 0
+    catchRate *= 3 if battle.turnCount == 0
     next catchRate
 })
 
@@ -127,11 +127,7 @@ BallHandlers::ModifyCatchRate.add(:DREAMBALL, proc { |_ball, catchRate, _battle,
 })
 
 BallHandlers::ModifyCatchRate.add(:BEASTBALL, proc { |_ball, catchRate, _battle, _battler, ultraBeast|
-    if ultraBeast
-        catchRate *= 5
-    else
-        catchRate /= 10
-    end
+    catchRate *= 5 if ultraBeast
     next catchRate
 })
 

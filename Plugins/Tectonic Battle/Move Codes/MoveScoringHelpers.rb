@@ -21,6 +21,8 @@ def getStatusSettingEffectScore(statusApplying, user, target, ignoreCheck: false
         return getDizzyEffectScore(user, target, ignoreCheck: ignoreCheck)
     when :LEECHED
         return getLeechEffectScore(user, target, ignoreCheck: ignoreCheck)
+    when :WATERLOG
+        return getWaterlogEffectScore(user, target, ignoreCheck: ignoreCheck)
     end
 
     raise _INTL("Given status #{statusApplying} is not valid.")
@@ -50,6 +52,22 @@ def getNumbEffectScore(user, target, ignoreCheck: false)
         score += STATUS_PUNISHMENT_BONUS if user && (user.hasStatusPunishMove? ||
                                             user.pbHasMoveFunction?("SmellingSalts", "NumbTargetOrCurseIfNumb")) # Smelling Salts, Spectral Tongue
         score += 60 if user&.hasActiveAbilityAI?(:TENDERIZE)
+        score -= getNaturalCureScore(user, target, score) if target.hasActiveAbilityAI?(:NATURALCURE)
+    else
+        return 0
+    end
+    return score
+end
+
+def getWaterlogEffectScore(user, target, ignoreCheck: false)
+    return 0 if willHealStatus?(target)
+    if target && (ignoreCheck || target.canWaterlog?(user, false))
+        score = 0
+        score += 60 if user.hasDamagingAttack?
+        score += 60 if user && target.pbSpeed(true) > user.pbSpeed(true)
+        score += STATUS_PUNISHMENT_BONUS if user && (user.hasStatusPunishMove? ||
+        user.pbHasMoveFunction?("Drainage")) # Drainage
+        score += 60 if user&.hasActiveAbilityAI?(:SINKINGFEELING)
         score -= getNaturalCureScore(user, target, score) if target.hasActiveAbilityAI?(:NATURALCURE)
     else
         return 0
@@ -199,6 +217,7 @@ def getFlinchingEffectScore(baseScore, user, target, move)
     return 0 if target.substituted? && !move.ignoresSubstitute?(user)
     return 0 if target.effectActive?(:FlinchImmunity)
     return 0 if target.battle.pbCheckSameSideAbility(:EFFLORESCENT,target.index)
+    return 0 if target.hasActiveItemAI?(:COURAGEBADGE)
 
     score = baseScore
     score *= 2.0 if user.hasAlly?
@@ -260,13 +279,20 @@ def hazardWeightOnSide(side, excludeEffects = []) # does not check for reserves,
     hazardWeight += [0,80,110,140][side.countEffect(:Spikes)] unless excludeEffects.include?(:Spikes)
     hazardWeight += 95 if side.effectActive?(:StealthRock) && !excludeEffects.include?(:StealthRock)
     hazardWeight += 95 if side.effectActive?(:FeatherWard) && !excludeEffects.include?(:FeatherWard)
+    if side.effectActive?(:LiveWire) && !excludeEffects.include?(:LiveWire)
+        if side.battle.rainy?
+            hazardWeight += 110
+        else
+            hazardWeight += 55
+        end
+    end
     hazardWeight += 115 if side.effectActive?(:StickyWeb) && !excludeEffects.include?(:StickyWeb)
     hazardWeight += statusSpikesWeightOnSide(side, excludeEffects)
     return hazardWeight
 end
 
 def getSwitchOutEffectScore(switcher, scoreStatSteps = true)
-    return 0 if switcher.battle.pbCanChooseNonActive?(switcher.index)
+    return 0 unless switcher.battle.pbCanChooseNonActive?(switcher.index)
     return 0 if switcher.trapped?
     score = 5 + switcher.alliesInReserveCount * 5
     score *= 1.5 if switcher.ownersPolicies.include?(:PRIORITIZEUTURN)
@@ -424,7 +450,7 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
                     totalIncrease *= 0.66 unless target.pbHasMoveFunction?("DoubleDamageUserStatused") # Facade / Hard Feelings
                 end
                 damageStatus = 1
-            elsif target.numbed?
+            elsif target.numbed? || target.waterlogged?
                 if statSymbol == :SPEED
                     totalIncrease *= 0.4
                 elsif
@@ -434,7 +460,7 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
                 else
                     totalIncrease *= 0.85
                 end
-            elsif target.dizzy?
+            elsif target.dizzy? || target.waterlogged?
                 totalIncrease *= 0.85 # There should probably be a system for evaluating abilities
             elsif target.leeched? or target.poisoned?
                 damageStatus = 1
@@ -609,15 +635,15 @@ def getWeatherSettingEffectScore(weatherType, user, battle, finalDuration = 4, c
     case weatherType
     when :Sunshine
         weatherMatchesPolicy = true if user.ownersPolicies.include?(:SUN_TEAM)
-        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("SunSynergy"))
+        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("SunshineSynergy"))
         hasSynergisticType = true if user.pbHasAttackingType?(:FIRE)
     when :Rainstorm
         weatherMatchesPolicy = true if user.ownersPolicies.include?(:RAIN_TEAM)
-        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("RainSynergy"))
+        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("RainstormSynergy"))
         hasSynergisticType = true if user.pbHasAttackingType?(:WATER)
     when :Sandstorm
         weatherMatchesPolicy = true if user.ownersPolicies.include?(:SANDSTORM_TEAM)
-        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("SandSynergy"))
+        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("SandstormSynergy"))
         hasSynergisticType = true if user.pbHasTypeAI?(:ROCK)
     when :Hail
         weatherMatchesPolicy = true if user.ownersPolicies.include?(:HAIL_TEAM)
@@ -645,7 +671,8 @@ def getWeatherSettingEffectScore(weatherType, user, battle, finalDuration = 4, c
 end
 
 def getCriticalRateBuffEffectScore(user, steps = 1)
-    return 0 if user.effectAtMax?(:FocusEnergy)
+    return 0 if user.effectAtMax?(:RaisedCritChance)
+    return 0 unless user.hasRandomCritAttack?
     score = 20
     score += 15 if user.firstTurn?
     score += 30 if user.hasActiveAbilityAI?(%i[SUPERLUCK SNIPER])
@@ -681,10 +708,36 @@ def getCurseEffectScore(user, target)
     score += 50 if target.aboveHalfHealth?
 	if user.battle.pbCanSwitch?(target.index)
 	    score += getForceOutEffectScore(user, target) # Encouraging target to switch might be benefical
-	else score += statStepsValueScore(target)
+        score = score * 0.70
+    else
+        score += statStepsValueScore(target)
 	end
     score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
-    score = score * 0.70 if user.battle.pbCanSwitch?(target.index)
+    return score
+end
+
+def getFractureEffectScore(user, target)
+    return 0 unless target.hasDamagingAttack?
+    score = 100
+    if user.battle.pbCanSwitch?(target.index)
+	    score += getForceOutEffectScore(user, target) # Encouraging target to switch might be benefical
+        score = score * 0.70
+    else
+        score += statStepsValueScore(target)
+	end
+    return score
+end
+
+def getJinxEffectScore(user, target)
+    score = 50
+    score += 30 if user.hasDamagingAttack?
+    score += 30 if user.canChooseProtect?
+    if user.battle.pbCanSwitch?(target.index)
+	    score += getForceOutEffectScore(user, target) # Encouraging target to switch might be benefical
+        score = score * 0.70
+    else
+        score += statStepsValueScore(target)
+	end
     return score
 end
 
@@ -766,7 +819,7 @@ def predictedEOTHealing(battle,battler)
 
     # Aqua Ring, Ingrain
     healing += battler.getFractionalHealingAmount(aquaRingHealingFraction(battler)) if battler.effectActive?(:AquaRing)
-    healing += battler.getFractionalHealingAmount(ingrainHealingFraction(battler)) if battler.effectActive?(:Ingrain)
+    healing += battler.getFractionalHealingAmount(ingrainHealingFraction(battler)) if battler.effectActive?(:Ingrain) || battler.effectActive?(:EvilRoots)
     
     # Wish
     if battler.position.effectActive?(:Wish) && battler.position.effects[:Wish] == 1
@@ -967,7 +1020,7 @@ end
 
 def getGravityEffectScore(user, duration)
     score = 0
-    duration -= user.battle.field.countEffect(:Gravity) if user.battle.field.effectActive?(:Gravity)
+    duration -= user.battle.field.countEffect(:Gravity) if user.battle.gravityIntensified?
     user.battle.eachBattler do |b|
         bScore = 0
         bScore -= 4 if b.airborne?(true)
@@ -987,4 +1040,13 @@ def getDisableEffectScore(target, duration)
     score = 15 * duration
     score *= 1.5 if target.battle.pbIsTrapped?(target.index)
     return score
+end
+
+def randomMovesEffectScore(user,move)
+    if user.ownersPolicies.include?(:ALLOW_RANDOM_MOVES)
+        return 100
+    else
+        echoln("The AI will never use #{move.name}")
+        return -1000  
+    end  
 end

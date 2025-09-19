@@ -28,6 +28,7 @@ module GameData
   
       DATA = {}
       DATA_FILENAME = "moves.dat"
+      ALL_MOVES_LIST = [] # Filled out later to wait for Species compilation
 
       SCHEMA = {
       "Name"         => [:name,           "s"],
@@ -160,8 +161,8 @@ module GameData
         return nil
       end
 
-      def can_be_forced?
-        return !@flags.include?("CantForce")
+      def uninvocable?
+        return @flags.include?("Uninvocable")
       end
 
       def avatarSignature?
@@ -173,6 +174,7 @@ module GameData
         return false if @primeval
         return false if @zmove
         return false if avatarSignature?
+        return false if @id == :STRUGGLE
         return true
       end
 
@@ -196,6 +198,19 @@ module GameData
             end
         }
         keys.each { |key| yield self::DATA[key] if !key.is_a?(Integer) }
+      end
+
+      def self.calculate_all_non_signature_list
+        self.each do |moveData|
+          next unless moveData.learnable?
+          next if moveData.testMove?
+          next if moveData.is_signature?
+          self::ALL_MOVES_LIST.push(moveData.id)
+        end
+      end
+
+      def self.all_non_signature_moves
+        return self::ALL_MOVES_LIST
       end
     end
 end
@@ -281,6 +296,7 @@ module Compiler
           property_value = pbGetCsvRecord($~[2], line_no, line_schema)
           # Record XXX=YYY setting
           move_hash[line_schema[0]] = property_value
+          next if cut || zmove
           case property_name
             when "Name"
               move_names.push(move_hash[:name])

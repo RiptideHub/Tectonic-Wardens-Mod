@@ -2,8 +2,10 @@
 # User must use this move for 2 more rounds. (Outrage, etc.)
 #===============================================================================
 class PokeBattle_Move_Rampage < PokeBattle_Move
+    def rampagingMove?; return true; end
+
     def pbEffectAfterAllHits(user, target)
-        user.applyEffect(:Outrage, 3) if !target.damageState.unaffected && !user.effectActive?(:Outrage)
+        user.applyEffect(:Outrage, 2) if !target.damageState.unaffected && !user.effectActive?(:Outrage)
         user.tickDownAndProc(:Outrage)
     end
 
@@ -22,7 +24,7 @@ end
 class PokeBattle_Move_RampagePreventSleeping < PokeBattle_Move
     def pbEffectGeneral(user)
         return if user.effectActive?(:Uproar)
-        user.applyEffect(:Uproar, 3)
+        user.applyEffect(:Uproar, 2)
         user.currentMove = @id
     end
 
@@ -36,7 +38,7 @@ end
 #===============================================================================
 class PokeBattle_Move_RampageKOsRaiseSpeed1 < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
-        user.applyEffect(:Outrage, 3) if !target.damageState.unaffected && !user.effectActive?(:Outrage)
+        user.applyEffect(:Outrage, 2) if !target.damageState.unaffected && !user.effectActive?(:Outrage)
         user.tickDownAndProc(:Outrage)
         return unless target.damageState.fainted
         user.tryRaiseStat(:SPEED, user, increment: 1, move: self)
@@ -45,4 +47,11 @@ class PokeBattle_Move_RampageKOsRaiseSpeed1 < PokeBattle_Move
     def getFaintEffectScore(user, target)
         return getMultiStatUpEffectScore([:SPEED, 1], user, user)
     end
+end
+
+#===============================================================================
+# User must use this move for 2 more rounds. This attack is always a critical hit. (Whip Trance)
+#===============================================================================
+class PokeBattle_Move_RampageAlwaysCriticalHit < PokeBattle_Move_Rampage
+    def pbCriticalOverride(_user, _target); return 1; end
 end

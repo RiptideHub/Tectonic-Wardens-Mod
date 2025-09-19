@@ -3768,6 +3768,12 @@ FrontSprite = -1,38
 ShadowX = 0
 ShadowSize = 2
 #-------------------------------
+[MDRAGALGE]
+BackSprite = 0,9
+FrontSprite = 0,12
+ShadowX = 0
+ShadowSize = 3
+#-------------------------------
 [MDUSTOX]
 BackSprite = 2,17
 FrontSprite = 0,16
@@ -4056,6 +4062,18 @@ FrontSprite = -11,8
 ShadowX = 0
 ShadowSize = 3
 #-------------------------------
+[MMANTINE]
+BackSprite = 0,24
+FrontSprite = 0,8
+ShadowX = 0
+ShadowSize = 2
+#-------------------------------
+[MMANTYKE]
+BackSprite = 0,24
+FrontSprite = 0,12
+ShadowX = 0
+ShadowSize = 2
+#-------------------------------
 [MMUNNA]
 BackSprite = 0,16
 FrontSprite = 0,14
@@ -4175,6 +4193,12 @@ BackSprite = 0,15
 FrontSprite = -7,23
 ShadowX = 0
 ShadowSize = 1
+#-------------------------------
+[MSKRELP]
+BackSprite = 0,13
+FrontSprite = 0,16
+ShadowX = 0
+ShadowSize = 2
 #-------------------------------
 [MTANGELA]
 BackSprite = 0,27
@@ -4891,14 +4915,14 @@ ShadowX = 0
 ShadowSize = 2
 #-------------------------------
 [PUMPKABOO,2]
-BackSprite = 0,0
-FrontSprite = 0,32
+BackSprite = 0,29
+FrontSprite = 0,33
 ShadowX = 0
 ShadowSize = 2
 #-------------------------------
 [PUMPKABOO,3]
-BackSprite = 0,0
-FrontSprite = 0,31
+BackSprite = 0,29
+FrontSprite = 0,33
 ShadowX = 0
 ShadowSize = 2
 #-------------------------------
@@ -5432,9 +5456,9 @@ ShadowSize = 2
 #-------------------------------
 [SEVIPER]
 BackSprite = 0,19
-FrontSprite = 0,12
+FrontSprite = 4,12
 ShadowX = 0
-ShadowSize = 2
+ShadowSize = 3
 #-------------------------------
 [SEWADDLE]
 BackSprite = 0,34
@@ -5558,12 +5582,6 @@ ShadowSize = 2
 #-------------------------------
 [SILVALLY]
 BackSprite = 0,7
-FrontSprite = 0,12
-ShadowX = 0
-ShadowSize = 2
-#-------------------------------
-[SILVALLY,9]
-BackSprite = 0,0
 FrontSprite = 0,12
 ShadowX = 0
 ShadowSize = 2
@@ -5720,7 +5738,7 @@ ShadowSize = 2
 #-------------------------------
 [SNEASEL]
 BackSprite = 0,26
-FrontSprite = 0,20
+FrontSprite = 4,26
 ShadowX = 0
 ShadowSize = 2
 #-------------------------------
@@ -6913,8 +6931,8 @@ ShadowX = 0
 ShadowSize = 3
 #-------------------------------
 [YAMASK]
-BackSprite = 0,30
-FrontSprite = 0,34
+BackSprite = 0,27
+FrontSprite = 0,30
 ShadowX = 0
 ShadowSize = 2
 #-------------------------------

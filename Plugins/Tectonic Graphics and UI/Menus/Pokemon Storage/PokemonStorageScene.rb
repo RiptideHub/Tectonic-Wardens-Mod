@@ -38,7 +38,7 @@ class PokemonStorageScene
         @sprites["pokemon"] = AutoMosaicPokemonSprite.new(@boxsidesviewport)
         @sprites["pokemon"].setOffset(PictureOrigin::Center)
         @sprites["pokemon"].x = 90
-        @sprites["pokemon"].y = 134
+        @sprites["pokemon"].y = 138
         @sprites["boxparty"] = PokemonBoxPartySprite.new(@storage.party, @boxsidesviewport, iconFadeProc)
         if command != 2 # Drop down tab only on Deposit
             @sprites["boxparty"].x = 182
@@ -271,6 +271,9 @@ class PokemonStorageScene
             key = Input::RIGHT if Input.repeat?(Input::RIGHT)
             key = Input::LEFT if Input.repeat?(Input::LEFT)
             key = Input::UP if Input.repeat?(Input::UP)
+
+            currentBox = @storage.currentBox
+
             if key >= 0
                 pbPlayCursorSE
                 selection = pbChangeSelection(key, selection)
@@ -328,6 +331,10 @@ class PokemonStorageScene
                 elsif selection == -3   # Close Box
                     return [-3, -1]
                 end
+            end
+
+            if @storage.currentBox != currentBox
+                donationBoxTutorialCheck  
             end
         end
     end
@@ -481,6 +488,12 @@ class PokemonStorageScene
         @sprites["box"] = newbox
     end
 
+    def donationBoxTutorialCheck
+        return unless inDonationBox?
+        return if $PokemonGlobal.donationBoxesTutorialized
+        playDonationBoxesTutorial
+    end
+
     def pbJumpToBox(newbox)
         if @storage.currentBox != newbox
             if newbox > @storage.currentBox
@@ -489,6 +502,7 @@ class PokemonStorageScene
                 pbSwitchBoxToLeft(newbox)
             end
             @storage.currentBox = newbox
+            donationBoxTutorialCheck
         end
     end
 
@@ -645,8 +659,13 @@ class PokemonStorageScene
         return pbShowCommands(msg, searchMethods)
     end
 
-    def pbChooseSort(msg)
+    def pbChooseBoxSort(msg)
         sortMethods = [_INTL("Cancel"), _INTL("Name"), _INTL("Species"), _INTL("Dex ID"), _INTL("Type"), _INTL("Level")]
+        return pbShowCommands(msg, sortMethods)
+    end
+
+    def pbChooseAllSort(msg)
+        sortMethods = [_INTL("Cancel"), _INTL("Name"), _INTL("Species"), _INTL("Dex ID"), _INTL("Type"), _INTL("Level"), _INTL("Living Dex")]
         return pbShowCommands(msg, sortMethods)
     end
 
@@ -690,7 +709,7 @@ class PokemonStorageScene
                         if search
                             fitsSearch = curpkmn.hasType?(search.id)
                         else
-                            pbDisplay(_INTL("\"#{ret}\" is not a valid type."))
+                            pbDisplay(_INTL("\"{1}\" is not a valid type.", ret))
                             return false
                         end
                     elsif searchMethod == 4 # Tribe
@@ -702,7 +721,7 @@ class PokemonStorageScene
                                 break
                             end
                         else
-                            pbDisplay(_INTL("\"#{ret}\" is not a valid tribe."))
+                            pbDisplay(_INTL("\"{1}\" is not a valid tribe.", ret))
                             return false
                         end
                     end
@@ -996,6 +1015,22 @@ class PokemonStorageScene
                 overlay.blt(88, 272, typebitmap.bitmap, type2rect)
             end
             drawMarkings(overlay, 70, 240, 128, 20, pokemon.markings)
+
+            # Draw HP bar
+            if pokemon.hp > 0
+                w = pokemon.hp * 96 * 1.0 / pokemon.totalhp
+                w = 1 if w < 1
+                w = (w / 2).round * 2
+                hpzone = 0
+                hpzone = 1 if pokemon.hp <= (pokemon.totalhp / 2).floor
+                hpzone = 2 if pokemon.hp <= (pokemon.totalhp / 4).floor
+                imagepos.push(["Graphics/Pictures/Summary/overlay_hp", 50, 54, 0, hpzone * 6, w, 6])
+            end
+
+            # Show status/fainted/Pokérus infected icon
+            statusImageIndex = pokemon.getStatusImageIndex
+            imagepos.push([addLanguageSuffix("Graphics/Pictures/statuses"), 120, 68, 0, 16 * statusImageIndex, 44, 16]) if statusImageIndex >= 0
+            
             pbDrawImagePositions(overlay, imagepos)
         end
         pbDrawTextPositions(overlay, textstrings)

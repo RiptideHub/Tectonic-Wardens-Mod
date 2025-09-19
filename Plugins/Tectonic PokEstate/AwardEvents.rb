@@ -1,8 +1,8 @@
 ##############################################
-# TYPE REWARDS (54 of them)
+# TYPE REWARDS (18 of them)
 ##############################################
-typeThreshold = [10,25,50]
-typeRewards = [[:EXPCANDYM,8],[:EXPCANDYL,4],[:EXPCANDYXL,2]]
+typeThreshold = [50]
+typeRewards = [[:EXPCANDYXL,5]]
 
 PokEstate::LoadDataDependentAwards += proc {
     # For every type, create three award event subscribers at different thresholds
@@ -21,14 +21,15 @@ PokEstate::LoadDataDependentAwards += proc {
 }
 
 ##############################################
-# TRIBE REWARDS (44 of them)
+# TRIBE REWARDS (22 of them)
 ##############################################
-tribeThreshold = [15,30]
-tribeRewards = [[:EXPCANDYM,6],[:EXPCANDYL,3]]
+tribeThreshold = [50]
+tribeRewards = [[:EXPCANDYXL,4]]
 
 PokEstate::LoadDataDependentAwards += proc {
     # For every type, create three award event subscribers at different thresholds
     GameData::Tribe.each do |tribe|
+        next if !$DEBUG && tribe.id.start_with?("DEBUG_") # skip debug tribes if not in debug mode
         tribeThreshold.each_with_index do |threshold,thresholdIndex|
             id = ("TRIBE" + tribe.id.to_s + "AWARD" + thresholdIndex.to_s).to_sym
             PokEstate::GrantAwards.add(id,
@@ -43,8 +44,9 @@ PokEstate::LoadDataDependentAwards += proc {
 ##############################################
 # ROUTE REWARDS (45  of them)
 ##############################################
-# 0
+# 1
 SMALL_ROUTES_CASABA = [
+    67, # Old Ice Cream Shop
 ]
 
 # 13
@@ -76,12 +78,13 @@ SMALL_ROUTES_POST_SURF = [
     316, # Sandstone Estuary
 ]
  
-# 5
+# 6
 MEDIUM_ROUTES_CASABA = [
     136, # Casaba Villa
     138, # Scenic Trail
     30, # Windy Way
     51, # Foreclosed Tunnel
+    38, # Bluepoint Beach
     26, # Bluepoint Grotto
 ]
 
@@ -107,9 +110,8 @@ MEDIUM_ROUTES_POST_SURF = [
     218, # Abyssal Cavern
 ]
 
-# 1
+# 0
 BIG_ROUTES_CASABA = [
-    38, # Bluepoint Beach
 ]
 
 # 2
@@ -242,6 +244,65 @@ PokEstate::LoadDataDependentAwards += proc {
         proc { |pokedex|
             reward = [:EXPCANDYXL,15]
             next areaReward(239,reward)
+        }
+    )
+}
+
+##############################################
+# OVERALL DEX COMPLETION
+##############################################
+PokEstate::LoadDataDependentAwards += proc {
+
+    threshold100Percent = nonLegendarySpeciesCount(false)
+    threshold25Percent = (threshold100Percent / 4.0).floor
+    threshold50Percent = (threshold100Percent / 2.0).floor
+    threshold75Percent = (3.0 * threshold100Percent / 4.0).floor
+
+    PokEstate::GrantAwards.add(:DEXCOMPLETION25PERCENT,
+        proc { |pokedex|
+            next {
+                reward: [:MASTERBALL,3],
+                description: _INTL("{1} non-legendary species (25%)",threshold25Percent),
+                page: 4,
+                threshold: threshold25Percent,
+                amount: nonLegendarySpeciesCount(true),
+            }
+        }
+    )
+
+    PokEstate::GrantAwards.add(:DEXCOMPLETION50PERCENT,
+        proc { |pokedex|
+            next {
+                reward: [:BALLLAUNCHER],
+                description: _INTL("{1} non-legendary species (50%)",threshold50Percent),
+                page: 4,
+                threshold: threshold50Percent,
+                amount: nonLegendarySpeciesCount(true),
+            }
+        }
+    )
+
+    PokEstate::GrantAwards.add(:DEXCOMPLETION75PERCENT,
+        proc { |pokedex|
+            next {
+                reward: [:GLEAMPOWDER],
+                description: _INTL("{1} non-legendary species (75%)",threshold75Percent),
+                page: 4,
+                threshold: threshold75Percent,
+                amount: nonLegendarySpeciesCount(true),
+            }
+        }
+    )
+
+    PokEstate::GrantAwards.add(:DEXCOMPLETION100PERCENT,
+        proc { |pokedex|
+            next {
+                reward: [:SHINYCHARM],
+                description: _INTL("{1} non-legendary species (100%)",threshold100Percent),
+                page: 4,
+                threshold: threshold100Percent,
+                amount: nonLegendarySpeciesCount(true),
+            }
         }
     )
 }

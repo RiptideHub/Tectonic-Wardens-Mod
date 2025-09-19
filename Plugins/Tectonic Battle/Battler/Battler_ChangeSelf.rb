@@ -79,7 +79,7 @@ class PokeBattle_Battler
     end
 
     def getFractionalDamageAmount(fraction,basedOnCurrentHP=false,aggravate: false,struggle: false)
-        return 0 unless takesIndirectDamage?
+        return 0 unless takesIndirectDamage? || struggle
         fraction *= hpBasedEffectResistance if boss?
         fraction *= 1.5 if aggravate
         if basedOnCurrentHP
@@ -100,6 +100,7 @@ class PokeBattle_Battler
         multiplier *= 0.66 if hasTribeBonus?(:ANIMATED)
         multiplier *= 0.5 if pbOwnSide.effectActive?(:NaturalProtection)
         multiplier /= 2 if shouldAbilityApply?(:UNBREAKABLE, checkingForAI)
+        multiplier /= 2 if shouldAbilityApply?(:STONEMANE, checkingForAI)
         multiplier *= 2 if shouldAbilityApply?(:LINEBACKER, checkingForAI)
         return multiplier
     end
@@ -138,7 +139,7 @@ class PokeBattle_Battler
         end
     end
 
-    def pbRecoverHP(amt, anim = true, anyAnim = true, showMessage = true, customMessage = nil, canOverheal: false, aiCheck: false)
+    def pbRecoverHP(amt, anim = true, anyAnim = true, showMessage = true, customMessage = nil, canOverheal: false, items_to_skip: [], aiCheck: false)
         if @battle.autoTesting
             anim = false
             anyAnim = false
@@ -161,6 +162,10 @@ class PokeBattle_Battler
         # Nerve Break, Bad Influence
         if healingReversed?(showMessage && !aiCheck)
             amt *= -1
+        elsif boss?
+            if @hp <= avatarPhaseLowerHealthBound && @hp + amt > avatarPhaseLowerHealthBound # Cap boss healing at the next health boundary
+                amt = avatarPhaseLowerHealthBound - @hp
+            end
         end
 
         # Actually perform the HP change
@@ -182,7 +187,7 @@ class PokeBattle_Battler
             end
 
             if amt.negative?
-                pbItemHPHealCheck
+                pbItemHPHealCheck(items_to_skip: items_to_skip)
                 pbAbilitiesOnDamageTaken(oldHP)
                 pbFaint if fainted?
             end
@@ -214,11 +219,11 @@ class PokeBattle_Battler
         end
     end
 
-    def pbRecoverHPFromMultiDrain(targets, ratio, ability: nil)
+    def pbRecoverHPFromMultiDrain(targets, ratio, ability: nil, onlyCriticalDamage: false)
         totalDamageDealt = 0
         targets.each do |target|
             next if target.damageState.unaffected
-            damage = target.damageState.totalHPLost
+            damage = onlyCriticalDamage ? target.damageState.totalHPLostCritical : target.damageState.totalHPLost
             if target.hasActiveAbility?(:LIQUIDOOZE)
                 @battle.pbShowAbilitySplash(target, :LIQUIDOOZE)
                 lossAmount = (damage * ratio).round
@@ -242,7 +247,7 @@ class PokeBattle_Battler
         hideMyAbilitySplash if ability
     end
 
-    def applyFractionalHealing(fraction, ability: nil, anim: true, anyAnim: true, showMessage: true, customMessage: nil, item: nil, canOverheal: false, aiCheck: false)
+    def applyFractionalHealing(fraction, ability: nil, anim: true, anyAnim: true, showMessage: true, customMessage: nil, item: nil, canOverheal: false, items_to_skip: [], aiCheck: false)
         return 0 unless canHeal?(canOverheal)
         if item && !aiCheck
             @battle.pbCommonAnimation("UseItem", self) unless @battle.autoTesting
@@ -256,7 +261,7 @@ class PokeBattle_Battler
         end
         battle.pbShowAbilitySplash(self, ability) if ability && !aiCheck
         healAmount = getFractionalHealingAmount(fraction, canOverheal)
-        actuallyHealed = pbRecoverHP(healAmount, anim, anyAnim, showMessage, customMessage, canOverheal: canOverheal, aiCheck: aiCheck)
+        actuallyHealed = pbRecoverHP(healAmount, anim, anyAnim, showMessage, customMessage, canOverheal: canOverheal, items_to_skip: items_to_skip, aiCheck: aiCheck)
         battle.pbHideAbilitySplash(self) if ability && !aiCheck
         if aiCheck
             return getHealingEffectScore(actuallyHealed)
@@ -322,6 +327,7 @@ class PokeBattle_Battler
             if hasActiveItem?(:HOOHSASHES)
                 faintedPartyMembers = []
                 ownerParty.each do |partyPokemon|
+                    next unless partyPokemon
                     next if @battle.pbFindBattler(partyIndex, @index)
                     next unless partyPokemon.fainted?
                     faintedPartyMembers.push(partyPokemon)
@@ -333,7 +339,7 @@ class PokeBattle_Battler
                     reviver = faintedPartyMembers.sample
                     reviver.heal_HP
                     reviver.heal_status
-                    pbDisplay(_INTL("Its allied #{reviver.name} was revived to full health!"))
+                    pbDisplay(_INTL("Its allied {1} was revived to full health!", reviver.name))
                 end
             end
 
@@ -363,6 +369,9 @@ class PokeBattle_Battler
 
             # Check for end of primordial weather
             @battle.pbEndPrimordialWeather
+
+            # Trigger avatar AI
+            @bossAI.onDestroyed(self, battle) if boss?
         end
     end
 
@@ -478,6 +487,8 @@ class PokeBattle_Battler
                 when :Rainstorm, :HeavyRain then newForm = 2
                 when :Hail             then newForm = 3
                 when :Sandstorm        then newForm = 4
+                when :Moonglow, :BloodMoon  then newForm = 5
+                when :Eclipse, :RingEclipse then newForm = 6    
                 end
                 if @form != newForm
                     showMyAbilitySplash(:FORECAST, true)
@@ -638,15 +649,15 @@ class PokeBattle_Battler
 
     def pbHyperMode; end
 
-    def getSubLife
-        subLife = @totalhp / 4.0
+    def getSubLife(subFraction = 0.25)
+        subLife = @totalhp * subFraction
         subLife *= hpBasedEffectResistance
         subLife = 1 if subLife < 1
         return subLife.floor
     end
 
-    def createSubstitute
-        subLife = getSubLife
+    def createSubstitute(subFraction = 0.25)
+        subLife = getSubLife(subFraction)
         pbReduceHP(subLife, false, false)
         pbItemHPHealCheck
         disableEffect(:Trapping)
@@ -661,9 +672,10 @@ class PokeBattle_Battler
         prevAbilities = @ability_ids
         @ability_ids  = []
         @ability_ids.push(@pokemon.ability_id) if @pokemon.ability_id
+        
+        # Pokemon extra abilities (from curses and avatar shenanigans)
         @ability_ids.concat(@pokemon.extraAbilities)
         @addedAbilities.clear
-
         @addedAbilities.concat(@pokemon.extraAbilities)
 
         # Check for "has all legal ability" effects
@@ -678,14 +690,26 @@ class PokeBattle_Battler
         if hasLocket || (@battle.curseActive?(:CURSE_DOUBLE_ABILITIES) && index.odd?)
             eachLegalAbility do |legalAbility|
                 next if @ability_ids.include?(legalAbility)
+                next if GameData::Ability.get(legalAbility).is_immutable_ability?
                 @ability_ids.push(legalAbility)
                 @addedAbilities.push(legalAbility)
             end
         end
 
+        if !initialization && illusion? && hasActiveAbility?(:INCOGNITO)
+            addIllusionAbilities
+        end
+
         unless initialization
             pbOnAbilitiesLost(prevAbilities)
         end
+    end
+
+    def addIllusionAbilities
+        return unless disguisedAs.ability 
+        return if GameData::Ability.get(disguisedAs.ability_id).is_uncopyable_ability?
+        @ability_ids.push(disguisedAs.ability_id)
+        @addedAbilities.push(disguisedAs.ability_id)  
     end
 
     def setAbility(value)

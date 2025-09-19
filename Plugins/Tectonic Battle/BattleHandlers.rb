@@ -11,6 +11,11 @@ module BattleHandlers
     LoadDataDependentAbilityHandlers    = Event.new
     LoadDataDependentItemHandlers    = Event.new
 
+    def self.loadDataDependentHandlers
+        BattleHandlers::LoadDataDependentAbilityHandlers.trigger
+        BattleHandlers::LoadDataDependentItemHandlers.trigger  
+    end
+
     # Battler's type calculation
     TypeCalcAbility                     = AbilityHandlerHash.new
     # Battler's speed calculation
@@ -35,6 +40,7 @@ module BattleHandlers
     StatLossImmunityAbility             = AbilityHandlerHash.new
     StatLossImmunityAbilityNonIgnorable = AbilityHandlerHash.new   # Full Metal Body
     StatLossImmunityAllyAbility         = AbilityHandlerHash.new   # Flower Veil
+    StatLossImmunitySelfAbility         = AbilityHandlerHash.new   # Plot Armor
     AbilityOnStatGain                   = AbilityHandlerHash.new
     AbilityOnEnemyStatGain              = AbilityHandlerHash.new
     AbilityOnStatLoss                   = AbilityHandlerHash.new
@@ -83,6 +89,7 @@ module BattleHandlers
     # Critical hit calculation
     CriticalCalcUserAbility             = AbilityHandlerHash.new
     GuaranteedCriticalUserAbility	    = AbilityHandlerHash.new
+    CriticalCalcUserAllyAbility             = AbilityHandlerHash.new
     CriticalCalcTargetAbility           = AbilityHandlerHash.new
     CriticalPreventTargetAbility	    = AbilityHandlerHash.new
     CriticalCalcUserItem                = ItemHandlerHash.new
@@ -140,6 +147,7 @@ module BattleHandlers
     # Added effects
     CertainAddedEffectUserAbility           = AbilityHandlerHash.new
     AddedEffectChanceModifierUserAbility    = AbilityHandlerHash.new
+    AddedEffectChanceModifierUserAllyAbility    = AbilityHandlerHash.new
     PreventAddedEffectTargetAbility         = AbilityHandlerHash.new
     AddedEffectChanceModifierTargetAbility  = AbilityHandlerHash.new
     # Start of move
@@ -186,8 +194,8 @@ module BattleHandlers
 
     #=============================================================================
 
-    def self.triggerHPHealItem(item, battler, battle, forced, filchedFrom, filchingAbility)
-        ret = HPHealItem.trigger(item, battler, battle, forced, filchedFrom, filchingAbility)
+    def self.triggerHPHealItem(item, battler, battle, forced, filchedFrom, filchingAbility, items_to_skip)
+        ret = HPHealItem.trigger(item, battler, battle, forced, filchedFrom, filchingAbility, items_to_skip)
         return !ret.nil? ? ret : false
     end
 
@@ -249,6 +257,11 @@ module BattleHandlers
         return !ret.nil? ? ret : false
     end
 
+    def self.triggerStatLossImmunitySelfAbility(ability, battler, stat, battle, showMessages)
+        ret = StatLossImmunitySelfAbility.trigger(ability, battler, stat, battle, showMessages)
+        return !ret.nil? ? ret : false
+    end
+
     def self.triggerAbilityOnStatGain(ability, battler, stat, user)
         AbilityOnStatGain.trigger(ability, battler, stat, user)
     end
@@ -292,8 +305,8 @@ module BattleHandlers
         AbilityOnFlinch.trigger(ability, battler, battle)
     end
 
-    def self.triggerMoveBlockingAbility(ability, bearer, user, targets, move, battle)
-        ret = MoveBlockingAbility.trigger(ability, bearer, user, targets, move, battle)
+    def self.triggerMoveBlockingAbility(ability, bearer, user, targets, move, battle, aiCheck)
+        ret = MoveBlockingAbility.trigger(ability, bearer, user, targets, move, battle, aiCheck)
         return !ret.nil? ? ret : false
     end
 
@@ -442,6 +455,11 @@ module BattleHandlers
     def self.triggerGuaranteedCriticalUserAbility(ability, user, target, battle)
         ret = GuaranteedCriticalUserAbility.trigger(ability, user, target, battle)
         return !ret.nil? ? ret : false
+    end
+
+    def self.triggerCriticalCalcUserAllyAbility(ability, user, target, move, c)
+        ret = CriticalCalcUserAllyAbility.trigger(ability, user, target, move, c)
+        return !ret.nil? ? ret : c
     end
 
     def self.triggerCriticalCalcTargetAbility(ability, user, target, c)
@@ -681,6 +699,11 @@ module BattleHandlers
 
     def self.triggerAddedEffectChanceModifierUserAbility(ability, user, target, move, chance)
         ret = AddedEffectChanceModifierUserAbility.trigger(ability, user, target, move, chance)
+        return !ret.nil? ? ret : chance
+    end
+
+    def self.triggerAddedEffectChanceModifierUserAllyAbility(ability, user, target, move, chance)
+        ret = AddedEffectChanceModifierUserAllyAbility.trigger(ability, user, target, move, chance)
         return !ret.nil? ? ret : chance
     end
 

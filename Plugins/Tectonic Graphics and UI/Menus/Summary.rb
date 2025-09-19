@@ -479,16 +479,8 @@ class PokemonSummary_Scene
         end
         imagepos.push([ballimage, 14, 60])
         # Show status/fainted/Pokérus infected icon
-        status = 0
-        if @pokemon.afraid?
-            status = GameData::Status::DATA.keys.length / 2 + 1
-        elsif @pokemon.fainted?
-            status = GameData::Status::DATA.keys.length / 2
-        elsif @pokemon.status != :NONE
-            status = GameData::Status.get(@pokemon.status).id_number
-        end
-        status -= 1
-        imagepos.push([addLanguageSuffix("Graphics/Pictures/statuses"), 124, 100, 0, 16 * status, 44, 16]) if status >= 0
+        statusImageIndex = @pokemon.getStatusImageIndex
+        imagepos.push([addLanguageSuffix("Graphics/Pictures/statuses"), 124, 100, 0, 16 * statusImageIndex, 44, 16]) if statusImageIndex >= 0
         # Show hot streak icon
         imagepos.push([sprintf("Graphics/Pictures/Summary/hot_streak"), 176, 100]) if @pokemon.onHotStreak?
         # Show shininess star
@@ -589,7 +581,7 @@ class PokemonSummary_Scene
         # Draw the Pokémon's markings
         drawMarkings(overlay,infoTextInsertedX - 48,infoLabelBaseY + 32 * 4 + 12)
         # Write the Pokemon's original map and level of obtaining
-        obtainText = "Obtained at level #{@pokemon.obtain_level.to_s} in"
+        obtainText = _INTL("Obtained at level {1} in", @pokemon.obtain_level)
         textpos.push([obtainText, infoTextLabelX, infoLabelBaseY + 32 * 5 + 2, 0, blackBase, blackShadow])
         mapname = pbGetMapNameFromId(@pokemon.obtain_map)
         mapname = @pokemon.obtain_text if @pokemon.obtain_text && !@pokemon.obtain_text.empty?
@@ -844,7 +836,9 @@ class PokemonSummary_Scene
             ability_base   = MessageConfig.pbDefaultTextMainColor
             ability_shadow = MessageConfig.pbDefaultTextShadowColor
             textpos.push([ability.name, 138, 278, 0, ability_base, ability_shadow])
-            drawTextEx(overlay, 8, 320, Graphics.width, 2, ability.description, ability_base, ability_shadow)
+
+            abilityDescription = addBattleKeywordHighlighting(ability.description)
+            drawFormattedTextEx(overlay, 8, 320, Graphics.width, abilityDescription, ability_base, ability_shadow)
         end
         # Draw all text
         pbDrawTextPositions(overlay, textpos)
@@ -1417,8 +1411,8 @@ class PokemonSummary_Scene
         ability = @pokemon.ability
         if ability
             textpos.push([ability.name, 138, 278, 0, MessageConfig::DARK_TEXT_MAIN_COLOR, MessageConfig::DARK_TEXT_SHADOW_COLOR])
-            drawTextEx(overlay, 8, 320, Graphics.width - 12, 2, ability.description, MessageConfig::DARK_TEXT_MAIN_COLOR,
-  MessageConfig::DARK_TEXT_SHADOW_COLOR)
+            abilityDescription = addBattleKeywordHighlighting(ability.description)
+            drawFormattedTextEx(overlay, 8, 320, Graphics.width - 12, abilityDescription, MessageConfig::DARK_TEXT_MAIN_COLOR, MessageConfig::DARK_TEXT_SHADOW_COLOR)
         end
         # Draw Pokémon's type icon(s)
         type1_number = GameData::Type.get(@pokemon.type1).id_number

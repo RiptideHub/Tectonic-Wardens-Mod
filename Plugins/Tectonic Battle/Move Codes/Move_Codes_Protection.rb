@@ -38,7 +38,7 @@ class PokeBattle_Move_ProtectUserSideFromStatusMoves < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if user.pbOwnSide.effectActive?(:CraftyShield)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since a crafty shield is already protecting #{user.pbTeam(true)}!"))
+                @battle.pbDisplay(_INTL("But it failed, since a crafty shield is already protecting {1}!", user.pbTeam(true)))
             end
             return true
         end
@@ -135,12 +135,12 @@ end
 class PokeBattle_Move_ProtectUserSideFromDamagingMovesIfUserFirstTurn < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         unless user.firstTurn?
-            @battle.pbDisplay(_INTL("But it failed, since it isn't #{user.pbThis(true)}'s first turn!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since it isn't {1}'s first turn!", user.pbThis(true))) if show_message
             return true
         end
         if user.pbOwnSide.effectActive?(:MatBlock)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since a Mat was already thrown up on #{user.pbThis(true)}'s side of the field!"))
+                @battle.pbDisplay(_INTL("But it failed, since a Mat was already thrown up on {1}'s side of the field!", user.pbThis(true)))
             end
             return true
         end
@@ -465,7 +465,7 @@ class PokeBattle_Move_TargetTakesHalfDamageNextAttackAttackerTakesRecoil < PokeB
             return true
         end
         if target.effectActive?(:BubbleBarrier)
-            @battle.pbDisplay(_INTL("But it failed, since #{arget.pbThis(true)} is already protected by a bubble!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since {1} is already protected by a bubble!", target.pbThis(true))) if show_message
             return true
         end
         return false
@@ -479,5 +479,21 @@ class PokeBattle_Move_TargetTakesHalfDamageNextAttackAttackerTakesRecoil < PokeB
         score = 50
         score += 50 if target.aboveHalfHealth?
         return score
+    end
+end
+
+#===============================================================================
+# User is protected against moves with the "CanProtect" flag this round. (Heliopause)
+# If an Eclipse is active, extends it by 1 turn.
+#===============================================================================
+class PokeBattle_Move_ProtectUserExtendEclipse1Turn < PokeBattle_ProtectMove
+    def initialize(battle, move)
+        super
+        @effect = :Heliopause
+    end
+
+    def pbEffectGeneral(user)
+        super
+        @battle.extendWeather(1) if @battle.eclipsed?
     end
 end

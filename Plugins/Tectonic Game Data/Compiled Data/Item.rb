@@ -51,10 +51,9 @@ module GameData
         return "Graphics/Items/000" if item_data.nil?
         itemID = item_data.id
         # Check for files
-        ret = sprintf("Graphics/Items/%s", itemID)
-        if itemID == :TAROTAMULET && $PokemonGlobal.tarot_amulet_active
-            ret += "_ACTIVE"
-        end
+        ret = itemID.to_s
+        ret = ItemIconEvents::triggerModifyItemIconFileName(item, ret)
+        ret = sprintf("Graphics/Items/%s", ret)
         return ret if pbResolveBitmap(ret)
         # Check for TM/HM type icons
         if item_data.is_machine?
@@ -111,6 +110,7 @@ module GameData
         @battle_use       = hash[:battle_use]  || 0
         @type             = hash[:type]        || 0
         @flags            = hash[:flags]       || []
+        @flags.uniq!
         @consumable       = hash[:consumable]
         @consumable       = !is_important? if @consumable.nil?
         @move             = hash[:move]
@@ -181,6 +181,10 @@ module GameData
         return @flags.include?("SnagBall")
       end
 
+      def no_ball_swap?
+        return @flags.include?("NoBallSwap")
+      end
+
       def is_mail?
         return @flags.include?("Mail")
       end
@@ -245,6 +249,10 @@ module GameData
         return @flags.include?("KeyItem") && !@consumable
       end
 
+      def is_evolution_item?
+        return @flags.include?("EvolutionItem")
+      end
+
       def is_evolution_stone?
         return @flags.include?("EvolutionStone")
       end
@@ -283,6 +291,10 @@ module GameData
 
       def consumed_after_use?
         return !is_important? && @consumable
+      end
+
+      def show_pocket_message?
+        return !@flags.include?("SkipPocketMessage")
       end
   
       def unlosable?(species, ability)
@@ -401,6 +413,7 @@ module Compiler
           property_value = pbGetCsvRecord($~[2], line_no, line_schema)
           # Record XXX=YYY setting
           item_hash[line_schema[0]] = property_value
+          next if path == "PBS/items_cut.txt"
           case property_name
           when "Name"
             item_names.push(item_hash[:name])
@@ -423,8 +436,6 @@ module Compiler
     MessageTypes.setMessagesAsHash(MessageTypes::ItemPlurals, item_names_plural)
     MessageTypes.setMessagesAsHash(MessageTypes::ItemDescriptions, item_descriptions)
     Graphics.update
-
-    BattleHandlers::LoadDataDependentItemHandlers.trigger
   end
 
   def compile_machine_order

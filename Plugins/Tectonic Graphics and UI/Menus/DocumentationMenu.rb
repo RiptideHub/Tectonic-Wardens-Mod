@@ -46,6 +46,11 @@ class PokemonDocumentationMenu_Scene
 end
 
 class PokemonDocumentationMenu < PokemonPauseMenu
+	def initialize(scene,battle=nil)
+		super(scene)
+		@battle = battle
+	end
+
 	def pbStartPokemonMenu
 		if !$Trainer
 			if $DEBUG
@@ -57,26 +62,44 @@ class PokemonDocumentationMenu < PokemonPauseMenu
 		@scene.pbStartScene
 		endscene = true
 		cmdMasterDex = -1
-        cmdMoveDex = -1
-        cmdBattleGuide = -1
-        infoCommands = []
-        infoCommands[cmdMasterDex = infoCommands.length] = _INTL("MasterDex")
-        infoCommands[cmdMoveDex = infoCommands.length] = _INTL("MoveDex")
-        infoCommands[cmdBattleGuide = infoCommands.length] = _INTL("Battle Guide")
-        infoCommands.push(_INTL("Cancel"))
+		cmdMoveDex = -1
+		cmdBattleGuide = -1
+		cmdPokeXRay = -1
+		infoCommands = []
+		infoCommands[cmdMasterDex = infoCommands.length] = _INTL("MasterDex")
+		infoCommands[cmdMoveDex = infoCommands.length] = _INTL("MoveDex")
+		infoCommands[cmdBattleGuide = infoCommands.length] = _INTL("Battle Guide")
+		if pbHasItem?(:POKEXRAY) && @battle && @battle.trainerBattle?
+			infoCommands[cmdPokeXRay = infoCommands.length] = getItemName(:POKEXRAY)
+		end
+		infoCommands.push(_INTL("Cancel"))
 		loop do
 			infoCommand = @scene.pbShowCommands(infoCommands)
 			if cmdMasterDex > -1 && infoCommand == cmdMasterDex
-                pbFadeOutIn {
-                    dexScene = PokemonPokedex_Scene.new
-                    screen = PokemonPokedexScreen.new(dexScene)
-                    screen.pbStartScreen
-                }
-            elsif cmdMoveDex > -1 && infoCommand == cmdMoveDex
-                openMoveDex
-            elsif cmdBattleGuide > -1 && infoCommand == cmdBattleGuide
-                showBattleGuide
-            else
+								pbFadeOutIn {
+										dexScene = PokemonPokedex_Scene.new
+										screen = PokemonPokedexScreen.new(dexScene)
+										screen.pbStartScreen
+								}
+			elsif cmdMoveDex > -1 && infoCommand == cmdMoveDex
+					openMoveDex
+			elsif cmdBattleGuide > -1 && infoCommand == cmdBattleGuide
+					showBattleGuide
+			elsif cmdPokeXRay > -1 && infoCommand == cmdPokeXRay
+				if @battle.opponent.length == 1
+					showPokeXRayForTrainer(@battle.opponent[0])
+				else
+					opponentCommands = []
+					@battle.opponent.each do |trainer|
+            opponentCommands.push(trainer.full_name)
+					end
+					opponentCommands.push(_INTL("Cancel"))
+					choice = pbMessage(_INTL("Point the Poké X-Ray at which trainer?"),opponentCommands,opponentCommands.length)
+					next if choice == opponentCommands.length - 1
+					chosenTrainer = @battle.opponent[choice]
+					showPokeXRayForTrainer(chosenTrainer)
+				end
+			else
 				pbPlayCloseMenuSE
 				break
 			end
@@ -85,8 +108,8 @@ class PokemonDocumentationMenu < PokemonPauseMenu
 	end
 end
 
-def showDocumentationMenu
+def showDocumentationMenu(battle=nil)
     docsMenuScene = PokemonDocumentationMenu_Scene.new
-    docsMenuScreen = PokemonDocumentationMenu.new(docsMenuScene)
+    docsMenuScreen = PokemonDocumentationMenu.new(docsMenuScene,battle)
     docsMenuScreen.pbStartPokemonMenu
 end

@@ -27,7 +27,7 @@ class Particle_Engine
            # By Peter O.
            "starteleport" => Particle_Engine::StarTeleport,
 
-           # By Zeu
+           # By Zinnia
            "starfield"      => Particle_Engine::CircleStarField,
            "wormhole"       => Particle_Engine::Wormhole,
            "steamy"         => Particle_Engine::Steamy,
@@ -119,5 +119,5 @@ Events.onSpritesetCreate += proc { |_sender, e|
     spriteset = e[0] # Spriteset being created
     viewport = e[1] # Viewport used for tilemap and characters
     map = spriteset.map   # Map associated with the spriteset (not necessarily the current map)
-    spriteset.addParticleEngine(Particle_Engine.new(viewport, map)) if $PokemonSystem.particle_effects == 0
+    spriteset.addParticleEngine(Particle_Engine.new(viewport, map)) if $Options.particle_effects == 0
 }

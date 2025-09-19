@@ -168,6 +168,7 @@ def ctag(color)
   
   def getFormattedTextFast(bitmap,xDst,yDst,widthDst,heightDst,text,lineheight,
                            newlineBreaks=true,explicitBreaksOnly=false)
+    return getFormattedTextFast_chinese(bitmap, xDst, yDst, widthDst, heightDst, text, lineheight, newlineBreaks, explicitBreaksOnly) if is_chinese?
     x=y=0
     characters=[]
     textchunks=[]
@@ -389,6 +390,7 @@ def ctag(color)
   def getFormattedText(bitmap,xDst,yDst,widthDst,heightDst,text,lineheight=32,
                        newlineBreaks=true,explicitBreaksOnly=false,
                        collapseAlignments=false)
+    return getFormattedText_chinese(bitmap, xDst, yDst, widthDst, heightDst, text, lineheight, newlineBreaks, explicitBreaksOnly, collapseAlignments) if is_chinese?
     dummybitmap=nil
     if !bitmap || bitmap.disposed?   # allows function to be called with nil bitmap
       dummybitmap=Bitmap.new(1,1)
@@ -814,6 +816,7 @@ def ctag(color)
   # Draw text and images on a bitmap
   #===============================================================================
   def getLineBrokenText(bitmap,value,width,dims)
+    return getLineBrokenText_chinese(bitmap, value, width, dims) if is_chinese?
     x=0
     y=0
     textheight=0
@@ -872,6 +875,7 @@ def ctag(color)
   end
   
   def getLineBrokenChunks(bitmap,value,width,dims,plain=false)
+    return getLineBrokenChunks_chinese(bitmap, value, width, dims, plain) if is_chinese?
     x=0
     y=0
     ret=[]

@@ -79,14 +79,6 @@ BattleHandlers::EOREffectAbility.add(:HUNGERSWITCH,
   }
 )
 
-BattleHandlers::EOREffectAbility.add(:LUXURYTASTE,
-  proc { |ability, battler, battle|
-      next unless battler.hasActiveItem?(GameData::Item.getByFlag("Clothing"))
-      healingMessage = _INTL("{1} luxuriated in its fine clothing.", battler.pbThis)
-      battler.applyFractionalHealing(1.0 / 8.0, ability: ability, customMessage: healingMessage)
-  }
-)
-
 BattleHandlers::EOREffectAbility.add(:IGNITIONCYCLE,
   proc { |ability, battler, battle|
       battle.pbShowAbilitySplash(battler, ability)
@@ -124,21 +116,13 @@ BattleHandlers::EOREffectAbility.add(:TENDERIZE,
   }
 )
 
-BattleHandlers::EOREffectAbility.add(:VITALRHYTHM,
-  proc { |ability, battler, battle|
-      canHealAny = false
-      battler.eachAlly do |b|
-        canHealAny = true if b.canHeal?
+BattleHandlers::EOREffectAbility.add(:SINKINGFEELING,
+  proc { |ability, battler, _battle|
+      battler.eachOther do |b|
+          next unless b.waterlogged?
+          b.pbLowerMultipleStatSteps(ATTACKING_STATS_2, battler, ability: ability)
       end
-      canHealAny = true if battler.canHeal?
-      next unless canHealAny
-      battle.pbShowAbilitySplash(battler, ability)
-      battler.applyFractionalHealing(1.0 / 16.0)
-      battler.eachAlly do |b|
-        b.applyFractionalHealing(1.0 / 16.0)
-      end
-      battle.pbHideAbilitySplash(battler)
-    }
+  }
 )
 
 BattleHandlers::EOREffectAbility.add(:FLOURISHING,
@@ -149,65 +133,10 @@ BattleHandlers::EOREffectAbility.add(:FLOURISHING,
       next unless %i[PUMPKABOO GOURGEIST].include?(battler.species)
       next if battler.form == 3
       battle.pbShowAbilitySplash(battler, ability)
-      formChangeMessage = _INTL("#{battler.pbThis} grows one size bigger!")
+      formChangeMessage = _INTL("{1} grows one size bigger!", battler.pbThis)
       battler.pbChangeForm(battler.form + 1, formChangeMessage)
-      battle.pbDisplay(_INTL("#{battler.pbThis} is fully grown!")) if battler.form == 3
+      battle.pbDisplay(_INTL("{1} is fully grown!", battler.pbThis)) if battler.form == 3
       battle.pbHideAbilitySplash(battler)
-  }
-)
-
-EOT_ABILITY_HEALING_FRACTION = 1.0 / 12.0
-
-BattleHandlers::EOREffectAbility.add(:FIGHTINGVIGOR,
-  proc { |ability, battler, _battle|
-      battler.applyFractionalHealing(EOT_ABILITY_HEALING_FRACTION, ability: ability)
-  }
-)
-
-BattleHandlers::EOREffectAbility.add(:GROTESQUEVITALS,
-  proc { |ability, battler, _battle|
-      battler.applyFractionalHealing(EOT_ABILITY_HEALING_FRACTION, ability: ability)
-  }
-)
-
-BattleHandlers::EOREffectAbility.add(:SELFSUFFICIENT,
-  proc { |ability, battler, _battle|
-      battler.applyFractionalHealing(EOT_ABILITY_HEALING_FRACTION, ability: ability)
-  }
-)
-
-BattleHandlers::EOREffectAbility.add(:LIVINGARMOR,
-  proc { |ability, battler, battle|
-      battler.applyFractionalHealing(EOT_ABILITY_HEALING_FRACTION, ability: ability)
-  }
-)
-
-BattleHandlers::EOREffectAbility.add(:PRIMEVALREGENERATOR,
-  proc { |ability, battler, _battle|
-      battler.applyFractionalHealing(1.0 / 4.0, ability: ability)
-  }
-)
-
-LIFELINE_HEALING_FRACTION = 1.0 / 20.0
-
-BattleHandlers::EOREffectAbility.add(:LIFELINE,
-  proc { |ability, battler, battle|
-    healingAmount = battler.applyFractionalHealing(LIFELINE_HEALING_FRACTION, ability: ability)
-
-    if healingAmount > 0
-        potentialHeals = []
-        battle.pbParty(battler.index).each_with_index do |pkmn,partyIndex|
-            next if pkmn.fainted?
-            next if pkmn.hp == pkmn.totalhp
-            next if battle.pbFindBattler(partyIndex, battler.index)
-            potentialHeals.push(pkmn)
-        end
-        unless potentialHeals.empty?
-            healTarget = potentialHeals.sample
-            battle.pbDisplay(_INTL("#{battler.pbThis} also heals #{healTarget.name}!"))
-            healTarget.healBy(healingAmount)
-        end
-    end
   }
 )
 
@@ -268,30 +197,5 @@ BattleHandlers::EOREffectAbility.add(:AUTOSTRUCTURE,
 
     battle.pbDisplay(_INTL("{1} has restructured!", battler.pbThis))
     battler.hideMyAbilitySplash
-  }
-)
-
-DIRECT_CURRENT_HEALING_FRACTION = 1.0/5.0
-
-BattleHandlers::EOREffectAbility.add(:DIRECTCURRENT,
-  proc { |ability, battler, battle|
-    if battler.pbCanLowerStatStep?(:SPECIAL_ATTACK, battler)
-      battler.showMyAbilitySplash(ability)
-      battler.tryLowerStat(:SPECIAL_ATTACK, battler)
-      choices = [_INTL("Speed"),_INTL("Healing")]
-      if battle.autoTesting
-        choice = rand(1)
-      elsif !battler.pbOwnedByPlayer? # Trainer AI
-        choice = 0
-      else
-        choice = battle.scene.pbShowCommands(_INTL("Where to direct power?"),choices,0)
-      end
-      if choice == 0
-        battler.tryRaiseStat(:SPEED, battler)
-      else
-        battler.applyFractionalHealing(DIRECT_CURRENT_HEALING_FRACTION)
-      end
-      battler.hideMyAbilitySplash
-    end
   }
 )

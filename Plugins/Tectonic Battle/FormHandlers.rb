@@ -250,7 +250,7 @@ MultipleForms.register(:GIRATINA,{
 
 MultipleForms.register(:ARCEUS,{
   "getForm" => proc { |pkmn|
-    next nil unless pkmn.hasAbility?(:MULTITYPE)
+    next 0 unless pkmn.hasAbility?(:MULTITYPE)
     next 0 unless pkmn.hasItem?(:PRISMATICPLATE)
     next GameData::Type.get(pkmn.itemTypeChosen).id_number
   }
@@ -302,12 +302,6 @@ MultipleForms.register(:KELDEO,{
   }
 })
 
-MultipleForms.register(:MELOETTA,{
-  "getFormOnLeavingBattle" => proc { |pkmn,battle,usedInBattle,endBattle|
-    next 0
-  }
-})
-
 MultipleForms.register(:GENESECT,{
   "getForm" => proc { |pkmn|
     next 1 if pkmn.hasItem?(:SHOCKDRIVE)
@@ -318,9 +312,9 @@ MultipleForms.register(:GENESECT,{
   }
 })
 
-MultipleForms.register(:GRENINJA,{
+MultipleForms.register(:CRAMORANT,{
   "getFormOnLeavingBattle" => proc { |pkmn,battle,usedInBattle,endBattle|
-    next 1 if pkmn.form == 2 && (pkmn.fainted? || endBattle)
+    next 0
   }
 })
 
@@ -384,7 +378,7 @@ MultipleForms.register(:WISHIWASHI,{
 
 MultipleForms.register(:SILVALLY,{
   "getForm" => proc { |pkmn|
-    next nil unless pkmn.hasAbility?(:RKSSYSTEM)
+    next 0 unless pkmn.hasAbility?(:RKSSYSTEM)
     next 0 unless pkmn.hasItem?(:MEMORYSET)
     next GameData::Type.get(pkmn.itemTypeChosen).id_number
   }
@@ -472,14 +466,58 @@ MultipleForms.register(:ZAMAZENTA,{
   "getForm" => proc { |pkmn|
     next 1 if pkmn.hasItem?(:RUSTEDSHIELD)
     next 0
-  }
+  },
+  "onSetForm" => proc { |pkmn, form, oldForm|
+    form_moves = GameData::Species.get(:ZAMAZENTA).form_specific_moves
+    if form == 0
+      # Turned back into the base form; forget form-specific moves
+      move_index = -1
+      pkmn.moves.each_with_index do |move, i|
+        next if !form_moves.any? { |m| m == move.id }
+        move_index = i
+        break
+      end
+      if move_index >= 0
+        move_name = pkmn.moves[move_index].name
+        pkmn.forget_move_at_index(move_index)
+        pbMessage(_INTL("{1} forgot {2}...", pkmn.name, move_name))
+        pbLearnMove(:IRONHEAD) if pkmn.numMoves == 0
+      end
+    else
+      # Turned into an alternate form; try learning that form's unique move
+      new_move_id = form_moves[form]
+      pbLearnMove(pkmn, new_move_id, true)
+    end
+  },
 })
 
 MultipleForms.register(:ZACIAN,{
   "getForm" => proc { |pkmn|
     next 1 if pkmn.hasItem?(:RUSTEDSWORD)
     next 0
-  }
+  },
+  "onSetForm" => proc { |pkmn, form, oldForm|
+    form_moves = GameData::Species.get(:ZACIAN).form_specific_moves
+    if form == 0
+      # Turned back into the base form; forget form-specific moves
+      move_index = -1
+      pkmn.moves.each_with_index do |move, i|
+        next if !form_moves.any? { |m| m == move.id }
+        move_index = i
+        break
+      end
+      if move_index >= 0
+        move_name = pkmn.moves[move_index].name
+        pkmn.forget_move_at_index(move_index)
+        pbMessage(_INTL("{1} forgot {2}...", pkmn.name, move_name))
+        pbLearnMove(:IRONHEAD) if pkmn.numMoves == 0
+      end
+    else
+      # Turned into an alternate form; try learning that form's unique move
+      new_move_id = form_moves[form]
+      pbLearnMove(pkmn, new_move_id, true)
+    end
+  },
 })
 
 MultipleForms.register(:PUMPKABOO, {
@@ -541,4 +579,10 @@ MultipleForms.register(:URSHIFU,{
       pbLearnMove(pkmn, new_move_id, true)
     end
   }
+})
+
+MultipleForms.register(:MORPEKO, {
+  "getFormOnLeavingBattle" => proc { |pkmn, _battle, _usedInBattle, endBattle|
+      next 0 if pkmn.form == 1 && (pkmn.fainted? || endBattle)
+  },
 })

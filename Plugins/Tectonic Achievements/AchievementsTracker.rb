@@ -12,12 +12,18 @@ class AchievementsTracker
     end
 
     def unlockAchievement(achievementID,ignoreAlreadyUnlocked = false)
-        pbMessage(_INTL("Invalid Achievement #{achievementID}.")) unless GameData::Achievement.try_get(achievementID)
+        pbMessage(_INTL("Invalid Achievement {1}.", achievementID)) unless GameData::Achievement.try_get(achievementID)
 
         if isAchievementUnlocked?(achievementID) && !ignoreAlreadyUnlocked
             echoln(_INTL("Achievement {1} is already unlocked! Cannot unlock again.",achievementID))
             return
         end
+
+        if GameData::Achievement.get(achievementID).disabled_in_randomizer? && Randomizer.on?
+            echoln(_INTL("Achievement {1} is blocked from being completed, since randomizer is active.",achievementID))
+            return
+        end
+
         @achievementsEarned.push(achievementID)
         storeAchievements
         echoln(_INTL("Unlocking achievement {1}.",achievementID))
@@ -25,7 +31,7 @@ class AchievementsTracker
     end
 
     def notifyAchievement(achievementID)
-        pbMessage(_INTL("Invalid Achievement #{achievement_id}.")) unless GameData::Achievement.try_get(achievementID)
+        pbMessage(_INTL("Invalid Achievement {1}", achievement_id)) unless GameData::Achievement.try_get(achievementID)
         showAchievementPopup(GameData::Achievement.get(achievementID).name)
     end
 
@@ -61,7 +67,7 @@ end
 
 def achievementsPopupDuration
 	dur = 80
-	dur -= 5 * $PokemonSystem.textspeed
+	dur -= 5 * $Options.textspeed
 	return dur
 end
 

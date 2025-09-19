@@ -35,7 +35,7 @@ class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
 	def initializeMenuButtons
 		super
       	canEditTeam = teamEditingAllowed?
-		inDonationBox = !@heldpoke && @selected[0] > -1 && @storageScreen.storage.boxes[@selected[0]].isDonationBox?
+		inDonationBox = @selected[0] > -1 && @storageScreen.storage.boxes[@selected[0]].isDonationBox?
 		lastPokemonInParty = @pkmn && @selected[0] == -1 && @storageScreen.pbAbleCount <= 1 && @storageScreen.pbAble?(@pkmn)
 
 		case @command
@@ -242,10 +242,10 @@ class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
 		end
 		typeCommands.push("Cancel")
 		existingIndex = typesArray.find_index(@pkmn.itemTypeChosen)
-		chosenNumber = pbShowCommands(_INTL("What type should #{@pkmn.name} become?"),typeCommands,existingIndex)
+		chosenNumber = pbShowCommands(_INTL("What type should {1} become?", @pkmn.name),typeCommands,existingIndex)
 		if chosenNumber > -1 && chosenNumber < typeCommands.length - 1
 			typeSettingItem = @pkmn.hasTypeSetterItem?
-			pbDisplay(_INTL("#{@pkmn.name} changed its #{getItemName(typeSettingItem)} to #{typeCommands[chosenNumber]}-type!"))
+			pbDisplay(_INTL("{1} changed its {2} to {3}-type!", @pkmn.name, getItemName(typeSettingItem), typeCommands[chosenNumber]))
 			@pkmn.itemTypeChosen = typesArray[chosenNumber]
 		end
     end
@@ -253,6 +253,8 @@ class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
     def modifyCommandMenu
 		commands   = []
 		cmdRename  = -1
+		cmdSwapPokeBall = -1
+		cmdDeleteMove = -1
 		cmdEvolve  = -1
 		cmdStyle = -1
 		cmdOmnitutor = -1
@@ -262,19 +264,25 @@ class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
 		if $PokemonGlobal.omnitutor_active && !getOmniMoves(@pkmn).empty?
 			commands[cmdOmnitutor = commands.length]	= _INTL("OmniTutor")
 		end
-		commands[cmdRename = commands.length]       = _INTL("Rename")
+		commands[cmdRename = commands.length]       	= _INTL("Rename")
+		commands[cmdSwapPokeBall = commands.length]   = _INTL("Swap Ball")
+		commands[cmdDeleteMove = commands.length] = _INTL("Delete Move") if @pkmn.numMoves > 1
 		newspecies = @pkmn.check_evolution_on_level_up(false)
-		commands[cmdEvolve = commands.length]       = _INTL("Evolve") if newspecies
-		commands[commands.length]                   = _INTL("Cancel")
+		commands[cmdEvolve = commands.length]       	= _INTL("Evolve") if newspecies
+		commands[commands.length]                   	= _INTL("Cancel")
 		modifyCommand = pbShowCommands(_INTL("Do what with {1}?",@pkmn.name),commands)
 		if cmdRename >= 0 && modifyCommand == cmdRename
 			currentName = @pkmn.name
-			pbTextEntry("#{currentName}'s nickname?",0,Pokemon::MAX_NAME_SIZE,5)
+			pbTextEntry(_INTL("{1}'s nickname?", currentName),0,Pokemon::MAX_NAME_SIZE,5)
 			if pbGet(5) == "" || pbGet(5) == currentName
 				@pkmn.name = currentName
 			else
 				@pkmn.name = pbGet(5)
 			end
+		elsif cmdSwapPokeBall >= 0 && modifyCommand == cmdSwapPokeBall
+			@pkmn.switchBall
+		elsif cmdDeleteMove >= 0 && modifyCommand == cmdDeleteMove
+			moveDeletion(@pkmn)
 		elsif cmdEvolve >= 0 && modifyCommand == cmdEvolve
 			newspecies = @pkmn.check_evolution_on_level_up(true)
 			return false if newspecies.nil?

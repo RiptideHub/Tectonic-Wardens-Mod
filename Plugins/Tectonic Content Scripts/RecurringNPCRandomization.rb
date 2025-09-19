@@ -95,7 +95,7 @@ class NPCRandomization
             $game_switches[NPC2_TRAITOR_SWITCH] = true
             $game_map.need_refresh = true
         else
-            pbMessage(_INTL("The submitted NPC ID could not be made traitor as it was not randomly selected on this playthrough: #{npcID}"))
+            pbMessage(_INTL("The submitted NPC ID could not be made traitor as it was not randomly selected on this playthrough: {1}", npcID))
             pbMessage(_INTL("This is a recoverable error. Please alert a programmer."))
         end
     end
@@ -136,13 +136,13 @@ def getRandomNPCTrainerDetails(villainNumber,fightSection=0)
     trainerType += "_DOUBLE" if doubleBattle
     trainerName = ["Crimson", "Teal"][villainNumber]
 
-    return trainerType, trainerName, trainerVersion
+    return trainerType, trainerName, trainerVersion, doubleBattle
 end
 
 def randomNPCTrainerBattle(villainNumber,fightSection=0)
-    trainerType, trainerName, trainerVersion = getRandomNPCTrainerDetails(villainNumber,fightSection)
+    trainerType, trainerName, trainerVersion, doubleBattle = getRandomNPCTrainerDetails(villainNumber,fightSection)
 
-    setBattleRule("double") if trainerVersion == 0
+    setBattleRule("double") if doubleBattle
 
     return pbTrainerBattle(trainerType,trainerName,nil, false, trainerVersion)
 end

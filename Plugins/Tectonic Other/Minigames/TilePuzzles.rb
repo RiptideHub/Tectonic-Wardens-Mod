@@ -174,8 +174,13 @@ class TilePuzzleScene
          Rect.new(@tilewidth*(i%@boardwidth),@tileheight*(i/@boardwidth),@tilewidth,@tileheight))
     end
     @heldtile=-1
-    @angles=[]
-    @tiles=pbShuffleTiles
+    puzzleState = tileState.loadPuzzleState(@board)
+    if puzzleState
+      @tiles, @angles = puzzleState
+    else
+      @angles = []
+      @tiles = pbShuffleTiles
+    end
     @sprites["cursor"]=TilePuzzleCursor.new(@game,pbDefaultCursorPosition,
        @tilewidth,@tileheight,@boardwidth,@boardheight)
     update
@@ -542,7 +547,12 @@ class TilePuzzleScene
             (@game==7 && Input.trigger?(Input::USE))
         pbRotateTile(@sprites["cursor"].position)
       elsif Input.trigger?(Input::BACK)
-        return false
+        if  @heldtile>=0
+          pbMessage(_INTL("Cannot exit now, you are holding a tile!"))
+        else
+          tileState.savePuzzleState(@board,[@tiles,@angles])
+          return false
+        end
       end
     end
   end
@@ -553,8 +563,6 @@ class TilePuzzleScene
     @viewport.dispose
   end
 end
-
-
 
 class TilePuzzle
   def initialize(scene)
@@ -569,8 +577,6 @@ class TilePuzzle
   end
 end
 
-
-
 def pbTilePuzzle(game,board,width=0,height=0)
   ret = false
   pbFadeOutIn {
@@ -579,4 +585,30 @@ def pbTilePuzzle(game,board,width=0,height=0)
     ret = screen.pbStartScreen
   }
   return ret
+end
+
+class TilePuzzleStateTracker
+  def initialize
+      @puzzleStateData = {}
+  end
+
+  def loadPuzzleState(puzzleID)
+    return @puzzleStateData[puzzleID]
+  end
+  
+  def savePuzzleState(puzzleID,puzzleState)
+      @puzzleStateData[puzzleID] = puzzleState
+  end
+
+  def resetTileStates
+      @puzzleStateData = {}
+  end
+end
+
+def tileState
+  return $PokemonGlobal.tilePuzzleStateTracker
+end
+
+def resetTileStates
+  $PokemonGlobal.tilePuzzleStateTracker.resetTileStates
 end

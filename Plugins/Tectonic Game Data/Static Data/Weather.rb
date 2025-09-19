@@ -250,7 +250,7 @@ GameData::Weather.register({
 	:id_number        => 12,
 	:particle_delta_x => 0,
 	:particle_delta_y => 400,
-	:particle_names   => %w[wind_1 wind_2],
+	:particle_names   => %w[wind_3 wind_4],
 	:clouds_proc => proc { |strength|
 		next strength * -4
 	},
@@ -260,8 +260,8 @@ GameData::Weather.register({
 	:id               => :StrongWinds,
 	:category         => :Windy,
 	:id_number        => 13,
-	:particle_delta_x => 0,
-	:particle_delta_y => 400,
+	:particle_delta_x => -2400,
+	:particle_delta_y => 0,
 	:particle_names   => %w[wind_1 wind_2],
 	:clouds_proc => proc { |strength|
 		next strength * -4
@@ -309,5 +309,28 @@ GameData::Weather.register({
 	:particle_delta_y => 240,
 	:clouds_proc => proc { |strength|
 		next strength * -4
+	},
+})
+
+GameData::Weather.register({
+	:id               => :Stillness,
+	:id_number        => 16,   # Must be 0 (preset RMXP weather)
+	:clouds_proc => proc { |_strength|
+		next 0
+	},
+})
+
+GameData::Weather.register({
+	:id               => :StrongWindsNS,
+	:category         => :Windy,
+	:id_number        => 17,
+	:particle_delta_x => 0,
+	:particle_delta_y => 2400,
+	:particle_names   => %w[wind_1 wind_2],
+	:clouds_proc => proc { |strength|
+		next strength * -4
+	},
+	:tone_proc => proc { |strength|
+		next Tone.new(-strength, -strength, -strength)
 	},
 })

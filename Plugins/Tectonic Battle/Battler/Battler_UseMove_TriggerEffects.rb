@@ -75,8 +75,8 @@ class PokeBattle_Battler
                 end
             end
             # Destiny Bond (recording that it should apply)
-            if target.effectActive?(:DestinyBond) && target.fainted? && !user.effectActive?(:DestinyBondTarget)
-                applyEffect(:DestinyBondTarget, target.index)
+            if target.effectActive?(:DestinyBond, true) && target.fainted? && !user.effectActive?(:DestinyBondTarget)
+                user.applyEffect(:DestinyBondTarget, target.index)
             end
             # Stunning Curl
             if target.effectActive?(:StunningCurl) && !user.numbed?
@@ -106,7 +106,7 @@ user.pbThis(true)))
             end
             # Bubble Barrier
             if target.effectActive?(:BubbleBarrier) && target.damageState.bubbleBarrier > 0
-                recoilMessage = _INTL("The bubble barrier bursts, harming #{user.pbThis(true)}!")
+                recoilMessage = _INTL("The bubble barrier bursts, harming {1}!", user.pbThis(true))
                 user.applyRecoilDamage(target.damageState.bubbleBarrier, true, true, recoilMessage)
                 target.disableEffect(:BubbleBarrier)
             end
@@ -135,15 +135,9 @@ user.pbThis(true)))
         end
         # Consume gems, etc.
         consumeMoveTriggeredItems(user)
-        # Consume Volatile Toxin
-        if move.damagingMove?
-            targets.each do |b|
-                b.disableEffect(:VolatileToxin)
-            end
-        end
-        # Consume Charge
-        if user.effectActive?(:ChargeExpended)
-            user.disableEffect(:Charge)
+        # Consume Energy Charge
+        if user.effectActive?(:EnergyChargeExpended)
+            user.disableEffect(:EnergyCharge)
         end
         # Pokémon switching caused by Roar, Whirlwind, Discourage, Dragon Tail
         move.pbSwitchOutTargetsEffect(user, targets, numHits, switchedBattlers)

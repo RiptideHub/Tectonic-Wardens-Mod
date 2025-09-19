@@ -17,7 +17,7 @@ BattleHandlers::AbilityOnSwitchOut.add(:NATURALCURE,
 BattleHandlers::AbilityOnSwitchOut.add(:FLYBY,
   proc { |ability, battler, battle, endOfBattle|
       next if endOfBattle
-      battle.forceUseMove(battler, :GUST, -1, ability: ability)
+      battle.forceUseMove(battler, :GUST, ability: ability)
   }
 )
 
@@ -50,7 +50,7 @@ BattleHandlers::AbilityOnSwitchOut.add(:GAUSSAFTERSHOCK,
 BattleHandlers::AbilityOnSwitchOut.add(:MOTHBURGLAR,
   proc { |ability, battler, battle, endOfBattle|
       next if endOfBattle
-      battle.forceUseMove(battler, :THIEF, -1, ability: ability)
+      battle.forceUseMove(battler, :THIEF, ability: ability)
   }
 )
 
@@ -71,7 +71,7 @@ BattleHandlers::AbilityOnSwitchOut.add(:CLUMSYKINESIS,
               battler.loseableItems.each do |itemID|
                   itemNames.push(getItemName(itemID))
               end
-              chosenIndex = battle.scene.pbShowCommands(_INTL("Which item should #{battler.pbThis(true)} drop?"),itemNames,0)
+              chosenIndex = battle.scene.pbShowCommands(_INTL("Which item should {1} drop?", battler.pbThis(true)),itemNames,0)
               chosenItem = battler.loseableItems[chosenIndex]
           end
       end
@@ -80,3 +80,26 @@ BattleHandlers::AbilityOnSwitchOut.add(:CLUMSYKINESIS,
       battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::AbilityOnSwitchOut.add(:COSTUMECHANGE,
+  proc { |ability, battler, battle, endOfBattle|
+      next if endOfBattle
+      next unless battler.species == :ORICORIO
+      form0Name = GameData::Species.get_species_form(:ORICORIO,0).form_name 
+      form1Name = GameData::Species.get_species_form(:ORICORIO,1).form_name
+      form2Name = GameData::Species.get_species_form(:ORICORIO,2).form_name
+      form3Name = GameData::Species.get_species_form(:ORICORIO,3).form_name
+      choices = [form0Name,form1Name,form2Name,form3Name]
+      if battle.autoTesting
+        choice = rand(3)
+      elsif !battler.pbOwnedByPlayer? # Trainer AI
+        choice = 0
+      else
+        choice = battle.scene.pbShowCommands(_INTL("Which form should it take?"),choices,0)
+      end
+      battler.pbChangeForm(choice, _INTL("{1} takes on a new style!", battler.pbThis))
+  }
+)
+
+
+

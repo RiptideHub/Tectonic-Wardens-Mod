@@ -1,18 +1,34 @@
 ######################################################
 # Mart vendors
 ######################################################
-BASIC_MART_STOCK = [
-	:POKEBALL,
-	:ABILITYCAPSULE,
-	:REPEL,
-]
+BASIC_MART_STOCK = %i[POKEBALL ABILITYCAPSULE REPEL]
+
+VIP_CARD_EXTRA_STOCK = %i[REPEATBALL ROYALBALL LUXURYBALL SITRUSBERRY EXPCANDYXS]
+
+def vipCardActive?
+    return false unless $PokemonBag
+    return pbHasItem?(:VIPCARD)
+end
+
+def martStock
+    stock = BASIC_MART_STOCK.clone
+    stock += VIP_CARD_EXTRA_STOCK.clone if vipCardActive?
+    return stock
+end
 
 def basicPokeMart
-    pbPokemonMart(BASIC_MART_STOCK)
+    setPrice(:SITRUSBERRY,2000)
+    pbPokemonMart(martStock)
 end
 
 def rangerMart
-    pbPokemonMart(BASIC_MART_STOCK,_INTL("Get your supplies here!"))
+    setPrice(:SITRUSBERRY,2000)
+    if vipCardActive?
+        message = _INTL("You a big shot, huh? Well, we're here to supply you.")
+    else
+        message = _INTL("Get your supplies here!")
+    end
+    pbPokemonMart(martStock,message)
 end
 
 ######################################################
@@ -205,10 +221,32 @@ def styleFurfrou
 	pbMessage(_INTL("What style would you like me to give it?"))
 	choice = pbShowCommands(nil,possibleFormNames,possibleFormNames.length+1)
 	if choice < possibleForms.length
-		pbMessage(_INTL("#{pkmn.name} swapped to #{possibleFormNames[choice]}!"))
+		pbMessage(_INTL("{1} swapped to {2}!", pkmn.name, possibleFormNames[choice]))
 		
 		pkmn.form = possibleForms[choice].form
 		pkmn.changeHappiness("groom")
+		refreshFollow(false)
+		return true
+	end
+	return false
+end
+
+def styleVivillon
+	pbChoosePokemon(1,3,
+		proc { |poke|
+			!poke.egg? && poke.species == :VIVILLON
+		}
+	)
+	return false if pbGet(1) < 0
+	pkmn = $Trainer.party[pbGet(1)]
+	possibleForms, possibleFormNames = getFormSelectionChoices(:VIVILLON,pkmn.form)
+	pbMessage(_INTL("What pattern would you like me to give it?"))
+	choice = pbShowCommands(nil,possibleFormNames,possibleFormNames.length+1)
+	if choice < possibleForms.length
+		pbMessage(_INTL("{1} swapped to {2}!", pkmn.name, possibleFormNames[choice]))
+		
+		pkmn.form = possibleForms[choice].form
+		#pkmn.changeHappiness("groom")
 		refreshFollow(false)
 		return true
 	end
@@ -289,14 +327,14 @@ def shinifyPokemonVendor
 	end
 
 	gleamPowderRealName = GameData::Item.get(:GLEAMPOWDER).name
-	pbMessage(_INTL("\\PN hands over the #{gleamPowderRealName}, $30,000, and #{pkmn.name}."))
+	pbMessage(_INTL("\\PN hands over the {1}, $30,000, and {2}.", gleamPowderRealName, pkmn.name))
 
 	pbMessage(_INTL("And so my work begins!"))
 	blackFadeOutIn(30) {
 		$PokemonBag.pbDeleteItem(:GLEAMPOWDER)
 		pkmn.shiny = true
 	}
-	pbMessage(_INTL("Now, bask in the beautiful glow of your shiny #{pkmn.speciesName}!"))
+	pbMessage(_INTL("Now, bask in the beautiful glow of your shiny {1}!", pkmn.speciesName))
 	pbMessage(_INTL("No need to thank me, its beauty is reward enough."))
 	pbMessage(_INTL("The money isn't bad either..."))
 
@@ -326,7 +364,7 @@ def cloneMinorLegend
 	
 	item_data = GameData::Item.get(:ORIGINORE)
 	removeSpeaker
-	pbMessage(_INTL("\\PN hands over the #{item_data.name}."))
+	pbMessage(_INTL("\\PN hands over the {1}.", item_data.name))
 	setSpeaker(HISUIAN_WITCH)
 	pbMessage(_INTL("Now just to work my magicks..."))
 	blackFadeOutIn(30) {
@@ -407,7 +445,6 @@ def eastEndExclusives
 		GRASSTOKEN WATERTOKEN FIRETOKEN
 		DIAMONDTIARA
 		RUSTEDSHIELD RUSTEDSWORD
-		REINSOFUNITY
 	]
 
 	setPrice(:RUSTEDSWORD,20_000)
@@ -487,6 +524,7 @@ def hackedTMShop
 		TMHYDROCANNON
 		TMROCKWRECKER
 		TMMETEORASSAULT
+		TMRAILCANNON
 		TMEXPLOSION
 		TMMEMENTO
 		TMRAPIDSPIN
@@ -504,7 +542,9 @@ end
 
 def switchOutTMShop
 	tmsStock = %i[
+		TMRETREAT
 		TMVOLTSWITCH
+		TMPSYCHESWITCH
 		TMUTURN
 		TMFLIPTURN
 		TMPARTINGSHOT
@@ -558,6 +598,7 @@ def heldItemShop
 		REINFORCINGROD
 		LOADEDDICE
 		PROXYFIST COVERTCLOAK
+		COURAGEBADGE CLEARAMULET
 	]	
 
 	pbPokemonMart(
@@ -610,6 +651,21 @@ def gemVendor
 	)
 end
 
+def earlyBallVendor
+	basicBallStock = %i[
+		SLICEBALL
+		LEECHBALL
+		DISABLEBALL
+		POTIONBALL
+		HEALBALL
+	]
+	pbPokemonMart(
+		basicBallStock,
+		_INTL("Poké Balls of all sorts stocked here. Take a look!"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
 def basicBallVendor
 	basicBallStock = %i[
 		GREATBALL
@@ -617,7 +673,7 @@ def basicBallVendor
 		NESTBALL
 		TIMERBALL
 		QUICKBALL
-		SLICEBALL
+		FRIENDBALL
 	]
 	pbPokemonMart(
 		basicBallStock,
@@ -629,14 +685,12 @@ end
 def weirdBallsVendor
 	weirdBallStock = %i[
 		ULTRABALL
-		LEECHBALL
-		POTIONBALL
-		DISABLEBALL
 		DREAMBALL
-		FASTBALL  HEAVYBALL
-		LUXURYBALL FRIENDBALL
-		HEALBALL
+		FASTBALL
+		HEAVYBALL
+		LUXURYBALL
 		ROYALBALL
+		BEASTBALL
 	]
 	pbPokemonMart(
 		weirdBallStock,
@@ -645,29 +699,21 @@ def weirdBallsVendor
 	)
 end
 
-def evoStoneVendor(expanded = false)
+def evoStoneVendor
 	stock = %i[
 		FIRESTONE
 		THUNDERSTONE
 		WATERSTONE
 		LEAFSTONE
+		ICESTONE
 		DAWNSTONE
 		DUSKSTONE
-		MOONSTONE
-		SUNSTONE
-		ICESTONE
-	]
-
-	expandedStock = %i[
 		SHINYSTONE
+		SUNSTONE
+		MOONSTONE
 	]
-	stock = expandedStock.concat(stock) if expanded
 
-	if expanded
-		message = _INTL("How can we help to empower your Pokemon?")
-	else
-		message = _INTL("Regrettably, you are restricted from purchasing any Shiny Stones. Otherwise, how may I serve you?")
-	end
+	message = _INTL("How can we help to empower your Pokemon?")
 
 	pbPokemonMart(
 		stock,
@@ -687,6 +733,7 @@ def berryVendor
 	setPrice(:PECHABERRY,500)
 	setPrice(:PERSIMBERRY,500)
 	setPrice(:CHERIBERRY,500)
+	setPrice(:BELUEBERRY,500)
 	setPrice(:CHESTOBERRY,500)
 	setPrice(:SPELONBERRY,500)
 
@@ -697,7 +744,7 @@ def berryVendor
 		RAWSTBERRY ASPEARBERRY
 		PECHABERRY
 		PERSIMBERRY
-		CHERIBERRY
+		CHERIBERRY BELUEBERRY
 		CHESTOBERRY
 		SPELONBERRY
 	]
@@ -814,6 +861,7 @@ def statusTMVendor()
 		TMIGNITE
 		TMCHILL
 		TMNUMB
+		TMWATERLOG
 		TMLEECHSEED
 		TMCONFUSERAY
 	]

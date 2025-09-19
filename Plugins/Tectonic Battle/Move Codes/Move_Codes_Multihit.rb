@@ -36,7 +36,7 @@ class PokeBattle_Move_HitsThreeTimesAsBeedrillFiveTimesAsWornet < PokeBattle_Mov
     def pbMoveFailed?(user, _targets, show_message)
         if !user.countsAs?(:BEEDRILL) && !user.countsAs?(:WORNET)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} has no stingers!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} has no stingers!", user.pbThis(true)))
             end
             return true
         end
@@ -88,8 +88,7 @@ end
 #===============================================================================
 class PokeBattle_Move_HitTwoToFiveTimesAddMoneyGainedFromBattleEachHit < PokeBattle_Move_HitTwoToFiveTimes
     def pbEffectOnNumHits(user, _target, numHits)
-        coinsGenerated = 2 * user.level * numHits
-        @battle.field.incrementEffect(:PayDay, coinsGenerated) if user.pbOwnedByPlayer?
+        user.generateMoney(2 * numHits)
         if numHits == 10
             @battle.pbDisplay(_INTL("How fortunate!"))
         elsif numHits == 0
@@ -103,7 +102,7 @@ end
 #===============================================================================
 class PokeBattle_Move_Rampage3HitTwoToFiveTimes < PokeBattle_Move_HitTwoToFiveTimes
     def pbEffectAfterAllHits(user, target)
-        user.applyEffect(:Outrage, 3) if !target.damageState.unaffected && !user.effectActive?(:Outrage)
+        user.applyEffect(:Outrage, 2) if !target.damageState.unaffected && !user.effectActive?(:Outrage)
         user.tickDownAndProc(:Outrage)
     end
 end
@@ -222,4 +221,10 @@ class PokeBattle_Move_EmpoweredBulletSeed < PokeBattle_Move_HitTwoTimesTargetThe
     end
 
     def turnsBetweenUses(); return 3; end
+end
+
+class PokeBattle_Move_HitTwoToFiveTimesAlwaysHits < PokeBattle_Move
+    include RandomHitable
+
+    def pbAccuracyCheck(_user, _target); return true; end
 end

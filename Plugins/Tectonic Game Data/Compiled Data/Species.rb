@@ -1,5 +1,9 @@
 module GameData
     class Species
+        DEFAULT_GROWTH_RATE = :Medium
+        DEFAULT_GENDER_RATIO = :Female50Percent
+        DEFAULT_BASE_HAPPINESS = 70
+
         attr_reader :id
         attr_reader :id_number
         attr_reader :species
@@ -12,7 +16,6 @@ module GameData
         attr_reader :type1
         attr_reader :type2
         attr_reader :base_stats
-        attr_reader :evs
         attr_reader :base_exp
         attr_reader :growth_rate
         attr_reader :gender_ratio
@@ -20,21 +23,17 @@ module GameData
         attr_reader :happiness
         attr_reader :moves
         attr_reader :tutor_moves
-        attr_reader :egg_moves
+        attr_reader :egg_moves # To maintain some backwards compatibility
+        attr_reader :line_moves
         attr_reader :abilities
         attr_reader :hidden_abilities
         attr_reader :wild_item_common
         attr_reader :wild_item_uncommon
         attr_reader :wild_item_rare
-        attr_reader :egg_groups
         attr_reader :hatch_steps
-        attr_reader :incense
         attr_reader :evolutions
         attr_reader :height
         attr_reader :weight
-        attr_reader :color
-        attr_reader :shape
-        attr_reader :habitat
         attr_reader :generation
         attr_reader :mega_stone
         attr_reader :mega_move
@@ -75,7 +74,6 @@ module GameData
               "Type1"             => [0, "e", :Type],
               "Type2"             => [0, "e", :Type],
               "BaseStats"         => [0, "vvvvvv"],
-              "EffortPoints"      => [0, "uuuuuu"],
               "BaseEXP"           => [0, "v"],
               "Rareness"          => [0, "u"],
               "Happiness"         => [0, "u"],
@@ -88,13 +86,9 @@ module GameData
               "WildItemCommon"    => [0, "e", :Item],
               "WildItemUncommon"  => [0, "e", :Item],
               "WildItemRare"      => [0, "e", :Item],
-              "Compatibility"     => [0, "*e", :EggGroup],
               "StepsToHatch"      => [0, "v"],
               "Height"            => [0, "f"],
               "Weight"            => [0, "f"],
-              "Color"             => [0, "e", :BodyColor],
-              "Shape"             => [0, "y", :BodyShape],
-              "Habitat"           => [0, "e", :Habitat],
               "Generation"        => [0, "i"],
               "Flags"             => [0, "*s"],
               "BattlerPlayerX"    => [0, "i"],
@@ -119,7 +113,6 @@ module GameData
                 ret["Name"]         = [0, "s"]
                 ret["GrowthRate"]   = [0, "e", :GrowthRate]
                 ret["GenderRate"]   = [0, "e", :GenderRatio]
-                ret["Incense"]      = [0, "e", :Item]
                 ret["Evolutions"]   = [0, "*ses", nil, :Evolution, nil]
             end
             return ret
@@ -138,37 +131,30 @@ module GameData
             @type1                 = hash[:type1]                 || :NORMAL
             @type2                 = hash[:type2]                 || @type1
             @base_stats            = hash[:base_stats]            || {}
-            @evs                   = hash[:evs]                   || {}
             GameData::Stat.each_main do |s|
                 @base_stats[s.id] = 1 if !@base_stats[s.id] || @base_stats[s.id] <= 0
-                @evs[s.id] = 0 if !@evs[s.id] || @evs[s.id] < 0
             end
             @base_exp              = hash[:base_exp]              || 100
-            @growth_rate           = hash[:growth_rate]           || :Medium
-            @gender_ratio          = hash[:gender_ratio]          || :Female50Percent
+            @growth_rate           = hash[:growth_rate]           || DEFAULT_GROWTH_RATE
+            @gender_ratio          = hash[:gender_ratio]          || DEFAULT_GENDER_RATIO
             @catch_rate            = hash[:catch_rate]            || 255
-            @happiness             = hash[:happiness]             || 70
+            @happiness             = hash[:happiness]             || DEFAULT_BASE_HAPPINESS
             @moves                 = hash[:moves]                 || []
             @tutor_moves           = hash[:tutor_moves]           || []
             @tutor_moves.uniq!
             @tutor_moves.sort_by! { |a| a.to_s }
-            @egg_moves = hash[:line_moves] || hash[:egg_moves] || []
-            @egg_moves.uniq!
-            @egg_moves.sort_by! { |a| a.to_s }
+            @line_moves            = hash[:line_moves] || []
+            @line_moves.uniq!
+            @line_moves.sort_by! { |a| a.to_s }
             @abilities             = hash[:abilities]             || []
             @hidden_abilities      = hash[:hidden_abilities]      || []
             @wild_item_common      = hash[:wild_item_common]
             @wild_item_uncommon    = hash[:wild_item_uncommon]
             @wild_item_rare        = hash[:wild_item_rare]
-            @egg_groups            = hash[:egg_groups]            || [:Undiscovered]
             @hatch_steps           = hash[:hatch_steps]           || 1
-            @incense               = hash[:incense]
             @evolutions            = hash[:evolutions]            || []
             @height                = hash[:height]                || 1
             @weight                = hash[:weight]                || 1
-            @color                 = hash[:color]                 || :Red
-            @shape                 = hash[:shape]                 || :Head
-            @habitat               = hash[:habitat]               || :None
             @generation            = hash[:generation]            || 0
             @mega_stone            = hash[:mega_stone]
             @mega_move             = hash[:mega_move]
@@ -191,7 +177,7 @@ module GameData
                 raise _INTL("Illegal move #{moveID} is learnable by species #{@id}!")
             end
 
-            @egg_moves.each do |moveID|
+            @line_moves.each do |moveID|
                 moveData = GameData::Move.get(moveID)
                 next if moveData.learnable?
                 raise _INTL("Illegal move #{moveID} is learnable by species #{@id}!")
@@ -224,12 +210,12 @@ module GameData
 
         # @return [String] the translated name of this species
         def name
-            return pbGetMessage(MessageTypes::Species, @id_number)
+            return pbGetMessageFromHash(MessageTypes::Species, @real_name)
         end
 
         # @return [String] the translated name of this form of this species
         def form_name
-            return pbGetMessage(MessageTypes::FormNames, @id_number)
+            return pbGetMessageFromHash(MessageTypes::FormNames, @real_form_name) || ""
         end
 
         # Adds the form if not form 0
@@ -243,12 +229,12 @@ module GameData
 
         # @return [String] the translated Pokédex category of this species
         def category
-            return pbGetMessage(MessageTypes::Kinds, @id_number)
+            return pbGetMessageFromHash(MessageTypes::Kinds, @real_category)
         end
 
         # @return [String] the translated Pokédex entry of this species
         def pokedex_entry
-            return pbGetMessage(MessageTypes::Entries, @id_number)
+            return pbGetMessageFromHash(MessageTypes::Entries, @real_pokedex_entry)
         end
 
         def apply_metrics_to_sprite(sprite, index, shadow = false)
@@ -289,6 +275,14 @@ module GameData
             return @species
         end
 
+        def get_previous_species_data
+            return nil unless has_previous_species?
+            sameFormData = GameData::Species.get_species_form(get_previous_species,@form)
+            return sameFormData if sameFormData
+            form0Data = GameData::Species.get(get_previous_species)
+            return form0Data
+        end
+
         def has_previous_species?
             return false if @evolutions.length == 0
             @evolutions.each { |evo| return true if evo[3] } # Is the prevolution
@@ -296,11 +290,11 @@ module GameData
         end
 
         def get_line_start
-            firstSpecies = self
-            while GameData::Species.get(firstSpecies.get_previous_species) != firstSpecies
-                firstSpecies = GameData::Species.get(firstSpecies.get_previous_species)
+            prevoSpecies = self
+            while prevoSpecies.has_previous_species?
+                prevoSpecies = prevoSpecies.get_previous_species_data
             end
-            return firstSpecies
+            return prevoSpecies
         end
 
         def is_solitary?
@@ -312,12 +306,7 @@ module GameData
             return ret if @evolutions.length == 0
             @evolutions.each do |evo|
                 next unless evo[3] # Not the prevolution
-                if check_items
-                    incense = GameData::Species.get(evo[0]).incense
-                    ret = evo[0] if !incense || item1 == incense || item2 == incense
-                else
-                    ret = evo[0] # Species of prevolution
-                end
+                ret = evo[0] # Species of prevolution
                 break
             end
             ret = GameData::Species.get(ret).get_baby_species(check_items, item1, item2) if ret != @species
@@ -383,31 +372,124 @@ module GameData
             return allTribes
         end
 
-        def learnable_moves
-            learnableMoves = []
+        def inherited_level_moves
+            return get_previous_species_data.level_moves if has_previous_species?
+            return []
+        end
 
-            firstSpecies = self
-            while GameData::Species.get(firstSpecies.get_previous_species) != firstSpecies
-                firstSpecies = GameData::Species.get(firstSpecies.get_previous_species)
+        def level_moves
+            if @levelMoves.nil?
+                @levelMoves = []
+                @levelMoves.concat(inherited_level_moves)
+                @moves.each do |learnsetEntry|
+                    matchingInheritedMove = false
+                    @levelMoves.each do |inheritedLearnsetEntry|
+                        next unless inheritedLearnsetEntry[0] == learnsetEntry[0] && inheritedLearnsetEntry[1] == learnsetEntry[1]
+                        matchingInheritedMove = true
+                    end
+                    if matchingInheritedMove
+                        echoln("Species #{@id} learns move #{learnsetEntry[1]} at level #{learnsetEntry[0]} despite inheriting that move at that same level")
+                    else
+                        @levelMoves.push(learnsetEntry.clone)
+                    end
+                end
+
+                @levelMoves.sort! { |learnsetEntryA, learnsetEntryB|
+                    if learnsetEntryA[0] == learnsetEntryB[0]
+                        if learnsetEntryA[1] == learnsetEntryB[1]
+                            next 1
+                        else
+                            next learnsetEntryA[1] <=> learnsetEntryB[1]
+                        end
+                    else
+                        next learnsetEntryA[0] <=> learnsetEntryB[0]
+                    end
+                }
+            end
+            return @levelMoves
+        end
+
+        def inherited_tutor_moves
+            inheritedTutorMoves = []
+
+            prevoSpecies = self
+            while prevoSpecies.has_previous_species?
+                prevoSpecies = prevoSpecies.get_previous_species_data
+
+                inheritedTutorMoves.concat(prevoSpecies.line_moves || prevoSpecies.egg_moves)
+                if prevoSpecies.canTutorAny?
+                    inheritedTutorMoves.concat(GameData::Move.all_non_signature_moves)
+                end
             end
 
-            learnableMoves.concat(firstSpecies.egg_moves)
-            learnableMoves.concat(@tutor_moves)
-            learnableMoves.concat(form_specific_moves)
-            @moves.each do |learnset_entry|
+            inheritedTutorMoves.uniq!
+            inheritedTutorMoves.compact!
+            return inheritedTutorMoves
+        end
+
+        def inherited_moves
+            inheritedMoves = inherited_tutor_moves
+            inherited_level_moves.each do |learnset_entry|
+                moveID = learnset_entry[1]
+                inheritedMoves.push(moveID)
+            end
+            inheritedMoves.uniq!
+            inheritedMoves.compact!
+            return inheritedMoves
+        end
+
+        def non_inherited_tutor_moves
+            nonInheritedTutorMoves = @tutor_moves.clone
+            inherited_moves.each do |moveID|
+                nonInheritedTutorMoves.delete(moveID)
+            end
+            return nonInheritedTutorMoves
+        end
+
+        def non_inherited_line_moves
+            nonInheritedLineMoves = (@line_moves || @egg_moves).clone
+            inherited_moves.each do |moveID|
+                nonInheritedLineMoves.delete(moveID)
+            end
+            return nonInheritedLineMoves
+        end
+
+        def non_inherited_level_moves
+            nonInheritedLevelMoves = level_moves.clone
+            inherited_level_moves.each do |learnset_entry|
+                nonInheritedLevelMoves.reject! { |learnset_entry2|
+                    learnset_entry[0] == learnset_entry2[0] && learnset_entry[1] == learnset_entry2[1]
+                }
+            end
+            return nonInheritedLevelMoves
+        end
+
+        def recalculate_learnable_moves
+            @learnableMoves = []
+
+            @learnableMoves.concat(inherited_tutor_moves)
+            @learnableMoves.concat(@tutor_moves)
+            @learnableMoves.concat(@line_moves || @egg_moves)
+            @learnableMoves.concat(form_specific_moves)
+            level_moves.each do |learnset_entry|
                 m = learnset_entry[1]
-                learnableMoves.push(m)
+                @learnableMoves.push(m)
             end
 
-            learnableMoves.uniq!
-            learnableMoves.compact!
+            @learnableMoves.concat(GameData::Move.all_non_signature_moves) if canTutorAny?
 
-            return learnableMoves
+            @learnableMoves.uniq!
+            @learnableMoves.compact!
+        end
+
+        def learnable_moves
+            recalculate_learnable_moves if @learnableMoves.nil?
+            return @learnableMoves 
         end
 
         def non_level_moves
             learnableMoves = learnable_moves
-            @moves.each do |learnset_entry|
+            level_moves.each do |learnset_entry|
                 m = learnset_entry[1]
                 learnableMoves.delete(m)
             end
@@ -441,6 +523,16 @@ module GameData
                     :SUNSTEELSTRIKE, # Dusk Mane (with Solgaleo) (form 1)
                     :MOONGEISTBEAM, # Dawn Wings (with Lunala) (form 2)
                 ]
+            elsif @species == :ZAMAZENTA
+                return [
+                    nil,
+                    :BEHEMOTHBASH
+                ]
+            elsif @species == :ZACIAN
+                return [
+                    nil,
+                    :BEHEMOTHBLADE
+                ]
             end
             return []
         end
@@ -461,13 +553,13 @@ module GameData
         end
 
         def physical_ehp
-            hpCalc = calcHPGlobal(base_stats[:HP], EHP_LEVEL, DEFAULT_STYLE_VALUE)
+            hpCalc = calcStatGlobal(base_stats[:HP], EHP_LEVEL, DEFAULT_STYLE_VALUE, hp: true)
             defenseCalc = calcStatGlobal(base_stats[:DEFENSE], EHP_LEVEL, DEFAULT_STYLE_VALUE)
             return [(hpCalc * defenseCalc / 100), 1].max
         end
 
         def special_ehp
-            hpCalc = calcHPGlobal(base_stats[:HP], EHP_LEVEL, DEFAULT_STYLE_VALUE)
+            hpCalc = calcStatGlobal(base_stats[:HP], EHP_LEVEL, DEFAULT_STYLE_VALUE, hp: true)
             spDefenseCalc = calcStatGlobal(base_stats[:SPECIAL_DEFENSE], EHP_LEVEL, DEFAULT_STYLE_VALUE)
             return [(hpCalc * spDefenseCalc / 100), 1].max
         end
@@ -518,6 +610,10 @@ module GameData
         def isTest?
             return @flags.include?("Test")
         end
+
+        def canTutorAny?
+            return @flags.include?("TutorAny")
+        end
     end
 end
 
@@ -533,11 +629,15 @@ module Compiler
         species_form_names      = []
         species_categories      = []
         species_pokedex_entries = []
+
         # Read from PBS file
         baseFiles = ["PBS/pokemon.txt"]
         pokemonTextFiles = []
         pokemonTextFiles.concat(baseFiles)
         pokemonTextFiles.concat(Compiler.get_extensions("pokemon"))
+
+        species_number = 0
+
         pokemonTextFiles.each do |path|
             baseFile = baseFiles.include?(path)
             File.open(path, "rb") do |f|
@@ -546,40 +646,30 @@ module Compiler
                 # contents is a hash containing all the XXX=YYY lines in that section, where
                 # the keys are the XXX and the values are the YYY (as unprocessed strings).
                 schema = GameData::Species.schema
-                pbEachFileSection(f) do |contents, species_number|
-                    FileLineData.setSection(species_number, "header", nil) # For error reporting
-                    # Raise an error if a species number is invalid or used twice
-                    if species_number == 0
-                        raise _INTL("A Pokémon species can't be numbered 0 (PBS/pokemon.txt).")
-                    elsif GameData::Species::DATA[species_number]
-                        raise _INTL("Species ID number '{1}' is used twice.\r\n{2}", species_number,
-  FileLineData.linereport)
+                pbEachFileSection3(f) do |contents, species_symbol|
+                    species_number += 1
+                    FileLineData.setSection(species_symbol, "header", nil) # For error reporting
+                    # Raise an error if a species number is used twice
+                    if GameData::Species::DATA[species_symbol]
+                        raise _INTL("Species ID '{1}' is used twice.\r\n{2}", species_symbol, FileLineData.linereport)
                     end
                     # Go through schema hash of compilable data and compile this section
                     for key in schema.keys
                         # Skip empty properties, or raise an error if a required property is
                         # empty
                         if contents[key].nil? || contents[key] == ""
-                            if %w[Name InternalName].include?(key)
-                                raise _INTL("The entry {1} is required in PBS/pokemon.txt section {2}.", key,
-  species_number)
-                            end
                             contents[key] = nil
                             next
                         end
                         # Raise an error if a species internal name is used twice
-                        FileLineData.setSection(species_number, key, contents[key]) # For error reporting
-                        if GameData::Species::DATA[contents["InternalName"].to_sym]
-                            raise _INTL("Species ID '{1}' is used twice.\r\n{2}", contents["InternalName"],
-          FileLineData.linereport)
-                        end
+                        FileLineData.setSection(species_symbol, key, contents[key]) # For error reporting
                         # Compile value for key
                         value = pbGetCsvRecord(contents[key], key, schema[key])
                         value = nil if value.is_a?(Array) && value.length == 0
                         contents[key] = value
                         # Sanitise data
                         case key
-                        when "BaseStats", "EffortPoints"
+                        when "BaseStats"
                             value_hash = {}
                             GameData::Stat.each_main do |s|
                                 value_hash[s.id] = value[s.pbs_order] if s.pbs_order >= 0
@@ -589,8 +679,7 @@ module Compiler
                             # Convert height/weight to 1 decimal place and multiply by 10
                             value = (value * 10).round
                             if value <= 0
-                                raise _INTL("Value for '{1}' can't be less than or close to 0 (section {2}, PBS/pokemon.txt)", key,
-              species_number)
+                                raise _INTL("Value for '{1}' can't be less than or close to 0 (section {2}, PBS/pokemon.txt)", key, species_symbol)
                             end
                             contents[key] = value
                         when "Moves"
@@ -601,7 +690,7 @@ module Compiler
                             move_array.sort! { |a, b| (a[0] == b[0]) ? a[2] <=> b[2] : a[0] <=> b [0] }
                             move_array.each { |arr| arr.pop }
                             contents[key] = move_array
-                        when "TutorMoves", "EggMoves", "LineMoves", "Abilities", "HiddenAbility", "Compatibility"
+                        when "TutorMoves", "EggMoves", "LineMoves", "Abilities", "HiddenAbility"
                             contents[key] = [contents[key]] unless contents[key].is_a?(Array)
                             contents[key].compact!
                         when "Evolutions"
@@ -613,9 +702,8 @@ module Compiler
                         end
                     end
                     # Construct species hash
-                    species_symbol = contents["InternalName"].to_sym
                     species_hash = {
-                      :id                    => species_symbol,
+                      :id                    => species_symbol.to_sym,
                       :id_number             => species_number,
                       :name                  => contents["Name"],
                       :form_name             => contents["FormName"],
@@ -624,7 +712,6 @@ module Compiler
                       :type1                 => contents["Type1"],
                       :type2                 => contents["Type2"],
                       :base_stats            => contents["BaseStats"],
-                      :evs                   => contents["EffortPoints"],
                       :base_exp              => contents["BaseEXP"],
                       :growth_rate           => contents["GrowthRate"],
                       :gender_ratio          => contents["GenderRate"],
@@ -632,22 +719,16 @@ module Compiler
                       :happiness             => contents["Happiness"],
                       :moves                 => contents["Moves"],
                       :tutor_moves           => contents["TutorMoves"],
-                      :egg_moves             => contents["EggMoves"],
                       :line_moves            => contents["LineMoves"],
                       :abilities             => contents["Abilities"],
                       :hidden_abilities      => contents["HiddenAbility"],
                       :wild_item_common      => contents["WildItemCommon"],
                       :wild_item_uncommon    => contents["WildItemUncommon"],
                       :wild_item_rare        => contents["WildItemRare"],
-                      :egg_groups            => contents["Compatibility"],
                       :hatch_steps           => contents["StepsToHatch"],
-                      :incense               => contents["Incense"],
                       :evolutions            => contents["Evolutions"],
                       :height                => contents["Height"],
                       :weight                => contents["Weight"],
-                      :color                 => contents["Color"],
-                      :shape                 => GameData::BodyShape.get(contents["Shape"]).id,
-                      :habitat               => contents["Habitat"],
                       :generation            => contents["Generation"],
                       :flags                 => contents["Flags"],
                       :notes                 => contents["Notes"],
@@ -656,30 +737,30 @@ module Compiler
                     }
                     # Add species' data to records
                     GameData::Species.register(species_hash)
-                    species_names[species_number]           = species_hash[:name]
-                    species_form_names[species_number]      = species_hash[:form_name]
-                    species_categories[species_number]      = species_hash[:category]
-                    species_pokedex_entries[species_number] = species_hash[:pokedex_entry]
+                    species_names.push(species_hash[:name])
+                    species_form_names.push(species_hash[:form_name])
+                    species_categories.push(species_hash[:category])
+                    species_pokedex_entries.push(species_hash[:pokedex_entry])
                 end
             end
         end
+
         # Enumerate all evolution species and parameters (this couldn't be done earlier)
         GameData::Species.each do |species|
-            FileLineData.setSection(species.id_number, "Evolutions", nil) # For error reporting
+            FileLineData.setSection(species.species, "Evolutions", nil) # For error reporting
             Graphics.update if species.id_number % 200 == 0
             if species.id_number % 50 == 0
-                pbSetWindowText(_INTL("Processing {1} evolution line {2}", FileLineData.file,
-    species.id_number))
+                pbSetWindowText(_INTL("Processing {1} evolution line {2}", FileLineData.file, species.species))
             end
             species.evolutions.each do |evo|
-                evo[0] = csvEnumField!(evo[0], :Species, "Evolutions", species.id_number)
+                evo[0] = csvEnumField!(evo[0], :Species, "Evolutions", species.species)
                 param_type = GameData::Evolution.get(evo[1]).parameter
                 if param_type.nil?
                     evo[2] = nil
                 elsif param_type == Integer
                     evo[2] = csvPosInt!(evo[2])
                 else
-                    evo[2] = csvEnumField!(evo[2], param_type, "Evolutions", species.id_number)
+                    evo[2] = csvEnumField!(evo[2], param_type, "Evolutions", species.species)
                 end
             end
         end
@@ -697,10 +778,10 @@ module Compiler
 
         # Save all data
         GameData::Species.save
-        MessageTypes.setMessages(MessageTypes::Species, species_names)
-        MessageTypes.setMessages(MessageTypes::FormNames, species_form_names)
-        MessageTypes.setMessages(MessageTypes::Kinds, species_categories)
-        MessageTypes.setMessages(MessageTypes::Entries, species_pokedex_entries)
+        MessageTypes.setMessagesAsHash(MessageTypes::Species, species_names)
+        MessageTypes.setMessagesAsHash(MessageTypes::FormNames, species_form_names)
+        MessageTypes.setMessagesAsHash(MessageTypes::Kinds, species_categories)
+        MessageTypes.setMessagesAsHash(MessageTypes::Entries, species_pokedex_entries)
         Graphics.update
     end
 
@@ -718,166 +799,168 @@ module Compiler
         GameData::Species.each do |species|
             form_number = species.id_number if form_number < species.id_number
         end
-        # Read from PBS file
-        File.open(path, "rb") do |f|
-            FileLineData.file = path # For error reporting
-            # Read a whole section's lines at once, then run through this code.
-            # contents is a hash containing all the XXX=YYY lines in that section, where
-            # the keys are the XXX and the values are the YYY (as unprocessed strings).
-            schema = GameData::Species.schema(true)
-            pbEachFileSection2(f) do |contents, section_name|
-                FileLineData.setSection(section_name, "header", nil) # For error reporting
-                # Split section_name into a species number and form number
-                split_section_name = section_name.split(/[-,\s]/)
-                if split_section_name.length != 2
-                    raise _INTL(
-                        "Section name {1} is invalid ({2}). Expected syntax like [XXX,Y] (XXX=internal name, Y=form number).", sectionName, path)
-                end
-                species_symbol = csvEnumField!(split_section_name[0], :Species, nil, nil)
-                form           = csvPosInt!(split_section_name[1])
-                # Raise an error if a species is undefined, the form number is invalid or
-                # a species/form combo is used twice
-                if !GameData::Species.exists?(species_symbol)
-                    raise _INTL("Species ID '{1}' is not defined in {2}.\r\n{3}", species_symbol, path,
-      FileLineData.linereport)
-                elsif form == 0
-                    raise _INTL("A form cannot be defined with a form number of 0.\r\n{1}", FileLineData.linereport)
-                elsif used_forms[species_symbol] && used_forms[species_symbol].include?(form)
-                    raise _INTL("Form {1} for species ID {2} is defined twice.\r\n{3}", form, species_symbol,
+        baseFiles = [path]
+        formTextFiles = []
+		formTextFiles.concat(baseFiles)
+		formExtensions = Compiler.get_extensions("pokemonforms")
+		formTextFiles.concat(formExtensions)
+		formTextFiles.each do |path|
+            baseFile = baseFiles.include?(path)
+            # Read from PBS file
+            File.open(path, "rb") do |f|
+                FileLineData.file = path # For error reporting
+                # Read a whole section's lines at once, then run through this code.
+                # contents is a hash containing all the XXX=YYY lines in that section, where
+                # the keys are the XXX and the values are the YYY (as unprocessed strings).
+                schema = GameData::Species.schema(true)
+                pbEachFileSection2(f) do |contents, section_name|
+                    FileLineData.setSection(section_name, "header", nil) # For error reporting
+                    # Split section_name into a species number and form number
+                    split_section_name = section_name.split(/[-,\s]/)
+                    if split_section_name.length != 2
+                        raise _INTL(
+                            "Section name {1} is invalid ({2}). Expected syntax like [XXX,Y] (XXX=internal name, Y=form number).", sectionName, path)
+                    end
+                    species_symbol = csvEnumField!(split_section_name[0], :Species, nil, nil)
+                    form           = csvPosInt!(split_section_name[1])
+                    # Raise an error if a species is undefined, the form number is invalid or
+                    # a species/form combo is used twice
+                    if !GameData::Species.exists?(species_symbol)
+                        raise _INTL("Species ID '{1}' is not defined in {2}.\r\n{3}", species_symbol, path,
         FileLineData.linereport)
-                end
-                used_forms[species_symbol] = [] unless used_forms[species_symbol]
-                used_forms[species_symbol].push(form)
-                form_number += 1
-                base_data = GameData::Species.get(species_symbol)
-                # Go through schema hash of compilable data and compile this section
-                for key in schema.keys
-                    # Skip empty properties (none are required)
-                    if nil_or_empty?(contents[key])
-                        contents[key] = nil
-                        next
+                    elsif form == 0
+                        raise _INTL("A form cannot be defined with a form number of 0.\r\n{1}", FileLineData.linereport)
+                    elsif used_forms[species_symbol] && used_forms[species_symbol].include?(form)
+                        raise _INTL("Form {1} for species ID {2} is defined twice.\r\n{3}", form, species_symbol,
+            FileLineData.linereport)
                     end
-                    FileLineData.setSection(section_name, key, contents[key]) # For error reporting
-                    # Compile value for key
-                    value = pbGetCsvRecord(contents[key], key, schema[key])
-                    value = nil if value.is_a?(Array) && value.length == 0
-                    contents[key] = value
-                    # Sanitise data
-                    case key
-                    when "BaseStats", "EffortPoints"
-                        value_hash = {}
-                        GameData::Stat.each_main do |s|
-                            value_hash[s.id] = value[s.pbs_order] if s.pbs_order >= 0
+                    used_forms[species_symbol] = [] unless used_forms[species_symbol]
+                    used_forms[species_symbol].push(form)
+                    form_number += 1
+                    base_data = GameData::Species.get(species_symbol)
+                    # Go through schema hash of compilable data and compile this section
+                    for key in schema.keys
+                        # Skip empty properties (none are required)
+                        if nil_or_empty?(contents[key])
+                            contents[key] = nil
+                            next
                         end
-                        contents[key] = value_hash
-                    when "Height", "Weight"
-                        # Convert height/weight to 1 decimal place and multiply by 10
-                        value = (value * 10).round
-                        if value <= 0
-                            raise _INTL("Value for '{1}' can't be less than or close to 0 (section {2}, {3})", key, section_name,
-            path)
-                        end
+                        FileLineData.setSection(section_name, key, contents[key]) # For error reporting
+                        # Compile value for key
+                        value = pbGetCsvRecord(contents[key], key, schema[key])
+                        value = nil if value.is_a?(Array) && value.length == 0
                         contents[key] = value
-                    when "Moves"
-                        move_array = []
-                        for i in 0...value.length / 2
-                            move_array.push([value[i * 2], value[i * 2 + 1], i])
-                        end
-                        move_array.sort! { |a, b| (a[0] == b[0]) ? a[2] <=> b[2] : a[0] <=> b [0] }
-                        move_array.each { |arr| arr.pop }
-                        contents[key] = move_array
-                    when "TutorMoves", "EggMoves", "LineMoves", "Abilities", "HiddenAbility", "Compatibility"
-                        contents[key] = [contents[key]] unless contents[key].is_a?(Array)
-                        contents[key].compact!
-                    when "Evolutions"
-                        evo_array = []
-                        for i in 0...value.length / 3
-                            param_type = GameData::Evolution.get(value[i * 3 + 1]).parameter
-                            param = value[i * 3 + 2]
-                            if param_type.nil?
-                                param = nil
-                            elsif param_type == Integer
-                                param = csvPosInt!(param)
-                            else
-                                param = csvEnumField!(param, param_type, "Evolutions", section_name)
+                        # Sanitise data
+                        case key
+                        when "BaseStats"
+                            value_hash = {}
+                            GameData::Stat.each_main do |s|
+                                value_hash[s.id] = value[s.pbs_order] if s.pbs_order >= 0
                             end
-                            evo_array.push([value[i * 3], value[i * 3 + 1], param, false])
+                            contents[key] = value_hash
+                        when "Height", "Weight"
+                            # Convert height/weight to 1 decimal place and multiply by 10
+                            value = (value * 10).round
+                            if value <= 0
+                                raise _INTL("Value for '{1}' can't be less than or close to 0 (section {2}, {3})", key, section_name,
+                path)
+                            end
+                            contents[key] = value
+                        when "Moves"
+                            move_array = []
+                            for i in 0...value.length / 2
+                                move_array.push([value[i * 2], value[i * 2 + 1], i])
+                            end
+                            move_array.sort! { |a, b| (a[0] == b[0]) ? a[2] <=> b[2] : a[0] <=> b [0] }
+                            move_array.each { |arr| arr.pop }
+                            contents[key] = move_array
+                        when "TutorMoves", "EggMoves", "LineMoves", "Abilities", "HiddenAbility"
+                            contents[key] = [contents[key]] unless contents[key].is_a?(Array)
+                            contents[key].compact!
+                        when "Evolutions"
+                            evo_array = []
+                            for i in 0...value.length / 3
+                                param_type = GameData::Evolution.get(value[i * 3 + 1]).parameter
+                                param = value[i * 3 + 2]
+                                if param_type.nil?
+                                    param = nil
+                                elsif param_type == Integer
+                                    param = csvPosInt!(param)
+                                else
+                                    param = csvEnumField!(param, param_type, "Evolutions", section_name)
+                                end
+                                evo_array.push([value[i * 3], value[i * 3 + 1], param, false])
+                            end
+                            contents[key] = evo_array
                         end
-                        contents[key] = evo_array
                     end
+                    # Construct species hash
+                    form_symbol = format("%s_%d", species_symbol.to_s, form).to_sym
+                    moves = contents["Moves"]
+                    unless moves
+                        moves = []
+                        base_data.moves.each { |m| moves.push(m.clone) }
+                    end
+                    evolutions = contents["Evolutions"]
+                    unless evolutions
+                        evolutions = []
+                        base_data.evolutions.each { |e| evolutions.push(e.clone) }
+                    end
+                    species_hash = {
+                    :id                    => form_symbol,
+                    :id_number             => form_number,
+                    :species               => species_symbol,
+                    :form                  => form,
+                    :name                  => base_data.real_name,
+                    :form_name             => contents["FormName"],
+                    :category              => contents["Kind"] || base_data.real_category,
+                    :pokedex_entry         => contents["Pokedex"] || base_data.real_pokedex_entry,
+                    :pokedex_form          => contents["PokedexForm"],
+                    :type1                 => contents["Type1"] || base_data.type1,
+                    :type2                 => contents["Type2"] || base_data.type2,
+                    :base_stats            => contents["BaseStats"] || base_data.base_stats,
+                    :base_exp              => contents["BaseEXP"] || base_data.base_exp,
+                    :growth_rate           => base_data.growth_rate,
+                    :gender_ratio          => base_data.gender_ratio,
+                    :catch_rate            => contents["Rareness"] || base_data.catch_rate,
+                    :happiness             => contents["Happiness"] || base_data.happiness,
+                    :moves                 => moves,
+                    :tutor_moves           => contents["TutorMoves"] || base_data.tutor_moves.clone,
+                    :line_moves            => contents["LineMoves"] || base_data.line_moves.clone,
+                    :abilities             => contents["Abilities"] || base_data.abilities.clone,
+                    :hidden_abilities      => contents["HiddenAbility"] || base_data.hidden_abilities.clone,
+                    :wild_item_common      => contents["WildItemCommon"] || base_data.wild_item_common,
+                    :wild_item_uncommon    => contents["WildItemUncommon"] || base_data.wild_item_uncommon,
+                    :wild_item_rare        => contents["WildItemRare"] || base_data.wild_item_rare,
+                    :hatch_steps           => contents["StepsToHatch"] || base_data.hatch_steps,
+                    :evolutions            => evolutions,
+                    :height                => contents["Height"] || base_data.height,
+                    :weight                => contents["Weight"] || base_data.weight,
+                    :generation            => contents["Generation"] || base_data.generation,
+                    :flags                 => contents["Flags"] || base_data.flags,
+                    :mega_stone            => contents["MegaStone"],
+                    :mega_move             => contents["MegaMove"],
+                    :unmega_form           => contents["UnmegaForm"],
+                    :mega_message          => contents["MegaMessage"],
+                    :notes                 => contents["Notes"],
+                    :tribes                => contents["Tribes"] || base_data.tribes,
+                    :defined_in_extension  => !baseFile
+                    }
+                    # If form is single-typed, ensure it remains so if base species is dual-typed
+                    species_hash[:type2] = contents["Type1"] if contents["Type1"] && !contents["Type2"]
+                    # If form has any wild items, ensure none are inherited from base species
+                    if contents["WildItemCommon"] || contents["WildItemUncommon"] || contents["WildItemRare"]
+                        species_hash[:wild_item_common] = contents["WildItemCommon"]
+                        species_hash[:wild_item_uncommon] = contents["WildItemUncommon"]
+                        species_hash[:wild_item_rare]     = contents["WildItemRare"]
+                    end
+                    # Add form's data to records
+                    GameData::Species.register(species_hash)
+                    species_names.push(species_hash[:name])
+                    species_form_names.push(species_hash[:form_name])
+                    species_categories.push(species_hash[:category])
+                    species_pokedex_entries.push(species_hash[:pokedex_entry])
                 end
-                # Construct species hash
-                form_symbol = format("%s_%d", species_symbol.to_s, form).to_sym
-                moves = contents["Moves"]
-                unless moves
-                    moves = []
-                    base_data.moves.each { |m| moves.push(m.clone) }
-                end
-                evolutions = contents["Evolutions"]
-                unless evolutions
-                    evolutions = []
-                    base_data.evolutions.each { |e| evolutions.push(e.clone) }
-                end
-                species_hash = {
-                  :id                    => form_symbol,
-                  :id_number             => form_number,
-                  :species               => species_symbol,
-                  :form                  => form,
-                  :name                  => base_data.real_name,
-                  :form_name             => contents["FormName"],
-                  :category              => contents["Kind"] || base_data.real_category,
-                  :pokedex_entry         => contents["Pokedex"] || base_data.real_pokedex_entry,
-                  :pokedex_form          => contents["PokedexForm"],
-                  :type1                 => contents["Type1"] || base_data.type1,
-                  :type2                 => contents["Type2"] || base_data.type2,
-                  :base_stats            => contents["BaseStats"] || base_data.base_stats,
-                  :evs                   => contents["EffortPoints"] || base_data.evs,
-                  :base_exp              => contents["BaseEXP"] || base_data.base_exp,
-                  :growth_rate           => base_data.growth_rate,
-                  :gender_ratio          => base_data.gender_ratio,
-                  :catch_rate            => contents["Rareness"] || base_data.catch_rate,
-                  :happiness             => contents["Happiness"] || base_data.happiness,
-                  :moves                 => moves,
-                  :tutor_moves           => contents["TutorMoves"] || base_data.tutor_moves.clone,
-                  :egg_moves             => contents["EggMoves"] || base_data.egg_moves.clone,
-                  :line_moves            => contents["LineMoves"] || base_data.egg_moves.clone,
-                  :abilities             => contents["Abilities"] || base_data.abilities.clone,
-                  :hidden_abilities      => contents["HiddenAbility"] || base_data.hidden_abilities.clone,
-                  :wild_item_common      => contents["WildItemCommon"] || base_data.wild_item_common,
-                  :wild_item_uncommon    => contents["WildItemUncommon"] || base_data.wild_item_uncommon,
-                  :wild_item_rare        => contents["WildItemRare"] || base_data.wild_item_rare,
-                  :egg_groups            => contents["Compatibility"] || base_data.egg_groups.clone,
-                  :hatch_steps           => contents["StepsToHatch"] || base_data.hatch_steps,
-                  :incense               => base_data.incense,
-                  :evolutions            => evolutions,
-                  :height                => contents["Height"] || base_data.height,
-                  :weight                => contents["Weight"] || base_data.weight,
-                  :color                 => contents["Color"] || base_data.color,
-                  :shape                 => (contents["Shape"]) ? GameData::BodyShape.get(contents["Shape"]).id : base_data.shape,
-                  :habitat               => contents["Habitat"] || base_data.habitat,
-                  :generation            => contents["Generation"] || base_data.generation,
-                  :flags                 => contents["Flags"] || base_data.flags,
-                  :mega_stone            => contents["MegaStone"],
-                  :mega_move             => contents["MegaMove"],
-                  :unmega_form           => contents["UnmegaForm"],
-                  :mega_message          => contents["MegaMessage"],
-                  :notes                 => contents["Notes"],
-                  :tribes                => contents["Tribes"] || base_data.tribes,
-                }
-                # If form is single-typed, ensure it remains so if base species is dual-typed
-                species_hash[:type2] = contents["Type1"] if contents["Type1"] && !contents["Type2"]
-                # If form has any wild items, ensure none are inherited from base species
-                if contents["WildItemCommon"] || contents["WildItemUncommon"] || contents["WildItemRare"]
-                    species_hash[:wild_item_common] = contents["WildItemCommon"]
-                    species_hash[:wild_item_uncommon] = contents["WildItemUncommon"]
-                    species_hash[:wild_item_rare]     = contents["WildItemRare"]
-                end
-                # Add form's data to records
-                GameData::Species.register(species_hash)
-                species_names[form_number]           = species_hash[:name]
-                species_form_names[form_number]      = species_hash[:form_name]
-                species_categories[form_number]      = species_hash[:category]
-                species_pokedex_entries[form_number] = species_hash[:pokedex_entry]
             end
         end
         # Add prevolution "evolution" entry for all evolved forms that define their
@@ -895,173 +978,10 @@ module Compiler
         end
         # Save all data
         GameData::Species.save
-        MessageTypes.addMessages(MessageTypes::Species, species_names)
-        MessageTypes.addMessages(MessageTypes::FormNames, species_form_names)
-        MessageTypes.addMessages(MessageTypes::Kinds, species_categories)
-        MessageTypes.addMessages(MessageTypes::Entries, species_pokedex_entries)
-        Graphics.update
-    end
-
-    #=============================================================================
-    # Compile old Pokémon data
-    #=============================================================================
-    def compile_pokemon_old(path = "PBS/pokemon_old.txt")
-        GameData::SpeciesOld::DATA.clear
-        species_names           = []
-        species_form_names      = []
-        species_categories      = []
-        species_pokedex_entries = []
-        # Read from PBS file
-        File.open(path, "rb") do |f|
-            FileLineData.file = path # For error reporting
-            # Read a whole section's lines at once, then run through this code.
-            # contents is a hash containing all the XXX=YYY lines in that section, where
-            # the keys are the XXX and the values are the YYY (as unprocessed strings).
-            schema = GameData::SpeciesOld.schema
-            pbEachFileSection(f) do |contents, species_number|
-                FileLineData.setSection(species_number, "header", nil) # For error reporting
-                # Raise an error if a species number is invalid or used twice
-                if species_number == 0
-                    raise _INTL("A Pokémon species can't be numbered 0 ({1}).", path)
-                elsif GameData::SpeciesOld::DATA[species_number]
-                    raise _INTL("Species ID number '{1}' is used twice.\r\n{2}", species_number,
-FileLineData.linereport)
-                end
-                # Go through schema hash of compilable data and compile this section
-                for key in schema.keys
-                    # Skip empty properties, or raise an error if a required property is
-                    # empty
-                    if nil_or_empty?(contents[key])
-                        if %w[Name InternalName].include?(key)
-                            raise _INTL("The entry {1} is required in {2} section {3}.", key, path, species_number)
-                        end
-                        contents[key] = nil
-                        next
-                    end
-                    # Raise an error if a species internal name is used twice
-                    FileLineData.setSection(species_number, key, contents[key]) # For error reporting
-                    if GameData::SpeciesOld::DATA[contents["InternalName"].to_sym]
-                        raise _INTL("Species ID '{1}' is used twice.\r\n{2}", contents["InternalName"],
-        FileLineData.linereport)
-                    end
-                    # Compile value for key
-                    value = pbGetCsvRecord(contents[key], key, schema[key])
-                    value = nil if value.is_a?(Array) && value.length == 0
-                    contents[key] = value
-                    # Sanitise data
-                    case key
-                    when "BaseStats", "EffortPoints"
-                        value_hash = {}
-                        GameData::Stat.each_main do |s|
-                            value_hash[s.id] = value[s.pbs_order] if s.pbs_order >= 0
-                        end
-                        contents[key] = value_hash
-                    when "Height", "Weight"
-                        # Convert height/weight to 1 decimal place and multiply by 10
-                        value = (value * 10).round
-                        if value <= 0
-                            raise _INTL("Value for '{1}' can't be less than or close to 0 (section {2}, {3})", key, species_number,
-            path)
-                        end
-                        contents[key] = value
-                    when "Moves"
-                        move_array = []
-                        for i in 0...value.length / 2
-                            move_array.push([value[i * 2], value[i * 2 + 1], i])
-                        end
-                        move_array.sort! { |a, b| (a[0] == b[0]) ? a[2] <=> b[2] : a[0] <=> b [0] }
-                        move_array.each { |arr| arr.pop }
-                        contents[key] = move_array
-                    when "TutorMoves", "EggMoves", "LineMoves", "Abilities", "HiddenAbility", "Compatibility"
-                        contents[key] = [contents[key]] unless contents[key].is_a?(Array)
-                        contents[key].compact!
-                    when "Evolutions"
-                        evo_array = []
-                        for i in 0...value.length / 3
-                            evo_array.push([value[i * 3], value[i * 3 + 1], value[i * 3 + 2], false])
-                        end
-                        contents[key] = evo_array
-                    end
-                end
-                # Construct species hash
-                species_symbol = contents["InternalName"].to_sym
-                species_hash = {
-                  :id                    => species_symbol,
-                  :id_number             => species_number,
-                  :name                  => contents["Name"],
-                  :form_name             => contents["FormName"],
-                  :category              => contents["Kind"],
-                  :pokedex_entry         => contents["Pokedex"],
-                  :type1                 => contents["Type1"],
-                  :type2                 => contents["Type2"],
-                  :base_stats            => contents["BaseStats"],
-                  :evs                   => contents["EffortPoints"],
-                  :base_exp              => contents["BaseEXP"],
-                  :growth_rate           => contents["GrowthRate"],
-                  :gender_ratio          => contents["GenderRate"],
-                  :catch_rate            => contents["Rareness"],
-                  :happiness             => contents["Happiness"],
-                  :moves                 => contents["Moves"],
-                  :tutor_moves           => contents["TutorMoves"],
-                  :egg_moves             => contents["EggMoves"],
-                  :line_moves            => contents["LineMoves"],
-                  :abilities             => contents["Abilities"],
-                  :hidden_abilities      => contents["HiddenAbility"],
-                  :wild_item_common      => contents["WildItemCommon"],
-                  :wild_item_uncommon    => contents["WildItemUncommon"],
-                  :wild_item_rare        => contents["WildItemRare"],
-                  :egg_groups            => contents["Compatibility"],
-                  :hatch_steps           => contents["StepsToHatch"],
-                  :incense               => contents["Incense"],
-                  :evolutions            => contents["Evolutions"],
-                  :height                => contents["Height"],
-                  :weight                => contents["Weight"],
-                  :color                 => contents["Color"],
-                  :shape                 => GameData::BodyShape.get(contents["Shape"]).id,
-                  :habitat               => contents["Habitat"],
-                  :generation            => contents["Generation"],
-                  :notes                 => contents["Notes"],
-                }
-                # Add species' data to records
-                GameData::SpeciesOld.register(species_hash)
-                species_names[species_number]           = species_hash[:name]
-                species_form_names[species_number]      = species_hash[:form_name]
-                species_categories[species_number]      = species_hash[:category]
-                species_pokedex_entries[species_number] = species_hash[:pokedex_entry]
-            end
-        end
-        # Enumerate all evolution species and parameters (this couldn't be done earlier)
-        GameData::SpeciesOld.each do |species|
-            FileLineData.setSection(species.id_number, "Evolutions", nil) # For error reporting
-            Graphics.update if species.id_number % 200 == 0
-            if species.id_number % 50 == 0
-                pbSetWindowText(_INTL("Processing {1} evolution line {2}", FileLineData.file,
-    species.id_number))
-            end
-            species.evolutions.each do |evo|
-                evo[0] = csvEnumField!(evo[0], :Species, "Evolutions", species.id_number)
-                param_type = GameData::Evolution.get(evo[1]).parameter
-                if param_type.nil?
-                    evo[2] = nil
-                elsif param_type == Integer
-                    evo[2] = csvPosInt!(evo[2])
-                else
-                    evo[2] = csvEnumField!(evo[2], param_type, "Evolutions", species.id_number)
-                end
-            end
-        end
-        # Add prevolution "evolution" entry for all evolved species
-        all_evos = {}
-        GameData::SpeciesOld.each do |species|   # Build a hash of prevolutions for each species
-            species.evolutions.each do |evo|
-                all_evos[evo[0]] = [species.species, evo[1], evo[2], true] unless all_evos[evo[0]]
-            end
-        end
-        GameData::SpeciesOld.each do |species|   # Distribute prevolutions
-            species.evolutions.push(all_evos[species.species].clone) if all_evos[species.species]
-        end
-        # Save all data
-        GameData::SpeciesOld.save
+        MessageTypes.addMessagesAsHash(MessageTypes::Species, species_names)
+        MessageTypes.addMessagesAsHash(MessageTypes::FormNames, species_form_names)
+        MessageTypes.addMessagesAsHash(MessageTypes::Kinds, species_categories)
+        MessageTypes.addMessagesAsHash(MessageTypes::Entries, species_pokedex_entries)
         Graphics.update
     end
 
@@ -1075,15 +995,12 @@ FileLineData.linereport)
 
         # Checking every single map in the game for encounters
         GameData::Encounter.each_of_version do |enc_data|
-            earliestLevelForMap = getEarliestLevelForMap(enc_data.map)
-
             # For each slot in that encounters data listing
             enc_data.types.each do |key, slots|
                 next unless slots
-                earliestLevelForSlot = earliestLevelForMap
-                earliestLevelForSlot = [earliestLevelForSlot, SURFING_LEVEL].min if key == :ActiveWater
+                earliestLevelForSlot = enc_data.available_levels[key] || 100
                 slots.each do |slot|
-                    species = slot[1]
+                    species = GameData::Species.get(slot[1]).species # get base form
                     if !earliestWildEncounters.has_key?(species) || earliestWildEncounters[species] > earliestLevelForSlot
                         earliestWildEncounters[species] = earliestLevelForSlot
                     end
@@ -1153,14 +1070,6 @@ FileLineData.linereport)
         return 100
     end
 
-    def getEarliestLevelForMap(map_id)
-        MAPS_AVAILABLE_BY_CAP.each do |levelCapBracket, mapArray|
-            next unless mapArray.include?(map_id)
-            return levelCapBracket
-        end
-        return 100
-    end
-
     #=============================================================================
     # Save Pokémon data to PBS file
     #=============================================================================
@@ -1181,45 +1090,34 @@ FileLineData.linereport)
 
     def write_species(f, species)
         f.write("\#-------------------------------\r\n")
-        f.write(format("[%d]\r\n", species.id_number))
+        f.write(format("[%s]\r\n", species.species))
         f.write(format("Name = %s\r\n", species.real_name))
-        f.write(format("InternalName = %s\r\n", species.species))
         f.write(format("Notes = %s\r\n", species.notes)) if !species.notes.nil? && !species.notes.blank?
         f.write(format("Type1 = %s\r\n", species.type1))
         f.write(format("Type2 = %s\r\n", species.type2)) if species.type2 != species.type1
         stats_array = []
-        evs_array = []
         total = 0
         GameData::Stat.each_main do |s|
             next if s.pbs_order < 0
             stats_array[s.pbs_order] = species.base_stats[s.id]
-            evs_array[s.pbs_order] = species.evs[s.id]
             total += species.base_stats[s.id]
         end
         f.write(format("# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def\r\n", total))
         f.write(format("BaseStats = %s\r\n", stats_array.join(",")))
         f.write(format("# Total = %s\r\n", total))
-        f.write(format("GenderRate = %s\r\n", species.gender_ratio))
-        f.write(format("GrowthRate = %s\r\n", species.growth_rate))
+        f.write(format("GenderRate = %s\r\n", species.gender_ratio)) unless species.gender_ratio == GameData::Species::DEFAULT_GENDER_RATIO
+        f.write(format("GrowthRate = %s\r\n", species.growth_rate)) unless species.growth_rate == GameData::Species::DEFAULT_GROWTH_RATE
         f.write(format("BaseEXP = %d\r\n", species.base_exp))
-        f.write(format("EffortPoints = %s\r\n", evs_array.join(",")))
         f.write(format("Rareness = %d\r\n", species.catch_rate))
-        f.write(format("Happiness = %d\r\n", species.happiness))
+        f.write(format("Happiness = %d\r\n", species.happiness)) unless species.happiness == GameData::Species::DEFAULT_BASE_HAPPINESS
         f.write(format("Abilities = %s\r\n", species.abilities.join(","))) if species.abilities.length > 0
-        if species.hidden_abilities.length > 0
-            f.write(format("HiddenAbility = %s\r\n", species.hidden_abilities.join(",")))
-        end
-        f.write(format("Moves = %s\r\n", species.moves.join(","))) if species.moves.length > 0
-        f.write(format("TutorMoves = %s\r\n", species.tutor_moves.join(","))) if species.tutor_moves.length > 0
-        f.write(format("LineMoves = %s\r\n", species.egg_moves.join(","))) if species.egg_moves.length > 0
-        f.write(format("Compatibility = %s\r\n", species.egg_groups.join(","))) if species.egg_groups.length > 0
+        f.write(format("Moves = %s\r\n", species.non_inherited_level_moves.join(","))) if species.non_inherited_level_moves.length > 0
+        f.write(format("TutorMoves = %s\r\n", species.non_inherited_tutor_moves.join(","))) if species.non_inherited_tutor_moves.length > 0
+        f.write(format("LineMoves = %s\r\n", species.non_inherited_line_moves.join(","))) if species.non_inherited_line_moves.length > 0
         f.write(format("Tribes = %s\r\n", species.tribes(true).join(","))) if species.tribes(true).length > 0
         f.write(format("StepsToHatch = %d\r\n", species.hatch_steps))
         f.write(format("Height = %.1f\r\n", species.height / 10.0))
         f.write(format("Weight = %.1f\r\n", species.weight / 10.0))
-        f.write(format("Color = %s\r\n", species.color))
-        f.write(format("Shape = %s\r\n", species.shape))
-        f.write(format("Habitat = %s\r\n", species.habitat)) if species.habitat != :None
         f.write(format("Kind = %s\r\n", species.real_category))
         f.write(format("Pokedex = %s\r\n", species.real_pokedex_entry))
         if species.real_form_name && !species.real_form_name.empty?
@@ -1250,7 +1148,6 @@ FileLineData.linereport)
             end
             f.write("\r\n")
         end
-        f.write(format("Incense = %s\r\n", species.incense)) if species.incense
     end
 
     #=============================================================================
@@ -1260,6 +1157,7 @@ FileLineData.linereport)
         File.open("PBS/pokemonforms.txt", "wb") do |f|
             add_PBS_header_to_file(f)
             GameData::Species.each_base do |species|
+                next if species.defined_in_extension
                 next if species.form == 0
                 pbSetWindowText(_INTL("Writing species {1}...", species.id_number))
                 Graphics.update if species.id_number % 50 == 0
@@ -1275,8 +1173,7 @@ FileLineData.linereport)
         f.write("\#-------------------------------\r\n")
         f.write(format("[%s,%d]\r\n", species.species, species.form))
         if species.real_form_name && !species.real_form_name.empty?
-            f.write(format("FormName = %s\r\n",
-  species.real_form_name))
+            f.write(format("FormName = %s\r\n", species.real_form_name))
         end
         f.write(format("Notes = %s\r\n", species.notes)) if !species.notes.nil? && !species.notes.blank?
         f.write(format("PokedexForm = %d\r\n", species.pokedex_form)) if species.pokedex_form != species.form
@@ -1289,43 +1186,23 @@ FileLineData.linereport)
             f.write(format("Type2 = %s\r\n", species.type2)) if species.type2 != species.type1
         end
         stats_array = []
-        evs_array = []
         GameData::Stat.each_main do |s|
             next if s.pbs_order < 0
             stats_array[s.pbs_order] = species.base_stats[s.id]
-            evs_array[s.pbs_order] = species.evs[s.id]
         end
         f.write(format("BaseStats = %s\r\n", stats_array.join(","))) if species.base_stats != base_species.base_stats
         f.write(format("BaseEXP = %d\r\n", species.base_exp)) if species.base_exp != base_species.base_exp
-        f.write(format("EffortPoints = %s\r\n", evs_array.join(","))) if species.evs != base_species.evs
         f.write(format("Rareness = %d\r\n", species.catch_rate)) if species.catch_rate != base_species.catch_rate
         f.write(format("Happiness = %d\r\n", species.happiness)) if species.happiness != base_species.happiness
         if species.abilities.length > 0 && species.abilities != base_species.abilities
             f.write(format("Abilities = %s\r\n", species.abilities.join(",")))
         end
-        if species.hidden_abilities.length > 0 && species.hidden_abilities != base_species.hidden_abilities
-            f.write(format("HiddenAbility = %s\r\n", species.hidden_abilities.join(",")))
-        end
-        if species.moves.length > 0 && species.moves != base_species.moves
-            f.write(format("Moves = %s\r\n", species.moves.join(",")))
-        end
-        if species.tutor_moves.length > 0 && species.tutor_moves != base_species.tutor_moves
-            f.write(format("TutorMoves = %s\r\n", species.tutor_moves.join(",")))
-        end
-        if species.egg_moves.length > 0 && species.egg_moves != base_species.egg_moves
-            f.write(format("LineMoves = %s\r\n", species.egg_moves.join(",")))
-        end
-        if species.egg_groups.length > 0 && species.egg_groups != base_species.egg_groups
-            f.write(format("Compatibility = %s\r\n", species.egg_groups.join(",")))
+        if species.non_inherited_level_moves.length > 0 && species.non_inherited_level_moves != base_species.non_inherited_level_moves
+            f.write(format("Moves = %s\r\n", species.non_inherited_level_moves.join(",")))
         end
         f.write(format("StepsToHatch = %d\r\n", species.hatch_steps)) if species.hatch_steps != base_species.hatch_steps
         f.write(format("Height = %.1f\r\n", species.height / 10.0)) if species.height != base_species.height
         f.write(format("Weight = %.1f\r\n", species.weight / 10.0)) if species.weight != base_species.weight
-        f.write(format("Color = %s\r\n", species.color)) if species.color != base_species.color
-        f.write(format("Shape = %s\r\n", species.shape)) if species.shape != base_species.shape
-        if species.habitat != :None && species.habitat != base_species.habitat
-            f.write(format("Habitat = %s\r\n", species.habitat))
-        end
         f.write(format("Kind = %s\r\n", species.real_category)) if species.real_category != base_species.real_category
         if species.real_pokedex_entry != base_species.real_pokedex_entry
             f.write(format("Pokedex = %s\r\n",

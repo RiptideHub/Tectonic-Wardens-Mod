@@ -1,10 +1,18 @@
 #===============================================================================
 # Starts sunny weather. (Sunshine)
 #===============================================================================
+class PokeBattle_Move_StartSunshine6 < PokeBattle_WeatherMove
+    def initialize(battle, move)
+        super
+        @weatherType = :Sunshine
+    end
+end
+
 class PokeBattle_Move_StartSunshine8 < PokeBattle_WeatherMove
     def initialize(battle, move)
         super
         @weatherType = :Sunshine
+        @durationSet = 8
     end
 end
 
@@ -34,10 +42,18 @@ end
 #===============================================================================
 # Starts rainy weather. (Rain)
 #===============================================================================
+class PokeBattle_Move_StartRainstorm6 < PokeBattle_WeatherMove
+    def initialize(battle, move)
+        super
+        @weatherType = :Rainstorm
+    end
+end
+
 class PokeBattle_Move_StartRainstorm8 < PokeBattle_WeatherMove
     def initialize(battle, move)
         super
         @weatherType = :Rainstorm
+        @durationSet = 8
     end
 end
 
@@ -54,24 +70,32 @@ class PokeBattle_Move_EmpoweredRainstorm < PokeBattle_Move_StartRainstorm8
 end
 
 #===============================================================================
-# Numbs the target and sets Rain
+# Waterlogs the target and sets Rain
 #===============================================================================
-class PokeBattle_Move_NumbTargetStartRainstorm8 < PokeBattle_InviteMove
+class PokeBattle_Move_WaterlogTargetStartRainstorm8 < PokeBattle_InviteMove
     def initialize(battle, move)
         super
         @weatherType = :Rainstorm
         @durationSet = 8
-        @statusToApply = :NUMB
+        @statusToApply = :WATERLOG
     end
 end
 
 #===============================================================================
 # Starts sandstorm weather. (Sandstorm)
 #===============================================================================
+class PokeBattle_Move_StartSandstorm6 < PokeBattle_WeatherMove
+    def initialize(battle, move)
+        super
+        @weatherType = :Sandstorm
+    end
+end
+
 class PokeBattle_Move_StartSandstorm8 < PokeBattle_WeatherMove
     def initialize(battle, move)
         super
         @weatherType = :Sandstorm
+        @durationSet = 8
     end
 end
 
@@ -87,24 +111,32 @@ class PokeBattle_Move_EmpoweredSandstorm < PokeBattle_Move_StartSandstorm8
 end
 
 #===============================================================================
-# Dizzies the target and sets Sandstorm
+# Numbs the target and sets Sandstorm
 #===============================================================================
-class PokeBattle_Move_DizzyTargetStartSandstorm8 < PokeBattle_InviteMove
+class PokeBattle_Move_NumbTargetStartSandstorm8 < PokeBattle_InviteMove
     def initialize(battle, move)
         super
         @weatherType = :Sandstorm
         @durationSet = 8
-        @statusToApply = :DIZZY
+        @statusToApply = :NUMB
     end
 end
 
 #===============================================================================
 # Starts hail weather. (Hail)
 #===============================================================================
+class PokeBattle_Move_StartHail6 < PokeBattle_WeatherMove
+    def initialize(battle, move)
+        super
+        @weatherType = :Hail
+    end
+end
+
 class PokeBattle_Move_StartHail8 < PokeBattle_WeatherMove
     def initialize(battle, move)
         super
         @weatherType = :Hail
+        @durationSet = 8
     end
 end
 
@@ -136,10 +168,18 @@ end
 #===============================================================================
 # Starts eclipse weather. (Eclipse)
 #===============================================================================
+class PokeBattle_Move_StartEclipse6 < PokeBattle_WeatherMove
+    def initialize(battle, move)
+        super
+        @weatherType = :Eclipse
+    end
+end
+
 class PokeBattle_Move_StartEclipse8 < PokeBattle_WeatherMove
     def initialize(battle, move)
         super
         @weatherType = :Eclipse
+        @durationSet = 8
     end
 end
 
@@ -155,12 +195,32 @@ class PokeBattle_Move_EmpoweredEclipse < PokeBattle_Move_StartEclipse8
 end
 
 #===============================================================================
+# Dizzies the target and sets Eclipse
+#===============================================================================
+class PokeBattle_Move_DizzyTargetStartEclipse8 < PokeBattle_InviteMove
+    def initialize(battle, move)
+        super
+        @weatherType = :Eclipse
+        @durationSet = 8
+        @statusToApply = :DIZZY
+    end
+end
+
+#===============================================================================
 # Starts moonlight weather. (Moonglow)
 #===============================================================================
+class PokeBattle_Move_StartMoonglow6 < PokeBattle_WeatherMove
+    def initialize(battle, move)
+        super
+        @weatherType = :Moonglow
+    end
+end
+
 class PokeBattle_Move_StartMoonglow8 < PokeBattle_WeatherMove
     def initialize(battle, move)
         super
         @weatherType = :Moonglow
+        @durationSet = 8
     end
 end
 
@@ -176,5 +236,17 @@ class PokeBattle_Move_EmpoweredMoonglow < PokeBattle_Move_StartMoonglow8
         end
 
         transformType(user, :FAIRY)
+    end
+end
+
+#===============================================================================
+# Leeches the target and sets Moonglow
+#===============================================================================
+class PokeBattle_Move_LeechTargetStartMoonglow8 < PokeBattle_InviteMove
+    def initialize(battle, move)
+        super
+        @weatherType = :Moonglow
+        @durationSet = 8
+        @statusToApply = :LEECHED
     end
 end

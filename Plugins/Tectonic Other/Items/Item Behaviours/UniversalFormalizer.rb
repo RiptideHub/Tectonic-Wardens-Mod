@@ -1,6 +1,6 @@
 ItemHandlers::UseOnPokemon.add(:UNIVERSALFORMALIZER,proc { |item,pkmn,scene|
 	species = pkmn.species
-	validSpecies = %i[DEOXYS ORICORIO LYCANROC ROTOM DARMANITAN GDARMANITAN DEERLING SAWSBUCK URSHIFU]
+	validSpecies = %i[DEOXYS ORICORIO LYCANROC ROTOM DARMANITAN GDARMANITAN DEERLING SAWSBUCK URSHIFU MELOETTA]
 	if validSpecies.include?(species)
 		possibleForms = []
 		possibleFormNames = []
@@ -14,7 +14,7 @@ ItemHandlers::UseOnPokemon.add(:UNIVERSALFORMALIZER,proc { |item,pkmn,scene|
 		possibleFormNames.push(_INTL("Cancel"))
 		choice = pbMessage(_INTL("Which form shall the Pokemon take?"),possibleFormNames,possibleFormNames.length)
 		if choice < possibleForms.length
-			pbSceneDefaultDisplay(_INTL("#{pkmn.name} swapped to #{possibleFormNames[choice]}!"),scene)
+			pbSceneDefaultDisplay(_INTL("{1} swapped to {2}!", pkmn.name, possibleFormNames[choice]),scene)
 			
 			showPokemonChanges(pkmn) {
 				pkmn.form = possibleForms[choice].form

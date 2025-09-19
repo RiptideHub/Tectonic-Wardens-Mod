@@ -4,7 +4,7 @@
 class PokeBattle_Move_UserLosesFireType < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         unless user.pbHasType?(:FIRE)
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} isn't Fire-type!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since {1} isn't Fire-type!", user.pbThis(true))) if show_message
             return true
         end
         return false
@@ -25,7 +25,7 @@ end
 class PokeBattle_Move_UserLosesIceType < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         unless user.pbHasType?(:ICE)
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is not Ice-type!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since {1} is not Ice-type!", user.pbThis(true))) if show_message
             return true
         end
         return false
@@ -82,4 +82,36 @@ class PokeBattle_Move_RaisesTargetSpd1 < PokeBattle_Move
     def getTargetAffectingEffectScore(user, target)
         return -getMultiStatUpEffectScore([:SPEED, 1], user, target, evaluateThreat: false)
     end
+end
+
+#===============================================================================
+# Fractures the user, and always critical hits. (Flechettes)
+#===============================================================================
+class PokeBattle_Move_MoveFracturesSelfCriticalHits < PokeBattle_Move
+    def pbEffectAfterAllHits(user, target)
+        return if target.damageState.unaffected
+        user.applyEffect(:Fracture, DEFAULT_FRACTURE_DURATION)
+    end
+
+    def getEffectScore(_user, _target)
+        return -30
+    end
+
+    def pbCriticalOverride(_user, _target); return 1; end
+end
+
+#===============================================================================
+# Jinxes the user, and always critical hits. (Divining Talon)
+#===============================================================================
+class PokeBattle_Move_MoveJinxesSelfCriticalHits < PokeBattle_Move
+    def pbEffectAfterAllHits(user, target)
+        return if target.damageState.unaffected
+        user.applyEffect(:Jinxed, DEFAULT_JINX_DURATION)
+    end
+
+    def getEffectScore(_user, _target)
+        return -30
+    end
+
+    def pbCriticalOverride(_user, _target); return 1; end
 end

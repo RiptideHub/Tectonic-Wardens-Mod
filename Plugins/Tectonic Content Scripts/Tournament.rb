@@ -25,6 +25,8 @@ POOL_2 = [
 
 CHAMPION = [:TRAINER_Zain,"Zain",2,3,11]
 
+FINAL_ROUND = 5
+
 class RandomTournament
     attr_reader :matches
     attr_reader :matchesWon
@@ -109,7 +111,7 @@ class RandomTournament
     end
 
     def tournamentWon?
-        return @matchesWon >= 5
+        return @matchesWon >= FINAL_ROUND
     end
 
     def tournamentActive?
@@ -160,12 +162,12 @@ def promptForTournamentQuit()
 end
 
 def promptForMatchCommitment()
-    pbMessage(_INTL("#{nextOpponentName} awaits you in the arena."))
+    pbMessage(_INTL("{1} awaits you in the arena.", nextOpponentName))
     return pbConfirmMessageSerious(_INTL("Are you ready to battle?"))
 end
 
 def handleMatchDecline()
-    pbMessage(_INTL("Ok, let me know when you are ready to battle #{nextOpponentName}."))
+    pbMessage(_INTL("Ok, let me know when you are ready to battle {1}.", nextOpponentName))
 end
 
 def tournamentWon?
@@ -174,13 +176,13 @@ end
 
 def alertNextMatch()
     return if tournamentWon?
-    pbMessage(_INTL("Your next match will be against #{nextOpponentName}."))
+    pbMessage(_INTL("Your next match will be against {1}.", nextOpponentName))
     pbMessage(_INTL("Return to me when you are ready to battle."))
 end
 
 def introduceMatch()
     pbWait(20)
-    pbMessage(_INTL("\\wmThe match between #{nextOpponentName} and \\PN will now begin!"))
+    pbMessage(_INTL("\\wmThe match between {1} and \\PN will now begin!", nextOpponentName))
     pbWait(20)
 end
 
@@ -197,16 +199,16 @@ def displayCurrentOdds()
 end
 
 def displayRoundOdds(round)
-    return if round < 1 || round > 6
-    if round == 6
+    return if round < 1 || round > FINAL_ROUND
+    if round == FINAL_ROUND
         pbMessage(_INTL("Odds are displayed for the grand final, gathered from a spectator poll."))
         pbMessage(_INTL("Only 20 percent of respondents expect you to win against your brother."))
     else
         index = round-1
         ordinal = ["second", "third", "fourth", "fifth"][index]
         percent = [60,55,45,35][index]
-        pbMessage(_INTL("Odds are displayed for the #{ordinal} round matches, gathered from a spectator poll."))
-        pbMessage(_INTL("#{percent} percent of respondents expect you to win against #{nextOpponentName()}."))
+        pbMessage(_INTL("Odds are displayed for the {1} round matches, gathered from a spectator poll.", ordinal))
+        pbMessage(_INTL("{1} percent of respondents expect you to win against {2}.", percent, nextOpponentName()))
     end
 end
 

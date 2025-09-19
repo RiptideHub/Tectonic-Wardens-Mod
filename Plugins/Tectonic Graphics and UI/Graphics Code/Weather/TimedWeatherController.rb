@@ -94,7 +94,7 @@ def weatherRNGByHour(totalHours)
 end
 
 def applyOutdoorEffects(delay = -1)
-    return unless $PokemonSystem.overworld_weather == 0
+    return unless $Options.overworld_weather == 0
     return unless playerIsOutdoors?
 
     map_id = $game_map.map_id
@@ -181,7 +181,7 @@ def debugIncrementWeather(weatherSym)
     end
     newPower = [newPower,10].min
     $game_screen.weather(weatherSym, newPower, WEATHER_TRANSITION_DELAY, false)
-    pbMessage(_INTL("Setting weather to #{weatherSym} at power #{newPower}"))
+    pbMessage(_INTL("Setting weather to {1} at power {2}", weatherSym, newPower))
 end
 
 def secondsInAMinute

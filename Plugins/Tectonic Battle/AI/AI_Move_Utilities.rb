@@ -27,7 +27,7 @@ class PokeBattle_AI
             return Effectiveness::NORMAL_EFFECTIVE
         end
         # Determine types
-        allowIllusion = !target.aiKnowsAbility?(:ILLUSION)
+        allowIllusion = !target.aiKnowsIllusion?
         tTypes = target.pbTypes(true, allowIllusion)
         # Get effectivenesses
         typeMods = [Effectiveness::NORMAL_EFFECTIVE_ONE] * 3 # 3 types max
@@ -52,7 +52,7 @@ class PokeBattle_AI
         # in the midst of performing the move (turnCount is incremented as the attack phase begins)
         user.turnCount += 1
 
-        fails = true unless user.pbTryUseMove(move, false, false, true)
+        fails = !(boss || user.pbTryUseMove(move, false, false, true))
 
         # Move blocking abilities make the move fail here
         unless fails
@@ -60,7 +60,7 @@ class PokeBattle_AI
                 next unless b
                 abilityBlocked = false
                 b.eachAIKnownActiveAbility do |ability|
-                    next unless BattleHandlers.triggerMoveBlockingAbility(ability, b, user, [target], move, @battle)
+                    next unless BattleHandlers.triggerMoveBlockingAbility(ability, b, user, [target], move, @battle, true)
                     abilityBlocked = true
                     break
                 end
@@ -93,11 +93,11 @@ class PokeBattle_AI
         end
 
         # Magic Bounce/Magic Shield checks for moves which don't target
-        if !fails && user.index == target.index && move.canMagicCoat? && !@battle.moldBreaker
+        if !fails && user.index == target.index && move.canMagicCoat?
             @battle.eachBattler do |b|
                 next unless b.opposes?(user)
                 next if b.semiInvulnerable?
-                next unless b.hasActiveAbilityAI?(%i[MAGICBOUNCE MAGICSHIELD])
+                next unless (b.hasActiveAbilityAI?(%i[MAGICBOUNCE MAGICSHIELD]) && !@battle.moldBreaker) || b.canChooseMagicCoat?
                 echoln("\t\t[AI FAILURE CHECK] #{user.pbThis} rejects #{move.id} -- thinks will fail against #{target.pbThis(false)} due to Magic Bounce etc.")
                 fails = true
                 break
@@ -126,6 +126,8 @@ class PokeBattle_AI
     # Damage calculation
     #=============================================================================
     def pbTotalDamageAI(move, user, target, numTargets = 1)
+        return 0, false if move.damageNegated?(user, target, true)
+
         # Get the move's type
         type = pbRoughType(move, user)
 

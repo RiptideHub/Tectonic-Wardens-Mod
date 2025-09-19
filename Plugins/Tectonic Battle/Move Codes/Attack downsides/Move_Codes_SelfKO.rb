@@ -25,7 +25,7 @@ class PokeBattle_Move_UserFaintsExplosive < PokeBattle_Move
             if unbreakable
                 @battle.pbShowAbilitySplash(user, :UNBREAKABLE)
                 @battle.pbDisplay(_INTL("{1} resists the recoil!", user.pbThis))
-                reduction /= 2
+                reduction = (reduction / 2.0).ceil
             end
             user.pbReduceHP(reduction, false)
             @battle.pbHideAbilitySplash(user) if unbreakable
@@ -98,7 +98,7 @@ class PokeBattle_Move_UserFaintsExplosiveScalesWithEnemySideSpikes < PokeBattle_
     def pbBaseDamage(baseDmg, _user, target)
         target.pbOwnSide.eachEffect(true) do |effect, value, effectData|
             next unless effectData.is_spike?
-            baseDmg += 50 * value
+            baseDmg += 30 * value
         end
         return baseDmg
     end

@@ -113,7 +113,7 @@ class PokeBattle_Move_DamageBelowHalfTakenAsRecoil < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
         return unless target.damageState.totalCalcedDamage < target.totalhp / 2
         recoilAmount = (target.totalhp / 2) - target.damageState.totalCalcedDamage
-        recoilMessage = _INTL("#{user.pbThis} is hurt by leftover electricity!")
+        recoilMessage = _INTL("{1} is hurt by leftover electricity!", user.pbThis)
         user.applyRecoilDamage(recoilAmount, true, true, recoilMessage)
     end
 
@@ -211,4 +211,12 @@ class PokeBattle_Move_RecoilThirdOfDamageDealtButCantFaint < PokeBattle_RecoilMo
         return if recoilDamage <= 0
         user.applyRecoilDamage(recoilDamage, false, true)
     end
+end
+
+#===============================================================================
+# User takes 25% recoil damage, and always critical hits. (Talonfall)
+#===============================================================================
+class PokeBattle_Move_RecoilQuarterOfDamageDealtCriticalHits < PokeBattle_RecoilMove
+    def recoilFactor;  return 0.25; end
+    def pbCriticalOverride(_user, _target); return 1; end
 end

@@ -39,7 +39,7 @@ InternalName = GROUND
 Color = 224,192,104
 DarkColor = 104,56,8
 Weaknesses = WATER,GRASS,ICE
-Resistances = POISON,ROCK,LIGHT
+Resistances = POISON,ROCK
 Immunities = ELECTRIC
 #-------------------------------
 [5]
@@ -48,7 +48,7 @@ InternalName = ROCK
 Color = 184,160,56
 DarkColor = 80,48,32
 Weaknesses = FIGHTING,GROUND,STEEL,WATER,GRASS
-Resistances = NORMAL,FLYING,POISON,FIRE,ICE,LIGHT,COSMIC
+Resistances = NORMAL,FLYING,POISON,FIRE,ICE
 #-------------------------------
 [6]
 Name = Bug
@@ -63,22 +63,24 @@ Name = Ghost
 InternalName = GHOST
 Color = 112,88,152
 DarkColor = 72,40,64
-Weaknesses = GHOST,DARK,LIGHT
+Weaknesses = GHOST,DARK
 Resistances = POISON,BUG
 Immunities = NORMAL,FIGHTING
 #-------------------------------
 [8]
 Name = Steel
 InternalName = STEEL
-Color = 184,184,208
-DarkColor = 88,88,72
-Weaknesses = FIGHTING,GROUND,FIRE,PSYCHIC,COSMIC
-Resistances = NORMAL,FLYING,ROCK,BUG,STEEL,GRASS,PSYCHIC,ICE,DRAGON,FAIRY
+Color = 169,169,186
+DarkColor = 80,80,90
+Weaknesses = FIGHTING,GROUND,FIRE,PSYCHIC
+Resistances = NORMAL,FLYING,ROCK,BUG,STEEL,GRASS,ICE,DRAGON,FAIRY
 Immunities = POISON
 #-------------------------------
 [9]
 Name = ???
 InternalName = QMARKS
+Color = 104,160,144
+DarkColor = 32,104,96
 IsPseudoType = true
 #-------------------------------
 [10]
@@ -87,7 +89,7 @@ InternalName = FIRE
 Color = 240,128,48
 DarkColor = 112,40,56
 IsSpecialType = true
-Weaknesses = GROUND,ROCK,WATER,COSMIC
+Weaknesses = GROUND,ROCK,WATER
 Resistances = BUG,STEEL,FIRE,GRASS,ICE
 #-------------------------------
 [11]
@@ -106,7 +108,7 @@ Color = 120,200,80
 DarkColor = 48,96,24
 IsSpecialType = true
 Weaknesses = FLYING,POISON,BUG,FIRE,ICE
-Resistances = GROUND,WATER,GRASS,ELECTRIC,FAIRY,LIGHT,PSYCHIC,GHOST
+Resistances = GROUND,WATER,GRASS,ELECTRIC,FAIRY,GHOST
 #-------------------------------
 [13]
 Name = Electric
@@ -141,8 +143,8 @@ InternalName = DRAGON
 Color = 112,56,248
 DarkColor = 48,32,136
 IsSpecialType = true
-Weaknesses = ICE,DRAGON,FAIRY,LIGHT
-Resistances = FIRE,WATER,GRASS,ELECTRIC,COSMIC
+Weaknesses = ICE,DRAGON,FAIRY
+Resistances = FIRE,WATER,GRASS,ELECTRIC
 #-------------------------------
 [17]
 Name = Dark
@@ -150,7 +152,7 @@ InternalName = DARK
 Color = 112,88,72
 DarkColor = 80,40,48
 IsSpecialType = true
-Weaknesses = FIGHTING,BUG,FAIRY,LIGHT
+Weaknesses = FIGHTING,BUG,FAIRY
 Resistances = GHOST,DARK
 Immunities = PSYCHIC
 #-------------------------------
@@ -164,20 +166,11 @@ Weaknesses = POISON,STEEL,BUG
 Resistances = FIGHTING,DARK,DRAGON
 #-------------------------------
 [19]
-Name = Cosmic
-InternalName = COSMIC
+Name = Mutant
+InternalName = MUTANT
 Color = 162,114,146
 DarkColor = 110,59,93
 IsPseudoType = true
-Weaknesses = NORMAL,DRAGON,LIGHT
-Resistances = ELECTRIC,FIGHTING,POISON,GHOST,COSMIC
-Immunities = FIRE,GROUND
-#-------------------------------
-[20]
-Name = Light
-InternalName = LIGHT
-Color = 162,114,146
-DarkColor = 110,59,93
-IsPseudoType = true
-Weaknesses = GRASS,POISON,PSYCHIC,DARK
-Resistances = ELECTRIC,GHOST,DRAGON,COSMIC,LIGHT
+Weaknesses = NORMAL,DRAGON
+Resistances = ELECTRIC,FIGHTING,POISON,ROCK,GHOST,DARK
+Immunities = FIRE,ICE

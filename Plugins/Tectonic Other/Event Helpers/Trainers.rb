@@ -1,39 +1,54 @@
-def perfectTrainer(maxTrainerLevel=15,giveDrop=true)
+PERFECTED_REGULAR_TRAINERS_DROP_ITEMS = true
+
+def perfectTrainer(maxTrainerLevel=15,giveDrop=PERFECTED_REGULAR_TRAINERS_DROP_ITEMS,extraDrop: nil)
 	blackFadeOutIn() {
 		setMySwitch('D',true)
 		setFollowerGone
 	}
-	pbTrainerDropsItem(maxTrainerLevel) if giveDrop
+	if giveDrop
+		pbTrainerDropsItem(maxTrainerLevel)
+
+		if extraDrop
+			pbMessage(_INTL("Oh? They dropped something else as well!"))
+			pbReceiveItem(extraDrop)
+		end
+	end
+
+	incrementGlobalVar(TRAINERS_PERFECTED_GLOBAL_VAR)
 end
 
-def perfectAncientTrainer
+def perfectAncientTrainer(giveDrop=PERFECTED_REGULAR_TRAINERS_DROP_ITEMS)
 	blackFadeOutIn() {
 		setMySwitch('D',true)
 		setFollowerGone
 	}
 	pbMessage(_INTL("The fleeing trainer dropped some food!"))
-	pbReceiveItem(:VANILLATULUMBA)
+	pbReceiveItem(:VANILLATULUMBA) if giveDrop
+	incrementGlobalVar(TRAINERS_PERFECTED_GLOBAL_VAR)
 end
 
-def perfectDittoTrainer(maxTrainerLevel=15)
+def perfectDittoTrainer(maxTrainerLevel=15,giveDrop=PERFECTED_REGULAR_TRAINERS_DROP_ITEMS)
 	blackFadeOutIn() {
 		setMySwitch('D',true)
 		pbSEPlay("Cries/DITTO",50,50)
 		setFollowerGone
 	}
-	pbTrainerDropsItem(maxTrainerLevel)
+	pbTrainerDropsItem(maxTrainerLevel) if giveDrop
+	incrementGlobalVar(TRAINERS_PERFECTED_GLOBAL_VAR)
 end
 
-
-def perfectAceTrainer(maxTrainerLevel=15)
+def perfectAceTrainer(maxTrainerLevel=15,giveDrop=true)
 	blackFadeOutIn() {
 		setMySwitch('D',true)
 		setFollowerGone
 	}
-	pbTrainerDropsItem(maxTrainerLevel,4)
+	pbTrainerDropsItem(maxTrainerLevel,4) if giveDrop
+	incrementGlobalVar(TRAINERS_PERFECTED_GLOBAL_VAR)
+
+	postBattleTeamSnapshot(_INTL("Pro Trainer Level {1}",maxTrainerLevel),true)
 end
 
-def perfectDoubleTrainer(event1,event2,maxTrainerLevel = 15)
+def perfectDoubleTrainer(event1,event2,maxTrainerLevel = 15,giveDrop=PERFECTED_REGULAR_TRAINERS_DROP_ITEMS)
 	blackFadeOutIn() {
 		setMySwitch('D',true)
 		pbSetSelfSwitch(event1,'D',true)
@@ -41,10 +56,11 @@ def perfectDoubleTrainer(event1,event2,maxTrainerLevel = 15)
 		setFollowerGone(event1)
 		setFollowerGone(event2)
 	}
-	pbTrainerDropsItem(maxTrainerLevel,2,true)
+	pbTrainerDropsItem(maxTrainerLevel,2,true) if giveDrop
+    incrementGlobalVar(TRAINERS_PERFECTED_GLOBAL_VAR)
 end
 
-def perfectDoubleAncientTrainer(event1,event2)
+def perfectDoubleAncientTrainer(event1,event2,giveDrop=PERFECTED_REGULAR_TRAINERS_DROP_ITEMS)
 	blackFadeOutIn() {
 		setMySwitch('D',true)
 		pbSetSelfSwitch(event1,'D',true)
@@ -54,11 +70,15 @@ def perfectDoubleAncientTrainer(event1,event2)
 	}
 
 	pbMessage(_INTL("The fleeing trainers dropped some food!"))
-	pbReceiveItem(:VANILLATULUMBA,2)
+	pbReceiveItem(:VANILLATULUMBA,2) if giveDrop
+    incrementGlobalVar(TRAINERS_PERFECTED_GLOBAL_VAR)
 end
 
 def pbTrainerDropsItem(maxTrainerLevel = 15,multiplier=1,plural=false)
-	itemsGiven = candiesForLevel(maxTrainerLevel)
+	itemsGiven = candiesForLevel(maxTrainerLevel)\
+
+	pacifist, pacifistPartyIndex = pacifistPartyMember
+	multiplier *= 2 if pacifist
 	
 	total = 0
 	for i in 0...itemsGiven.length/2
@@ -78,10 +98,20 @@ def pbTrainerDropsItem(maxTrainerLevel = 15,multiplier=1,plural=false)
 			pbMessage(_INTL("The fleeing trainer dropped some candies!"))
 		end
 	end
+
+	pbMessage(_INTL("\\p[{1}]Also, {2} found some more candy nearby!",pacifistPartyIndex,pacifist.name)) if pacifist
 	
 	for i in 0...itemsGiven.length/2
 		pbReceiveItem(itemsGiven[i*2],itemsGiven[i*2 + 1])
 	end
+end
+
+def pacifistPartyMember
+  $Trainer.party.each_with_index do |partyMember, index|
+    next unless partyMember
+    return partyMember, index if partyMember.hasAbility?(:PACIFIST)
+  end
+  return nil, 0
 end
 
 def candiesForLevel(level)
@@ -121,7 +151,7 @@ def candiesForLevel(level)
   when 71..100
 	itemsGiven = [:EXPCANDYXL,1] # 64_000
   else
-	pbMessage(_INTL("Unassigned level passed to pbTrainerDropsItem: #{maxTrainerLevel}")) if $DEBUG
+	pbMessage(_INTL("Unassigned level passed to pbTrainerDropsItem: {1}", maxTrainerLevel)) if $DEBUG
 	itemsGiven = [:EXPCANDYXS,2] # 500
   end
   return itemsGiven
@@ -143,6 +173,15 @@ end
 def rejectTooFewPokemon(dialogue,movePlayer=true)
 	if $Trainer.able_pokemon_count <= 1
 		dialogue = "Unable to start double battle with only 1 able Pokemon." unless dialogue
+		pbMessage(dialogue)
+		forcePlayerBackwards if movePlayer
+		command_end # Exit event processing
+	end
+end
+
+def rejectTooFewPokemonTriple(dialogue,movePlayer=true)
+	if $Trainer.able_pokemon_count <= 2
+		dialogue = "Unable to start triple battle without 3 able Pokemon." unless dialogue
 		pbMessage(dialogue)
 		forcePlayerBackwards if movePlayer
 		command_end # Exit event processing
@@ -175,6 +214,20 @@ def setFollowerInactive(eventId=0,switch='A')
 		showBallReturn(follower.x,follower.y)
 		pbWait(Graphics.frame_rate/10)
 		pbSetSelfSwitch(follower.id,switch,true)
+	end
+end
+
+def setFollowerActive(eventId=0,switch='A')
+	followers = getFollowerPokemon(eventId)
+	if followers.nil? || followers.length == 0
+		pbMessage(_INTL("ERROR: Could not find follower Pokemon!")) if $DEBUG
+		return
+	end
+	followers.each do |follower|
+		next unless pbGetSelfSwitch(follower.id,switch)
+		showBallReturn(follower.x,follower.y)
+		pbWait(Graphics.frame_rate/10)
+		pbSetSelfSwitch(follower.id,switch,false)
 	end
 end
 

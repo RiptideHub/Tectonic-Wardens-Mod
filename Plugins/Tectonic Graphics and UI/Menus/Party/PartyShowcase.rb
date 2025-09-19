@@ -7,11 +7,14 @@ class PokemonPartyShowcase_Scene
         base = MessageConfig::DARK_TEXT_MAIN_COLOR
         shadow = MessageConfig::DARK_TEXT_SHADOW_COLOR
 
+        @trainer = trainer
+
         @sprites = {}
         @party = trainer.party.clone
         @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
         @viewport.z = 99999
         @npcTrainer = npcTrainer
+        @flags = flags
 
         if @npcTrainer
             backgroundFileName = "Party/showcase_bg_npc"
@@ -25,6 +28,11 @@ class PokemonPartyShowcase_Scene
         @overlay = @sprites["overlay"].bitmap
         pbSetSmallFont(@overlay)
 
+        @sprites["overlay2"] = BitmapSprite.new(Graphics.width, Graphics.height, @viewport)
+        @sprites["overlay2"].z = 99999
+        @overlay2 = @sprites["overlay2"].bitmap
+        pbSetSmallFont(@overlay2)
+
         # Fake lead
         if startWithIndex != 0
             storage = @party[0]
@@ -33,7 +41,7 @@ class PokemonPartyShowcase_Scene
         end
 
         # Illusion
-        if illusionsFool && @party[0].hasAbility?(:ILLUSION)
+        if illusionsFool && @party[0].hasAbility?(%i[ILLUSION INCOGNITO])
             storage = @party[0]
             @party[0] = @party[@party.length - 1]
             @party[@party.length - 1] = storage
@@ -71,9 +79,20 @@ class PokemonPartyShowcase_Scene
 
         # Show trainer name
         if @npcTrainer
-            playerName = "<ar>#{trainer.full_name}</ar>"
+            playtesterSubmitted = nil
+            trainer.flags.each do |flag|
+                match = flag.match(/PlayerTeam\:(.+)/)
+                next unless match
+                playtesterSubmitted = match[1]
+                break
+            end
+            if playtesterSubmitted
+                playerName = _INTL("Team Submitted by {1}", playtesterSubmitted)
+            else
+                playerName = "<ar>#{trainer.full_name}</ar>"  
+            end
             drawFormattedTextEx(@overlay, Graphics.width - 304, bottomBarY, 300, playerName, base, shadow)
-        elsif $PokemonSystem.name_on_showcases != 1
+        elsif $Options.name_on_showcases != 1
             playerName = "<ar>#{trainer.name}</ar>"
             drawFormattedTextEx(@overlay, Graphics.width - 164, bottomBarY, 160, playerName, base, shadow)
         end
@@ -87,7 +106,7 @@ class PokemonPartyShowcase_Scene
             numIcons = 0
             numIcons += 1 if Randomizer.on?
             numIcons += 1 if flags.include?("cursed")
-            numIcons += 1 if flags.include?("cursed")
+            numIcons += 1 if flags.include?("perfect")
 
             # Show randomizer icon
             distanceBetweenIcons = 28
@@ -140,6 +159,15 @@ class PokemonPartyShowcase_Scene
         newPokemonIcon.x = displayX
         newPokemonIcon.y = mainIconY
         @sprites["pokemon#{index}"] = newPokemonIcon
+
+        # Display status
+        if @flags.include?("showstatuses")
+            statusImageIndex = pokemon.getStatusImageIndex
+            if statusImageIndex >= 0
+                imagepos = [[addLanguageSuffix("Graphics/Pictures/statuses"), displayX + 10, mainIconY + 4, 0, 16 * statusImageIndex, 44, 16]]
+                pbDrawImagePositions(@overlay2, imagepos)
+            end
+        end
 
         # Display pokemon name
         nameAndLevel = _INTL("#{pokemon.name} Lv. #{pokemon.level.to_s}")
@@ -207,8 +235,28 @@ class PokemonPartyShowcase_Scene
         end
 
         # Display ability name
-        abilityName = pokemon.ability&.name || _INTL("No Ability")
-        drawTextEx(@overlay, displayX + 4, mainIconY + POKEMON_ICON_SIZE + 8, 200, 1, abilityName, base, shadow)
+        if @trainer.policies.include?(:CURSE_DOUBLE_ABILITIES)
+            abilityNameLabel = ""
+            legalAbilityCount = pokemon.species_data.legalAbilities.length
+            pokemon.species_data.legalAbilities.each_with_index do |legalAbilityID, index|
+                abilityNameLabel += GameData::Ability.get(legalAbilityID).name
+                abilityNameLabel += ", " unless index == legalAbilityCount - 1
+            end
+            @overlay.font.size = 20
+        elsif pokemon.ability.nil?
+            abilityNameLabel = _INTL("No Ability")
+        else
+            abilityNameLabel = pokemon.ability.name
+            if pokemon.hasExtraAbilities?
+                pokemon.extraAbilities.each do |extraAbilityID|
+                    abilityNameLabel += ", "
+                    abilityNameLabel += GameData::Ability.get(extraAbilityID).name
+                end
+                @overlay.font.size = 20
+            end
+        end
+        drawTextEx(@overlay, displayX + 4, mainIconY + POKEMON_ICON_SIZE + 8, 200, 1, abilityNameLabel, base, shadow)
+        pbSetSmallFont(@overlay)
     
         # Display Style Points
         styleValueX = displayX + 222

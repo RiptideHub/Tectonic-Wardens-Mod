@@ -16,10 +16,10 @@ end
 class PokeBattle_Move_CategoryDependsOnHigherDamagePoisonTarget < PokeBattle_Move_Poison
     def initialize(battle, move)
         super
-        @calculated_category = 1
+        @category_override = 1
     end
 
-    def calculateCategory(user, targets)
+    def calculateCategoryOverride(user, targets)
         return selectBestCategory(user, targets[0])
     end
 end
@@ -31,7 +31,7 @@ class PokeBattle_Move_PoisonTargetLowerTargetSpd4 < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         if !target.canPoison?(user, false, self) &&
            !target.pbCanLowerStatStep?(:SPEED, user, self)
-            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can't be poisoned or have its Speed lowered!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since {1} can't be poisoned or have its Speed lowered!", target.pbThis(true))) if show_message
             return true
         end
         return false
@@ -61,4 +61,11 @@ class PokeBattle_Move_EmpoweredPoisonGas < PokeBattle_Move
         end
         transformType(user, :POISON)
     end
+end
+
+#===============================================================================
+# Multi-hit move that can poison.
+#===============================================================================
+class PokeBattle_Move_HitTwoToFiveTimesPoison < PokeBattle_PoisonMove
+    include RandomHitable
 end

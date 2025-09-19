@@ -31,7 +31,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :ticks_down => true,
     :is_screen => true,
     :apply_proc => proc do |battle, _side, teamName, value|
-        battle.pbDisplay(_INTL("{1}'s Defense is raised! This will last for #{value - 1} more turns!", teamName))
+        battle.pbDisplay(_INTL("{1}'s Defense is raised! This will last for {2} more turns!", teamName, value - 1))
     end,
     :disable_proc => proc do |battle, _side, teamName|
         battle.pbDisplay(_INTL("{1}'s Reflect was broken!", teamName))
@@ -48,7 +48,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :ticks_down => true,
     :is_screen => true,
     :apply_proc => proc do |battle, _side, teamName, value|
-        battle.pbDisplay(_INTL("{1}'s Sp. Def is raised! This will last for #{value - 1} more turns!", teamName))
+        battle.pbDisplay(_INTL("{1}'s Sp. Def is raised! This will last for {2} more turns!", teamName, value - 1))
     end,
     :disable_proc => proc do |battle, _side, teamName|
         battle.pbDisplay(_INTL("{1}'s Light Screen was broken!", teamName))
@@ -65,8 +65,8 @@ GameData::BattleEffect.register_effect(:Side, {
     :ticks_down => true,
     :is_screen => true,
     :apply_proc => proc do |battle, _side, teamName, value|
-        battle.pbDisplay(_INTL("{1}'s Defense and Sp. Def are raised! This will last for #{value - 1} more turns!",
-teamName))
+        battle.pbDisplay(_INTL("{1}'s Defense and Sp. Def are raised! This will last for {2} more turns!",
+teamName, value - 1))
     end,
     :disable_proc => proc do |battle, _side, teamName|
         battle.pbDisplay(_INTL("{1}'s Aurora Veil was broken!", teamName))
@@ -83,8 +83,8 @@ GameData::BattleEffect.register_effect(:Side, {
     :ticks_down => true,
     :is_screen => true,
     :apply_proc => proc do |battle, _side, teamName, value|
-        battle.pbDisplay(_INTL("{1} takes less damage from moves with 100+ base power! This will last for #{value - 1} more turns!",
-teamName))
+        battle.pbDisplay(_INTL("{1} takes less damage from moves with 100+ base power! This will last for {2} more turns!",
+teamName, value - 1))
     end,
     :disable_proc => proc do |battle, _side, teamName|
         battle.pbDisplay(_INTL("{1}'s Repulsion Field was broken!", teamName))
@@ -104,7 +104,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :ticks_down => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1} is now blessed!", teamName))
-        battle.pbDisplay(_INTL("They'll be protected from critical hits for #{value - 1} more turns!", teamName))
+        battle.pbDisplay(_INTL("They'll be protected from critical hits for {1} more turns!", teamName, value - 1))
     end,
     :disable_proc => proc do |battle, _side, teamName|
         battle.pbDisplay(_INTL("{1}'s Lucky Chant was broken!", teamName))
@@ -121,7 +121,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :ticks_down => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1} is shrouded in mist!", teamName))
-        battle.pbDisplay(_INTL("Their stats can't be lowered for #{value - 1} more turns!"))
+        battle.pbDisplay(_INTL("Their stats can't be lowered for {1} more turns!", value - 1))
     end,
     :disable_proc => proc do |battle, _side, teamName|
         battle.pbDisplay(_INTL("{1}'s Mist was swept away!", teamName))
@@ -138,7 +138,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :ticks_down => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1} became cloaked in a mystical veil!", teamName))
-        battle.pbDisplay(_INTL("They'll be protected from status ailments for #{value - 1} more turns!", value))
+        battle.pbDisplay(_INTL("They'll be protected from status ailments for {1} more turns!", value - 1))
     end,
     :disable_proc => proc do |battle, _side, teamName|
         battle.pbDisplay(_INTL("{1}'s Safeguard was removed!", teamName))
@@ -156,7 +156,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :is_screen => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1} is protected by a diamond sheen!", teamName))
-        battle.pbDisplay(_INTL("They can't be crit and take less damage for #{value - 1} more turns!", value))
+        battle.pbDisplay(_INTL("They can't be crit and take less damage for {1} more turns!", value - 1))
     end,
     :disable_proc => proc do |battle, _side, teamName|
         battle.pbDisplay(_INTL("{1}'s Diamond Field was removed!", teamName))
@@ -174,7 +174,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :ticks_down => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1} became determined to survive!", teamName))
-        battle.pbDisplay(_INTL("They'll take half damage from sources that aren't attacks for #{value - 1} more turns!", value))
+        battle.pbDisplay(_INTL("They'll take half damage from sources that aren't attacks for {1} more turns!", value - 1))
     end,
     :disable_proc => proc do |battle, _side, teamName|
         battle.pbDisplay(_INTL("{1}'s Natural Protection was removed!", teamName))
@@ -206,7 +206,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :real_name => "Mat Block",
     :resets_eor => true,
     :apply_proc => proc do |battle, _side, teamName, _value|
-        battle.pbDisplay(_INTL("The kicked up mat will block attacks against #{teamName} this turn!"))
+        battle.pbDisplay(_INTL("The kicked up mat will block attacks against {1} this turn!", teamName))
     end,
     :protection_info => {
         :does_negate_proc => proc do |_user, _target, move, _battle|
@@ -460,6 +460,19 @@ GameData::BattleEffect.register_effect(:Side, {
 })
 
 GameData::BattleEffect.register_effect(:Side, {
+    :id => :LiveWire,
+    :real_name => "Live Wire",
+    :is_hazard => true,
+    :apply_proc => proc do |battle, _side, teamName, _value|
+        battle.pbDisplay(_INTL("A live wire was set on the ground around {1}!", teamName))
+    end,
+    :disable_proc => proc do |battle, _side, teamName|
+        teamName[0] = teamName[0].downcase
+        battle.pbDisplay(_INTL("The live wire near {1} was removed!", teamName))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
     :id => :StickyWeb,
     :real_name => "Sticky Web",
     :is_hazard => true,
@@ -533,7 +546,7 @@ GameData::BattleEffect.register_effect(:Side, {
     end,
     :eor_proc => proc do |battle, side, _teamName, value|
         battle.eachSameSideBattler(side.index) do |b|
-            healingMessage = _INTL("#{b.pbThis} was healed by the cruel cocoon at the expense of its PP!")
+            healingMessage = _INTL("{1} was healed by the cruel cocoon at the expense of its PP!", b.pbThis)
             b.applyFractionalHealing(1.0/8.0, customMessage: healingMessage)
             b.eachMove do |m|
                 next if m.pp <= 0
@@ -594,7 +607,7 @@ GameData::BattleEffect.register_effect(:Side, {
         if value > 99
             battle.pbDisplay(_INTL("It will last forever!"))
         else
-            battle.pbDisplay(_INTL("It will last for #{value - 1} more turns!"))
+            battle.pbDisplay(_INTL("It will last for {1} more turns!", value - 1))
         end
     end,
     :disable_proc => proc do |battle, _side, teamName|
@@ -640,14 +653,16 @@ GameData::BattleEffect.register_effect(:Side, {
         value.each_key do |key|
             value[key] -= 1
             pkmn = battle.pbParty(side.index)[key]
-            if value[key] <= 0
-                # Revive the pokemon
-                pkmn.heal_HP
-                pkmn.heal_status
-                battle.pbDisplay(_INTL("{1} recovered all the way to full health!", pkmn.name))
-                value[key] = nil
-            else
-                battle.pbDisplay(_INTL("{1} is regrowing.", pkmn.name))
+            if pkmn
+                if value[key] <= 0
+                    # Revive the pokemon
+                    pkmn.heal_HP
+                    pkmn.heal_status
+                    battle.pbDisplay(_INTL("{1} recovered all the way to full health!", pkmn.name))
+                    value[key] = nil
+                else
+                    battle.pbDisplay(_INTL("{1} is regrowing.", pkmn.name))
+                end
             end
         end
         value.compact!
@@ -672,7 +687,7 @@ GameData::BattleEffect.register_effect(:Side, {
             end
             echoln(statDown.to_s)
             unless statDown.empty?
-                battle.pbDisplay(_INTL("#{battler.pbThis} remembers its fears!"))
+                battle.pbDisplay(_INTL("{1} remembers its fears!", battler.pbThis))
                 battler.pbLowerMultipleStatSteps(statDown, nil)
             end
         end

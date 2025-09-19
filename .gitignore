@@ -1,6 +1,8 @@
 *.dat
 !spanish.dat
 !english.dat
+!chinese_simplified.dat
+!chinese_traditional.dat
 *.bak
 Data/debuglog.txt
 Data/Actors.rxdata

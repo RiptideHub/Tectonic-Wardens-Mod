@@ -5,29 +5,10 @@ class PokeBattle_Move_UseRandomUserMoveIfAsleep < PokeBattle_Move
     def usableWhenAsleep?; return true; end
     def callsAnotherMove?; return true; end
 
-    def initialize(battle, move)
-        super
-        @moveBlacklist = [
-            # Struggle
-            "Struggle",   # Struggle
-            # Moves that affect the moveset (except Transform)
-            "ReplaceMoveThisBattleWithTargetLastMoveUsed",   # Mimic
-            "ReplaceMoveWithTargetLastMoveUsed",   # Sketch
-            # Moves that start focussing at the start of the round
-            "FailsIfUserDamagedThisTurn",   # Focus Punch
-            "UsedAfterUserTakesPhysicalDamage",   # Shell Trap
-            "UsedAfterUserTakesSpecialDamage",   # Masquerblade
-            "BurnAttackerBeforeUserActs", # Beak Blast
-            "FrostbiteAttackerBeforeUserActs", # Condensate
-        ]
-    end
-
     def getSleepTalkMoves(user)
         sleepTalkMoves = []
         user.eachMoveWithIndex do |m, i|
-            next if @moveBlacklist.include?(m.function)
-            next if m.is_a?(PokeBattle_TwoTurnMove)
-            next if m.callsAnotherMove?
+            next unless @battle.canInvokeMove?(m)
             next unless @battle.pbCanChooseMove?(user.index, i, false, true)
             sleepTalkMoves.push(i)
         end
@@ -36,12 +17,12 @@ class PokeBattle_Move_UseRandomUserMoveIfAsleep < PokeBattle_Move
 
     def pbMoveFailed?(user, _targets, show_message)
         unless user.asleep?
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} isn't asleep!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since {1} isn't asleep!", user.pbThis(true))) if show_message
             return true
         end
         if getSleepTalkMoves(user).length == 0
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since none of #{user.pbThis(true)}'s moves can be used from Sleep Talk!"))
+                @battle.pbDisplay(_INTL("But it failed, since none of {1}'s moves can be used from Sleep Talk!", user.pbThis(true)))
             end
             return true
         end
@@ -53,9 +34,8 @@ class PokeBattle_Move_UseRandomUserMoveIfAsleep < PokeBattle_Move
         user.pbUseMoveSimple(user.getMoves[choice].id, user.pbDirectOpposing.index)
     end
 
-    def getEffectScore(_user, _target)
-        echoln("The AI will never use Sleep talk.")
-        return -1000
+    def getEffectScore(user, _target)
+        return randomMovesEffectScore(user, self)
     end
 
     def getDetailsForMoveDex(detailsList = [])
@@ -70,52 +50,13 @@ end
 class PokeBattle_Move_UseRandomMoveFromUserParty < PokeBattle_Move
     def callsAnotherMove?; return true; end
 
-    def initialize(battle, move)
-        super
-        @moveBlacklist = [
-            # Struggle
-            "Struggle",   # Struggle
-            # Moves that affect the moveset
-            "ReplaceMoveThisBattleWithTargetLastMoveUsed",   # Mimic
-            "ReplaceMoveWithTargetLastMoveUsed",   # Sketch
-            "TransformUserIntoTarget",   # Transform
-            # Counter moves
-            "CounterPhysicalDamage",   # Counter
-            "CounterSpecialDamage",   # Mirror Coat
-            "CounterDamagePlusHalf",   # Metal Burst
-            # Move-redirecting and stealing moves
-            "BounceBackProblemCausingStatusMoves",   # Magic Coat
-            "StealAndUseBeneficialStatusMove",   # Snatch
-            "RedirectAllMovesToUser",   # Follow Me, Rage Powder
-            "RedirectAllMovesToTarget",   # Spotlight
-            # Set up effects that trigger upon KO
-            "AttackerFaintsIfUserFaints",   # Destiny Bond
-            # Held item-moving moves
-            "StealsItem",   # Covet, Thief
-            "SwapItems",   # Switcheroo, Trick
-            "GiftItem",   # Bestow
-            # Moves that start focussing at the start of the round
-            "FailsIfUserDamagedThisTurn",   # Focus Punch
-            "UsedAfterUserTakesPhysicalDamage",   # Shell Trap
-            "UsedAfterUserTakesSpecialDamage",   # Masquerblade
-            "BurnAttackerBeforeUserActs",   # Beak Blast
-            "FrostbiteAttackerBeforeUserActs", # Condensate
-        ]
-    end
-
     def getAssistMoves(user)
         assistMoves = []
         @battle.pbParty(user.index).each_with_index do |pkmn, i|
             next if !pkmn || i == user.pokemonIndex
             next if pkmn.egg?
             pkmn.moves.each do |move|
-                next if @moveBlacklist.include?(move.function_code)
-                battleMoveInstance = @battle.getBattleMoveInstanceFromID(move.id)
-                next if battleMoveInstance.forceSwitchMove?
-                next if battleMoveInstance.is_a?(PokeBattle_TwoTurnMove)
-                next if battleMoveInstance.is_a?(PokeBattle_HelpingMove)
-                next if battleMoveInstance.is_a?(PokeBattle_ProtectMove)
-                next if battleMoveInstance.callsAnotherMove?
+                next unless @battle.canInvokeMove?(move)
                 assistMoves.push(move.id)
             end
         end
@@ -125,7 +66,7 @@ class PokeBattle_Move_UseRandomMoveFromUserParty < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if getAssistMoves(user).length == 0
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since there are no moves #{user.pbThis(true)} can use!"))
+                @battle.pbDisplay(_INTL("But it failed, since there are no moves {1} can use!", user.pbThis(true)))
             end
             return true
         end
@@ -153,35 +94,17 @@ class PokeBattle_Move_UseRandomNonSignatureMove < PokeBattle_Move
 
     def initialize(battle, move)
         super
-        @moveBlacklist = [
-            "FlinchTargetFailsIfUserNotAsleep",   # Snore
-            "TargetActsNext",   # After You
-            "TargetActsLast",   # Quash
-            # Move-redirecting and stealing moves
-            "BounceBackProblemCausingStatusMoves",   # Magic Coat
-            "StealAndUseBeneficialStatusMove",   # Snatch
-            "RedirectAllMovesToUser",   # Follow Me, Rage Powder
-            "RedirectAllMovesToTarget",   # Spotlight
-            # Held item-moving moves
-            "StealsItem",   # Covet, Thief
-            "SwapItems",   # Switcheroo, Trick
-            "GiftItem",   # Bestow
-            # Invalid moves
-            "Invalid",
-        ]
-
         @metronomeMoves = []
         GameData::Move::DATA.keys.each do |move_id|
             move_data = GameData::Move.get(move_id)
-            next if move_data.learnable?
-            next unless move_data.can_be_forced?
-            next if @moveBlacklist.include?(move_data.function_code)
+            next unless move_data.learnable?
+            next if move_data.uninvocable?
+            next if move_data.is_signature?
             next if move_data.empoweredMove?
             if battle
-                moveObject = battle.getBattleMoveInstanceFromID(move_id)
-                next if moveObject.is_a?(PokeBattle_ProtectMove)
-                next if moveObject.is_a?(PokeBattle_HelpingMove)
-                next if moveObject.callsAnotherMove?
+                next unless battle.canInvokeMove?(move_id)
+            else
+                next if move_data.uninvocable?
             end
             @metronomeMoves.push(move_data.id)
         end
@@ -200,9 +123,8 @@ class PokeBattle_Move_UseRandomNonSignatureMove < PokeBattle_Move
         user.pbUseMoveSimple(choice)
     end
 
-    def getEffectScore(_user, _target)
-        echoln("The AI will never use Metronome")
-        return -1000
+    def getEffectScore(user, _target)
+        return randomMovesEffectScore(user, self)
     end
 
     def getDetailsForMoveDex(detailsList = [])
@@ -227,15 +149,11 @@ class PokeBattle_Move_UseChoiceOf3RandomNonSignatureStatusMoves < PokeBattle_Mov
             next if move_data.function_code == "Invalid"
             next if move_data.is_signature?
             next unless move_data.learnable?
-            next unless move_data.can_be_forced?
-
             if battle
-                moveObject = battle.getBattleMoveInstanceFromID(move_id)
-                next if moveObject.is_a?(PokeBattle_ProtectMove)
-                next if moveObject.is_a?(PokeBattle_HelpingMove)
-                next if moveObject.callsAnotherMove?
+                next unless battle.canInvokeMove?(move_id)
+            else
+                next if move_data.uninvocable?
             end
-
             @discoverableMoves.push(move_data.id)
         end
     end
@@ -256,7 +174,7 @@ class PokeBattle_Move_UseChoiceOf3RandomNonSignatureStatusMoves < PokeBattle_Mov
         elsif !user.pbOwnedByPlayer? # Trainer AI
             @chosenMove = validMoves[0]
         else
-            chosenIndex = @battle.scene.pbShowCommands(_INTL("Which move should #{user.pbThis(true)} use?"),validMoveNames,0)
+            chosenIndex = @battle.scene.pbShowCommands(_INTL("Which move should {1} use?", user.pbThis(true)),validMoveNames,0)
             @chosenMove = validMoves[chosenIndex]
         end
     end
@@ -269,9 +187,8 @@ class PokeBattle_Move_UseChoiceOf3RandomNonSignatureStatusMoves < PokeBattle_Mov
         @chosenMove = nil
     end
 
-    def getEffectScore(_user, _target)
-        echoln("The AI will never use Discovered Power")
-        return -1000
+    def getEffectScore(user, _target)
+        return randomMovesEffectScore(user, self)
     end
 
     def getDetailsForMoveDex(detailsList = [])
@@ -311,9 +228,8 @@ class PokeBattle_Move_UseTwoRandomDragonThemedMoves < PokeBattle_Move
         user.pbUseMoveSimple(@invocationMovesPhysical.sample)
     end
 
-    def getEffectScore(_user, _target)
-        echoln("The AI will never use Dragon Invocation")
-        return -1000
+    def getEffectScore(user, _target)
+        return randomMovesEffectScore(user, self)
     end
 
     def getDetailsForMoveDex(detailsList = [])
@@ -358,7 +274,7 @@ class PokeBattle_Move_UseChoiceOf3RandomNonSignatureNonPsychicDamagingMoves < Po
             MOONBLAST
             CLEARSMOG
             HEX
-            TRICKYTOXINS
+            SHORTCIRCUIT
             CHARGEBEAM
             BLUSTER
             BLOSSOM
@@ -382,7 +298,7 @@ class PokeBattle_Move_UseChoiceOf3RandomNonSignatureNonPsychicDamagingMoves < Po
         elsif !user.pbOwnedByPlayer? # Trainer AI
             @chosenMove = validMoves[0]
         else
-            chosenIndex = @battle.scene.pbShowCommands(_INTL("Which move should #{user.pbThis(true)} use?"),validMoveNames,0)
+            chosenIndex = @battle.scene.pbShowCommands(_INTL("Which move should {1} use?", user.pbThis(true)),validMoveNames,0)
             @chosenMove = validMoves[chosenIndex]
         end
     end
@@ -395,9 +311,8 @@ class PokeBattle_Move_UseChoiceOf3RandomNonSignatureNonPsychicDamagingMoves < Po
         @chosenMove = nil
     end
 
-    def getEffectScore(_user, _target)
-        echoln("The AI will never use Selective Memory")
-        return -1000
+    def getEffectScore(user, _target)
+        return randomMovesEffectScore(user, self)
     end
     
     def getDetailsForMoveDex(detailsList = [])

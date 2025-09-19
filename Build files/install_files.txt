@@ -26,6 +26,6 @@ Essentials Docs Wiki.URL
 animaker.exe
 Game Linux.x86_64
 Debug Game.bat
-Debug Game With Compile.bat
+Debug Game With PBS Compile.bat
 Tectonic Updater.jar
 release_version.txt

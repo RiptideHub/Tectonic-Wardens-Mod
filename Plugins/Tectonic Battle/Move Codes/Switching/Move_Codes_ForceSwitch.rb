@@ -1,7 +1,5 @@
 #===============================================================================
-# In wild battles, makes target flee. Fails if target is a higher level than the
-# user.
-# In trainer battles, target switches out.
+# Target switches out, to be replaced at random.
 # For status moves. (Roar, Whirlwind)
 #===============================================================================
 class PokeBattle_Move_SwitchOutTargetStatusMove < PokeBattle_Move
@@ -10,7 +8,7 @@ class PokeBattle_Move_SwitchOutTargetStatusMove < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def pbFailsAgainstTarget?(user, target, show_message)
-        if target.effectActive?(:Ingrain)
+        if target.effectActive?(:Ingrain) || target.effectActive?(:EvilRoots)
             @battle.pbDisplay(_INTL("{1} anchored itself with its roots!", target.pbThis)) if show_message
             return true
         end
@@ -19,22 +17,18 @@ class PokeBattle_Move_SwitchOutTargetStatusMove < PokeBattle_Move
             return true
         end
         if @battle.wildBattle? && (target.level > user.level)
-            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s level is greater than #{user.pbThis(true)}'s!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since {1}'s level is greater than {2}'s!", target.pbThis(true), user.pbThis(true))) if show_message
             return true
         end
         if @battle.wildBattle? && target.boss
-            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is an Avatar!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since {1} is an Avatar!", target.pbThis(true))) if show_message
             return true
         end
         if @battle.trainerBattle? && !@battle.pbCanChooseNonActive?(target.index)
-            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} cannot be replaced!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since {1} cannot be replaced!", target.pbThis(true))) if show_message
             return true
         end
         return false
-    end
-
-    def pbEffectGeneral(_user)
-        @battle.decision = 3 if @battle.wildBattle? && !@battle.bossBattle? # Escaped from battle
     end
 
     def pbSwitchOutTargetsEffect(user, targets, numHits, switchedBattlers)
@@ -57,20 +51,11 @@ class PokeBattle_Move_EmpoweredWhirlwind < PokeBattle_Move_SwitchOutTargetStatus
 end
 
 #===============================================================================
-# In wild battles, makes target flee. Fails if target is a higher level than the
-# user.
-# In trainer battles, target switches out, to be replaced at random.
+# Target switches out, to be replaced at random.
 # For damaging moves. (Circle Throw, Dragon Tail)
 #===============================================================================
 class PokeBattle_Move_SwitchOutTargetDamagingMove < PokeBattle_Move
     def forceSwitchMove?; return true; end
-
-    def pbEffectAgainstTarget(user, target)
-        if @battle.wildBattle? && target.level <= user.level && @battle.canRun &&
-           (target.substituted? || ignoresSubstitute?(user)) && !target.boss
-            @battle.decision = 3
-        end
-    end
 
     def pbSwitchOutTargetsEffect(user, targets, numHits, switchedBattlers)
         return if numHits == 0
@@ -99,19 +84,10 @@ class PokeBattle_Move_SwitchOutTargetIfMisses < PokeBattle_Move
 end
 
 #===============================================================================
-# In wild battles, makes target flee. Fails if target is a higher level than the
-# user.
-# In trainer battles, target switches out, to be replaced manually. (Thornrattle)
+# Target switches out, to be replaced manually. (Thornrattle)
 #===============================================================================
 class PokeBattle_Move_SwitchOutTargetDamagingMoveNonRandom < PokeBattle_Move
     def forceSwitchMove?; return true; end
-
-    def pbEffectAgainstTarget(user, target)
-        if @battle.wildBattle? && target.level <= user.level && @battle.canRun &&
-           (target.substituted? || ignoresSubstitute?(user)) && !target.boss
-            @battle.decision = 3
-        end
-    end
 
     def pbSwitchOutTargetsEffect(user, targets, numHits, switchedBattlers)
         return if numHits == 0

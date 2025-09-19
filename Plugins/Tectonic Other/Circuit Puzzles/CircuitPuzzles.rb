@@ -3,15 +3,16 @@ def circuitPuzzle(circuitPuzzleID)
     if circuitDefinition
         circuitBaseGraphic = circuitDefinition[:base_graphic]
         pbSEPlay("Circuit puzzle load")
-        ret = nil
+        solved = false
+        state = -1
         pbFadeOutIn {
             scene = CircuitPuzzle_Scene.new(circuitBaseGraphic)
             screen = CircuitPuzzle_Screen.new(scene,circuitDefinition,circuitPuzzleID)
-            ret = screen.startPuzzle
+            solved, state = screen.startPuzzle
         }
-        return ret
+        return solved, state
     else
-        pbMessageDisplay(_INTL("Circuit puzzle with ID #{circuitPuzzleID} not found. Aborting."))
+        pbMessage(_INTL("Circuit puzzle with ID {1} not found. Aborting.", circuitPuzzleID))
     end
 end
 
@@ -60,13 +61,14 @@ class CircuitPuzzle_Scene
             defaultState = circuitComponentDefinition[3]
             
             componentBitmap = @componentBitmaps[componentID]
+            width = componentBitmap.width
             newSprite = SpriteWrapper.new
             newSprite.bitmap = componentBitmap.bitmap
             newSprite.viewport = @viewport
-            newSprite.x = componentX * 64 + 8
-            newSprite.y = componentY * 64 + 8
-            newSprite.src_rect.height = 12
-            newSprite.src_rect.y = defaultState * 12
+            newSprite.x = componentX * 64 + (20 - width)
+            newSprite.y = componentY * 64 + (20 - width)
+            newSprite.src_rect.height = width
+            newSprite.src_rect.y = defaultState * width
             newSprite.zoom_x = 4
             newSprite.zoom_y = 4
             @sprites["component_#{componentSprites.size}"] = newSprite
@@ -85,7 +87,7 @@ class CircuitPuzzle_Scene
     end
 
     def updateComponentState(componentIndex,state)
-        componentSprites[componentIndex].src_rect.y = state * 12
+        componentSprites[componentIndex].src_rect.y = state * componentSprites[componentIndex].bitmap.width
     end
 
     # End the scene here
@@ -133,12 +135,13 @@ class CircuitPuzzle_Screen
         @cursorY = 3
         @inSolutionState = false
         @inLegalState = true
+        @@stateID = -1
 
         loadPuzzleComponents
         loadCircuitState
-        detectLegalState
+        updateSolutionState(false)
         unless @inLegalState
-            pbMessageDisplay(_INTL("Circuit puzzle with ID #{circuitPuzzleID} somehow loaded in illegal state."))
+            pbMessage(_INTL("Circuit puzzle with ID {1} somehow loaded in illegal state.", puzzleID))
         end
     end
 
@@ -178,7 +181,7 @@ class CircuitPuzzle_Screen
     def startPuzzle
         Graphics.update
         Input.update
-        detectSolution
+        updateSolutionState
         loop do
             Graphics.update
             Input.update
@@ -188,15 +191,14 @@ class CircuitPuzzle_Screen
                     saveCircuitState
                     endScene
                     pbPlayCloseMenuSE
-                    return @inSolutionState
+                    return @inSolutionState, @stateID
                 else
-                    pbMessageDisplay(_INTL("The circuit is in an illegal state! You can't leave it like this."))
+                    pbMessage(_INTL("The circuit is in an illegal state! You can't leave it like this."))
                 end
             elsif Input.trigger?(Input::USE)
                 if cursorInteract
                     pbPlayDecisionSE
-                    detectLegalState
-                    detectSolution
+                    updateSolutionState
                 else
                     pbPlayBuzzerSE
                 end
@@ -239,45 +241,52 @@ class CircuitPuzzle_Screen
         end
     end
 
-    def detectLegalState
-        @inLegalState = false
-        if @circuitDefinition[:legal_states].nil?
-            @inLegalState = true
-        else
-            @circuitDefinition[:legal_states].each do |legalState|
-                thisLegalMatches = true
-                @components.each_with_index do |component,index|
-                    legalStateForComponent = legalState[index]
-                    next if component.state == legalStateForComponent
-                    thisLegalMatches = false
-                    break
-                end
-                if thisLegalMatches
-                    @inLegalState = true
-                    break
-                end
-            end
-        end
-    end
-
-    def detectSolution
+    def updateSolutionState(playSE = true)
         @inSolutionState = false
-        @circuitDefinition[:solution_states].each do |possibleSolution|
-            thisSolutionWorks = true
-            @components.each_with_index do |component,index|
-                solutionStateForComponent = possibleSolution[index]
-                next if component.state == solutionStateForComponent
-                thisSolutionWorks = false
-                break
-            end
-            if thisSolutionWorks
-                @inSolutionState = true
-                break
+
+        if @circuitDefinition[:solution_states]
+            @circuitDefinition[:solution_states].each do |possibleSolution|
+                thisSolutionWorks = true
+                @components.each_with_index do |component,index|
+                    solutionStateForComponent = possibleSolution[index]
+                    next if component.state == solutionStateForComponent
+                    thisSolutionWorks = false
+                    break
+                end
+                if thisSolutionWorks
+                    @inSolutionState = true
+                    break
+                end
             end
         end
+
         if @inSolutionState
-            pbWait(20)
-            pbSEPlay("Mining found all",100,80)
+            @inLegalState = true
+            if playSE
+              pbWait(20)
+              pbSEPlay("Mining found all",100,80)
+            end
+        else
+            if @circuitDefinition[:legal_states].nil?
+                @inLegalState = true
+                @stateID = -1
+            else
+                @inLegalState = false
+                @circuitDefinition[:legal_states].each_with_index do |legalState, index|
+                    thisLegalMatches = true
+                    @components.each_with_index do |component,index|
+                        legalStateForComponent = legalState[index]
+                        next if component.state == legalStateForComponent
+                        thisLegalMatches = false
+                        break
+                    end
+                    if thisLegalMatches
+                        @inLegalState = true
+                        @stateID = index
+                        break
+                    end
+                end
+            end
         end
     end
 
@@ -302,6 +311,7 @@ class CircuitPuzzle_Screen
         @scene.update
     end
 end
+
 class CircuitPuzzleStateTracker
     def initialize
         @puzzleStateData = {}
@@ -324,8 +334,16 @@ class CircuitPuzzleStateTracker
     def savePuzzleState(puzzleID,puzzleState)
         @puzzleStateData[puzzleID] = puzzleState
     end
+
+    def resetCircuitStates
+        @puzzleStateData = {}
+    end
 end
 
 def circuitState
     return $PokemonGlobal.circuitPuzzleStateTracker
+end
+
+def resetCircuitStates
+    $PokemonGlobal.circuitPuzzleStateTracker.resetCircuitStates
 end

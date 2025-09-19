@@ -63,6 +63,12 @@ class PokemonGlobalMetadata
     attr_accessor :teamHealerUpgrades
     # Tarot amulet
     attr_accessor :tarot_amulet_active
+    # Ominous Egg stage
+    attr_accessor :ominous_egg_stage
+    # Chroma Clarion
+    attr_accessor :chroma_clarion_recharge_steps
+    # Cell booster
+    attr_accessor :cell_booster_inactive
     # Ragged journal
     attr_accessor :ragged_journal_pages_collected
     # Randomizer
@@ -93,11 +99,16 @@ class PokemonGlobalMetadata
     attr_accessor :shouldProcCatacombsCall
     attr_accessor :shouldProcWhitebloomCall
     attr_accessor :shouldProcEstateCall
+    attr_accessor :shouldProcJovanCall
     # Tournament
     attr_accessor :tournament
     # Dragon flames
     attr_writer :dragonFlamesCount
+    # Circuit puzzles
     attr_writer :puzzlesCompleted
+    # Time travel
+    attr_writer :timeModifiedEvents
+    attr_writer :futureFilledHoles
 	
 	def initialize
         # Movement
@@ -120,7 +131,7 @@ class PokemonGlobalMetadata
         @pokedexIndex         = []
         @pokedexMode          = 0
         for i in 0...numRegions+1     # National Dex isn't a region, but is included
-        @pokedexIndex[i]    = 0
+            @pokedexIndex[i]    = 0
         end
         # Day Care
         @daycare              = [[nil,0],[nil,0]]
@@ -162,7 +173,14 @@ class PokemonGlobalMetadata
         @teamHealerCurrentUses= 1
         # Tarot Amulet
         @tarot_amulet_active  = false
+        # Cell Booster
+        @cell_booster_inactive = false
+        # Ragged Journal
         @ragged_journal_pages_collected  = []
+        # Ominous egg
+        @ominous_egg_stage = 0
+        # Chroma Clarion
+        @chroma_clarion_recharge_steps = 0
         # Masterdex
         @stored_search		  = nil
         @dex_forms_shows_shinies = false
@@ -175,6 +193,13 @@ class PokemonGlobalMetadata
 
         # Achievements
         @capture_counts_per_ball = {}
+
+        @tournament = RandomTournament.new
+
+        # Regi dungeon puzzles
+        @dragonFlamesCount = 0
+        @puzzlesCompleted = []
+        @timeModifiedEvents = []
     end
 
     ####################################################
@@ -264,6 +289,18 @@ class PokemonGlobalMetadata
         return @adaptiveMovesTutorialized
     end
 
+    attr_writer :donationBoxesTutorialized
+    def donationBoxesTutorialized
+        @donationBoxesTutorialized = false if @donationBoxesTutorialized.nil?
+        return @donationBoxesTutorialized
+    end
+
+    attr_writer :colorationDifferencesTutorialized
+    def colorationDifferencesTutorialized
+        @colorationDifferencesTutorialized = false if @colorationDifferencesTutorialized.nil?
+        return @colorationDifferencesTutorialized
+    end
+
     ####################################################
     # Misc.
     ####################################################
@@ -278,6 +315,11 @@ class PokemonGlobalMetadata
         return @circuitPuzzleStateTracker
     end
 
+    def tilePuzzleStateTracker
+        @tilePuzzleStateTracker = TilePuzzleStateTracker.new if @tilePuzzleStateTracker.nil?
+        return @tilePuzzleStateTracker
+    end
+
     def dragonFlamesCount
         @dragonFlamesCount = 0 if @dragonFlamesCount.nil?
         return @dragonFlamesCount
@@ -286,5 +328,15 @@ class PokemonGlobalMetadata
     def puzzlesCompleted
         @puzzlesCompleted = [] if @puzzlesCompleted.nil?
         return @puzzlesCompleted
+    end
+
+    def timeModifiedEvents
+        @timeModifiedEvents = [] if @timeModifiedEvents.nil?
+        return @timeModifiedEvents
+    end
+
+    def futureFilledHoles
+        @futureFilledHoles = {} if @futureFilledHoles.nil?
+        return @futureFilledHoles
     end
 end

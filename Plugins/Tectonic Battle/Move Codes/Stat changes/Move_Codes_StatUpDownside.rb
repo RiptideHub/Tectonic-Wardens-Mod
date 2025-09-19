@@ -7,7 +7,7 @@ class PokeBattle_Move_MaxUserAtkLoseHalfOfTotalHP < PokeBattle_Move
 
     def pbMoveFailed?(user, _targets, show_message)
         if user.hp <= hpLoss(user)
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s HP is too low!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since {1}'s HP is too low!", user.pbThis(true))) if show_message
             return true
         end
         return true unless user.pbCanRaiseStatStep?(:ATTACK, user, self, show_message)
@@ -41,7 +41,7 @@ class PokeBattle_Move_MaxUserSpAtkLoseHalfOfTotalHP < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         hpLoss = [user.totalhp / 2, 1].max
         if user.hp <= hpLoss
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s HP is too low!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since {1}'s HP is too low!", user.pbThis(true))) if show_message
             return true
         end
         return true unless user.pbCanRaiseStatStep?(:SPECIAL_ATTACK, user, self, show_message)
@@ -107,7 +107,7 @@ class PokeBattle_Move_RaiseUserMainStats2LoseThirdOfTotalHP < PokeBattle_MultiSt
 
     def pbMoveFailed?(user, targets, show_message)
         if user.hp <= (user.totalhp / 3)
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s HP is too low!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since {1}'s HP is too low!", user.pbThis(true))) if show_message
             return true
         end
         super
@@ -120,7 +120,7 @@ class PokeBattle_Move_RaiseUserMainStats2LoseThirdOfTotalHP < PokeBattle_MultiSt
 
     def getEffectScore(user, target)
         score = super
-        score += getHPLossEffectScore(user, 0.33)
+        score += getHPLossEffectScore(user, 0.5) # intentionally higher than it looks like it should be
         return score
     end
 end
@@ -137,7 +137,7 @@ class PokeBattle_Move_RaiseUserMainStats2TrapUser < PokeBattle_MultiStatUpMove
     def pbMoveFailed?(user, targets, show_message)
         if user.effectActive?(:NoRetreat)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is already committed to the battle!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} is already committed to the battle!", user.pbThis(true)))
             end
             return true
         end

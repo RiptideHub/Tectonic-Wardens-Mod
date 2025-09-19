@@ -162,6 +162,19 @@ BattleHandlers::UserAbilityEndOfMove.add(:ASONEGHOST,
   }
 )
 
+BattleHandlers::UserAbilityEndOfMove.add(:RECLAMATION,
+  proc { |ability, user, targets, _move, battle, _switchedBattlers|
+      next if battle.pbAllFainted?(user.idxOpposingSide)
+      numFainted = 0
+      targets.each { |b| numFainted += 1 if b.damageState.fainted }
+      next if numFainted == 0
+      next unless user.recyclableItem
+      next if user.hasItem?(user.recyclableItem)
+      recyclingMsg = _INTL("{1} reclaims its {2}!", user.pbThis, getItemName(user.recyclableItem))
+      user.recycleItem(recyclingMsg: recyclingMsg, ability: ability)
+  }
+)
+
 ########################################################################
 # Other abilities
 ########################################################################
@@ -204,7 +217,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:GILD,
           next unless b.hasAnyItem?
           next unless move.knockOffItems(user, b, ability: ability) do |itemRemoved, itemName|
             battle.pbDisplay(_INTL("{1} turned {2}'s {3} into gold!", user.pbThis, b.pbThis(true), itemName))
-            battle.field.incrementEffect(:PayDay, 5 * user.level) if user.pbOwnedByPlayer?
+            user.generateMoney(8)
           end
           break
       end
@@ -220,21 +233,21 @@ BattleHandlers::UserAbilityEndOfMove.add(:SPACEINTERLOPER,
 BattleHandlers::UserAbilityEndOfMove.add(:SOUNDBARRIER,
   proc { |ability, user, _targets, move, _battle, _switchedBattlers|
       next unless move.soundMove?
-      user.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, ability: ability)
+      defenseStatStackingAbility(ability, user)
   }
 )
 
 BattleHandlers::UserAbilityEndOfMove.add(:AEROSHELL,
   proc { |ability, user, _targets, move, _battle, _switchedBattlers|
-    next unless move.windMove?
-    user.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, ability: ability)
+      next unless move.windMove?
+      defenseStatStackingAbility(ability, user)
   }
 )
 
-BattleHandlers::UserAbilityEndOfMove.add(:COSMICCONTACT,
+BattleHandlers::UserAbilityEndOfMove.add(:SPARESCALES,
   proc { |ability, user, _targets, move, _battle, _switchedBattlers|
-    next unless move.statusMove?
-    user.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, ability: ability)
+      next unless %i[GRASS GROUND STEEL].include?(move.calcType)
+      defenseStatStackingAbility(ability, user)
   }
 )
 
@@ -279,9 +292,10 @@ BattleHandlers::UserAbilityEndOfMove.add(:DYNAMO,
   proc { |ability, user, _targets, move, battle, _switchedBattlers|
       next if battle.futureSight
       next if move.damagingMove?
-      next if user.effectActive?(:Charge)
+      next if user.effectActive?(:EnergyCharge)
       battle.pbShowAbilitySplash(user, ability)
-      user.applyEffect(:Charge)
+      battle.pbAnimation(:CHARGE, user, nil, 0)
+      user.applyEffect(:EnergyCharge)
       battle.pbHideAbilitySplash(user)
   }
 )
@@ -306,6 +320,23 @@ BattleHandlers::UserAbilityEndOfMove.add(:ICEQUEEN,
   }
 )
 
+BattleHandlers::UserAbilityEndOfMove.add(:ASTRALHARVEST,
+  proc { |ability, user, targets, move, battle, _switchedBattlers|
+      next if battle.futureSight
+      next unless move.damagingMove?
+      next unless battle.eclipsed?
+      user.pbRecoverHPFromMultiDrain(targets, 0.50, ability: ability)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:SILVERSENSE,
+  proc { |ability, user, targets, move, battle, _switchedBattlers|
+      next if battle.futureSight
+      next unless move.damagingMove?
+      user.pbRecoverHPFromMultiDrain(targets, 0.50, ability: ability, onlyCriticalDamage: true)
+  }
+)
+
 BattleHandlers::UserAbilityEndOfMove.add(:TORPORSAP,
   proc { |ability, user, targets, move, battle, _switchedBattlers|
       next if battle.futureSight
@@ -316,7 +347,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:TORPORSAP,
         asleepTargets.push(target)
       end
       next if asleepTargets.length == 0
-      user.pbRecoverHPFromMultiDrain(asleepTargets, 0.25, ability: ability)
+      user.pbRecoverHPFromMultiDrain(asleepTargets, 0.50, ability: ability)
   }
 )
 
@@ -452,13 +483,6 @@ BattleHandlers::UserAbilityEndOfMove.add(:BELLOWER,
   }
 )
 
-BattleHandlers::UserAbilityEndOfMove.add(:SPARESCALES,
-  proc { |ability, user, _targets, move, _battle, _switchedBattlers|
-      next unless %i[GRASS GROUND STEEL].include?(move.calcType)
-      user.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, ability: ability)
-  }
-)
-
 BattleHandlers::UserAbilityEndOfMove.add(:VANDAL,
   proc { |ability, user, targets, move, battle, _switchedBattlers|
       next if battle.futureSight
@@ -509,11 +533,17 @@ BattleHandlers::UserAbilityEndOfMove.add(:HYBRIDFIGHTER,
         break
       end
       next unless hitAnything
-      next unless user.lastRoundMove
       
-      previousMove = battle.getBattleMoveInstanceFromID(user.lastRoundMove)
-      currentMove = battle.getBattleMoveInstanceFromID(user.lastMoveUsed)
-      if previousMove.kickingMove? && currentMove.bitingMove?
+      previousMoveID = user.moveUsageHistory[1] || nil
+      currentMoveID = user.moveUsageHistory[0] || nil
+
+      next if currentMoveID.nil?
+      next if previousMoveID.nil?
+      
+      previousMoveData = battle.getBattleMoveInstanceFromID(previousMoveID)
+      currentMoveData = battle.getBattleMoveInstanceFromID(currentMoveID)
+
+      if previousMoveData.kickingMove? && currentMoveData.bitingMove?
         user.showMyAbilitySplash(ability)
         if user.fullHealth?
           battle.pbDisplay(_INTL("{1}'s HP is full!", user.pbThis))
@@ -521,25 +551,30 @@ BattleHandlers::UserAbilityEndOfMove.add(:HYBRIDFIGHTER,
           user.applyFractionalHealing(1.0/4.0)
         end
         user.hideMyAbilitySplash
-      elsif previousMove.punchingMove? && currentMove.kickingMove?
+      elsif previousMoveData.punchingMove? && currentMoveData.kickingMove?
         user.showMyAbilitySplash(ability)
         move.switchOutUser(user,switchedBattlers)
         user.hideMyAbilitySplash
-      elsif previousMove.bitingMove? && currentMove.punchingMove?
+      elsif previousMoveData.bitingMove? && currentMoveData.punchingMove?
         targets.each do |target|
           target.pbLowerMultipleStatSteps(ATTACKING_STATS_2, user, ability: ability)
         end
-      elsif previousMove.bitingMove? && currentMove.kickingMove?
+      elsif previousMoveData.bitingMove? && currentMoveData.kickingMove?
         user.tryRaiseStat(:SPEED, user, increment: 2, ability: ability)
-      elsif previousMove.kickingMove? && currentMove.punchingMove?
+      elsif previousMoveData.kickingMove? && currentMoveData.punchingMove?
         user.showMyAbilitySplash(ability)
         targets.each do |target|
           target.applyNumb if target.canNumb?(user, true)
         end
         user.hideMyAbilitySplash
-      elsif previousMove.punchingMove? && currentMove.bitingMove?
+      elsif previousMoveData.punchingMove? && currentMoveData.bitingMove?
         user.showMyAbilitySplash(ability)
-        user.applyEffect(:Charge)
+        if user.effectActive?(:EnergyCharge)
+          battle.pbDisplay(_INTL("But {1} is already charged...", user.pbThis(true)))
+        else
+          battle.pbAnimation(:CHARGE, user, nil)
+          user.applyEffect(:EnergyCharge)
+        end
         user.hideMyAbilitySplash
       end
   }
@@ -558,6 +593,19 @@ BattleHandlers::UserAbilityEndOfMove.add(:SUDDENTURN,
       break
     end
     next unless hitAnything
-    battle.forceUseMove(user, :RAPIDSPIN, -1, true, nil, :SuddenTurn, ability: ability)
+    battle.forceUseMove(user, :RAPIDSPIN, moveUsageEffect: :SuddenTurn, ability: ability)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:OFFENSIVE,
+  proc { |ability, user, targets, move, battle, switchedBattlers|
+    next if battle.futureSight
+    next unless move.damagingMove?
+    next unless user.firstTurn?
+    targets.each do |b|
+      next if b.fainted?
+      next if b.damageState.calcDamage == 0 || b.damageState.substitute
+      b.pbFlinch
+    end
   }
 )

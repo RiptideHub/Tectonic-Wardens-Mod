@@ -31,7 +31,7 @@ class Game_Player < Game_Character
       return false if $PokemonGlobal.diving
       return false if $PokemonGlobal.bicycle
       return false if $game_player.forcedWalkByTerrain?
-      input = ($PokemonSystem.runstyle == 1) ^ Input.press?(Input::ACTION)
+      input = ($Options.runstyle == 1) ^ Input.press?(Input::ACTION)
       return input
     end
   
@@ -110,5 +110,5 @@ class Game_Player < Game_Character
 end
 
 def cellBoosterActive?
-    return $PokemonBag && pbHasItem?(:CELLBOOSTER)
+    return $PokemonBag && pbHasItem?(:CELLBOOSTER) && !cellBoosterInactive?
 end

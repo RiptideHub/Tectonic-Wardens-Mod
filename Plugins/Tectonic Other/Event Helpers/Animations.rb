@@ -10,8 +10,13 @@ def showHappy(eventID = 0)
 	showAnimation(FollowerSettings::Emo_Happy,eventID)
 end
 
+# Ellipsis (thinking) emote
 def showNormal(eventID = 0)
 	showAnimation(FollowerSettings::Emo_Normal,eventID)
+end
+
+def showSad(eventID = 0)
+	showAnimation(FollowerSettings::Emo_Sad,eventID)
 end
 
 def showHate(eventID = 0)

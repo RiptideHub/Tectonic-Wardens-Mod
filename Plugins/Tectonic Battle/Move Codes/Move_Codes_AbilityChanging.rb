@@ -13,13 +13,13 @@ class PokeBattle_Move_SetTargetAbilityToSimple < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         if target.immutableAbility?
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability can't be supressed!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1}'s ability can't be supressed!", target.pbThis(true)))
             end
             return true
         end
         if target.hasAbility?(:SIMPLE)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} already has the ability #{getAbilityName(:SIMPLE)}!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} already has the ability {2}!", target.pbThis(true), getAbilityName(:SIMPLE)))
             end
             return true
         end
@@ -52,13 +52,13 @@ class PokeBattle_Move_SetTargetAbilityToInsomnia < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         if target.immutableAbility?
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability can't be supressed!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1}'s ability can't be supressed!", target.pbThis(true)))
             end
             return true
         end
         if target.hasAbility?(:INSOMNIA)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability is already #{getAbilityName(:INSOMNIA)}!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1}'s ability is already {2}!", target.pbThis(true), getAbilityName(:INSOMNIA)))
             end
             return true
         end
@@ -83,7 +83,7 @@ class PokeBattle_Move_SetUserAbilityToTargetAbility < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if user.immutableAbility?
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s ability can't be changed!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1}'s ability can't be changed!", user.pbThis(true)))
             end
             return true
         end
@@ -93,19 +93,19 @@ class PokeBattle_Move_SetUserAbilityToTargetAbility < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         unless target.firstAbility
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} doesn't have an ability!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} doesn't have an ability!", target.pbThis(true)))
             end
             return true
         end
         if user.hasAbility?(target.firstAbility)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since the #{target.pbThis(true)} and #{user.pbThis(true)} have the same ability!"))
+                @battle.pbDisplay(_INTL("But it failed, since the {1} and {2} have the same ability!", target.pbThis(true), user.pbThis(true)))
             end
             return true
         end
         if GameData::Ability.get(target.firstAbility).is_uncopyable_ability?
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability can't be copied!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1}'s ability can't be copied!", target.pbThis(true)))
             end
             return true
         end
@@ -125,17 +125,33 @@ class PokeBattle_Move_SetUserAbilityToTargetAbility < PokeBattle_Move
     end
 end
 
+class PokeBattle_Move_EmpoweredRolePlay < PokeBattle_Move
+    include EmpoweredMove
+    
+    def ignoresSubstitute?(_user); return true; end
+
+    def pbEffectGeneral(user)
+        super
+        user.eachOpposing do |b|
+            next unless b.firstAbility
+            next if GameData::Ability.get(b.firstAbility).is_uncopyable_ability?
+            @battle.pbDisplay(_INTL("{1} copies {2}'s ability!",user.pbThis,b.pbThis(true)))
+            user.addAbility(b.firstAbility)
+        end
+    end  
+end
+
 #===============================================================================
 # Target copies user's ability. (Entrainment)
 #===============================================================================
 class PokeBattle_Move_SetTargetAbilityToUserAbility < PokeBattle_Move
     def pbMoveFailed?(user, _targets, _show_message)
         unless user.firstAbility
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} doesn't have an ability!"))
+            @battle.pbDisplay(_INTL("But it failed, since {1} doesn't have an ability!", user.pbThis(true)))
             return true
         end
         if GameData::Ability.get(user.firstAbility).is_uncopyable_ability?
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s ability cannot be copied!"))
+            @battle.pbDisplay(_INTL("But it failed, since {1}'s ability cannot be copied!", user.pbThis(true)))
             return true
         end
         return false
@@ -144,7 +160,7 @@ class PokeBattle_Move_SetTargetAbilityToUserAbility < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         if target.immutableAbility?
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability can't be supressed!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1}'s ability can't be supressed!", target.pbThis(true)))
             end
             return true
         end
@@ -177,15 +193,15 @@ class PokeBattle_Move_UserTargetSwapAbilities < PokeBattle_Move
 
     def pbMoveFailed?(user, _targets, _show_message)
         unless user.firstAbility
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} doesn't have an ability!"))
+            @battle.pbDisplay(_INTL("But it failed, since {1} doesn't have an ability!", user.pbThis(true)))
             return true
         end
         if GameData::Ability.get(user.firstAbility).is_immutable_ability?
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s ability cannot be changed!"))
+            @battle.pbDisplay(_INTL("But it failed, since {1}'s ability cannot be changed!", user.pbThis(true)))
             return true
         end
         if GameData::Ability.get(user.firstAbility).is_uncopyable_ability?
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s ability cannot be copied!"))
+            @battle.pbDisplay(_INTL("But it failed, since {1}'s ability cannot be copied!", user.pbThis(true)))
             return true
         end
         return false
@@ -194,19 +210,19 @@ class PokeBattle_Move_UserTargetSwapAbilities < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         unless target.firstAbility
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} doesn't have an ability!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} doesn't have an ability!", target.pbThis(true)))
             end
             return true
         end
         if GameData::Ability.get(target.firstAbility).is_immutable_ability?
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability can't be supressed!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1}'s ability can't be supressed!", target.pbThis(true)))
             end
             return true
         end
         if GameData::Ability.get(target.firstAbility).is_uncopyable_ability?
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability can't be copied!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1}'s ability can't be copied!", target.pbThis(true)))
             end
             return true
         end

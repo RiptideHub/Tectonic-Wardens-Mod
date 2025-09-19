@@ -42,10 +42,28 @@ BattleHandlers::DamageCalcUserAbility.add(:DEFEATIST,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:PERFECTIONIST,
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
+    unless target.damageState.critical # TODO: Ai check
+      mults[:final_damage_multiplier] /= 2
+      user.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:MEGALAUNCHER,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if move.pulseMove?
       mults[:base_damage_multiplier] *= 1.5
+      user.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:REFRACTIVE,
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
+    if move.pulseMove?
+      mults[:base_damage_multiplier] *= 1.3
       user.aiLearnsAbility(ability) unless aiCheck
     end
   }
@@ -73,6 +91,15 @@ BattleHandlers::DamageCalcUserAbility.add(:HOOLIGAN,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if move.recoilMove? || move.soundMove?
       mults[:base_damage_multiplier] *= 1.3
+      user.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:STONEMANE,
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
+    if move.recoilMove?
+      mults[:base_damage_multiplier] *= 1.2
       user.aiLearnsAbility(ability) unless aiCheck
     end
   }
@@ -161,6 +188,8 @@ BattleHandlers::DamageCalcUserAbility.add(:LOUD,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.copy(:LOUD, :TUNEDOUT)
+
 BattleHandlers::DamageCalcUserAbility.add(:EARSPLITTING,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if move.soundMove?
@@ -179,7 +208,7 @@ BattleHandlers::DamageCalcUserAbility.add(:SWORDPLAY,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:SWORDPLAY, :RAZORSEDGE)
+BattleHandlers::DamageCalcUserAbility.copy(:SWORDPLAY, :RAZORSEDGE, :BLADEBRAINED)
 
 BattleHandlers::DamageCalcUserAbility.add(:SHARPNESS,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
@@ -661,6 +690,15 @@ BattleHandlers::DamageCalcUserAbility.add(:AURORAPRISM,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:FLEXIBLE,
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
+    unless user.pbHasType?(type)
+      mults[:base_damage_multiplier] *= 1.3
+      user.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:FIRSTSTRIKE,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
       priority = user.battle.choices[user.index][4] || move.priority || nil
@@ -735,5 +773,30 @@ BattleHandlers::DamageCalcUserAbility.add(:CLEANFREAK,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
       mults[:attack_multiplier] *= 1.5 if user.pbHasAnyStatus?
       user.aiLearnsAbility(ability) unless aiCheck
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:PUFFUP,
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
+      mults[:attack_multiplier] *= 1 + (0.25 * user.countEffect(:Stockpile))
+      user.aiLearnsAbility(ability) unless aiCheck
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:WREAKHAVOC,
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
+    if move.rampagingMove?
+      mults[:base_damage_multiplier] *= 1.3
+      user.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:SLINKY,
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
+    if move.is_a?(PokeBattle_Move_TwoTurnAttackInvulnerable)
+      mults[:base_damage_multiplier] *= 2.0
+      user.aiLearnsAbility(ability) unless aiCheck
+    end
   }
 )

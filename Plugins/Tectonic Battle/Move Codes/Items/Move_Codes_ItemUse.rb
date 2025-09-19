@@ -11,7 +11,7 @@ class PokeBattle_Move_GiftItem < PokeBattle_Move
     def pbCanChooseMove?(user, commandPhase, show_message)
         unless user.hasAnyItem?
             if show_message
-                msg = _INTL("#{user.pbThis} doesn't have an item to give away!")
+                msg = _INTL("{1} doesn't have an item to give away!", user.pbThis)
                 commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
             end
             return false
@@ -24,7 +24,7 @@ class PokeBattle_Move_GiftItem < PokeBattle_Move
         end
         if allItemsInvalid
             if show_message
-                msg = _INTL("#{user.pbThis} can't lose any of its items!")
+                msg = _INTL("{1} can't lose any of its items!", user.pbThis)
                 commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
             end
             return false
@@ -48,7 +48,7 @@ class PokeBattle_Move_GiftItem < PokeBattle_Move
             elsif !user.pbOwnedByPlayer? # Trainer AI
                 @chosenItem = validItems[0]
             else
-                chosenIndex = @battle.scene.pbShowCommands(_INTL("Which item should #{user.pbThis(true)} give away?"),validItemNames,0)
+                chosenIndex = @battle.scene.pbShowCommands(_INTL("Which item should {1} give away?", user.pbThis(true)),validItemNames,0)
                 @chosenItem = validItems[chosenIndex]
             end
         end
@@ -56,11 +56,11 @@ class PokeBattle_Move_GiftItem < PokeBattle_Move
 
     def pbFailsAgainstTarget?(user, target, show_message)
         unless target.canAddItem?(@chosenItem)
-            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} doesn't have room for a new item!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since {1} doesn't have room for a new item!", target.pbThis(true))) if show_message
             return true
         end
         if target.unlosableItem?(@chosenItem)
-            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can't accept an #{getItemName(@chosenItem)}!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since {1} can't accept an {2}!", target.pbThis(true), getItemName(@chosenItem))) if show_message
             return true
         end
         return false
@@ -98,13 +98,13 @@ class PokeBattle_Move_Recycle < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         unless user.recyclableItem
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} doesn't have an item to recycle!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} doesn't have an item to recycle!", user.pbThis(true)))
             end
             return true
         end
         if user.hasItem?(user.recyclableItem)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} has the item it would recycle!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} has the item it would recycle!", user.pbThis(true)))
             end
             return true
         end
@@ -131,14 +131,14 @@ class PokeBattle_Move_Fling < PokeBattle_Move
     def pbCanChooseMove?(user, commandPhase, show_message)
         unless user.hasAnyItem?
             if show_message
-                msg = _INTL("#{user.pbThis} doesn't have an item to fling!")
+                msg = _INTL("{1} doesn't have an item to fling!", user.pbThis)
                 commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
             end
             return false
         end
         unless user.itemActive?
             if show_message
-                msg = _INTL("#{user.pbThis} can't use items!")
+                msg = _INTL("{1} can't use items!", user.pbThis)
                 commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
             end
             return false
@@ -151,7 +151,7 @@ class PokeBattle_Move_Fling < PokeBattle_Move
         end
         if allItemsInvalid
             if show_message
-                msg = _INTL("#{user.pbThis} can't lose any of its items!")
+                msg = _INTL("{1} can't lose any of its items!", user.pbThis)
                 commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
             end
             return false
@@ -175,7 +175,7 @@ class PokeBattle_Move_Fling < PokeBattle_Move
             elsif !user.pbOwnedByPlayer? # Trainer AI
                 @chosenItem = validItems[0]
             else
-                chosenIndex = @battle.scene.pbShowCommands(_INTL("Which item should #{user.pbThis(true)} fling?"),validItemNames,0)
+                chosenIndex = @battle.scene.pbShowCommands(_INTL("Which item should {1} fling?", user.pbThis(true)),validItemNames,0)
                 @chosenItem = validItems[chosenIndex]
             end
         end
@@ -190,7 +190,10 @@ class PokeBattle_Move_Fling < PokeBattle_Move
 
     def pbBaseDamage(_baseDmg, user, _target)
         if @chosenItem
-            if %i[IRONBALL PEARLOFFATE].include?(@chosenItem)
+            if @chosenItem == :PEARLOFWISDOM
+                return 300
+            end
+            if @chosenItem == :IRONBALL
                 return 150
             end
             itemData = GameData::Item.get(@chosenItem)
@@ -217,6 +220,8 @@ class PokeBattle_Move_Fling < PokeBattle_Move
             target.applyLeeched(user) if target.canLeech?(user, false, self)
         when :BINDINGBAND
             target.applyLeeched(user) if target.canLeech?(user, false, self)
+        when :WATERBALLOON
+            target.applyWaterlog(user) if target.canWaterlog?(user, false, self)
         else
             target.pbHeldItemTriggerCheck(@chosenItem, true)
         end
@@ -235,13 +240,14 @@ class PokeBattle_Move_Fling < PokeBattle_Move
     end
 
     def getDetailsForMoveDex(detailsList = [])
-        detailsList << _INTL("<u>150 BP</u>: Pearl of Fate, Iron Ball")
+        detailsList << _INTL("<u>150 BP</u>: Iron Ball")
         detailsList << _INTL("<u>100 BP</u>: Choice Items, Weather Rocks, Life Orb")
         detailsList << _INTL("<u>75 BP</u>: Everything else")
         detailsList << _INTL("<u>Poison</u>: Poison Orb")
         detailsList << _INTL("<u>Burn</u>: Burn Orb")
         detailsList << _INTL("<u>Frostbite</u>: Frost Orb")
         detailsList << _INTL("<u>Leech</u>: Big Root, Binding Band")
+        detailsList << _INTL("<u>Waterlog</u>: Water Balloon")
     end
 end
 
@@ -283,7 +289,7 @@ class PokeBattle_Move_NaturalGift < PokeBattle_Move
     def pbCanChooseMove?(user, commandPhase, show_message)
         unless user.itemActive?
             if show_message
-                msg = _INTL("#{user.pbThis} can't use items!")
+                msg = _INTL("{1} can't use items!", user.pbThis)
                 commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
             end
             return false
@@ -296,7 +302,7 @@ class PokeBattle_Move_NaturalGift < PokeBattle_Move
         end
         if allItemsInvalid
             if show_message
-                msg = _INTL("#{user.pbThis} can't use any of its items!")
+                msg = _INTL("{1} can't use any of its items!", user.pbThis)
                 commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
             end
             return false
@@ -320,7 +326,7 @@ class PokeBattle_Move_NaturalGift < PokeBattle_Move
             elsif !user.pbOwnedByPlayer? # Trainer AI
                 @chosenItem = validItems[0]
             else
-                chosenIndex = @battle.scene.pbShowCommands(_INTL("Which item should #{user.pbThis(true)} use?"),validItemNames,0)
+                chosenIndex = @battle.scene.pbShowCommands(_INTL("Which item should {1} use?", user.pbThis(true)),validItemNames,0)
                 @chosenItem = validItems[chosenIndex]
             end
         end
@@ -391,12 +397,12 @@ class PokeBattle_Move_SwapItems < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         unless target.hasAnyItem?
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} doesn't have an item!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} doesn't have an item!", target.pbThis(true)))
             end
             return true
         end
         unless user.hasAnyItem?
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} doesn't have an item!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since {1} doesn't have an item!", user.pbThis(true))) if show_message
             return true
         end
         if target.unlosableItem?(target.firstItem) ||
@@ -406,7 +412,7 @@ class PokeBattle_Move_SwapItems < PokeBattle_Move
             @battle.pbDisplay(_INTL("But it failed!")) if show_message
             return true
         end
-        if user.firstItem == :PEARLOFFATE || target.firstItem == :PEARLOFFATE
+        if user.firstItem == :PEARLOFWISDOM
              @battle.pbDisplay(_INTL("But it failed, since the Pearl of Fate cannot be exchanged!")) if show_message
             return true
         end
@@ -428,9 +434,16 @@ class PokeBattle_Move_SwapItems < PokeBattle_Move
         oldTargetItemName = getItemName(target.firstItem)
         user.removeItem(oldUserItem)
         target.removeItem(oldTargetItem)
-        if @battle.curseActive?(:CURSE_SUPER_ITEMS)
+        if @battle.stolenItemTurnsToDust?
             @battle.pbDisplay(_INTL("{1}'s {2} turned to dust.", user.pbThis, oldUserItemName)) if oldUserItem
             @battle.pbDisplay(_INTL("{1}'s {2} turned to dust.", target.pbThis, oldTargetItemName)) if oldTargetItem
+        elsif !user.opposes? && target.shouldStoreStolenItem?(oldTargetItem)
+            @battle.pbDisplay(_INTL("{1} switched items with its opponent!", user.pbThis))
+            target.setInitialItems(nil)
+            pbReceiveItem(oldTargetItem)
+            target.giveItem(oldUserItem)
+            @battle.pbDisplay(_INTL("{1} obtained {2}.", target.pbThis, oldUserItemName)) if oldUserItem
+            target.pbHeldItemTriggerCheck
         else
             user.giveItem(oldTargetItem)
             target.giveItem(oldUserItem)
@@ -462,11 +475,11 @@ end
 class PokeBattle_Move_EatBerryRaiseDefenses3 < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         unless user.hasAnyBerry?
-            @battle.pbDisplay(_INTL("But it failed, because #{user.pbThis(true)} has no berries!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, because {1} has no berries!", user.pbThis(true))) if show_message
             return true
         end
         unless user.itemActive?
-            @battle.pbDisplay(_INTL("But it failed, because #{user.pbThis(true)} cannot eat its berry!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, because {1} cannot eat its berry!", user.pbThis(true))) if show_message
             return true
         end
         return false
@@ -528,5 +541,23 @@ class PokeBattle_Move_ForceAllEatBerry < PokeBattle_Move
 
     def getEffectScore(_user, _target)
         return 60 # TODO: I don't understand the utility of this move
+    end
+end
+
+#===============================================================================
+# The user equips a Pearl of Wisdom. (Ritual Rhythm)
+#===============================================================================
+class PokeBattle_Move_GrantUserPearlOfWisdom < PokeBattle_Move
+    def pbMoveFailed?(user, _targets, show_message)
+        return !user.canAddItem?(:PEARLOFWISDOM)
+    end
+
+    def pbEffectGeneral(user)
+        user.giveItem(:PEARLOFWISDOM)
+        @battle.pbDisplay(_INTL("{1} forms a {2}!", user.pbThis, getItemName(:PEARLOFWISDOM)))
+    end
+
+    def getEffectScore(_user, _target)
+        return 150
     end
 end

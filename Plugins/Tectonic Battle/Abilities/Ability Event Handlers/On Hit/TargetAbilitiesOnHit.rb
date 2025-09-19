@@ -145,6 +145,7 @@ BattleHandlers::TargetAbilityOnHit.add(:ADAPTIVESKIN,
         else
             statToRaise = :SPECIAL_DEFENSE
         end
+        next if target.steps[statToRaise] >= DEFENSE_STACKING_ABILITY_STEP_CAP
         if aiCheck
             ret = 0
             aiNumHits.times do |i|
@@ -152,7 +153,7 @@ BattleHandlers::TargetAbilityOnHit.add(:ADAPTIVESKIN,
             end
             next ret
         end
-        target.tryRaiseStat(statToRaise, target, ability: ability, increment: 2)
+        target.tryRaiseStat(statToRaise, target, ability: ability, increment: 1)
     }
 )
 
@@ -283,7 +284,7 @@ BattleHandlers::TargetAbilityOnHit.add(:SPINTENSITY,
             next 0
         end
         battle.pbShowAbilitySplash(target, ability)
-        battle.pbDisplay(_INTL("#{user.pbThis} catches the full force of #{target.pbThis(true)}'s Speed!"))
+        battle.pbDisplay(_INTL("{1} catches the full force of {2}'s Speed!", user.pbThis, target.pbThis(true)))
         oldStep = target.steps[:SPEED]
         user.applyFractionalDamage(oldStep / 8.0)
         battle.pbCommonAnimation("StatDown", target)
@@ -328,8 +329,13 @@ BattleHandlers::TargetAbilityOnHit.add(:CONSTRICTOR,
   proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.physicalMove?
         next if target.fainted?
-        next -(10 + 20 * aiNumHits) if aiCheck
-        battle.forceUseMove(target, :BIND, user.index, ability: ability)
+        next -30 if aiCheck
+        next if user.effectActive?(:Trapping)
+        next if user.effectActive?(:Constricted)
+        battle.pbShowAbilitySplash(target, ability)
+        user.applyEffect(:Constricted, 3)
+        user.pointAt(:TrappingUser, target)
+        battle.pbHideAbilitySplash(target)
   }
 )
 
@@ -365,7 +371,7 @@ BattleHandlers::TargetAbilityOnHit.add(:LOUDSLEEPER,
 )
 
 #########################################
-# Status inducing abilities
+# Numb inducing abilities
 #########################################
 
 BattleHandlers::TargetAbilityOnHit.add(:STATIC,
@@ -382,6 +388,9 @@ BattleHandlers::TargetAbilityOnHit.add(:PETRIFYING,
     }
 )
 
+#########################################
+# Poison inducing abilities
+#########################################
 BattleHandlers::TargetAbilityOnHit.add(:POISONPOINT,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.physicalMove?
@@ -396,6 +405,33 @@ BattleHandlers::TargetAbilityOnHit.add(:POISONPUNISH,
     }
 )
 
+#########################################
+# Burn inducing abilities
+#########################################
+BattleHandlers::TargetAbilityOnHit.add(:FLAMEBODY,
+    proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
+        next unless move.physicalMove?
+        randomStatusProcTargetAbility(ability, :BURN, 30, user, target, move, battle, aiCheck, aiNumHits)
+    }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:FIERYSPIRIT,
+    proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
+        next unless move.specialMove?
+        randomStatusProcTargetAbility(ability, :BURN, 30, user, target, move, battle, aiCheck, aiNumHits)
+    }
+)
+
+#########################################
+# Frostbite inducing abilities
+#########################################
+BattleHandlers::TargetAbilityOnHit.add(:CHILLEDBODY,
+    proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
+        next unless move.physicalMove?
+        randomStatusProcTargetAbility(ability, :FROSTBITE, 30, user, target, move, battle, aiCheck, aiNumHits)
+    }
+)
+
 BattleHandlers::TargetAbilityOnHit.add(:SUDDENCHILL,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.specialMove?
@@ -403,10 +439,13 @@ BattleHandlers::TargetAbilityOnHit.add(:SUDDENCHILL,
     }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:CHILLEDBODY,
+#########################################
+# Dizzy inducing abilities
+#########################################
+BattleHandlers::TargetAbilityOnHit.add(:DISORIENT,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.physicalMove?
-        randomStatusProcTargetAbility(ability, :FROSTBITE, 30, user, target, move, battle, aiCheck, aiNumHits)
+        randomStatusProcTargetAbility(ability, :DIZZY, 30, user, target, move, battle, aiCheck, aiNumHits)
     }
 )
 
@@ -417,13 +456,9 @@ BattleHandlers::TargetAbilityOnHit.add(:BEGUILING,
     }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:DISORIENT,
-    proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
-        next unless move.physicalMove?
-        randomStatusProcTargetAbility(ability, :DIZZY, 30, user, target, move, battle, aiCheck, aiNumHits)
-    }
-)
-
+#########################################
+# Leech inducing abilities
+#########################################
 BattleHandlers::TargetAbilityOnHit.add(:KELPLINK,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.physicalMove?
@@ -438,17 +473,20 @@ BattleHandlers::TargetAbilityOnHit.add(:PUNISHER,
     }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:FLAMEBODY,
+#########################################
+# Waterlog inducing abilities
+#########################################
+BattleHandlers::TargetAbilityOnHit.add(:SOPPING,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.physicalMove?
-        randomStatusProcTargetAbility(ability, :BURN, 30, user, target, move, battle, aiCheck, aiNumHits)
+        randomStatusProcTargetAbility(ability, :WATERLOG, 30, user, target, move, battle, aiCheck, aiNumHits)
     }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:FIERYSPIRIT,
+BattleHandlers::TargetAbilityOnHit.add(:BACKWASH,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.specialMove?
-        randomStatusProcTargetAbility(ability, :BURN, 30, user, target, move, battle, aiCheck, aiNumHits)
+        randomStatusProcTargetAbility(ability, :WATERLOG, 30, user, target, move, battle, aiCheck, aiNumHits)
     }
 )
 
@@ -483,7 +521,7 @@ BattleHandlers::TargetAbilityOnHit.add(:SEALINGBODY,
         next if user.effectActive?(:Disable)
         next -15 if aiCheck
         battle.pbShowAbilitySplash(target, ability)
-        user.applyEffect(:Disable, 3) if user.canBeDisabled?(true)
+        user.applyEffect(:Disable, 2) if user.canBeDisabled?(true)
         battle.pbHideAbilitySplash(target)
     }
 )
@@ -495,16 +533,8 @@ BattleHandlers::TargetAbilityOnHit.add(:PERISHBODY,
         next if target.effectActive?(:PerishSong)
         next -5 if aiCheck
         battle.pbShowAbilitySplash(target, ability)
-        if target.boss?
-            target.applyEffect(:PerishSong, 12)
-        else
-            target.applyEffect(:PerishSong, 3)
-        end
-        if user.boss?
-            user.applyEffect(:PerishSong, 12)
-        else
-            user.applyEffect(:PerishSong, 3)
-        end
+        target.applyEffect(:PerishSong, 3)
+        user.applyEffect(:PerishSong, 3)
         battle.pbHideAbilitySplash(target)
     }
 )
@@ -541,7 +571,6 @@ BattleHandlers::TargetAbilityOnHit.add(:INNARDSOUT,
   
 BattleHandlers::TargetAbilityOnHit.add(:MUMMY,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
-        next unless move.physicalMove?
         next if user.fainted?
         next if user.immutableAbility?
         next if user.hasAbility?(ability)
@@ -552,7 +581,6 @@ BattleHandlers::TargetAbilityOnHit.add(:MUMMY,
   
 BattleHandlers::TargetAbilityOnHit.add(:INFECTED,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
-        next unless move.physicalMove?
         next if user.fainted?
         next if user.immutableAbility?
         next if user.hasAbility?(ability)
@@ -565,7 +593,6 @@ BattleHandlers::TargetAbilityOnHit.add(:INFECTED,
 
 BattleHandlers::TargetAbilityOnHit.add(:WANDERINGSPIRIT,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
-        next unless move.physicalMove?
         next if user.fainted?
         next if user.immutableAbility?
         next if user.hasAbility?(ability)
@@ -582,9 +609,10 @@ BattleHandlers::TargetAbilityOnHit.add(:THUNDERSTRUCK,
         if aiCheck
             next target.pbHasAttackingType?(:ELECTRIC) ? -40 : 0
         else
-            next if target.fainted? || target.effectActive?(:Charge)
+            next if target.fainted? || target.effectActive?(:EnergyCharge)
             target.showMyAbilitySplash(ability)
-            target.applyEffect(:Charge)
+            battle.pbAnimation(:CHARGE, target, nil)
+            target.applyEffect(:EnergyCharge)
             target.hideMyAbilitySplash
         end
     }
@@ -631,6 +659,8 @@ BattleHandlers::TargetAbilityOnHit.add(:ILLUSION,
         battle.pbSetSeen(target)
     }
 )
+
+BattleHandlers::TargetAbilityOnHit.copy(:ILLUSION,:INCOGNITO)
 
 BattleHandlers::TargetAbilityOnHit.add(:COREPROVENANCE,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|

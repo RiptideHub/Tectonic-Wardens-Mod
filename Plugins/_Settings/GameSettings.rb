@@ -1,7 +1,7 @@
 module Settings
     # The version of your game. It has to adhere to the MAJOR.MINOR.PATCH format.
-    GAME_VERSION = "3.3.0"
-    DEV_VERSION  = true
+    GAME_VERSION = "3.3.3"
+    DEV_VERSION  = false
   
     #=============================================================================
   
@@ -15,18 +15,20 @@ module Settings
     #=============================================================================
   
     # The maximum level Pokémon can reach.
-    MAXIMUM_LEVEL        = 71
+    MAXIMUM_LEVEL        = 70
     # The level of newly hatched Pokémon.
     EGG_LEVEL            = 1
     # The odds of a newly generated Pokémon being shiny (out of 65536).
     SHINY_POKEMON_CHANCE = 16
+    # The chance that a wild battle will be a double battle (out of 100)
+    DOUBLE_WILD_BATTLE_CHANCE = 20
   
     #=============================================================================
   
     # The amount of money the player starts the game with.
     INITIAL_MONEY        = 3000
     # The maximum amount of money the player can have.
-    MAX_MONEY            = 999_999
+    MAX_MONEY            = 999_999_999
     # The maximum number of Game Corner coins the player can have.
     MAX_COINS            = 99_999
     # The maximum number of Battle Points the player can have.
@@ -214,6 +216,8 @@ module Settings
             [0, TRI_ISLAND_VISITED_SWITCH, 0, 0, "Tri Island", false],
             [0, BATTLE_MONUMENT_VISITED_SWITCH, 0, 0, "Battle Monument", false],
             [0, SPIRIT_ATOLL_VISITED_SWITCH, 0, 0, "Spirit Atoll", false],
+            [0, BARREN_ISLAND_VISITED_SWITCH, 0, 0, "Barren Island", false],
+            [0, WINDBORN_ISLAND_VISITED_SWITCH, 0, 0, "Windborn Island", false],
         ]
     end
   
@@ -296,7 +300,9 @@ module Settings
     # from.
     LANGUAGES = [
       ["English", "english.dat"],
-      ["Español", "spanish.dat"]
+      ["Español", "spanish.dat"],
+      ["Simplified Chinese", "chinese_simplified.dat"],
+      ["Traditional Chinese", "chinese_traditional.dat"],
     ]
   
     #=============================================================================
@@ -368,6 +374,8 @@ module Settings
     # that much Exp (false). This also applies to Exp gained via the Exp Share
     # (held item version) being distributed to all Exp Share holders.
     SPLIT_EXP_BETWEEN_GAINERS = true
+    # Whether fainted Pokemon can still earn experience from participating in battle
+    FAINTED_POKEMON_EARN_EXP = true
     # Whether the critical capture mechanic applies. Note that its calculation is
     # based on a total of 600+ species (i.e. that many species need to be caught
     # to provide the greatest critical capture chance of 2.5x), and there may be
@@ -405,7 +413,7 @@ module Settings
             _INTL("Area"),
             _INTL("Type"),
             _INTL("Tribe"),
-            _INTL("Generation"),
+            _INTL("Total"),
         ]
     end
 end

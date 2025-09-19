@@ -203,6 +203,12 @@ class Pokemon
         @level = value
     end
 
+    def set_starting_level(value)
+        self.level = value
+        @obtain_level = value
+        calc_stats
+    end
+
     # Sets this Pokémon's Exp. Points.
     # @param value [Integer] new experience points
     def exp=(value)
@@ -261,8 +267,22 @@ class Pokemon
         @status = new_status.id
     end
 
+    def getStatusImageIndex
+        if afraid?
+            statusIndex = GameData::Status::DATA.keys.length / 2
+        elsif fainted?
+            statusIndex = GameData::Status::DATA.keys.length / 2 - 1
+        elsif status != :NONE
+            statusIndex = GameData::Status.get(status).id_number - 1
+        else
+            statusIndex = -1
+        end
+        return statusIndex
+    end
+
     # @return [Boolean] whether the Pokémon is not fainted and not an egg
-    def able?
+    def able?(ignorePacifist = false)
+        return false if hasAbility?(:PACIFIST) && !ignorePacifist
         return !egg? && @hp > 0 && !@afraid
     end
 
@@ -333,10 +353,10 @@ class Pokemon
         @afraid = false
         if HEALING_RATIO_ON_FEAR_REMOVED > 0
             @hp = (@totalhp * HEALING_RATIO_ON_FEAR_REMOVED).floor
-            message = _INTL("#{name} is no longer Afraid. It was restored to half health!")
+            message = _INTL("{1} is no longer Afraid. It was restored to half health!", name)
         else
             @hp = 1
-            message = _INTL("#{name} is no longer Afraid!")
+            message = _INTL("{1} is no longer Afraid!", name)
         end
         if battle
             battle.pbDisplay(message)
@@ -523,6 +543,11 @@ class Pokemon
         return !ability.nil? if check_ability.nil?
         if check_ability.is_a?(Symbol)
             return ability_id == check_ability
+        elsif check_ability.is_a?(Array)
+            check_ability.each do |abilityToCheck|
+                  return true if ability_id == abilityToCheck
+            end
+            return false
         else
             return ability == check_ability
         end
@@ -545,6 +570,10 @@ class Pokemon
 
     def addExtraAbility(ability)
         extraAbilities.push(ability) unless extraAbilities.include?(ability)
+    end
+
+    def hasExtraAbilities?
+        return extraAbilities.length > 0
     end
 
     def extraAbilities
@@ -655,9 +684,9 @@ class Pokemon
 
     def itemCountD(uppercase = false)
         if items.length <= 1
-            return uppercase ? "Item" : "item"
+            return uppercase ? _INTL("Item") : _INTL("item")
         else
-            return uppercase ? "Items" : "items"
+            return uppercase ? _INTL("Items") : _INTL("items")
         end
     end
 
@@ -742,14 +771,13 @@ class Pokemon
         return nil
     end
 
-    def canHaveMultipleItems?(inBattle = false)
-        return true if @ability == :STICKYFINGERS && inBattle
+    def canHaveMultipleItems?
         return GameData::Ability.get(@ability).is_multiple_item_ability?
     end
 
     def canHaveItem?(itemCheck, showMessages = false)
         if itemCheck == :CRYSTALVEIL && hasAbility?(:WONDERGUARD)
-            pbMessage(_INTL("#{name} can't hold a #{getItemName(:CRYSTALVEIL)}!")) if showMessages
+            pbMessage(_INTL("{1} can't hold a {2}!", name, getItemName(:CRYSTALVEIL))) if showMessages
             return false
         end
         return true
@@ -777,13 +805,13 @@ class Pokemon
 
         # Item sets cannot contain duplicates
         if itemSet.length != itemSet.uniq.length
-            pbMessage(_INTL("#{name} can't hold two of the same item!")) if showMessages
+            pbMessage(_INTL("{1} can't hold two of the same item!", getItemName(:CRYSTALVEIL))) if showMessages
             return false
         end
 
         # No multiple item abilities allow holding more than 2 items
         if itemSet.length > 2
-            pbMessage(_INTL("#{name} can't hold more than two items!")) if showMessages
+            pbMessage(_INTL("{1} can't hold more than two items!", name)) if showMessages
             return false
         end
 
@@ -797,7 +825,7 @@ class Pokemon
         return unless items
         return if legalItems?(items, ownedByPlayer?)
         if ownedByPlayer?
-            pbMessage(_INTL("#{name} is no longer allowed to hold its current items."))
+            pbMessage(_INTL("{1} is no longer allowed to hold its current items.", name))
             if boss?
                 removeItems
             else
@@ -833,7 +861,7 @@ class Pokemon
     # Returns the list of moves this Pokémon can learn by levelling up.
     # @return [Array<Array<Integer,Symbol>>] this Pokémon's move list, where every element is [level, move ID]
     def getMoveList
-        return species_data.moves
+        return species_data.level_moves
     end
 
     # Reset the pokemon's moveset to what a wild pokemon would have at the given level
@@ -1102,14 +1130,6 @@ class Pokemon
         return species_data.weight
     end
 
-    # @return [Hash<Integer>] the EV yield of this Pokémon (a hash with six key/value pairs)
-    def evYield
-        this_evs = species_data.evs
-        ret = {}
-        GameData::Stat.each_main { |s| ret[s.id] = this_evs[s.id] }
-        return ret
-    end
-
     #=============================================================================
     # Happiness, traits, and likes/dislikes
     #=============================================================================
@@ -1229,7 +1249,7 @@ class Pokemon
 
         # echoln("Changing #{name}'s happiness by #{actualGain}") if actualGain != 0
 
-        return if $PokemonSystem.show_trait_unlocks == 1
+        return if $Options.show_trait_unlocks == 1
 
         traitUnlocked = nil
         likeUnlocked = nil
@@ -1282,9 +1302,9 @@ class Pokemon
     # Checks whether this Pokemon can evolve because of using an item on it.
     # @param item_used [Symbol, GameData::Item, nil] the item being used
     # @return [Symbol, nil] the ID of the species to evolve into
-    def check_evolution_on_use_item(item_used)
+    def check_evolution_on_use_item(item_used,finalCheck = true)
         return check_evolution_internal do |pkmn, new_species, method, parameter|
-            success = GameData::Evolution.get(method).call_use_item(pkmn, parameter, item_used)
+            success = GameData::Evolution.get(method).call_use_item(pkmn, parameter, item_used, finalCheck)
             next success ? new_species : nil
         end
     end
@@ -1367,15 +1387,12 @@ class Pokemon
         # Calculate stats
         stats = {}
         stylish = hasAbility?(:STYLISH)
+        accumulation = hasAbility?(:ACCUMULATION)
         GameData::Stat.each_main do |s|
-            if s.id == :HP
-                hpValue = calcHPGlobal(base_stats[s.id], this_level, @ev[s.id], stylish)
-                stats[s.id] = (hpValue * hpMult).ceil
-            elsif (s.id == :ATTACK) || (s.id == :SPECIAL_ATTACK)
-                stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id], stylish)
-            else
-                stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id], stylish)
-            end
+            isHP = s.id == :HP
+            statValue = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id], hp: isHP, stylish: stylish, accumulation: accumulation)
+            statValue = (statValue * hpMult).ceil if isHP
+            stats[s.id] = statValue
         end
         return stats
     end
@@ -1543,6 +1560,40 @@ class Pokemon
             return :POKEBALL
         else
             return @poke_ball
+        end
+    end
+
+    def switchBall
+        currentBallData = GameData::Item.get(@poke_ball)  
+        if currentBallData.no_ball_swap?
+            pbMessage(_INTL("If you switch {1}'s ball, its current {2} will be thrown away.",name,currentBallData.name))
+            return unless pbConfirmMessageSerious(_INTL("Are you okay with throwing away the {1}?",currentBallData.name))
+        end
+        pbMessage(_INTL("Choose the Poké Ball to put {1} into.",name))
+        pbChoosePokeball(1)
+        itemID = pbGet(1)
+        currentBallName = getItemName(poke_ball)
+        unless itemID == :NONE
+            newBallData = GameData::Item.get(itemID)  
+            newBallName = newBallData.name
+            if itemID == @poke_ball
+                pbMessage(_INTL("{1} is already inside of a {2}!",name,newBallName))
+                return
+            elsif newBallData.no_ball_swap?
+                pbMessage(_INTL("A {1} is too special to swap {2} into.",newBallName,name))
+            else
+                pbMessage(_INTL("You remove {1} from the {2}, and throw it away.",name,currentBallName))
+                if itemID == :BALLLAUNCHER
+                    pbMessage(_INTL("You bring out the {1}, and launch a ball at {2}!",newBallName,name))
+                else
+                    pbMessage(_INTL("You bring out a {1}, and put {2} into it!",newBallName,name))
+                    pbDeleteItem(itemID)
+                end
+                pbSEPlay("Battle catch click")
+                @poke_ball = itemID
+            end
+        else
+            pbMessage(_INTL("You decide to keep {1} in its {2}.",name,currentBallName))
         end
     end
 end

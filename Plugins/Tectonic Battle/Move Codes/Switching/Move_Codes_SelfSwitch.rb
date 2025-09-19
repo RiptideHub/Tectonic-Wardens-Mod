@@ -1,38 +1,28 @@
 #===============================================================================
-# User flees from battle. Switches out, in trainer battles. (Teleport)
+# Switches out. (Teleport)
 #===============================================================================
 class PokeBattle_Move_SwitchOutUserStatusMove < PokeBattle_Move
     def switchOutMove?; return true; end
 
     def pbMoveFailed?(user, _targets, show_message)
-        if @battle.wildBattle? && !@battle.bossBattle?
-            unless @battle.pbCanRun?(user.index)
-                @battle.pbDisplay(_INTL("But it failed, since you can't run from this battle!")) if show_message
-                return true
+        unless @battle.pbCanChooseNonActive?(user.index)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since {1} has no party members to replace it!", user.pbThis(true)))
             end
-        else
-            unless @battle.pbCanChooseNonActive?(user.index)
-                if show_message
-                    @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} has no party members to replace it!"))
-                end
-                return true
-            end
+            return true
         end
         return false
     end
 
     def pbEffectGeneral(user)
-        if @battle.wildBattle? && !@battle.bossBattle?
-            @battle.pbDisplay(_INTL("{1} fled from battle!", user.pbThis))
-            @battle.decision = 3 # Escaped
-        else
-            return if user.fainted?
-            switchOutUser(user)
-        end
+        return if user.fainted?
+        switchOutUser(user)
     end
 
     def getEffectScore(user, target)
-        return getSwitchOutEffectScore(user)
+        score = getSwitchOutEffectScore(user)
+        score += 20
+        return score
     end
 end
 
@@ -46,7 +36,7 @@ class PokeBattle_Move_SwitchOutUserPassOnEffects < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         unless @battle.pbCanChooseNonActive?(user.index)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} has no party allies to replace it!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} has no party allies to replace it!", user.pbThis(true)))
             end
             return true
         end
@@ -102,7 +92,7 @@ class PokeBattle_Move_LowerTargetAtkSpAtk1SwitchOutUser < PokeBattle_TargetMulti
         switcher = user
         targets.each do |b|
             next if switchedBattlers.include?(b.index)
-            switcher = b if b.effectActive?(:MagicCoat) || b.effectActive?(:MagicBounce)
+            switcher = b if b.effectActive?(:MagicCoat) || b.effectActive?(:EmpoweredMagicCoat) || b.effectActive?(:MagicBounce)
         end
         return if switcher.fainted? || numHits == 0
         switchOutUser(switcher,switchedBattlers,switcher.index == user.index)

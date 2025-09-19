@@ -28,7 +28,7 @@ class PokeBattle_Battler
             return false
         end
         # Gravity
-        if @battle.field.effectActive?(:Gravity) && move.unusableInGravity?
+        if @battle.gravityIntensified? && move.unusableInGravity?
             msg = _INTL("{1} can't use {2} because of gravity!", pbThis, move.name)
             if showMessages
                 commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
@@ -40,6 +40,15 @@ class PokeBattle_Battler
         if effectActive?(:ThroatChop) && move.soundMove?
             if showMessages
                 msg = _INTL("{1} can't use {2} because of Throat Chop!", pbThis, move.name)
+                commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+            end
+            echoln(msg)
+            return false
+        end
+        # Disarming Shot
+        if effectActive?(:DisarmingShot) && move.bladeMove?
+            if showMessages
+                msg = _INTL("{1} can't use {2} because of Disarming Shot!", pbThis, move.name)
                 commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
             end
             echoln(msg)
@@ -183,6 +192,15 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
             return false
         end
 
+        if effectActive?(:IceSculpture)
+            if aiCheck
+                echoln("\t\t[AI FAILURE CHECK] #{pbThis} rejects the move #{move.id} due to being an ice sculpture.")  
+            else
+                @battle.pbDisplay(_INTL("{1} is an ice sculpture! It can't move!", pbThis))
+            end
+            return false
+        end
+
         if effectActive?(:HyperBeam) # Intentionally before Truant
             if aiCheck
                 echoln("\t\t[AI FAILURE CHECK] #{pbThis} rejects the move #{move.id} due to exhaustion failure (Hyperbeam, etc.)")
@@ -224,6 +242,20 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
             end
         end
 
+        # Pacifist
+        if hasActiveAbility?(:PACIFIST)
+            if aiCheck
+                echoln("\t\t[AI FAILURE CHECK] #{pbThis} rejects the move #{move.id} due to it being predicted to refuse to move (Pacifist)")
+                return false
+            else
+                showMyAbilitySplash(:PACIFIST)
+                @battle.pbDisplay(_INTL("{1} refuses to battle!", pbThis))
+                onMoveFailed(move)
+                hideMyAbilitySplash
+                return false
+            end
+        end
+
         # Truant
         if hasActiveAbility?(:TRUANT)
             if aiCheck
@@ -256,13 +288,15 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
                 end
             else
                 if effectActive?(:FlinchImmunity)
-                    @battle.pbDisplay("#{pbThis} would have flinched, but it's immune now!")
+                    @battle.pbDisplay(_INTL("{1} would have flinched, but it's immune now!", pbThis))
                     disableEffect(:Flinch)
                 elsif hasTribeBonus?(:TYRANNICAL) && !pbOwnSide.effectActive?(:TyrannicalImmunity)
                     @battle.pbShowTribeSplash(self,:TYRANNICAL)
                     @battle.pbDisplay(_INTL("{1} refuses to flinch!", pbThis))
                     @battle.pbHideTribeSplash(self)
                     pbOwnSide.applyEffect(:TyrannicalImmunity)
+                elsif hasActiveItem?(:COURAGEBADGE)
+                    @battle.pbDisplay(_INTL("{1} would have flinched, but it holds a Courage Badge!", pbThis))
                 else
                     @battle.pbDisplay(_INTL("{1} flinched and couldn't move!", pbThis))
                     eachActiveAbility do |ability|
@@ -278,7 +312,12 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
     end
 
     def doesProtectionEffectNegateThisMove?(effectDisplayName, move, user, target, protectionIgnoredByAbility, animationName = nil, showMessages = true)
-        if move.canProtectAgainst? && !protectionIgnoredByAbility
+        if target.effectActive?(:Jinxed)
+            if showMessages
+                @battle.pbDisplay(_INTL("{1} is jinxed! {2} failed to protect it!", target.pbThis(true), effectDisplayName))
+            end
+            return false
+        elsif move.canProtectAgainst? && !protectionIgnoredByAbility
             @battle.pbCommonAnimation(animationName, target) unless animationName.nil?
             @battle.pbDisplay(_INTL("{1} protected {2}!", effectDisplayName, target.pbThis(true))) if showMessages
             if user.boss? && (move.empoweredMove? || AVATARS_REGULAR_ATTACKS_PIERCE_PROTECT)
@@ -302,8 +341,8 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
                 @battle.pbDisplay(_INTL("{1} was ignored, and failed to protect {2}!", effectDisplayName,
 target.pbThis(true)))
             end
+            return false
         end
-        return false
     end
 
     #=============================================================================
@@ -351,12 +390,20 @@ animationName, show_message) do
 
         # Magic Coat/Magic Bounce/Magic Shield
         if move.canMagicCoat? && !target.semiInvulnerable? && target.opposes?(user)
-            if target.effectActive?(:MagicCoat)
-                unless aiCheck
+            if aiCheck
+                if target.canChooseMagicCoat? || target.effectActive?(:EmpoweredMagicCoat)
+                    return false              
+                end
+            else
+                if target.effectActive?(:EmpoweredMagicCoat)
+                    target.damageState.magicCoat = true
+                    return false
+                end
+                if target.effectActive?(:MagicCoat)
                     target.damageState.magicCoat = true
                     target.disableEffect(:MagicCoat)
+                    return false
                 end
-                return false
             end
             if target.hasActiveAbility?(:MAGICBOUNCE) && !@battle.moldBreaker
                 unless aiCheck
@@ -386,7 +433,8 @@ animationName, show_message) do
             return false
         elsif targetTypeModImmune?(user, target, move, typeMod, show_message, aiCheck)
             if !aiCheck && target.effectActive?(:Illusion)
-                target.aiLearnsAbility(:ILLUSION)
+                target.aiLearnsAbility(:ILLUSION) if target.hasActiveAbility?(:ILLUSION)
+                target.aiLearnsAbility(:INCOGNITO) if target.hasActiveAbility?(:INCOGNITO)
             end
             return false
         end

@@ -69,17 +69,6 @@ BattleHandlers::StatusCureItem.add(:LUMBERRY,
   }
 )
 
-BattleHandlers::StatusCureItem.add(:PEARLOFFATE,
-  proc { |item, battler, battle, forced|
-      next false if !forced
-      next false unless battler.hasAnyStatusNoTrigger
-      itemName = GameData::Item.get(item).name
-      battle.pbDisplay(_INTL("The {1} sacrificed itself to cure {2}!", itemName, battler.pbThis(true))) unless forced
-      battler.pbCureStatus
-      next true
-  }
-)
-
 BattleHandlers::StatusCureItem.add(:PERSIMBERRY,
   proc { |item, battler, battle, forced|
       next false if !forced && !battler.canConsumeBerry?
@@ -100,6 +89,18 @@ BattleHandlers::StatusCureItem.add(:SPELONBERRY,
       battle.pbCommonAnimation("Nom", battler) unless forced
       battler.pbCureStatus(forced, :LEECHED)
       battle.pbDisplay(_INTL("{1}'s {2} made it no longer leeched!", battler.pbThis, itemName)) unless forced
+      next true
+  }
+)
+
+BattleHandlers::StatusCureItem.add(:BELUEBERRY,
+  proc { |item, battler, battle, forced|
+      next false if !forced && !battler.canConsumeBerry?
+      next false unless battler.hasStatusNoTrigger(:WATERLOG)
+      itemName = GameData::Item.get(item).name
+      battle.pbCommonAnimation("Nom", battler) unless forced
+      battler.pbCureStatus(forced, :WATERLOG)
+      battle.pbDisplay(_INTL("{1}'s {2} reversed its waterlogging!", battler.pbThis, itemName)) unless forced
       next true
   }
 )

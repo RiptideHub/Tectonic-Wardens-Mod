@@ -62,7 +62,7 @@ def useAidKit()
 			p.heal_status
 			p.heal_PP
 		end
-		if $PokemonSystem.aid_kit_animation == 1
+		if $Options.aid_kit_animation == 1
 			pbMessage(_INTL("Healing your entire team by {1}.",healAmount))
 		else
 			showPartyHealing($Trainer.party,previousHealthValues,previousStatusIndices)
@@ -94,7 +94,7 @@ ItemHandlers::UseFromBag.add(:KITEXPANSION,proc { |item|
 		next 0
 	else
 		charges = $PokemonGlobal.teamHealerMaxUses
-		pbMessage(_INTL("Your Aid Kit has been increased to #{charges+1} charges."))
+		pbMessage(_INTL("Your Aid Kit has been increased to {1} charges.", charges + 1))
 		$PokemonGlobal.teamHealerMaxUses	 	+= 1
 		$PokemonGlobal.teamHealerCurrentUses 	+= 1
 
@@ -112,7 +112,7 @@ ItemHandlers::UseFromBag.add(:MEDICALUPGRADE,proc { |item|
 		pbMessage(_INTL("Your Aid Kit already has the maximum healing amount."))
 		next 0
 	else
-		pbMessage(_INTL("Your Aid Kit now heals an additional #{HEALING_UPGRADE_AMOUNT} HP per charge."))
+		pbMessage(_INTL("Your Aid Kit now heals an additional {1} HP per charge.", HEALING_UPGRADE_AMOUNT))
 		$PokemonGlobal.teamHealerUpgrades	 	+= 1
         checkForAidKitAchievement
 	end

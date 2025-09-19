@@ -134,6 +134,7 @@ end
 class PokeBattle_Move_ScalesFaintedPartyMembers < PokeBattle_Move
     def pbBaseDamage(baseDmg, user, target)
         user.ownerParty.each do |partyPokemon|
+            next unless partyPokemon
             next if partyPokemon.personalID == user.personalID
             next unless partyPokemon.fainted?
             baseDmg += 20
@@ -169,5 +170,36 @@ class PokeBattle_Move_ScalesTallerThanTarget < PokeBattle_Move
         ratio = 10 if ratio > 10
         ret += ((16 * (ratio**0.75)) / 5).floor * 5
         return ret
+    end
+end
+
+#===============================================================================
+# Power increases by consuming payday coins. (up to 1000). (Charity)
+#===============================================================================
+class PokeBattle_Move_ScalesCreatedMoney < PokeBattle_Move
+    def initialize(battle, move)
+        super
+        @coinsToConsume = 0
+    end
+
+    def pbOnStartUse(user, targets)
+        @coinsToConsume = [@battle.field.countEffect(:PayDay),1000].min
+    end
+
+    def pbBaseDamage(baseDmg, _user, _target)
+        baseDmg += (@coinsToConsume / 10).floor
+        return baseDmg
+    end
+
+    def pbEffectAfterAllHits(user, target)
+        beforeCoins = @battle.field.effects[:PayDay]
+        @battle.field.effects[:PayDay] -= @coinsToConsume
+        @battle.field.effects[:PayDay] = 0 if @battle.field.effects[:PayDay] < 0
+        actualCoinAmountConsumed = beforeCoins - @battle.field.effects[:PayDay]
+        if actualCoinAmountConsumed > 0
+            @battle.pbDisplay(_INTL("{1} coins were used in the attack!", actualCoinAmountConsumed))
+        else
+            @battle.pbDisplay(_INTL("There were no coins to use in the attack...", actualCoinAmountConsumed))
+        end
     end
 end

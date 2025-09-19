@@ -12,6 +12,10 @@ Description = Powers up Steel-type moves by 50%.
 Name = Adaptability
 Description = Powers up moves of the same type.
 #-------------------------------
+[AERILATE]
+Name = Aerilate
+Description = Normal-type moves become Flying-type and power up by 30%.
+#-------------------------------
 [AFTERMATH]
 Name = Aftermath
 Description = Damages the attacker if it knocks out the Pokémon with a move that makes direct contact.
@@ -44,6 +48,14 @@ Description = Boosts Sp. Atk and Speed by 25% in rain.
 Name = Breaking Wave
 Description = Slips past hazards. On the first turn, its attacks are always critical.
 #-------------------------------
+[ARCANE]
+Name = Arcane
+Description = Increases Sp. Atk by 30%.
+#-------------------------------
+[ARENATRAP]
+Name = Arena Trap
+Description = Prevents the foe from fleeing unless it is airborne.
+#-------------------------------
 [AROMAVEIL]
 Name = Aroma Veil
 Description = Protects against attacks that limit move choices.
@@ -72,6 +84,7 @@ Description = Uses Lightning Dance if an attack lowers its HP to half or below.
 [BATTLEARMOR]
 Name = Battle Armor
 Description = The Pokémon is protected against critical hits.
+Flags = CritImmunity
 #-------------------------------
 [BEASTBOOST]
 Name = Beast Boost
@@ -141,6 +154,10 @@ Description = The Pokémon's accuracy is boosted.
 Name = Conviction
 Description = Upon entry, uses the move Endure on itself.
 #-------------------------------
+[COSMICCONTACT]
+Name = Cosmic Contact
+Description = Takes 35% less damage while using a status move.
+#-------------------------------
 [CRAGTERROR]
 Name = Crag Terror
 Description = Upon entry during sandstorm, lowers foe's Attack and Sp. Atk by two steps each.
@@ -193,6 +210,11 @@ Description = When it attacks from underground in sandstorm, it'll transform int
 Name = Early Bird
 Description = The Pokémon awakens quickly from sleep.
 #-------------------------------
+[ECTOPARTICLES]
+Name = Ecto-Particles
+Description = Restores HP based on damage from hail.
+Flags = HailSynergy
+#-------------------------------
 [EFFECTSPORE]
 Name = Effect Spore
 Description = Contact with the Pokémon may inflict poison, sleep, or paralysis on the attacker.
@@ -224,6 +246,11 @@ Description = Draws in moves from foes with base power 100 or more.
 [EROSIONCYCLE]
 Name = Erosion Cycle
 Description = Using or being hit by a physical move leaves a rock on the field. Status moves collect them, healing by 1/4th each.
+#-------------------------------
+[ETERNALWINTER]
+Name = Eternal Winter
+Description = Extends hail by two turns after knocking out any Pokémon.
+Flags = HailSynergy
 #-------------------------------
 [EVOARMOR]
 Name = Evo-Armor
@@ -260,6 +287,10 @@ Description = Doubles Defense in sunshine.
 [FOREWARN]
 Name = Forewarn
 Description = Determines what moves a foe has.
+#-------------------------------
+[FORTUNE]
+Name = Fortune
+Description = Doubles the money gained from battles in which it participates.
 #-------------------------------
 [FRISK]
 Name = Frisk
@@ -317,6 +348,10 @@ Description = Its physical attacks reduce the target's Defense.
 Name = Guts
 Description = Boosts Attack by 33% if has a status condition. Ignores burn physical damage reduction.
 #-------------------------------
+[HARDWORKER]
+Name = Hard Worker
+Description = Increases the money gained from battles in which it participates by 50%.
+#-------------------------------
 [HARSHTRAINING]
 Name = Harsh Training
 Description = Blocks random added effects of attacks taken, and prevents critical hits.
@@ -325,6 +360,10 @@ Description = Blocks random added effects of attacks taken, and prevents critica
 Name = Harvest
 Description = At end of turn, 50% chance to regenerate used berry. 100% in sunshine.
 Flags = SunSynergy
+#-------------------------------
+[HEALER]
+Name = Healer
+Description = Heals ally's status conditions at the end of turn.
 #-------------------------------
 [HEALINGHOPE]
 Name = Healing Hope
@@ -337,6 +376,15 @@ Description = The Pokémon and its allies are protected from flinching, Intimida
 [HEATPROOF]
 Name = Heatproof
 Description = Takes 50% less damage from Fire-type moves.
+#-------------------------------
+[HEAVENSCROWN]
+Name = Heaven's Crown
+Description = If the Pokémon witnesses a total eclipse, it gets to move twice that turn.
+Flags = EclipseSynergy
+#-------------------------------
+[HONEYGATHER]
+Name = Honey Gather
+Description = The Pokémon may gather Honey from somewhere.
 #-------------------------------
 [HONORAURA]
 Name = Honorable
@@ -451,6 +499,10 @@ Description = Prevents Bug- or Poison-type moves during moonglow.
 Name = Lunar Loyalty
 Description = Summons moonglow for four turns when hit by an attack.
 #-------------------------------
+[LURING]
+Name = Luring
+Description = Its attacks are critical against dizzy targets.
+#-------------------------------
 [MAGMAARMOR]
 Name = Magma Armor
 Description = Prevents the Pokémon from becoming frozen.
@@ -470,6 +522,11 @@ Description = Boosts Defense by 50% if has a status condition. Ignores dizzy def
 [MARVELSKIN]
 Name = Marvel Skin
 Description = Boosts Sp. Def by 50% if has a status condition. Ignores dizzy defenses reduction.
+#-------------------------------
+[MASTERPLAN]
+Name = Master Plan
+Description = Raises each stat by two steps when a total eclipse happens.
+Flags = EclipseSynergy
 #-------------------------------
 [MENDINGTONES]
 Name = Mending Tones
@@ -496,6 +553,10 @@ Name = Mold Breaker
 Description = Ignores Abilities that would affect its moves.
 Flags = MoldBreaking
 #-------------------------------
+[MOODY]
+Name = Moody
+Description = Raises one attacking or defending stat by three steps and lowers another by 1 at the end of each turn.
+#-------------------------------
 [MOONBUBBLE]
 Name = Moon Bubble
 Description = Doubles Defense in moonglow.
@@ -504,9 +565,18 @@ Description = Doubles Defense in moonglow.
 Name = Morphing Guard
 Description = After being attacked, gains immunity to that move's type but loses other morphed immunities.
 #-------------------------------
+[MYSTICTAP]
+Name = Mystic Tap
+Description = Gets double healing from all sources during moonglow.
+Flags = MoonglowSynergy
+#-------------------------------
 [NEERDOWELL]
 Name = Ne'er-do-well
 Description = Gives priority to status moves in moonglow.
+#-------------------------------
+[NEGATIVEOUTLOOK]
+Name = Negative Outlook
+Description = Raises Electric-type allies' Sp. Def by 50%.
 #-------------------------------
 [NIGHTLIGHT]
 Name = Night Light
@@ -556,6 +626,15 @@ Description = Reduces each other Pokémon's HP by 1/12th at the end of each turn
 Name = Pastel Veil
 Description = Protects it and ally Pokémon from being poisoned.
 #-------------------------------
+[PEARLSEEKER]
+Name = Pearl Seeker
+Description = Upon entry during eclipse, if it has no item, finds and equips the Pearl of Fate.
+Flags = EclipseSynergy
+#-------------------------------
+[PICKPOCKET]
+Name = Pickpocket
+Description = Steals an item when hit by another Pokémon.
+#-------------------------------
 [PICKUP]
 Name = Pickup
 Description = The Pokémon may pick up items.
@@ -588,6 +667,10 @@ Description = Before taking damage from poison, heal 1/4th HP.
 Name = Frostfanged
 Description = Boosts Attack and Speed by 25% in hail.
 #-------------------------------
+[POSITIVEOUTLOOK]
+Name = Positive Outlook
+Description = Raises Electric-type allies' Sp. Atk by 50%.
+#-------------------------------
 [POURINGHEART]
 Name = Pouring Heart
 Description = Copies the base stats of the Pokémon it switches in to replace.
@@ -603,6 +686,7 @@ Description = Becomes charged upon entry, doubling the power of its next Electri
 [PROPELLERTAIL]
 Name = Propeller Tail
 Description = Ignores effects changing the target of a move.
+Flags = RedirectionImmunity
 #-------------------------------
 [PROVING]
 Name = Outrider
@@ -631,6 +715,10 @@ Description = Upon entry, creates a Quality Room for five turns, exaggerating ty
 [QUEENLYMAJESTY]
 Name = Queenly Majesty
 Description = Makes foes unable to use priority attacks.
+#-------------------------------
+[QUICKBUILD]
+Name = Quick Build
+Description = Room-creating moves have priority.
 #-------------------------------
 [QUICKDRAW]
 Name = Quick Draw
@@ -705,6 +793,11 @@ Description = During sandstorm, Speed is boosted by 50% and twice as likely to c
 Name = Sand Force
 Description = Boosts the power of Rock-, Ground-, and Steel-type moves in a sandstorm.
 #-------------------------------
+[SANDPOWER]
+Name = Sand Power
+Description = Boosts Sp. Atk by 30% in sandstorm.
+Flags = SandstormSynergy
+#-------------------------------
 [SANDSPIT]
 Name = Sand Spit
 Description = Summons a sandstorm for 4 turns when hit by an attack.
@@ -716,6 +809,10 @@ Description = In sandstorm, Attack is boosted by 30%.
 [SCRAPPY]
 Name = Scrappy
 Description = Enables moves to hit Ghost-type Pokémon.
+#-------------------------------
+[SCREENCLEANER]
+Name = Screen Cleaner
+Description = Screens are nullified when entering battle.
 #-------------------------------
 [SEALORD]
 Name = Sea Lord
@@ -733,9 +830,22 @@ Description = Sets Grassy Terrain for five turns when hit by an attack.
 Name = Perennial Payload
 Description = After fainting from exploding, revives after three turns.
 #-------------------------------
+[SELFSUFFICIENT]
+Name = Self-Sufficient
+Description = Heals 1/16th HP every turn. Protected from being burned or frostbitten.
+#-------------------------------
+[SHAKYCODE]
+Name = Shaky Code
+Description = During eclipse, changes the Pokémon's type to the type of the move it's using.
+Flags = EclipseSynergy
+#-------------------------------
 [SHARPNESS]
 Name = Swordplay
 Description = Boosts the power of blade moves by 30%.
+#-------------------------------
+[SHARPNESs]
+Name = Sharpness
+Description = Boosts the power of blade moves by 50%.
 #-------------------------------
 [SHATTERING]
 Name = Shattering
@@ -744,6 +854,11 @@ Description = During eclipse, gets a 30% boost to Sp. Atk.
 [SHELLARMOR]
 Name = Shell Armor
 Description = The Pokémon is protected against critical hits.
+Flags = CritImmunity
+#-------------------------------
+[SHIELDWALL]
+Name = Shield Wall
+Description = Takes 50% less damage from hyper-effective attacks.
 #-------------------------------
 [SHRIEKING]
 Name = Ear-Splitting
@@ -773,6 +888,14 @@ Description = When hit while asleep, hits back instantly with Snore.
 Name = Snow Veil
 Description = Takes 25% less damage in a hailstorm.
 #-------------------------------
+[SOLIDROCK]
+Name = Solid Rock
+Description = Reduces damage from super-effective attacks by 25%.
+#-------------------------------
+[SOULREAD]
+Name = Soul Read
+Description = Double damage to targets who don't share a type with their last-used move.
+#-------------------------------
 [SOUNDPROOF]
 Name = Soundproof
 Description = Gives full immunity to all sound-based moves.
@@ -785,6 +908,11 @@ Description = Deals double damage to a target's replacement.
 Name = Stall
 Description = The Pokémon moves after all other Pokémon do.
 #-------------------------------
+[STALWART]
+Name = Stalwart
+Description = Ignores effects changing the target of a move.
+Flags = RedirectionImmunity
+#-------------------------------
 [STEADFAST]
 Name = Steadfast
 Description = Raises Speed each time the Pokémon flinches.
@@ -792,6 +920,15 @@ Description = Raises Speed each time the Pokémon flinches.
 [STEAMENGINE]
 Name = Steam Engine
 Description = Maximizes Speed when hit by a Fire- or Water-type move.
+#-------------------------------
+[STEELYSHELL]
+Name = Steely Shell
+Description = Steel-type attacks deal 50% more damage, and the Pokémon is protected from critical hits.
+Flags = CritImmunity
+#-------------------------------
+[STENCH]
+Name = Stench
+Description = Attacks have a 50% chance to cause the target to flinch.
 #-------------------------------
 [STICKYHOLD]
 Name = Sticky Hold
@@ -863,6 +1000,11 @@ Description = Moves can be used regardless of Abilities.
 Name = Time Stretch
 Description = Between each turn there's another turn where no one moves.
 #-------------------------------
+[TOLLDANGER]
+Name = Toll Danger
+Description = When a total eclipse occurs, heals for 50% max HP and uses Heal Bell.
+Flags = EclipseSynergy
+#-------------------------------
 [TORRENT]
 Name = Torrent
 Description = Powers up Water-type moves in a pinch.
@@ -911,6 +1053,10 @@ Description = Moves can be used regardless of Abilities.
 [UNCONCERNED]
 Name = Unconcerned
 Description = Takes 20% less damage from neutrally effective attacks.
+#-------------------------------
+[VARIETY]
+Name = Variety
+Description = Powers up moves different than the last move by 50%.
 #-------------------------------
 [VIBRATIONAL]
 Name = Resonant

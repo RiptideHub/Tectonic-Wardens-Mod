@@ -187,7 +187,7 @@ class PokEstate
 			
 			if newAwards.length == 1
 				awardDescription = newAwards[0][:description]
-				pbMessage(_INTL("For collecting #{awardDescription}, please take this."))
+				pbMessage(_INTL("For collecting {1}, please take this.", awardDescription))
 			elsif newAwards.length <= 5
 				pbMessage(_INTL("I'll list the feats you've accomplished:"))
 				newAwards.each_with_index do |newAwardInfo, index|
@@ -195,11 +195,11 @@ class PokEstate
 					awardDescription = newAwardInfo[:description]
 					
 					if index == 0
-						pbMessage(_INTL("You've collected #{awardDescription}..."))
+						pbMessage(_INTL("You've collected {1}...", awardDescription))
 					elsif index == newAwards.length - 1
-						pbMessage(_INTL("...and #{awardDescription}."))
+						pbMessage(_INTL("...and {1}.", awardDescription))
 					else
-						pbMessage(_INTL("...#{awardDescription}..."))
+						pbMessage(_INTL("...{1}...", awardDescription))
 					end
 				end
 			else
@@ -218,14 +218,12 @@ class PokEstate
 				awardDescription = newAwardInfo[:description]
 
 				# Tally the items to give out
-				itemCount = 1
-				if awardReward.is_a?(Array)
-					itemGrant = awardReward[0]
-					itemCount = awardReward[1]
-				else
-					itemGrant = awardReward
+				itemGrant = awardReward[0]
+				itemCount = awardReward[1]
+				if itemCount.nil? || itemCount <= 1
+					itemCount = 1
 				end
-
+			  
 				if !itemsToGrantHash.has_key?(itemGrant)
 					itemsToGrantHash[itemGrant] = itemCount
 				else
@@ -437,41 +435,28 @@ class PokEstate
 		cmdTake = -1
 		cmdInteract = -1
 		cmdUseItem = -1
-		cmdRename = -1
-		cmdEvolve = -1
+		cmdModify = -1
 		cmdCancel = -1
-		cmdStyle = -1
+
 		commands[cmdInteract = commands.length] = _INTL("Interact")
-		commands[cmdTake = commands.length] = _INTL("Take") unless donationBox
-		commands[cmdSummary = commands.length] = _INTL("View Summary")
-		commands[cmdRename = commands.length] = _INTL("Rename") unless donationBox
-		commands[cmdUseItem = commands.length] = _INTL("Use Item") unless donationBox
-		newspecies = pokemon.check_evolution_on_level_up(false)
-		commands[cmdEvolve = commands.length]       = _INTL("Evolve") if newspecies
-		commands[cmdStyle = commands.length]  = _INTL("Set Style") if pbHasItem?(:STYLINGKIT)
-		commands[cmdCancel = commands.length] = _INTL("Cancel")
+		commands[cmdTake = commands.length] 	= _INTL("Take") unless donationBox
+		commands[cmdSummary = commands.length] 	= _INTL("View Summary")
+		commands[cmdUseItem = commands.length] 	= _INTL("Use Item") unless donationBox
+		commands[cmdModify = commands.length]	= _INTL("Modify") unless donationBox
+		commands[cmdCancel = commands.length] 	= _INTL("Cancel")
 		command = 0
 
 		species = pokemon.species
 		form = pokemon.form
 
 		while true
-			command = pbMessage(_INTL("What would you like to do with #{pokemon.name}?"),commands,commands.length,nil,command)
+			command = pbMessage(_INTL("What would you like to do with {1}?", pokemon.name),commands,commands.length,nil,command)
 			if cmdSummary > -1 && command == cmdSummary
 				pbFadeOutIn {
 					scene = PokemonSummary_Scene.new
 					screen = PokemonSummaryScreen.new(scene)
 					screen.pbStartSingleScreen(pokemon)
 				}
-			elsif cmdRename > -1 && command == cmdRename
-				currentName = pokemon.name
-				pbTextEntry("#{currentName}'s nickname?",0,Pokemon::MAX_NAME_SIZE,5)
-				if pbGet(5)=="" || pbGet(5) == currentName
-				  pokemon.name = currentName
-				else
-				  pokemon.name = pbGet(5)
-				end
-				convertEventToPokemon(eventCalling,pokemon)
 			elsif cmdTake > -1 && command == cmdTake
 				if $Trainer.party_full?
 					pbPlayDecisionSE
@@ -483,14 +468,14 @@ class PokEstate
 					chosenPokemon.heal
 					$PokemonStorage[currentBox][currentSlot] = chosenPokemon
 					$Trainer.party[chosenIndex] = pokemon
-					pbMessage(_INTL("You pick #{pokemon.name} up and add it to your party."))
-					pbMessage(_INTL("And place #{chosenPokemon.name} down into the Estate."))
+					pbMessage(_INTL("You pick {1} up and add it to your party.", pokemon.name))
+					pbMessage(_INTL("And place {1} down into the Estate.", chosenPokemon.name))
 					convertEventToPokemon(eventCalling,chosenPokemon)
 					break
 				else  
 					$PokemonStorage[currentBox][currentSlot] = nil
 					$Trainer.party[$Trainer.party.length] = pokemon
-					pbMessage(_INTL("You pick #{pokemon.name} up and add it to your party."))
+					pbMessage(_INTL("You pick {1} up and add it to your party.", pokemon.name))
 					eventCalling.event.pages[0] = RPG::Event::Page.new
 					eventCalling.refresh()
 					break
@@ -517,24 +502,72 @@ class PokEstate
 					convertEventToPokemon(eventCalling,pokemon)
 					break
 				end
-			elsif cmdEvolve > -1 && command == cmdEvolve
-				newspecies = pokemon.check_evolution_on_level_up(true)
-				break if newspecies.nil?
-				pbFadeOutInWithMusic do
-					evo = PokemonEvolutionScene.new
-					evo.pbStartScreen(pokemon, newspecies)
-					evo.pbEvolution
-					evo.pbEndScreen
-					convertEventToPokemon(eventCalling,pokemon)
-					eventCalling.turn_toward_player
-					break
-				end
-			elsif cmdStyle >= 0 && command == cmdStyle
-				pbStyleValueScreen(pokemon)
+			elsif cmdModify > -1 && command == cmdModify
+				break if modifyCommandMenu(eventCalling,pokemon,donationBox)
 			elsif cmdCancel > -1 && command == cmdCancel
 				break
 			end
 		end
+	end
+
+	# Return whether to exit the interaction menu
+	def modifyCommandMenu(eventCalling,pokemon,donationBox=false)
+		commands   = []
+		cmdRename  = -1
+		cmdSwapPokeBall = -1
+		cmdDeleteMove = -1
+		cmdEvolve  = -1
+		cmdStyle = -1
+		cmdOmnitutor = -1
+		cmdCancel = -1
+
+		commands[cmdRename = commands.length] 	= _INTL("Rename") unless donationBox
+		commands[cmdSwapPokeBall = commands.length]   = _INTL("Swap Ball")
+		commands[cmdDeleteMove = commands.length] = _INTL("Delete Move") if pokemon.numMoves > 1
+		newspecies = pokemon.check_evolution_on_level_up(false)
+		commands[cmdEvolve = commands.length]   = _INTL("Evolve") if newspecies
+		commands[cmdStyle = commands.length]  	= _INTL("Set Style") if pbHasItem?(:STYLINGKIT)
+
+		if $PokemonGlobal.omnitutor_active && !getOmniMoves(pokemon).empty?
+			commands[cmdOmnitutor = commands.length]	= _INTL("OmniTutor")
+		end
+		commands[cmdCancel = commands.length] = _INTL("Cancel")
+
+		modifyCommand = 0
+		modifyCommand = pbMessage(_INTL("Do what with {1}?", pokemon.name),commands,commands.length,nil,modifyCommand)
+		if cmdRename > -1 && modifyCommand == cmdRename
+			currentName = pokemon.name
+			pbTextEntry(_INTL("{1}'s nickname?", currentName),0,Pokemon::MAX_NAME_SIZE,5)
+			if pbGet(5)=="" || pbGet(5) == currentName
+			  pokemon.name = currentName
+			else
+			  pokemon.name = pbGet(5)
+			end
+			convertEventToPokemon(eventCalling,pokemon)
+		elsif cmdSwapPokeBall >= 0 && modifyCommand == cmdSwapPokeBall
+			pokemon.switchBall
+		elsif cmdDeleteMove >= 0 && modifyCommand == cmdDeleteMove
+			moveDeletion(pokemon)
+		elsif cmdEvolve > -1 && modifyCommand == cmdEvolve
+			newspecies = pokemon.check_evolution_on_level_up(true)
+			return true if newspecies.nil?
+			pbFadeOutInWithMusic do
+				evo = PokemonEvolutionScene.new
+				evo.pbStartScreen(pokemon, newspecies)
+				evo.pbEvolution
+				evo.pbEndScreen
+				convertEventToPokemon(eventCalling,pokemon)
+				eventCalling.turn_toward_player
+				return true
+			end
+		elsif cmdStyle >= 0 && modifyCommand == cmdStyle
+			pbStyleValueScreen(pokemon)
+		elsif cmdOmnitutor >= 0 && modifyCommand == cmdOmnitutor
+			omniTutorScreen(pokemon)
+		elsif cmdCancel > -1 && modifyCommand == cmdCancel
+			return true
+		end
+		return false
 	end
 	
 	def beginWandering(page,pokemon,stepAnimation=false)
@@ -548,14 +581,14 @@ class PokEstate
 	def setDownIntoEstate(pokemon)
 		return unless isInEstate?()
 		
-		if $Trainer.able_pokemon_count == 1 && !pokemon.fainted?
+		if $Trainer.able_pokemon_count == 1 && pokemon.able?
 			pbMessage(_INTL("Can't set down your last able Pokemon!"))
 			return false
 		end
 	
 		box = $PokemonStorage[@estate_box]
 		if box.full?
-			pbMessage(_INTL("Can't set #{pokemon.name} down into the current Estate plot because it is full."))
+			pbMessage(_INTL("Can't set {1} down into the current Estate plot because it is full.", pokemon.name))
 			return false
 		end
 		
@@ -574,7 +607,7 @@ class PokEstate
 		end
 		
 		if !$game_map.passableStrict?(x,y,dir)
-			pbMessage(_INTL("Can't set #{pokemon.name} down, the spot in front of you is blocked."))
+			pbMessage(_INTL("Can't set {1} down, the spot in front of you is blocked.", pokemon.name))
 			return false
 		end
 		
@@ -671,7 +704,7 @@ Events.onMapSceneChange += proc { |_sender, e|
 	next unless $PokEstate.isInEstate?
 	$PokEstate.load_estate_box
 	boxName = $PokemonStorage[$PokEstate.estate_box].name
-	label = _INTL("PokÉstate #{$PokEstate.estate_box +  1}")
+	label = _INTL("PokÉstate {1}", $PokEstate.estate_box +  1)
 	label += " - #{boxName}" if !boxName.eql?("Box #{$PokEstate.estate_box +  1}")
 	scene.spriteset.addUserSprite(LocationWindow.new(label))
 }

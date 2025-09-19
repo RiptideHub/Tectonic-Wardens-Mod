@@ -159,7 +159,7 @@ class PokemonPokedex_Scene
                         break
                     end
                 end
-                if actualMove.nil?
+                if actualMove.nil? || !GameData::Move.get(actualMove).learnable?
                     pbMessage(_INTL("Invalid input: {1}", moveNameInput))
                     next
                 end
@@ -173,7 +173,7 @@ class PokemonPokedex_Scene
 
                     # By level up
                     if [0, 1].include?(learningMethodSelection)
-                        species_data.moves.each do |learnset_entry|
+                        species_data.level_moves.each do |learnset_entry|
                             if learnset_entry[1] == actualMove
                                 contains = true
                                 break
@@ -183,7 +183,7 @@ class PokemonPokedex_Scene
 
                     # By specific level
                     if learningMethodSelection == 2
-                        species_data.moves.each do |learnset_entry|
+                        species_data.level_moves.each do |learnset_entry|
                             break if learnset_entry[0] > levelIntAttempt
                             if learnset_entry[1] == actualMove
                                 contains = true
@@ -274,32 +274,53 @@ class PokemonPokedex_Scene
     end
 
     def searchByEvolutionMethod
-        selections = [_INTL("Pre-Evolutions"), _INTL("Evolved Forms"), _INTL("Cancel")]
-        relationSelection = pbMessage(_INTL("Pre-evolutions, or evolved forms?"), selections, selections.length)
-        return if relationSelection == 2
+        selections = [_INTL("Can Evolve by Method"), _INTL("Evolved From Method"), _INTL("No Evolutions"), _INTL("No Prevolutions"), _INTL("Split Evo"), _INTL("Cancel")]
+        relationSelection = pbMessage(_INTL("Which search?"), selections, selections.length)
+        return if relationSelection == 5
 
-        evoMethodTextInput = pbEnterText(_INTL("Search method..."), 0, 12)
-        if evoMethodTextInput && evoMethodTextInput != ""
-            reversed = evoMethodTextInput[0] == "-"
-            evoMethodTextInput = evoMethodTextInput[1..-1] if reversed
+        if [0,1].include?(relationSelection)
+            evoMethodTextInput = pbEnterText(_INTL("Search method..."), 0, 12)
+            if evoMethodTextInput && evoMethodTextInput != ""
+                reversed = evoMethodTextInput[0] == "-"
+                evoMethodTextInput = evoMethodTextInput[1..-1] if reversed
+                dexlist = searchStartingList
+                dexlist = dexlist.find_all do |dex_item|
+                    next false if autoDisqualifyFromSearch(dex_item[:species])
+                    anyContain = false
+
+                    entries = relationSelection == 0 ? dex_item[:data].get_evolutions : dex_item[:data].get_prevolutions
+
+                    # Evolutions
+                    entries.each do |evomethod|
+                        strippedActualDescription = describeEvolutionMethod(evomethod[1], evomethod[2]).downcase.delete(" ")
+                        strippedInputString = evoMethodTextInput.downcase.delete(" ")
+                        anyContain = true if strippedActualDescription.include?(strippedInputString)
+                    end
+                    value = anyContain ^ reversed # Boolean XOR
+                    next value
+                end
+                return dexlist
+            end
+        else
             dexlist = searchStartingList
             dexlist = dexlist.find_all do |dex_item|
                 next false if autoDisqualifyFromSearch(dex_item[:species])
-                anyContain = false
 
-                entries = relationSelection == 0 ? dex_item[:data].get_evolutions : dex_item[:data].get_prevolutions
-
-                # Evolutions
-                entries.each do |evomethod|
-                    strippedActualDescription = describeEvolutionMethod(evomethod[1], evomethod[2]).downcase.delete(" ")
-                    strippedInputString = evoMethodTextInput.downcase.delete(" ")
-                    anyContain = true if strippedActualDescription.include?(strippedInputString)
+                case relationSelection
+                when 2
+                    next dex_item[:data].get_evolutions.empty?
+                when 3
+                    next dex_item[:data].get_prevolutions.empty?
+                when 4
+                    next dex_item[:data].get_evolutions.length > 1
                 end
-                value = anyContain ^ reversed # Boolean XOR
-                next value
+
+                next true
             end
             return dexlist
         end
+
+        
         return nil
     end
 
@@ -312,7 +333,7 @@ class PokemonPokedex_Scene
             levelIntAttempt = levelTextInput.to_i
             return nil if levelIntAttempt == 0
 
-            levelCheck = roundUpToRelevantCap(levelIntAttempt)
+            levelCheck = roundUpToNextCap(levelIntAttempt)
 
             dexlist = searchStartingList
             dexlist = dexlist.find_all do |dex_item|
@@ -388,8 +409,12 @@ class PokemonPokedex_Scene
             when 0..5
                 statToCompareA = species_data.base_stats[comparitorA]
             when 6
-                statToCompareA = species_data.physical_ehp
+                species_data.base_stats.each do |statName, statValue|
+                    statToCompareA += statValue
+                end
             when 7
+                statToCompareA = species_data.physical_ehp
+            when 8
                 statToCompareA = species_data.special_ehp
             end
 
@@ -511,6 +536,7 @@ class PokemonPokedex_Scene
         commands = []
         tribes = []
         GameData::Tribe.each do |tribe|
+            next if tribe.id == :DEBUG_TESTTRIBE && !$DEBUG
             tribes.push(tribe.id)
             commands.push(getTribeName(tribe.id))
         end
@@ -584,17 +610,8 @@ class PokemonPokedex_Scene
 
                 hasSignatureMove = false
                 autoDisqualifyFromSearch(dex_item[:species])
-                # By level up
-                dex_item[:data].moves.each do |learnset_entry|
-                    if GameData::Move.get(learnset_entry[1]).is_signature?
-                        hasSignatureMove = true
-                        break
-                    end
-                end
 
-                next true if hasSignatureMove && !reversed
-
-                # Egg moves
+                # All moves
                 dex_item[:data].learnable_moves.each do |move|
                     if GameData::Move.get(move).is_signature?
                         hasSignatureMove = true
@@ -753,7 +770,7 @@ class PokemonPokedex_Scene
             end
 
             dexlist = dexlist.find_all do |dex_item|
-                lvlmoves = dex_item[:data].moves
+                lvlmoves = dex_item[:data].level_moves
                 types = [dex_item[:data].type1, dex_item[:data].type2 || dex_item[:data].type1]
                 types.uniq!
                 types.compact!

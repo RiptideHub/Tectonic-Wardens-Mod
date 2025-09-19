@@ -45,14 +45,15 @@ class PokeBattle_Battle
                 # Count the number of participants
                 numPartic = 0
                 b.participants.each do |partic|
-                    next unless p1[partic] && p1[partic].able? && pbIsOwner?(0, partic)
+                    next unless p1[partic] && pbIsOwner?(0, partic)
+                    next unless p1[partic].able? || Settings::FAINTED_POKEMON_EARN_EXP
                     numPartic += 1
                 end
                 # Find which Pokémon have an Exp Share
                 expShare = []
                 unless expAll
                     eachInTeam(0, 0) do |pkmn, i|
-                        next unless pkmn.able?
+                        next unless pkmn.able? || Settings::FAINTED_POKEMON_EARN_EXP
                         next unless pkmn.hasItem?(:EXPSHARE)
                         expShare.push(i)
                     end
@@ -61,7 +62,7 @@ class PokeBattle_Battle
                 if numPartic > 0 || expShare.length > 0 || expAll
                     # Gain Exp for participants
                     eachInTeam(0, 0) do |pkmn, i|
-                        next unless pkmn.able?
+                        next unless pkmn.able? || Settings::FAINTED_POKEMON_EARN_EXP
                         next unless b.participants.include?(i) || expShare.include?(i)
                         pbGainExpOne(i, b, numPartic, expShare, expAll, hasExpJAR)
                     end
@@ -69,7 +70,7 @@ class PokeBattle_Battle
                     if expAll
                         showMessage = true
                         eachInTeam(0, 0) do |pkmn, i|
-                            next unless pkmn.able?
+                            next unless pkmn.able? || Settings::FAINTED_POKEMON_EARN_EXP
                             next if b.participants.include?(i) || expShare.include?(i)
                             pbDisplayPaused(_INTL("Your party Pokémon in waiting also got Exp. Points!")) if showMessage
                             showMessage = false
@@ -86,11 +87,6 @@ class PokeBattle_Battle
     def pbGainExpOne(idxParty, defeatedBattler, numPartic, expShare, expAll, hasExpJAR, showMessages = true)
         pkmn = pbParty(0)[idxParty] # The Pokémon gaining exp from defeatedBattler
         growth_rate = pkmn.growth_rate
-        # Don't bother calculating if gainer is already at max Exp
-        if pkmn.exp >= growth_rate.maximum_exp
-            pkmn.calc_stats
-            return
-        end
         isPartic    = defeatedBattler.participants.include?(idxParty)
         hasExpShare = expShare.include?(idxParty)
         level = defeatedBattler.level
@@ -115,7 +111,7 @@ class PokeBattle_Battle
         end
         return if exp <= 0
         # Pokémon gain more Exp from trainer battles
-        if trainerBattle?
+        if trainerBattle? || defeatedBattler.boss?
             exp *= 1.5
             if $PokemonBag.pbHasItem?(:PERFORMANCEANALYZER2)
                 exp *= 1.1
@@ -155,22 +151,21 @@ class PokeBattle_Battle
         end
         # Make sure Exp doesn't exceed the maximum
         level_cap = LEVEL_CAPS_USED ? getLevelCap : growth_rate.max_level
-        expFinal = growth_rate.add_exp(pkmn.exp, exp)
-        expLeftovers = expFinal.clamp(0, growth_rate.minimum_exp_for_level(level_cap))
-        # Calculates if there is excess exp and if it can be stored
-        if (expFinal > expLeftovers) && hasExpJAR
-            expLeftovers = expFinal.clamp(0, growth_rate.minimum_exp_for_level(level_cap + 1))
-        else
-            expLeftovers = 0
+        expFinalBeforeCap = pkmn.exp + exp
+        expFinal = expFinalBeforeCap.clamp(0, growth_rate.minimum_exp_for_level(level_cap))
+        # EXP-EZ Dispenser storage
+        if hasExpJAR
+          expLeftovers = expFinalBeforeCap - expFinal
+          expLeftovers = (expLeftovers * EXP_JAR_BASE_EFFICIENCY).floor
+          @expStored += expLeftovers
+          $PokemonGlobal.expJAR = 0 if $PokemonGlobal.expJAR.nil?
+          $PokemonGlobal.expJAR += expLeftovers
+
+          echoln("[EXP JAR] Storing #{expLeftovers} EXP in the exp jar")
         end
-        expFinal = expFinal.clamp(0, growth_rate.minimum_exp_for_level(level_cap))
-        expGained = expFinal - pkmn.exp
-        expLeftovers -= pkmn.exp
-        $PokemonGlobal.expJAREfficient = false if $PokemonGlobal.expJAREfficient.nil?
-        expLeftovers = (expLeftovers * EXP_JAR_BASE_EFFICIENCY).floor unless $PokemonGlobal.expJAREfficient
-        @expStored += expLeftovers if expLeftovers > 0
         curLevel = pkmn.level
         newLevel = growth_rate.level_from_exp(expFinal)
+        expGained = expFinal - pkmn.exp
         if expGained == 0 and pkmn.level < level_cap
             pbDisplayPaused(_INTL("{1} gained 0 experience.", pkmn.name))
             return
@@ -189,7 +184,7 @@ class PokeBattle_Battle
             end
         end
         if newLevel < curLevel
-            debugInfo = "Levels: #{curLevel}->#{newLevel} | Exp: #{pkmn.exp}->#{expFinal} | gain: #{expGained}"
+            debugInfo = _INTL("Levels: {1}->{2} | Exp: {3}->{4} | gain: {5}", curLevel, newLevel, pkmn.exp, expFinal, expGained)
             pbDisplayPaused(_INTL("{1}'s new level is less than its\r\ncurrent level, which shouldn't happen.\r\n[Debug: {2}]",
                 pkmn.name, debugInfo))
         end
@@ -200,6 +195,7 @@ class PokeBattle_Battle
         tempExp1 = pkmn.exp
         battler = pbFindBattler(idxParty)
         loop do # For each level gained in turn...
+            break if pkmn.exp >= growth_rate.maximum_exp
             # EXP Bar animation
             levelMinExp = growth_rate.minimum_exp_for_level(curLevel)
             levelMaxExp = growth_rate.minimum_exp_for_level(curLevel + 1)
@@ -228,16 +224,14 @@ class PokeBattle_Battle
             @scene.pbRefreshOne(battler.index) if battler
             pbDisplayPaused(_INTL("{1} grew to Lv. {2}!", pkmn.name, curLevel))
             @scene.pbLevelUp(pkmn, battler, oldTotalHP, oldAttack, oldDefense,
-                                          oldSpAtk, oldSpDef, oldSpeed)
+                                        oldSpAtk, oldSpDef, oldSpeed)
             # Learn all moves learned at this level
             moveList = pkmn.getMoveList
-            unless $PokemonSystem.prompt_level_moves == 1
+            unless $Options.prompt_level_moves == 1
                 moveList.each { |m| pbLearnMove(idxParty, m[1]) if m[0] == curLevel }
             end
             battler.pokemon.changeHappiness("levelup") if battler && battler.pokemon
         end
-        $PokemonGlobal.expJAR = 0 if $PokemonGlobal.expJAR.nil?
-        $PokemonGlobal.expJAR += expLeftovers if expLeftovers > 0 && hasExpJAR
     end
 
     #=============================================================================
@@ -254,7 +248,7 @@ class PokeBattle_Battle
         # Pokémon has space for the new move; just learn it
         if pkmn.moves.length < Pokemon::MAX_MOVES
             pkmn.moves.push(Pokemon::Move.new(newMove))
-            pbDisplay(_INTL("{1} learned {2}!", pkmnName, moveName)) { pbSEPlay("Pkmn move learnt") }
+            pbDisplay(_INTL("{1} learned {2}!", pkmnName, moveName), no_highlighting: true) { pbSEPlay("Pkmn move learnt") }
             if battler
                 battler.moves.push(PokeBattle_Move.from_pokemon_move(self, pkmn.moves.last))
                 battler.pbCheckFormOnMovesetChange
@@ -264,15 +258,15 @@ class PokeBattle_Battle
         # Pokémon already knows the maximum number of moves; try to forget one to learn the new move
         loop do
             pbDisplayPaused(_INTL("{1} wants to learn {2}, but it already knows {3} moves.",
-                pkmnName, moveName, pkmn.moves.length.to_word))
+                pkmnName, moveName, pkmn.moves.length.to_word), no_highlighting: true)
             pbDisplayPaused(_INTL("Which move should be forgotten?"))
             forgetMove = @scene.pbForgetMove(pkmn, newMove)
             if forgetMove >= 0
                 oldMoveName = pkmn.moves[forgetMove].name
                 pkmn.moves[forgetMove] = Pokemon::Move.new(newMove)   # Replaces current/total PP
                 battler.moves[forgetMove] = PokeBattle_Move.from_pokemon_move(self, pkmn.moves[forgetMove]) if battler
-                pbDisplayPaused(_INTL("{1} forgot how to use {2}. And...", pkmnName, oldMoveName))
-                pbDisplay(_INTL("{1} learned {2}!", pkmnName, moveName)) { pbSEPlay("Pkmn move learnt") }
+                pbDisplayPaused(_INTL("{1} forgot how to use {2}. And...", pkmnName, oldMoveName), no_highlighting: true)
+                pbDisplay(_INTL("{1} learned {2}!", pkmnName, moveName), no_highlighting: true) { pbSEPlay("Pkmn move learnt") }
                 battler.pbCheckFormOnMovesetChange if battler
                 break
             else

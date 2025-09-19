@@ -1,18 +1,19 @@
 
 class PokeBattle_Battle
-    def pbStartRoom(roomEffect, user, aiCheck = false)
-        duration = user.getRoomDuration(aiCheck)
+    def pbStartRoom(roomEffect, user, ability = nil, aiCheck = false)
+        duration = ability ? 4 : 8
+        duration = user.getRoomDuration(duration, aiCheck: aiCheck)
         effectName = GameData::BattleEffect.get(roomEffect).name
         
         if @field.effectActive?(roomEffect)
             if @field.countEffect(roomEffect) >= duration
-                pbDisplay(_INTL("The #{effectName} stayed the same.")) unless aiCheck
+                pbDisplay(_INTL("The {1} stayed the same.", effectName)) unless aiCheck
                 return 0
             else
                 if aiCheck
                     return (duration - @field.countEffect(roomEffect)) * 20
                 else
-                    pbDisplay(_INTL("The #{effectName} was refreshed!"))
+                    pbDisplay(_INTL("The {1} was refreshed!", effectName))
                     @field.effects[roomEffect] = duration
                 end
             end
@@ -29,7 +30,7 @@ class PokeBattle_Battle
         else
             moreTurns = duration
             moreTurns -= 1 unless @turnCount == 0
-            pbDisplay(_INTL("It'll last for #{moreTurns} more turns."))
+            pbDisplay(_INTL("It'll last for {1} more turns.", moreTurns))
         end
     end
 end

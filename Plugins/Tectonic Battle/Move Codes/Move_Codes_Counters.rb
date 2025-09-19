@@ -114,6 +114,20 @@ class PokeBattle_Move_BounceBackProblemCausingStatusMoves < PokeBattle_Move
 end
 
 #===============================================================================
+# For the next 3 rounds, reflects all moves with the "C" flag targeting the user back at
+# their origin. (Primeval Magic Coat)
+#===============================================================================
+class PokeBattle_Move_EmpoweredMagicCoat < PokeBattle_Move
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        user.applyEffect(:EmpoweredMagicCoat,4)
+
+        transformType(user, :PSYCHIC)
+    end
+end
+
+#===============================================================================
 # This round, snatches all used moves with the "D" flag. (Snatch)
 #===============================================================================
 class PokeBattle_Move_StealAndUseBeneficialStatusMove < PokeBattle_Move
@@ -150,7 +164,7 @@ class PokeBattle_Move_MultiTurnAttackBideThenReturnDoubleDamage < PokeBattle_Fix
         return false if user.effects[:Bide] != 1 # Not the attack turn
         if user.effects[:BideDamage] == 0
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} hasn't absorbed any energy!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} hasn't absorbed any energy!", user.pbThis(true)))
             end
             user.disableEffect(:Bide)
             return true
@@ -187,7 +201,7 @@ class PokeBattle_Move_MultiTurnAttackBideThenReturnDoubleDamage < PokeBattle_Fix
     end
 
     def pbFixedDamage(user, _target)
-        return user.effects[:BideDamage] * 2
+        return user.effects[:BideDamage]
     end
 
     def pbEffectGeneral(user)
@@ -223,7 +237,7 @@ class PokeBattle_Move_AttackerFaintsIfUserFaints < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if user.effectActive?(:DestinyBondPrevious)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} was already waiting to take down others with it!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} was already waiting to take down others with it!", user.pbThis(true)))
             end
             return true
         end

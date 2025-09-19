@@ -10,8 +10,15 @@ BattleHandlers::CriticalCalcUserAbility.add(:SNIPER,
   }
 )
 
+BattleHandlers::CriticalCalcUserAbility.add(:SHARPSHOOTER,
+  proc { |ability, _user, _target, _move, c|
+      next c + 1
+  }
+)
+
 BattleHandlers::CriticalCalcUserAbility.add(:STAMPEDE,
   proc { |ability, user, _target, _move, c|
+      next 0 if user.steps[:SPEED] <= 0
       next c + user.steps[:SPEED]
   }
 )
@@ -31,5 +38,23 @@ BattleHandlers::CriticalCalcUserAbility.add(:NIGHTVISION,
 BattleHandlers::CriticalCalcUserAbility.add(:SANDWORNAUGER,
   proc { |ability, user, _target, _move, c|
       next c + 1 if user.battle.sandy?
+  }
+)
+
+BattleHandlers::CriticalCalcUserAbility.add(:SPECTRUMVISION,
+  proc { |ability, user, _target, _move, c|
+      next c + 1
+  }
+)
+
+BattleHandlers::CriticalCalcUserAbility.add(:SILVERSENSE,
+  proc { |ability, _user, _target, _move, c|
+      next c + 1
+  }
+)
+
+BattleHandlers::CriticalCalcUserAbility.add(:VICTORYSTAR,
+  proc { |ability, user, _target, _move, c|
+      next c + 1
   }
 )

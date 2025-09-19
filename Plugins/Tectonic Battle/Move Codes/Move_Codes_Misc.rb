@@ -53,11 +53,7 @@ class PokeBattle_Move_StartPerishCountsForAllBattlers < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
-        if target.boss? && user != target
-            target.applyEffect(:PerishSong, 12)
-        else
-            target.applyEffect(:PerishSong, 3)
-        end
+        target.applyEffect(:PerishSong, 3)
     end
 
     def getEffectScore(user, _target)
@@ -123,7 +119,7 @@ class PokeBattle_Move_ChangeUserMewtwoChoiceOfForm < PokeBattle_Move
             form1Name = GameData::Species.get_species_form(:MEWTWO,1).form_name
             form2Name = GameData::Species.get_species_form(:MEWTWO,2).form_name
             formNames = [form1Name,form2Name]
-            chosenIndex = @battle.scene.pbShowCommands(_INTL("Which form should #{user.pbThis(true)} take?"),formNames,0)
+            chosenIndex = @battle.scene.pbShowCommands(_INTL("Which form should {1} take?", user.pbThis(true)),formNames,0)
             @chosenForm = chosenIndex + 1
         end
     end
@@ -131,7 +127,7 @@ class PokeBattle_Move_ChangeUserMewtwoChoiceOfForm < PokeBattle_Move
     def pbCanChooseMove?(user, commandPhase, show_message)
         unless user.form == 0
             if show_message
-                msg = _INTL("#{user.pbThis} has already transformed!")
+                msg = _INTL("{1} has already transformed!", user.pbThis)
                 commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
             end
             return false
@@ -171,25 +167,25 @@ class PokeBattle_Move_TransformTargetPreEvolution < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         if target.illusion?
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is disguised by an Illusion!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} is disguised by an Illusion!", target.pbThis(true)))
             end
             return true
         end
         if target.boss?
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is an avatar!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} is an avatar!", target.pbThis(true)))
             end
             return true
         end
         unless target.species_data
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} doesn't have a defined species somehow!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} doesn't have a defined species somehow!", target.pbThis(true)))
             end
             return true
         end
         unless GameData::Species.get(target.technicalSpecies).has_previous_species?
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} has no previous species to transform into!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} has no previous species to transform into!", target.pbThis(true)))
             end
             return true
         end
@@ -252,10 +248,7 @@ class PokeBattle_Move_UseHighestBasePowerMoveFromUserParty < PokeBattle_Move
             pkmn.moves.each do |move|
                 next if move.category == 2
                 next unless move.base_damage > optimizedBP
-                battleMove = @battle.getBattleMoveInstanceFromID(move.id)
-                next if battleMove.forceSwitchMove?
-                next if battleMove.is_a?(PokeBattle_TwoTurnMove)
-                next if battleMove.is_a?(PokeBattle_HelpingMove)
+                next unless @battle.canInvokeMove?(move)
                 optimizedMove = move.id
                 optimizedBP = move.base_damage
             end
@@ -266,7 +259,7 @@ class PokeBattle_Move_UseHighestBasePowerMoveFromUserParty < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         unless getOptimizedMove(user)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since there are no moves #{user.pbThis(true)} can use!"))
+                @battle.pbDisplay(_INTL("But it failed, since there are no moves {1} can use!", user.pbThis(true)))
             end
             return true
         end
@@ -287,19 +280,19 @@ class PokeBattle_Move_TargetUsesItsLastUsedMoveAgain < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         unless target.lastRegularMoveUsed
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} hasn't used a move yet!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} hasn't used a move yet!", target.pbThis(true)))
             end
             return true
         end
         unless target.pbHasMove?(target.lastRegularMoveUsed)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} no longer knows its most recent move!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} no longer knows its most recent move!", target.pbThis(true)))
             end
             return true
         end
         if target.usingMultiTurnAttack?
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is locked into an attack!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} is locked into an attack!", target.pbThis(true)))
             end
             return true
         end
@@ -309,18 +302,18 @@ class PokeBattle_Move_TargetUsesItsLastUsedMoveAgain < PokeBattle_Move
                           targetMove.function == "UsedAfterUserTakesSpecialDamage" ||   # Masquerblade
                           targetMove.function == "BurnAttackerBeforeUserActs" ||     # Beak Blast
                           targetMove.function == "FrostbiteAttackerBeforeUserActs")   # Condensate
-            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is focusing!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since {1} is focusing!", target.pbThis(true))) if show_message
             return true
         end
-        if !GameData::Move.get(target.lastRegularMoveUsed).can_be_forced?
+        if GameData::Move.get(target.lastRegularMoveUsed).uninvocable?
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s last used move cant be instructed!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1}'s last used move cant be instructed!", target.pbThis(true)))
             end
             return true
         end
         if @battle.getBattleMoveInstanceFromID(target.lastRegularMoveUsed).is_a?(PokeBattle_TwoTurnMove)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s last used move is a two-turn move!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1}'s last used move is a two-turn move!", target.pbThis(true)))
             end
             return true
         end
@@ -330,7 +323,7 @@ class PokeBattle_Move_TargetUsesItsLastUsedMoveAgain < PokeBattle_Move
         end
         if target.getMoves[idxMove].pp == 0 && target.getMoves[idxMove].total_pp > 0
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s last used move it out of PP!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1}'s last used move it out of PP!", target.pbThis(true)))
             end
             return true
         end
@@ -348,38 +341,6 @@ class PokeBattle_Move_TargetUsesItsLastUsedMoveAgain < PokeBattle_Move
 
     def getEffectScore(_user, _target)
         return 130 # Score assumes you put Instruct on the team for a reason, do not put Instruct on a team without really thinking about it
-    end
-end
-
-#===============================================================================
-# Target is forced to use this Pokemon's first move slot. (Hivemind)
-#===============================================================================
-class PokeBattle_Move_TargetUsesMoveInUserFirstSlot < PokeBattle_Move
-    def pbMoveFailed?(user, _targets, show_message)
-        unless getFirstSlotMove(user)
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} has no moves!")) if show_message
-            return true
-        end
-        if !GameData::Move.get(getFirstSlotMove(user).id).can_be_forced? || getFirstSlotMove(user).callsAnotherMove?
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s first slot move can't be shared!"))
-            end
-            return true
-        end
-        return false
-    end
-
-    def getFirstSlotMove(user)
-        return user.getMoves[0] || nil
-    end
-
-    def pbEffectAgainstTarget(user, target)
-        @battle.forceUseMove(target, getFirstSlotMove(user).id)
-    end
-
-    def getScore(_user, _target)
-        echoln("The AI will never use Hivemind.")
-        return -1000
     end
 end
 
@@ -433,13 +394,13 @@ class PokeBattle_Move_ChangeUserDeoxusChoiceOfForm < PokeBattle_Move
         if @battle.autoTesting
             @chosenForm = rand(3) + 1
         elsif !user.pbOwnedByPlayer? # Trainer AI
-            @chosenForm = 2 # Always chooses mega mind form
+            @chosenForm = 2 # Always chooses defense form
         else
             form1Name = GameData::Species.get_species_form(:DEOXYS,1).form_name
             form2Name = GameData::Species.get_species_form(:DEOXYS,2).form_name
             form3Name = GameData::Species.get_species_form(:DEOXYS,3).form_name
             formNames = [form1Name,form2Name,form3Name]
-            chosenIndex = @battle.scene.pbShowCommands(_INTL("Which form should #{user.pbThis(true)} take?"),formNames,0)
+            chosenIndex = @battle.scene.pbShowCommands(_INTL("Which form should {1} take?", user.pbThis(true)),formNames,0)
             @chosenForm = chosenIndex + 1
         end
     end
@@ -447,7 +408,7 @@ class PokeBattle_Move_ChangeUserDeoxusChoiceOfForm < PokeBattle_Move
     def pbCanChooseMove?(user, commandPhase, show_message)
         unless user.form == 0
             if show_message
-                msg = _INTL("#{user.pbThis} has already mutated!")
+                msg = _INTL("{1} has already mutated!", user.pbThis)
                 commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
             end
             return false
@@ -489,7 +450,7 @@ class PokeBattle_Move_UserSwapsPositionsWithAlly < PokeBattle_Move
             return false
         end
         if show_message
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} has no valid allies to switch with!"))
+            @battle.pbDisplay(_INTL("But it failed, since {1} has no valid allies to switch with!", user.pbThis(true)))
         end
         return true
     end
@@ -553,48 +514,31 @@ def selfHitBasePower(level)
 end
 
 #===============================================================================
-# Increases the target's Attack by 3 steps, then the target hits itself with its own attack. (Swagger)
+# Increases the target's attacking stats by 3 steps each, then the (Backhand)
+# target hits itself with its own Attack or Sp. Atk, whichever is higher.
 #===============================================================================
-class PokeBattle_Move_RaiseTargetAtk3TargetHitsSelfPhysical < PokeBattle_Move
+class PokeBattle_Move_RaiseTargetAtkSpAtk3TargetHitsSelfAdaptive < PokeBattle_Move
     def pbEffectAgainstTarget(user, target)
-        target.tryRaiseStat(:ATTACK, user, increment: 3, move: self)
-        target.pbConfusionDamage(_INTL("It hurt itself in a rage!"), false, false, selfHitBasePower(target.level))
+        target.pbRaiseMultipleStatSteps(ATTACKING_STATS_3, user, move: self)
+        target.pbConfusionDamage(_INTL("It hurt itself in a rage!"), false, selfHitBasePower(target.level))
     end
 
     def getTargetAffectingEffectScore(user, target)
-        score = -25 # TODO: rework this
-        score -= getMultiStatUpEffectScore([:ATTACK, 3], user, target, evaluateThreat: false)
-        score -= 70 if target.hasActiveAbilityAI?(:UNAWARE)
-        return score
-    end
-    
-    def calculateDamageForHitAI(user,target,type,baseDmg,numTargets)
-        damage = calculateDamageForHit(user,target,type,baseDmg,numTargets,true)
-        damage *= 1.75 unless target.hasActiveAbilityAI?(:UNAWARE)
-        return damage
-    end
-end
-
-#===============================================================================
-# Increases the target's Sp. Atk. by 3 steps, then the target hits itself with its own Sp. Atk. (Flatter)
-#===============================================================================
-class PokeBattle_Move_RaiseTargetSpAtk3TargetHitsSelfSpecial < PokeBattle_Move
-    def pbEffectAgainstTarget(user, target)
-        target.tryRaiseStat(:SPECIAL_ATTACK, user, increment: 3, move: self)
-        target.pbConfusionDamage(_INTL("It hurt itself in mental turmoil!"), true, false, selfHitBasePower(target.level))
-    end
-
-    def getTargetAffectingEffectScore(user, target)
-        score = -25 # TODO: rework this
-        score -= getMultiStatUpEffectScore([:SPECIAL_ATTACK, 3], user, target, evaluateThreat: false)
-        score -= 70 if target.hasActiveAbilityAI?(:UNAWARE)
+        score = 0
+        score -= getMultiStatUpEffectScore(ATTACKING_STATS_3, user, target, evaluateThreat: false)
+        score -= 70 if targetIsUnaware?(target, aiCheck: true)
+        score += getMultiStatUpEffectScore(ATTACKING_STATS_3, user, user, evaluateThreat: false) if user.hasActiveAbilityAI?(:PETTY)
         return score
     end
 
     def calculateDamageForHitAI(user,target,type,baseDmg,numTargets)
         damage = calculateDamageForHit(user,target,type,baseDmg,numTargets,true)
-        damage *= 1.75 unless target.hasActiveAbilityAI?(:UNAWARE)
+        damage *= 1.75 unless targetIsUnaware?(target, aiCheck: true)
         return damage
+    end
+
+    def getDetailsForMoveDex(detailsList = [])
+        detailsList << _INTL("Base power is 20 plus the target's level, capped at 70 BP.")
     end
 end
 
@@ -622,7 +566,7 @@ class PokeBattle_Move_FaintsTargetBelowQuarterOfTotalHP < PokeBattle_Move
 
     def pbEffectAgainstTarget(user, target)
         if canCull?(target)
-            @battle.pbDisplay(_INTL("#{user.pbThis} culls #{target.pbThis(true)}!"))
+            @battle.pbDisplay(_INTL("{1} culls {2}!", user.pbThis, target.pbThis(true)))
             target.pbReduceHP(target.hp, false)
             target.pbItemHPHealCheck
         end
@@ -677,7 +621,7 @@ class PokeBattle_Move_RayquazaTargetLosesFlinchImmunity < PokeBattle_Move
         return if target.damageState.unaffected
         if target.effectActive?(:FlinchImmunity)
             target.disableEffect(:FlinchImmunity)
-            @battle.pbDisplay(_INTL("#{target.pbThis} is newly afraid. It can be flinched again!"))
+            @battle.pbDisplay(_INTL("{1} is newly afraid. It can be flinched again!", target.pbThis))
         end
     end
 end
@@ -688,7 +632,7 @@ end
 #===============================================================================
 class PokeBattle_Move_KyogreSummonAvatarLuvdiscRemoraid < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
-        if !user.countsAs?(:KYOGRE)# || !user.boss?
+        if !user.countsAs?(:KYOGRE) || !user.boss?
             @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis(true))) if show_message
             return true
         end
@@ -704,31 +648,30 @@ class PokeBattle_Move_KyogreSummonAvatarLuvdiscRemoraid < PokeBattle_Move
         @battle.summonAvatarBattler(:LUVDISC, user.level, 0, user.index % 2)
         @battle.summonAvatarBattler(:REMORAID, user.level, 0, user.index % 2)
         @battle.pbSwapBattlers(user.index, user.index + 2)
+
+        @battle.remakeDataBoxes
     end
 end
 
 #===============================================================================
-# Summons Gravity for 10 turn and doubles the weight of Pokemon on the opposing side.
+# Summons permanent Gravity, which also doubles the weight of Pokemon on the opposing side.
 # Only usable by the avatar of Groudon (Warping Core)
 #===============================================================================
-class PokeBattle_Move_GroudonStartGravity10DoubleFoeWeight < PokeBattle_Move
+class PokeBattle_Move_GroudonStartGravityDoubleAllWeight < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if !user.countsAs?(:GROUDON) || !user.boss?
             @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis(true))) if show_message
             return true
         end
-        if @battle.field.effectActive?(:Gravity)
+        if @battle.field.effectActive?(:WarpingCore)
             @battle.pbDisplay(_INTL("But gravity is already warped!", user.pbThis(true))) if show_message
             return true
         end
         return false
     end
 
-    def pbEffectGeneral(user)
-        @battle.field.applyEffect(:Gravity, 5)
-        @battle.eachOtherSideBattler(user) do |b|
-            b.applyEffect(:WarpingCore)
-        end
+    def pbEffectGeneral(_user)
+        @battle.field.applyEffect(:WarpingCore)
     end
 end
 
@@ -792,7 +735,7 @@ class PokeBattle_Move_UseChoiceOf3ElementalFangs < PokeBattle_Move
         elsif !user.pbOwnedByPlayer? # Trainer AI
             @chosenMove = @validMoves[0]
         else
-            chosenIndex = @battle.scene.pbShowCommands(_INTL("Which move should #{user.pbThis(true)} use?"),validMoveNames,0)
+            chosenIndex = @battle.scene.pbShowCommands(_INTL("Which move should {1} use?", user.pbThis(true)),validMoveNames,0)
             @chosenMove = @validMoves[chosenIndex]
         end
     end
@@ -807,5 +750,59 @@ class PokeBattle_Move_UseChoiceOf3ElementalFangs < PokeBattle_Move
 
     def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
         return # No animation
+    end
+end
+
+#===============================================================================
+# Fails if the user is not asleep. (Snore)
+#===============================================================================
+class PokeBattle_Move_FailsIfUserNotAsleep < PokeBattle_Move
+    def usableWhenAsleep?; return true; end
+
+    def pbMoveFailed?(user, _targets, show_message)
+        unless user.asleep?
+            @battle.pbDisplay(_INTL("But it failed, since {1} isn't asleep!", user.pbThis(true))) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbMoveFailedAI?(user, targets)
+        return true unless user.willStayAsleepAI?
+        return pbMoveFailed?(user, targets, false)
+    end
+end
+
+#===============================================================================
+# Uses each other Sound move the Pokemon knows. (Broadcast Blast)
+#===============================================================================
+class PokeBattle_Move_UseAllOtherSoundMoves < PokeBattle_Move
+    def callsAnotherMove?; return true; end
+
+    def getAllOtherSoundMoves(user)
+        moves = []
+        user.getMoves.each do |m|
+            next unless m.soundMove?
+            next unless @battle.canInvokeMove?(m)
+            moves.push(m.id)
+        end
+        return moves
+    end
+
+    def pbMoveFailed?(user, _targets, show_message)
+        if getAllOtherSoundMoves(user).length == 0
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since {1} knows no other sound-based moves!", user.pbThis(true)))
+            end
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        moves = getAllOtherSoundMoves(user)
+        moves.each do |sound_move|
+            user.pbUseMoveSimple(sound_move)
+        end
     end
 end

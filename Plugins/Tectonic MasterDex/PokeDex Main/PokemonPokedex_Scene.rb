@@ -940,7 +940,7 @@ class PokemonPokedex_Scene
                         pbMessage(_INTL("Added every species on the current list!"))
                     else
                         pbAddPokemonSilent(@sprites["pokedex"].species, getLevelCap)
-                        pbMessage(_INTL("Added #{@sprites['pokedex'].species}"))
+                        pbMessage(_INTL("Added {1}", @sprites['pokedex'].species))
                     end
                 elsif Input.pressex?(0x57) && $DEBUG # W, for Wild Pokemon
                     pbWildBattle(@sprites["pokedex"].species, getLevelCap)
@@ -1022,7 +1022,7 @@ class PokemonPokedex_Scene
                     next
                 end
 
-                tutorActionSelection = pbMessage("Do what with #{actualMoveID}?",
+                tutorActionSelection = pbMessage(_INTL("Do what with {1}?", actualMoveID),
 [_INTL("Teach"), _INTL("Remove"), _INTL("Replace"), _INTL("Cancel")], 4)
                 return if tutorActionSelection == 3
 
@@ -1046,27 +1046,12 @@ class PokemonPokedex_Scene
                     end
                 end
 
-                lineBehaviourSelection = pbMessage("Tutor or line moves?",
-[_INTL("Line"), _INTL("Tutor"), _INTL("Cancel")], 3)
-                return if lineBehaviourSelection == 2
-
                 speciesToEdit = []
                 @dexlist.each do |dexlist_entry|
-                    species = dexlist_entry[0]
+                    species = dexlist_entry[:species]
                     speciesData = GameData::Species.get(species)
-
-                    # Grab the prevos and evos
-                    if lineBehaviourSelection == 1
-                        speciesToEdit.push(species)
-                        getPrevosInLineAsList(speciesData).each do |prevoSpecies|
-                            speciesToEdit.push(prevoSpecies)
-                        end
-                        getEvosInLineAsList(speciesData).each do |evoSpecies|
-                            speciesToEdit.push(evoSpecies)
-                        end
-                    else
-                        speciesToEdit.push(speciesData.get_line_start.id)
-                    end
+                    next if speciesData.canTutorAny?
+                    speciesToEdit.push(speciesData.get_line_start.id)
                 end
 
                 speciesToEdit.uniq!
@@ -1078,10 +1063,8 @@ class PokemonPokedex_Scene
                     echoln("Adding #{actualMoveID} to tutorable movesets:")
                     speciesToEdit.each do |species|
                         speciesData = GameData::Species.get(species)
-                        movesList = [speciesData.egg_moves, speciesData.tutor_moves][lineBehaviourSelection]
-                        movesList = speciesData.tutor_moves if speciesData.is_solitary?
-                        next if movesList.include?(actualMoveID)
-                        movesList.push(actualMoveID)
+                        next if speciesData.line_moves.include?(actualMoveID)
+                        speciesData.line_moves.push(actualMoveID)
                         echoln(species)
                         speciesEdited += 1
                     end
@@ -1089,10 +1072,8 @@ class PokemonPokedex_Scene
                     echoln("Deleting #{actualMoveID} from tutorable movesets:")
                     speciesToEdit.each do |species|
                         speciesData = GameData::Species.get(species)
-                        movesList = [speciesData.egg_moves, speciesData.tutor_moves][lineBehaviourSelection]
-                        movesList = speciesData.tutor_moves if speciesData.is_solitary?
-                        next unless movesList.include?(actualMoveID)
-                        movesList.delete(actualMoveID)
+                        next unless speciesData.line_moves.include?(actualMoveID)
+                        speciesData.line_moves.delete(actualMoveID)
                         echoln(species)
                         speciesEdited += 1
                     end
@@ -1100,17 +1081,15 @@ class PokemonPokedex_Scene
                     echoln("Replacing #{actualMoveID} in tutorable movesets with #{replacementActualMoveID}:")
                     speciesToEdit.each do |species|
                         speciesData = GameData::Species.get(species)
-                        movesList = [speciesData.egg_moves, speciesData.tutor_moves][lineBehaviourSelection]
-                        movesList = speciesData.tutor_moves if speciesData.is_solitary?
-                        next unless movesList.include?(actualMoveID)
-                        next if movesList.include?(replacementActualMoveID)
-                        movesList.delete(actualMoveID)
-                        movesList.push(replacementActualMoveID)
+                        next unless speciesData.line_moves.include?(actualMoveID)
+                        next if speciesData.line_moves.include?(replacementActualMoveID)
+                        speciesData.line_moves.delete(actualMoveID)
+                        speciesData.line_moves.push(replacementActualMoveID)
                         echoln(species)
                         speciesEdited += 1
                     end
                 end
-                pbMessage(_INTL("#{speciesEdited} species tutorable movesets edited!"))
+                pbMessage(_INTL("{1} species tutorable movesets edited!", speciesEdited))
 
                 GameData::Species.save
                 Compiler.write_pokemon
@@ -1123,17 +1102,16 @@ class PokemonPokedex_Scene
         # Find information about the currently displayed list
         typesCount = {}
         GameData::Type.each do |typesData|
-            next if typesData.id == :QMARKS
             typesCount[typesData.id] = 0
         end
         total = 0
         @dexlist.each do |dexEntry|
-            speciesData = GameData::Species.get(dexEntry[0])
+            speciesData = GameData::Species.get(dexEntry[:species])
             disqualify = false
             speciesData.get_evolutions.each do |evolutionEntry|
                 evoSpecies = evolutionEntry[0]
                 @dexlist.each do |searchDexEntry|
-                    disqualify = true if searchDexEntry[0] == evoSpecies
+                    disqualify = true if searchDexEntry[:species] == evoSpecies
                     break if disqualify
                 end
                 break if disqualify
@@ -1150,11 +1128,10 @@ class PokemonPokedex_Scene
 
         wholeGameTypesCount = {}
         GameData::Type.each do |typesData|
-            next if typesData.id == :QMARKS
             wholeGameTypesCount[typesData.id] = 0
         end
         pbGetDexList.each do |dexEntry|
-            speciesData = GameData::Species.get(dexEntry[0])
+            speciesData = GameData::Species.get(dexEntry[:species])
             next if speciesData.isLegendary?
             next if speciesData.get_evolutions.length > 0
             wholeGameTypesCount[speciesData.type1] += 1
@@ -1166,6 +1143,7 @@ class PokemonPokedex_Scene
         echoln("Investigation of the currently displayed dexlist:")
         echoln("Type,Count,PercentOfCurrentList,PercentageTypeCompletion")
         typesCount.each do |type, count|
+            next unless wholeGameTypesCount[type] > 0
             percentOfThisList = ((count.to_f / total.to_f) * 10_000).floor / 100.0
             percentOfTypeIsInThisMap = ((count.to_f / wholeGameTypesCount[type].to_f) * 10_000).floor / 100.0
             echoln("#{type},#{count},#{percentOfThisList},#{percentOfTypeIsInThisMap}")

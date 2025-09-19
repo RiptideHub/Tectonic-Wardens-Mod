@@ -5,21 +5,21 @@ class PokeBattle_Move_StartUserAirborne5 < PokeBattle_Move
     def unusableInGravity?; return true; end
 
     def pbMoveFailed?(user, _targets, show_message)
-        if user.effectActive?(:Ingrain)
+        if user.effectActive?(:Ingrain) || user.effectActive?(:EvilRoots)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s roots keep it stuck in the ground!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1}'s roots keep it stuck in the ground!", user.pbThis(true)))
             end
             return true
         end
         if user.effectActive?(:SmackDown)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} was smacked down to the ground!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} was smacked down to the ground!", user.pbThis(true)))
             end
             return true
         end
         if user.effectActive?(:MagnetRise)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is already risen up through magnetism!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} is already risen up through magnetism!", user.pbThis(true)))
             end
             return true
         end
@@ -50,7 +50,7 @@ class PokeBattle_Move_StartUserHitsTwiceWithSpecial < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if user.effectActive?(:VolleyStance)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is already in a volley stance!"))
+                @battle.pbDisplay(_INTL("But it failed, since {1} is already in a volley stance!", user.pbThis(true)))
             end
             return true
         end
@@ -72,7 +72,7 @@ end
 class PokeBattle_Move_RaiseUserSpAtk3StartUserAttacksSpread < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if user.effectActive?(:FlareWitch) && !user.pbCanRaiseStatStep?(:SPECIAL_ATTACK, user, self, true)
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't raise its Sp. Atk and already activated its witch powers!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since {1} can't raise its Sp. Atk and already activated its witch powers!", user.pbThis(true))) if show_message
             return true
         end
         return false
@@ -91,12 +91,12 @@ class PokeBattle_Move_RaiseUserSpAtk3StartUserAttacksSpread < PokeBattle_Move
 end
 
 #===============================================================================
-# Until the end of the next round, the user's moves will always be critical hits.
+# The user's attacks will all be critical hits for the next 3 turns.
 # (Laser Focus)
 #===============================================================================
-class PokeBattle_Move_EnsureNextCriticalHit < PokeBattle_Move
+class PokeBattle_Move_EnsureCriticalHits3 < PokeBattle_Move
     def pbEffectGeneral(user)
-        user.applyEffect(:LaserFocus, 2)
+        user.applyEffect(:LaserFocus, 4)
         @battle.pbDisplay(_INTL("{1} concentrated intensely!", user.pbThis))
     end
 
@@ -122,7 +122,7 @@ end
 class PokeBattle_Move_StartUserShedTypeWeaknesses < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if user.effectActive?(:Inured)
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is already inured!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since {1} is already inured!", user.pbThis(true))) if show_message
             return true
         end
         return false
