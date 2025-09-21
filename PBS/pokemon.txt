@@ -10447,7 +10447,7 @@ WildItemRare = STARPIECE
 #-------------------------------
 [DEOXYS]
 Name = Deoxys
-Type1 = MUTANT
+Type1 = COSMIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 50,110,105,120,110,105
 # Total = 600
